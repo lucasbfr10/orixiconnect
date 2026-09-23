@@ -159,7 +159,6 @@
   --noise-opacity:.038;
 }
 
-/* ─────────── SKINS ─────────── */
 :root[data-skin="amazonia"]{--accent:#D96754;--accent-hover:#C2503E;--accent-soft:rgba(217,103,84,.10);--accent-soft-strong:rgba(217,103,84,.20);--accent-glow:rgba(217,103,84,.35);--accent-glow-lg:rgba(217,103,84,.55);--gradient-primary:linear-gradient(135deg,#F0C674 0%,#E8A06E 35%,#D96754 70%,#A03D2E 100%);--gradient-text:linear-gradient(135deg,#A03D2E 0%,#D96754 35%,#DBA84A 70%,#8A621E 100%);}
 :root[data-skin="noite"]{--accent:#7B8FE8;--accent-hover:#5A6FD4;--accent-soft:rgba(123,143,232,.14);--accent-soft-strong:rgba(123,143,232,.24);--accent-glow:rgba(123,143,232,.42);--accent-glow-lg:rgba(123,143,232,.58);--gradient-primary:linear-gradient(135deg,#4A5BA8 0%,#7B8FE8 45%,#B583C1 100%);--gradient-text:linear-gradient(135deg,#7B8FE8 0%,#B583C1 50%,#4DB8A8 100%);}
 :root[data-skin="festival"]{--accent:#FF4D8F;--accent-hover:#E63377;--accent-soft:rgba(255,77,143,.12);--accent-soft-strong:rgba(255,77,143,.22);--accent-glow:rgba(255,77,143,.40);--accent-glow-lg:rgba(255,77,143,.56);--gradient-primary:linear-gradient(135deg,#FFB84D 0%,#FF4D8F 50%,#C13FD4 100%);--gradient-text:linear-gradient(135deg,#FF4D8F 0%,#FFB84D 55%,#00D4A0 100%);}
@@ -210,22 +209,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;back
 /* ─────────── RESET + BASE ─────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;scroll-behavior:smooth;font-size:16px;height:100%}
-body{
-  font-family:var(--font-sans);font-size:var(--text-body);line-height:var(--lh-relaxed);
-  color:var(--fg-primary);background:var(--bg-canvas);
-  min-height:100dvh;overscroll-behavior-y:none;overflow-x:hidden;
-  letter-spacing:var(--track-normal);
-  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-  font-feature-settings:"ss01","cv11","cv02";
-  transition:background-color var(--dur-slow) var(--ease-calm),color var(--dur-slow) var(--ease-calm);
-  position:relative;
-}
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:var(--z-below);
-  background:var(--gradient-mesh);
-  opacity:var(--noise-opacity,.02);
-  animation:meshBreath 24s var(--ease-calm) infinite;
-}
+body{font-family:var(--font-sans);font-size:var(--text-body);line-height:var(--lh-relaxed);color:var(--fg-primary);background:var(--bg-canvas);min-height:100dvh;overscroll-behavior-y:none;overflow-x:hidden;letter-spacing:var(--track-normal);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-feature-settings:"ss01","cv11","cv02";transition:background-color var(--dur-slow) var(--ease-calm),color var(--dur-slow) var(--ease-calm);position:relative}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:var(--z-below);background:var(--gradient-mesh);opacity:var(--noise-opacity,.02);animation:meshBreath 24s var(--ease-calm) infinite}
 @keyframes meshBreath{0%,100%{opacity:var(--noise-opacity,.02);transform:scale(1)}50%{opacity:calc(var(--noise-opacity,.02) * .85);transform:scale(1.04)}}
 img,svg,video{display:block;max-width:100%;height:auto}
 button,input,select,textarea{font:inherit;color:inherit}
@@ -250,26 +235,13 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .grow{flex:1;min-width:0}
 
 /* ─────────── BOTÕES ─────────── */
-.x-btn{
-  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:var(--space-xs);
-  padding:var(--space-md) var(--space-xl);
-  font-family:var(--font-sans);font-size:var(--text-body);font-weight:var(--fw-semibold);
-  line-height:1;border-radius:var(--radius-pill);border:1.5px solid transparent;
-  white-space:nowrap;cursor:pointer;user-select:none;
-  transition:all var(--dur-base) var(--ease-glide);
-  isolation:isolate;transform:translateZ(0);overflow:hidden;
-  -webkit-tap-highlight-color:transparent;
-}
+.x-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:var(--space-xs);padding:var(--space-md) var(--space-xl);font-family:var(--font-sans);font-size:var(--text-body);font-weight:var(--fw-semibold);line-height:1;border-radius:var(--radius-pill);border:1.5px solid transparent;white-space:nowrap;cursor:pointer;user-select:none;transition:all var(--dur-base) var(--ease-glide);isolation:isolate;transform:translateZ(0);overflow:hidden;-webkit-tap-highlight-color:transparent}
 .x-btn::before{content:'';position:absolute;inset:0;background:var(--gradient-shine);opacity:0;transition:opacity var(--dur-base) var(--ease-glide);pointer-events:none;}
 .x-btn:hover::before{opacity:.6;animation:shineSlide 1.6s var(--ease-glide) infinite}
 @keyframes shineSlide{0%{transform:translateX(-140%)}100%{transform:translateX(140%)}}
 .x-btn:active{transform:scale(.96)}
 .x-btn:disabled{opacity:.5;cursor:not-allowed;pointer-events:none}
-.x-btn--primary{
-  background:var(--gradient-primary);background-size:200% 200%;color:#fff;
-  box-shadow:var(--shadow-accent),var(--shadow-inner-glow);
-  font-weight:var(--fw-bold);animation:gradientShift 8s var(--ease-calm) infinite;
-}
+.x-btn--primary{background:var(--gradient-primary);background-size:200% 200%;color:#fff;box-shadow:var(--shadow-accent),var(--shadow-inner-glow);font-weight:var(--fw-bold);animation:gradientShift 8s var(--ease-calm) infinite}
 @keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 .x-btn--primary:hover:not(:disabled){transform:translateY(-3px);box-shadow:var(--shadow-accent-lg),var(--shadow-inner-glow);filter:saturate(1.15)}
 .x-btn--ghost{background:var(--bg-surface);color:var(--fg-primary);border-color:var(--border-subtle);box-shadow:var(--shadow-xs);backdrop-filter:blur(12px)}
@@ -359,6 +331,15 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .x-empty__title{font-family:var(--font-display);font-size:var(--text-headline);font-weight:var(--fw-black);color:var(--fg-primary);margin-bottom:var(--space-sm);letter-spacing:var(--track-tight)}
 .x-empty__text{font-size:var(--text-body);line-height:var(--lh-loose);color:var(--fg-secondary);max-width:360px;margin:0 auto var(--space-xl)}
 
+/* ✅ NOVO: estilos para o input "Outro" de bairros */
+.bairro-custom-wrap{grid-column:1 / -1;margin-top:6px;padding:10px 12px;background:var(--bg-surface-alt);border:1.5px dashed var(--accent);border-radius:var(--radius-md);animation:bairroCustomIn .35s var(--ease-glide) both}
+@keyframes bairroCustomIn{from{opacity:0;transform:translateY(-6px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.bairro-custom-wrap .x-field__input{border-color:var(--accent);background:var(--bg-surface)}
+.bairro-custom-wrap .x-field__input:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.bairro-option.is-outro{border-style:dashed;border-color:var(--accent);color:var(--accent);font-weight:700}
+.bairro-option.is-outro::before{content:'✏️ ';margin-right:3px}
+.bairro-option.is-outro.is-active{background:var(--accent);color:#fff;border-style:solid}
+
 .app{min-height:100dvh;display:flex;flex-direction:column;position:relative}
 .app__header{position:sticky;top:0;z-index:var(--z-header);display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);height:var(--header-h);padding:0 var(--space-lg);padding-left:calc(var(--space-lg) + var(--safe-left));padding-right:calc(var(--space-lg) + var(--safe-right));background:var(--bg-glass-strong);backdrop-filter:blur(28px) saturate(200%);-webkit-backdrop-filter:blur(28px) saturate(200%);border-bottom:1px solid var(--border-hairline)}
 .app__header::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.35}
@@ -417,7 +398,7 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .auth__form{display:grid;gap:var(--space-lg)}
 .auth__swap,.auth__back{text-align:center;font-size:var(--text-body-sm);color:var(--fg-secondary);margin-top:var(--space-xl)}
 .auth__swap a,.auth__back a{color:var(--accent);font-weight:var(--fw-bold);cursor:pointer;border-bottom:1.5px dashed var(--accent);padding-bottom:1px}
-.bairros{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-sm);margin-top:var(--space-sm);max-height:224px;overflow-y:auto;padding-right:4px}
+.bairros{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-sm);margin-top:var(--space-sm);max-height:280px;overflow-y:auto;padding-right:4px}
 .bairro-option{padding:var(--space-md) var(--space-sm);background:var(--bg-surface);border:1.5px solid var(--border-subtle);border-radius:var(--radius-md);font-size:var(--text-body-sm);font-weight:var(--fw-semibold);text-align:center;color:var(--fg-secondary);cursor:pointer;word-break:break-word;transition:all var(--dur-fast) var(--ease-swift)}
 .bairro-option:hover{border-color:var(--border-strong);color:var(--fg-primary)}
 .bairro-option.is-active{background:var(--gradient-primary);color:#fff;border-color:transparent;box-shadow:var(--shadow-accent)}
@@ -1516,7 +1497,29 @@ const DEBUG = new URLSearchParams(location.search).has('debug');
 const log = (...a) => DEBUG && console.log('%c[Orixi]', 'color:#D96754;font-weight:bold', ...a);
 const logErr = (...a) => console.error('%c[Orixi]', 'color:#D96754;font-weight:bold', ...a);
 const BUCKETS = { AVATARS: 'avatars', POSTS: 'posts', STORIES: 'stories', COMERCIOS: 'comercios', GRUPOS: 'grupos' };
-const BAIRROS = ['Centro','Cidade Nova','Santa Terezinha','São Sebastião','Bela Vista','Nossa Senhora de Fátima','Perpétuo Socorro','Nova Esperança','Alvorada','Cidade Velha','Uruará','Boa Vista','Outro'];
+
+/* ✅ NOVO: 17 bairros de Oriximiná */
+const BAIRROS = [
+  'Centro',
+  'Penta',
+  'São José Operário',
+  'São Lázaro',
+  'Santa Terezinha',
+  'Cidade Nova',
+  'Santíssimo Sacramento',
+  'São Pedro',
+  'Nossa Senhora das Graças',
+  'Nossa Senhora de Fátima',
+  'Nossa Senhora do Perpétuo Socorro',
+  'Santa Luzia',
+  'Área Pastoral',
+  'Novo Horizonte',
+  'Bela Vista',
+  'Nova Vitória',
+  'Residencial Tia Ana'
+];
+const BAIRRO_OUTRO_LABEL = 'Outro (digitar)';
+
 const CATEGORIAS = [{id:'geral',label:'Geral',icon:'💬'},{id:'noticia',label:'Notícia',icon:'📰'},{id:'evento',label:'Evento',icon:'🎉'},{id:'venda',label:'Venda',icon:'🛒'},{id:'duvida',label:'Dúvida',icon:'❓'},{id:'alerta',label:'Alerta',icon:'⚠️'},{id:'cultura',label:'Cultura',icon:'🎭'},{id:'comida',label:'Comida',icon:'🍲'}];
 const ZEL_CATEGORIAS = [{id:'buraco',label:'Buraco',icon:'🕳️',cor:'#C2503E'},{id:'iluminacao',label:'Iluminação',icon:'💡',cor:'#DBA84A'},{id:'lixo',label:'Lixo',icon:'🗑️',cor:'#7D6951'},{id:'esgoto',label:'Esgoto',icon:'💧',cor:'#5A88B3'},{id:'calcada',label:'Calçada',icon:'🚶',cor:'#9462A4'},{id:'sinalizacao',label:'Sinalização',icon:'🚦',cor:'#DD9453'},{id:'poda',label:'Poda',icon:'🌳',cor:'#2D8659'},{id:'praça',label:'Praça',icon:'🌳',cor:'#359789'},{id:'limpeza',label:'Limpeza',icon:'🧹',cor:'#5A88B3'},{id:'drenagem',label:'Drenagem',icon:'🌊',cor:'#4DB8A8'},{id:'outro',label:'Outro',icon:'❓',cor:'#7D6951'}];
 const ZEL_STATUS = {aberto:{label:'Aberto',icon:'🔴'},em_analise:{label:'Em análise',icon:'🔍'},em_andamento:{label:'Em andamento',icon:'⚙️'},resolvido:{label:'Resolvido',icon:'✅'},cancelado:{label:'Cancelado',icon:'❌'}};
@@ -1545,7 +1548,7 @@ const SkinSwitcher = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 3: UTILITÁRIOS (U)
+   BLOCO 3: UTILITÁRIOS (U) — com helper renderBairrosPicker
    ═══════════════════════════════════════════════════════════ */
 const U = (() => {
   const $ = (s, c = document) => c.querySelector(s);
@@ -1583,7 +1586,74 @@ const U = (() => {
   const isAdminEmail = (email = '') => ADMIN_EMAILS.map(e => e.toLowerCase()).includes(String(email).toLowerCase());
   const isAdminUuid = (uuid = '') => ADMIN_UUIDS.map(u => u.toLowerCase()).includes(String(uuid).toLowerCase());
   const solidColorFromGradient = (value, fallback = '#DBA84A') => { if (!value || value === 'none') return fallback; if (!value.includes('gradient')) return value; const m = String(value).match(/#[0-9A-Fa-f]{6}/); return m ? m[0] : fallback; };
-  return { $, $$, sanitize, escapeHtml, truncate, initials, timeAgo, formatDate, formatHora, formatNum, randomCode, store, toast, btnLoading, ripple, party, copy, resizeImage, isEmail, isCode, show, hide, scrollTop, publicUrl, formatPostText, getLevel, getNextLevel, getLevelProgress, isNight, isAdminEmail, isAdminUuid, solidColorFromGradient };
+
+  /* ✅ NOVO: renderiza grade de bairros com opção "Outro (digitar)" */
+  const renderBairrosPicker = (container, valorAtual, onSelect, opts = {}) => {
+    if (!container) return;
+    const incluirOutro = opts.incluirOutro !== false;
+    const outroLabel = opts.outroLabel || BAIRRO_OUTRO_LABEL;
+    const lista = [...BAIRROS, ...(incluirOutro ? [outroLabel] : [])];
+    const isCustom = valorAtual && !BAIRROS.includes(valorAtual);
+    const valorEfetivo = isCustom ? outroLabel : valorAtual;
+    container.innerHTML = '';
+    let inputCustom = null;
+    let wrapCustom = null;
+
+    const mostrarInputCustom = () => {
+      if (wrapCustom) { wrapCustom.classList.remove('hidden'); return; }
+      wrapCustom = document.createElement('div');
+      wrapCustom.className = 'bairro-custom-wrap';
+      wrapCustom.innerHTML = `
+        <input type="text" class="x-field__input" placeholder="Digite seu bairro ou área…" maxlength="40" autocomplete="off">
+        <small style="font-size:11px;color:var(--fg-secondary);margin-top:6px;display:block">Ex: Beira do rio, Área rural, Bairro X…</small>
+      `;
+      inputCustom = wrapCustom.querySelector('input');
+      container.appendChild(wrapCustom);
+      let t = null;
+      inputCustom.addEventListener('input', () => {
+        clearTimeout(t);
+        t = setTimeout(() => {
+          const v = inputCustom.value.trim();
+          if (v.length >= 2) onSelect(v);
+          else onSelect(null);
+        }, 200);
+      });
+    };
+    const esconderInputCustom = () => { if (wrapCustom) wrapCustom.classList.add('hidden'); };
+
+    lista.forEach(b => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'bairro-option' + (b === valorEfetivo ? ' is-active' : '') + (b === outroLabel ? ' is-outro' : '');
+      btn.textContent = b;
+      btn.dataset.bairro = b;
+      btn.addEventListener('click', () => {
+        container.querySelectorAll('.bairro-option').forEach(x => x.classList.toggle('is-active', x === btn));
+        if (b === outroLabel && incluirOutro) {
+          mostrarInputCustom();
+          if (inputCustom) {
+            if (!inputCustom.value) inputCustom.value = isCustom ? valorAtual : '';
+            inputCustom.focus();
+          }
+          const cur = inputCustom?.value.trim() || '';
+          onSelect(cur.length >= 2 ? cur : null);
+        } else {
+          esconderInputCustom();
+          onSelect(b);
+        }
+      });
+      container.appendChild(btn);
+    });
+
+    if (isCustom) {
+      setTimeout(() => {
+        mostrarInputCustom();
+        if (inputCustom) inputCustom.value = valorAtual;
+      }, 10);
+    }
+  };
+
+  return { $, $$, sanitize, escapeHtml, truncate, initials, timeAgo, formatDate, formatHora, formatNum, randomCode, store, toast, btnLoading, ripple, party, copy, resizeImage, isEmail, isCode, show, hide, scrollTop, publicUrl, formatPostText, getLevel, getNextLevel, getLevelProgress, isNight, isAdminEmail, isAdminUuid, solidColorFromGradient, renderBairrosPicker };
 })();
 
 /* ═══════════════════════════════════════════════════════════
@@ -1626,20 +1696,9 @@ const State = (() => {
 const Presence = (() => {
   const PRESENCE_KEY = 'orixi-presence-v1';
   const TYPING_KEY = 'orixi-typing-v1';
-  const ONLINE_WINDOW_MS = 60 * 1000;
   const TYPING_TIMEOUT_MS = 3500;
   const HEARTBEAT_MS = 30000;
-  const st = {
-    channel: null,
-    typingChannel: null,
-    onlines: new Map(),
-    lastSeen: new Map(),
-    typings: new Map(),
-    heartbeatTimer: null,
-    purgeTimer: null,
-    subscribed: false,
-    typingChannelSubscribed: false
-  };
+  const st = { channel: null, typingChannel: null, onlines: new Map(), lastSeen: new Map(), typings: new Map(), heartbeatTimer: null, purgeTimer: null, subscribed: false, typingChannelSubscribed: false };
   const listeners = new Map();
   const on = (ev, fn) => { if (!listeners.has(ev)) listeners.set(ev, new Set()); listeners.get(ev).add(fn); };
   const emit = (ev, p) => { if (listeners.has(ev)) listeners.get(ev).forEach(fn => { try { fn(p); } catch (e) { logErr('Presence.emit:', e); } }); };
@@ -1648,41 +1707,10 @@ const Presence = (() => {
   const isTyping = (fromUserId, toUserId) => { if (!fromUserId || !toUserId) return false; const key = `${fromUserId}->${toUserId}`; const exp = st.typings.get(key); if (!exp) return false; if (Date.now() > exp) { st.typings.delete(key); return false; } return true; };
   const isTypingInGroup = (fromUserId, grupoId) => { if (!fromUserId || !grupoId) return false; const key = `${fromUserId}->grupo:${grupoId}`; const exp = st.typings.get(key); if (!exp) return false; if (Date.now() > exp) { st.typings.delete(key); return false; } return true; };
   const getTypingUsersForGroup = (grupoId, excludeUserId) => { const out = []; const now = Date.now(); const suffix = `->grupo:${grupoId}`; st.typings.forEach((exp, key) => { if (!key.endsWith(suffix)) return; if (exp < now) { st.typings.delete(key); return; } const from = key.split('->')[0]; if (from === excludeUserId) return; out.push(from); }); return out; };
-  const syncPresence = () => {
-    st.onlines.clear();
-    if (st.channel) {
-      const state = st.channel.presenceState();
-      Object.values(state).forEach(list => {
-        (list || []).forEach(meta => {
-          if (meta && meta.userId) st.onlines.set(meta.userId, { at: meta.online_at || Date.now(), nome: meta.nome || null });
-        });
-      });
-    }
-    emit('presence:sync', { total: st.onlines.size });
-  };
-  const handleBroadcastTyping = (payload) => {
-    if (!payload || !payload.de || !payload.para) return;
-    const key = `${payload.de}->${payload.para}`;
-    if (payload.stopped) { st.typings.delete(key); } else { st.typings.set(key, Date.now() + TYPING_TIMEOUT_MS); }
-    emit('typing:change', { de: payload.de, para: payload.para, typing: !payload.stopped });
-  };
-  const emitTyping = (para, stopped = false) => {
-    if (!st.typingChannel || !st.typingChannelSubscribed) return;
-    const u = State.get('user'); if (!u?.id) return;
-    try {
-      st.typingChannel.send({
-        type: 'broadcast',
-        event: 'typing',
-        payload: { de: u.id, para, stopped, at: Date.now() }
-      });
-    } catch (e) { logErr('Presence.emitTyping:', e); }
-  };
-  const updateLastSeen = async () => {
-    const u = State.get('user'); if (!u?.id) return;
-    const now = new Date().toISOString();
-    st.lastSeen.set(u.id, now);
-    try { await sb.from('profiles').update({ ultima_atividade: now }).eq('id', u.id); } catch (e) { /* coluna pode não existir */ }
-  };
+  const syncPresence = () => { st.onlines.clear(); if (st.channel) { const state = st.channel.presenceState(); Object.values(state).forEach(list => { (list || []).forEach(meta => { if (meta && meta.userId) st.onlines.set(meta.userId, { at: meta.online_at || Date.now(), nome: meta.nome || null }); }); }); } emit('presence:sync', { total: st.onlines.size }); };
+  const handleBroadcastTyping = (payload) => { if (!payload || !payload.de || !payload.para) return; const key = `${payload.de}->${payload.para}`; if (payload.stopped) { st.typings.delete(key); } else { st.typings.set(key, Date.now() + TYPING_TIMEOUT_MS); } emit('typing:change', { de: payload.de, para: payload.para, typing: !payload.stopped }); };
+  const emitTyping = (para, stopped = false) => { if (!st.typingChannel || !st.typingChannelSubscribed) return; const u = State.get('user'); if (!u?.id) return; try { st.typingChannel.send({ type: 'broadcast', event: 'typing', payload: { de: u.id, para, stopped, at: Date.now() } }); } catch (e) { logErr('Presence.emitTyping:', e); } };
+  const updateLastSeen = async () => { const u = State.get('user'); if (!u?.id) return; const now = new Date().toISOString(); st.lastSeen.set(u.id, now); try { await sb.from('profiles').update({ ultima_atividade: now }).eq('id', u.id); } catch (e) { /* coluna pode não existir */ } };
   const subscribe = async () => {
     const u = State.get('user'); if (!u?.id) return;
     if (st.channel) { try { sb.removeChannel(st.channel); } catch (e) {} st.channel = null; }
@@ -1691,35 +1719,15 @@ const Presence = (() => {
     st.channel.on('presence', { event: 'sync' }, () => syncPresence());
     st.channel.on('presence', { event: 'join' }, ({ newPresences }) => { (newPresences || []).forEach(p => { if (p.userId) st.onlines.set(p.userId, { at: p.online_at || Date.now(), nome: p.nome }); }); emit('presence:sync', { total: st.onlines.size }); });
     st.channel.on('presence', { event: 'leave' }, ({ leftPresences }) => { (leftPresences || []).forEach(p => { if (p.userId) st.onlines.delete(p.userId); }); emit('presence:sync', { total: st.onlines.size }); });
-    st.channel.subscribe(async (status) => {
-      st.subscribed = (status === 'SUBSCRIBED');
-      if (st.subscribed) {
-        try { await st.channel.track({ userId: u.id, nome: u.nome || 'Morador', online_at: new Date().toISOString() }); } catch (e) { logErr('Presence.track:', e); }
-        await updateLastSeen();
-        if (st.heartbeatTimer) clearInterval(st.heartbeatTimer);
-        st.heartbeatTimer = setInterval(updateLastSeen, HEARTBEAT_MS);
-      }
-    });
+    st.channel.subscribe(async (status) => { st.subscribed = (status === 'SUBSCRIBED'); if (st.subscribed) { try { await st.channel.track({ userId: u.id, nome: u.nome || 'Morador', online_at: new Date().toISOString() }); } catch (e) { logErr('Presence.track:', e); } await updateLastSeen(); if (st.heartbeatTimer) clearInterval(st.heartbeatTimer); st.heartbeatTimer = setInterval(updateLastSeen, HEARTBEAT_MS); } });
     st.typingChannel = sb.channel(TYPING_KEY);
     st.typingChannel.on('broadcast', { event: 'typing' }, ({ payload }) => handleBroadcastTyping(payload));
     st.typingChannel.subscribe((status) => { st.typingChannelSubscribed = (status === 'SUBSCRIBED'); });
     if (st.purgeTimer) clearInterval(st.purgeTimer);
     st.purgeTimer = setInterval(() => { const now = Date.now(); st.typings.forEach((exp, key) => { if (exp < now) st.typings.delete(key); }); }, 1000);
   };
-  const unsubscribe = async () => {
-    if (st.heartbeatTimer) { clearInterval(st.heartbeatTimer); st.heartbeatTimer = null; }
-    if (st.purgeTimer) { clearInterval(st.purgeTimer); st.purgeTimer = null; }
-    st.onlines.clear(); st.typings.clear();
-    if (st.channel) { try { await st.channel.untrack(); } catch (e) {} try { sb.removeChannel(st.channel); } catch (e) {} st.channel = null; }
-    if (st.typingChannel) { try { sb.removeChannel(st.typingChannel); } catch (e) {} st.typingChannel = null; }
-    st.subscribed = false; st.typingChannelSubscribed = false;
-  };
-  const init = () => {
-    State.on('change:user', (u) => { if (u?.id) { subscribe(); } else { unsubscribe(); } });
-    const u = State.get('user'); if (u?.id) subscribe();
-    window.addEventListener('beforeunload', () => { try { st.channel?.untrack(); } catch (e) {} });
-    log('🟢 Presence pronto');
-  };
+  const unsubscribe = async () => { if (st.heartbeatTimer) { clearInterval(st.heartbeatTimer); st.heartbeatTimer = null; } if (st.purgeTimer) { clearInterval(st.purgeTimer); st.purgeTimer = null; } st.onlines.clear(); st.typings.clear(); if (st.channel) { try { await st.channel.untrack(); } catch (e) {} try { sb.removeChannel(st.channel); } catch (e) {} st.channel = null; } if (st.typingChannel) { try { sb.removeChannel(st.typingChannel); } catch (e) {} st.typingChannel = null; } st.subscribed = false; st.typingChannelSubscribed = false; };
+  const init = () => { State.on('change:user', (u) => { if (u?.id) { subscribe(); } else { unsubscribe(); } }); const u = State.get('user'); if (u?.id) subscribe(); window.addEventListener('beforeunload', () => { try { st.channel?.untrack(); } catch (e) {} }); log('🟢 Presence pronto'); };
   return { init, isOnline, getLastSeen, isTyping, isTypingInGroup, getTypingUsersForGroup, emitTyping, on, subscribe, unsubscribe, updateLastSeen };
 })();
 
@@ -1741,10 +1749,9 @@ const DB = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 5.5: ConfigGlobal (tabela config_global para admin)
+   BLOCO 5.5: ConfigGlobal
    ═══════════════════════════════════════════════════════════ */
 const ConfigGlobal = (() => {
-  const handle = (res, ctx) => { if (res.error) { logErr(ctx, res.error.message); throw res.error; } return res.data; };
   const cache = new Map();
   const TTL_MS = 30 * 1000;
   const get = async (chave, defaultVal = null, forcarRefresh = false) => {
@@ -1760,12 +1767,8 @@ const ConfigGlobal = (() => {
     } catch (e) { logErr('[ConfigGlobal.get]:', e); return defaultVal; }
   };
   const set = async (chave, valor) => {
-    const u = State.get('user');
-    if (!u?.id) throw new Error('Não autenticado');
-    const { error } = await sb.from('config_global').upsert(
-      { chave, valor, atualizado_por: u.id, atualizado_em: new Date().toISOString() },
-      { onConflict: 'chave' }
-    );
+    const u = State.get('user'); if (!u?.id) throw new Error('Não autenticado');
+    const { error } = await sb.from('config_global').upsert({ chave, valor, atualizado_por: u.id, atualizado_em: new Date().toISOString() }, { onConflict: 'chave' });
     if (error) throw error;
     cache.set(chave, { val: valor, at: Date.now() });
     return valor;
@@ -1829,25 +1832,20 @@ const DeletePost = (() => {
   const abrirConfirm = (postId, cardEl, btnEl, ctx) => {
     criarConfirm();
     pendingDelete = { postId, cardEl, btnEl };
-    const ehDono = ctx.ehDono;
-    const ehAdmin = ctx.ehAdmin;
+    const ehDono = ctx.ehDono; const ehAdmin = ctx.ehAdmin;
     confirmEl.querySelector('[data-title]').textContent = ehAdmin && !ehDono ? 'Apagar publicação de outro usuário?' : 'Apagar publicação?';
     const avisoBox = confirmEl.querySelector('[data-aviso-admin]');
     if (ehAdmin && !ehDono) { avisoBox.innerHTML = `<div class="delpost-confirm__aviso-admin">👑 Ação de Administrador</div>`; confirmEl.querySelector('[data-text]').textContent = 'Você está apagando o post de outro morador. O autor será notificado. Esta ação é permanente.'; } else { avisoBox.innerHTML = ''; confirmEl.querySelector('[data-text]').textContent = 'Esta ação é permanente e não poderá ser desfeita.'; }
     const previewEl = confirmEl.querySelector('[data-preview]');
     if (ctx.preview) { previewEl.style.display = 'flex'; confirmEl.querySelector('[data-preview-txt]').innerHTML = ctx.preview; confirmEl.querySelector('[data-preview-ico]').textContent = ctx.previewIco || '📝'; } else { previewEl.style.display = 'none'; }
-    const btnConfirm = confirmEl.querySelector('[data-confirm]');
-    btnConfirm.disabled = false;
-    btnConfirm.textContent = 'Apagar';
+    const btnConfirm = confirmEl.querySelector('[data-confirm]'); btnConfirm.disabled = false; btnConfirm.textContent = 'Apagar';
     confirmEl.classList.add('is-open');
   };
   const fecharConfirm = () => { if (!confirmEl) return; confirmEl.classList.remove('is-open'); pendingDelete = null; };
   const executarDelete = async () => {
     if (!pendingDelete) return;
     const { postId, cardEl, btnEl } = pendingDelete;
-    const btnConfirm = confirmEl.querySelector('[data-confirm]');
-    btnConfirm.disabled = true;
-    btnConfirm.textContent = 'Apagando…';
+    const btnConfirm = confirmEl.querySelector('[data-confirm]'); btnConfirm.disabled = true; btnConfirm.textContent = 'Apagando…';
     if (btnEl) { btnEl.classList.add('is-loading'); btnEl.disabled = true; }
     try {
       const { data: postInfo } = await sb.from('posts').select('user_id,texto').eq('id', postId).maybeSingle();
@@ -1866,8 +1864,7 @@ const DeletePost = (() => {
       logErr('[DeletePost] Erro:', err);
       const msg = err?.message || 'Erro ao apagar';
       U.toast('⚠️ ' + msg, 3000, 'erro');
-      btnConfirm.disabled = false;
-      btnConfirm.textContent = 'Apagar';
+      btnConfirm.disabled = false; btnConfirm.textContent = 'Apagar';
       if (btnEl) { btnEl.classList.remove('is-loading'); btnEl.disabled = false; }
     }
   };
@@ -1875,14 +1872,12 @@ const DeletePost = (() => {
     const posts = root.querySelectorAll('.x-post[data-post-id]');
     posts.forEach(card => {
       if (card.querySelector('.x-post__delete')) return;
-      const postId = card.dataset.postId;
-      if (!postId) return;
+      const postId = card.dataset.postId; if (!postId) return;
       const post = Feed.posts?.find?.(p => p.id === postId);
       const autorId = post?.user_id || post?.autor?.id || card.querySelector('[data-perfil]')?.dataset?.perfil;
       if (!autorId) return;
       if (!podeApagar(autorId)) return;
-      const head = card.querySelector('.x-post__head');
-      if (!head) return;
+      const head = card.querySelector('.x-post__head'); if (!head) return;
       const ehDono = State.get('user')?.id === autorId;
       const ehAdmin = State.isAdmin();
       const btn = document.createElement('button');
@@ -1893,8 +1888,7 @@ const DeletePost = (() => {
       btn.title = ehAdmin && !ehDono ? '👑 Apagar como admin' : 'Apagar publicação';
       btn.innerHTML = svgTrash;
       btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        e.preventDefault();
+        e.stopPropagation(); e.preventDefault();
         const texto = post?.texto || card.querySelector('.x-post__text')?.textContent || '';
         const temImg = !!card.querySelector('.x-post__image');
         const preview = texto ? U.escapeHtml(U.truncate(texto, 90)) : (temImg ? '<strong>Publicação com foto</strong> (sem texto)' : '<strong>Publicação</strong>');
@@ -1950,11 +1944,7 @@ const abrirLightbox = (src) => { if (!_lightboxEl) { _lightboxEl = document.crea
 const PostRender = (() => {
   const avatarHtml = (autor, size = 'md') => { const a = autor || {}; const nome = a.nome || 'Morador'; const av = a.avatar_url ? U.publicUrl(BUCKETS.AVATARS, a.avatar_url) : null; const isAdmin = a.is_admin === true; const frame = a.admin_frame || 'none'; const frameAttr = isAdmin && frame !== 'none' ? ` data-frame="${frame}"` : ''; const adminClass = isAdmin && frame !== 'none' ? ` x-avatar--admin` : ''; if (av) return `<img class="x-avatar x-avatar--${size}${adminClass}"${frameAttr} src="${U.escapeHtml(av)}" loading="lazy" alt="">`; return `<div class="x-avatar x-avatar--${size} x-avatar--grad${adminClass}"${frameAttr}>${U.initials(nome)}</div>`; };
   const authorNameHtml = (autor) => {
-    const a = autor || {};
-    const nome = a.nome || 'Morador';
-    const isAdmin = a.is_admin === true;
-    const color = a.admin_color;
-    const title = a.admin_title;
+    const a = autor || {}; const nome = a.nome || 'Morador'; const isAdmin = a.is_admin === true; const color = a.admin_color; const title = a.admin_title;
     if (isAdmin) {
       const solidColor = U.solidColorFromGradient(color && color !== 'none' ? ADMIN_COLORS.find(c => c.id === color)?.value : null, '#DBA84A');
       return `<span class="x-post__author" style="color:${solidColor};font-weight:var(--fw-black)">${U.escapeHtml(nome)}</span><span class="x-post__admin-badge">👑 Admin</span>${title ? `<span style="font-size:10px;color:#8A621E;font-weight:800;letter-spacing:.05em;text-transform:uppercase;margin-left:4px">· ${U.escapeHtml(title)}</span>` : ''}`;
@@ -1997,29 +1987,23 @@ const Composer = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 15: Perfil
+   BLOCO 15: Perfil (com renderBairrosPicker no editar)
    ═══════════════════════════════════════════════════════════ */
 const Perfil = (() => {
   const abrir = async (userId) => {
-    const alvo = userId || State.get('user')?.id;
-    if (!alvo) return;
+    const alvo = userId || State.get('user')?.id; if (!alvo) return;
     State.set('viewingProfileId', alvo);
-    const box = document.getElementById('perfil-view');
-    if (!box) return;
+    const box = document.getElementById('perfil-view'); if (!box) return;
     box.innerHTML = `<div class="x-skeleton x-skeleton--tall"></div>`;
     try {
       const [user, posts, counts] = await Promise.all([DB.profiles.get(alvo), DB.posts.list({ userId: alvo, limit: 20 }), DB.follows.counts(alvo)]);
       if (!user) { box.innerHTML = `<p>Perfil não encontrado.</p>`; return; }
       render(user, posts || [], counts);
-    } catch (e) {
-      logErr('perfil:', e);
-      box.innerHTML = `<p>Erro ao carregar.</p>`;
-    }
+    } catch (e) { logErr('perfil:', e); box.innerHTML = `<p>Erro ao carregar.</p>`; }
   };
 
   const render = (user, posts, counts) => {
-    const box = document.getElementById('perfil-view');
-    if (!box) return;
+    const box = document.getElementById('perfil-view'); if (!box) return;
     const eu = user.id === State.get('user')?.id;
     const isAdmin = user.is_admin === true || U.isAdminUuid(user.id);
     const frame = user.admin_frame || 'none';
@@ -2029,17 +2013,13 @@ const Perfil = (() => {
     const lvl = U.getLevel(user.pontos || 0);
     const lvlProg = U.getLevelProgress(user.pontos || 0);
     const badgesConquistados = (eu ? State.get('badges') : user.badges) || [];
-    const badgesH = BADGES.map(b => {
-      const unlocked = badgesConquistados.includes(b.id);
-      return `<div class="badge ${unlocked ? '' : 'is-locked'}"><div class="badge__icon">${unlocked ? b.icon : '🔒'}</div><div class="badge__name">${U.escapeHtml(b.name)}</div><div class="badge__desc">${U.escapeHtml(b.desc)}</div>${unlocked ? '<span class="badge__check">✓</span>' : ''}</div>`;
-    }).join('');
+    const badgesH = BADGES.map(b => { const unlocked = badgesConquistados.includes(b.id); return `<div class="badge ${unlocked ? '' : 'is-locked'}"><div class="badge__icon">${unlocked ? b.icon : '🔒'}</div><div class="badge__name">${U.escapeHtml(b.name)}</div><div class="badge__desc">${U.escapeHtml(b.desc)}</div>${unlocked ? '<span class="badge__check">✓</span>' : ''}</div>`; }).join('');
     const frameAttr = isAdmin && frame !== 'none' ? ` data-frame="${frame}"` : '';
     const adminAvatarClass = isAdmin && frame !== 'none' ? ' x-avatar--admin' : '';
     const av = user.avatar_url ? U.publicUrl(BUCKETS.AVATARS, user.avatar_url) : null;
     const avatarInner = av ? `<img class="x-avatar x-avatar--xl${adminAvatarClass}"${frameAttr} src="${U.escapeHtml(av)}" alt="">` : `<div class="x-avatar x-avatar--xl x-avatar--grad${adminAvatarClass}"${frameAttr}>${U.initials(user.nome || '')}</div>`;
     const avatarH = eu ? `<div class="profile__avatar-wrap" id="pf-avatar-wrap" role="button" tabindex="0" aria-label="Trocar foto de perfil">${avatarInner}<span class="profile__avatar-edit">📷</span><input type="file" id="pf-avatar-input" accept="image/*" style="display:none"></div>` : avatarInner;
-    let solidNameColor = null;
-    if (isAdmin && colorObj?.value) { solidNameColor = U.solidColorFromGradient(colorObj.value, '#DBA84A'); }
+    let solidNameColor = null; if (isAdmin && colorObj?.value) { solidNameColor = U.solidColorFromGradient(colorObj.value, '#DBA84A'); }
     const nameStyle = solidNameColor ? ` style="color:${solidNameColor}"` : '';
     const nameClass = 'profile__name' + (isAdmin ? ' profile__name--admin' : '');
     const seloH = isAdmin ? `<span class="verified-badge--admin">✓</span>` : (user.pontos || 0) >= 3000 ? `<span class="verified-badge">✓</span>` : '';
@@ -2064,15 +2044,12 @@ const Perfil = (() => {
         avatarWrap.addEventListener('click', abrirSeletor);
         avatarWrap.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrirSeletor(); } });
         avatarInput.addEventListener('change', async (e) => {
-          const file = e.target.files?.[0];
-          if (!file) return;
+          const file = e.target.files?.[0]; if (!file) return;
           if (!file.type.startsWith('image/')) { U.toast('Selecione uma imagem', 2400, 'erro'); return; }
           if (file.size > 10 * 1024 * 1024) { U.toast('Imagem muito grande (máx 10MB)', 2600, 'erro'); return; }
-          avatarWrap.classList.add('is-loading');
-          U.toast('📤 Enviando foto…', 3000, 'info');
+          avatarWrap.classList.add('is-loading'); U.toast('📤 Enviando foto…', 3000, 'info');
           try {
-            const u = State.get('user');
-            const avatarAntigo = u?.avatar_url || null;
+            const u = State.get('user'); const avatarAntigo = u?.avatar_url || null;
             const blob = await U.resizeImage(file, 500, 0.9);
             const path = `${u.id}/avatar-${Date.now()}.jpg`;
             const { error: upErr } = await sb.storage.from(BUCKETS.AVATARS).upload(path, blob, { upsert: true, contentType: 'image/jpeg', cacheControl: '3600' });
@@ -2082,11 +2059,7 @@ const Perfil = (() => {
             if (avatarAntigo && !/^https?:\/\//i.test(avatarAntigo)) { try { await sb.storage.from(BUCKETS.AVATARS).remove([avatarAntigo]); } catch (err) {} }
             U.toast('✅ Foto de perfil atualizada!', 2400, 'sucesso');
             setTimeout(() => abrir(user.id), 400);
-          } catch (err) {
-            logErr('[Perfil] Upload avatar:', err);
-            U.toast('⚠️ Erro ao enviar foto: ' + (err.message || 'desconhecido'), 3200, 'erro');
-            avatarWrap.classList.remove('is-loading');
-          } finally { avatarInput.value = ''; }
+          } catch (err) { logErr('[Perfil] Upload avatar:', err); U.toast('⚠️ Erro ao enviar foto: ' + (err.message || 'desconhecido'), 3200, 'erro'); avatarWrap.classList.remove('is-loading'); } finally { avatarInput.value = ''; }
         });
       }
     }
@@ -2109,10 +2082,8 @@ const Perfil = (() => {
   };
 
   const renderAparencia = () => {
-    const box = document.getElementById('perfil-tab-aparencia');
-    if (!box) return;
-    const u = State.get('user');
-    if (!u) return;
+    const box = document.getElementById('perfil-tab-aparencia'); if (!box) return;
+    const u = State.get('user'); if (!u) return;
     const currentPreset = u.banner_preset || null;
     const temBannerFoto = !!u.banner_url;
     const temBannerPreset = !!currentPreset && !temBannerFoto;
@@ -2120,68 +2091,17 @@ const Perfil = (() => {
     if (temBannerFoto) { const url = U.publicUrl(BUCKETS.POSTS, u.banner_url); bannerPreviewStyle = `background-image:url('${U.escapeHtml(url)}');background-size:cover;background-position:center`; }
     else if (temBannerPreset) { const p = BANNER_PRESETS.find(x => x.id === currentPreset); if (p) bannerPreviewStyle = p.id === 'gold_admin' ? 'background:linear-gradient(135deg,#DBA84A 0%,#F0C674 25%,#9462A4 50%,#5A88B3 75%,#359789 100%)' : `background:${p.value}`; }
     const presetsVisiveis = BANNER_PRESETS.filter(p => !p.adminOnly || State.isAdmin());
-    const presetsH = presetsVisiveis.map(p => {
-      const activeClass = temBannerPreset && currentPreset === p.id ? 'is-active' : '';
-      const adminBadge = p.id === 'gold_admin' ? `<span style="position:absolute;top:4px;right:4px;font-size:14px">👑</span>` : '';
-      const style = p.id === 'gold_admin' ? 'background:linear-gradient(135deg,#DBA84A 0%,#F0C674 25%,#9462A4 50%,#5A88B3 75%,#359789 100%)' : `background:${p.value}`;
-      return `<div class="banner-preset ${activeClass}" data-preset="${p.id}" style="${style};position:relative" title="${U.escapeHtml(p.label)}">${adminBadge}</div>`;
-    }).join('');
+    const presetsH = presetsVisiveis.map(p => { const activeClass = temBannerPreset && currentPreset === p.id ? 'is-active' : ''; const adminBadge = p.id === 'gold_admin' ? `<span style="position:absolute;top:4px;right:4px;font-size:14px">👑</span>` : ''; const style = p.id === 'gold_admin' ? 'background:linear-gradient(135deg,#DBA84A 0%,#F0C674 25%,#9462A4 50%,#5A88B3 75%,#359789 100%)' : `background:${p.value}`; return `<div class="banner-preset ${activeClass}" data-preset="${p.id}" style="${style};position:relative" title="${U.escapeHtml(p.label)}">${adminBadge}</div>`; }).join('');
     box.innerHTML = `<div class="admin-card" style="background:linear-gradient(135deg,var(--accent-soft),var(--secondary-soft));border-color:var(--accent-soft)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="font-size:1.5rem">🎨</span><strong style="font-family:var(--font-display);font-size:var(--text-title);font-weight:900">Personalize seu perfil</strong></div><p style="font-size:var(--text-caption);color:var(--fg-secondary);line-height:1.5">Toque na sua <b>foto de perfil</b> (no topo da página) para trocá-la. Abaixo você pode escolher uma <b>foto de capa</b> própria ou usar uma das prontas.</p></div><h3 class="x-heading x-heading--sm">🖼️ Foto de capa</h3><div class="admin-card" style="padding:var(--space-md)"><div id="banner-preview" style="width:100%;aspect-ratio:16/9;border-radius:var(--radius-lg);overflow:hidden;border:1.5px solid var(--border-hairline);${bannerPreviewStyle}"></div><div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button type="button" class="x-btn x-btn--primary x-btn--sm" id="banner-upload-btn" style="flex:1">📷 ${temBannerFoto ? 'Trocar foto de capa' : 'Enviar foto de capa'}</button>${(temBannerFoto || temBannerPreset) ? `<button type="button" class="x-btn x-btn--ghost x-btn--sm" id="banner-remove" style="flex:1">🗑️ Remover capa</button>` : ''}</div><input type="file" id="banner-upload-input" accept="image/*" style="display:none"><p style="font-size:11px;color:var(--fg-tertiary);margin-top:10px;text-align:center;line-height:1.4">Recomendado: <b>1200 × 675px</b> (16:9) · máx 12MB · JPG/PNG</p></div><h3 class="x-heading x-heading--sm">🎨 Ou escolha uma capa pronta</h3><div class="admin-card" style="padding:var(--space-md)"><div class="banner-presets">${presetsH}</div></div>`;
-    const upBtn = document.getElementById('banner-upload-btn');
-    const upInput = document.getElementById('banner-upload-input');
+    const upBtn = document.getElementById('banner-upload-btn'); const upInput = document.getElementById('banner-upload-input');
     upBtn?.addEventListener('click', () => upInput?.click());
-    upInput?.addEventListener('change', async (e) => {
-      const file = e.target.files?.[0];
-      if (!file) return;
-      if (!file.type.startsWith('image/')) { U.toast('Selecione uma imagem válida', 2400, 'erro'); return; }
-      if (file.size > 12 * 1024 * 1024) { U.toast('Imagem muito grande (máx 12MB)', 2600, 'erro'); return; }
-      upBtn.classList.add('is-loading'); upBtn.disabled = true;
-      const originalText = upBtn.innerHTML; upBtn.innerHTML = '📤 Enviando…';
-      try {
-        const blob = await U.resizeImage(file, 1600, 0.85);
-        const path = `${u.id}/banner-${Date.now()}.jpg`;
-        const { error: upErr } = await sb.storage.from(BUCKETS.POSTS).upload(path, blob, { upsert: true, contentType: 'image/jpeg', cacheControl: '3600' });
-        if (upErr) throw upErr;
-        const bannerAntigo = u.banner_url;
-        const updated = await State.saveUser({ banner_url: path, banner_preset: null });
-        if (!updated) throw new Error('Falha ao salvar no perfil');
-        if (bannerAntigo && !/^https?:\/\//i.test(bannerAntigo)) { try { await sb.storage.from(BUCKETS.POSTS).remove([bannerAntigo]); } catch (err) {} }
-        U.toast('✅ Capa atualizada!', 2400, 'sucesso');
-        setTimeout(() => abrir(u.id), 400);
-      } catch (err) {
-        logErr('[Banner] upload:', err);
-        U.toast('⚠️ Erro ao enviar capa: ' + (err.message || 'desconhecido'), 3200, 'erro');
-        upBtn.classList.remove('is-loading'); upBtn.disabled = false; upBtn.innerHTML = originalText;
-      } finally { upInput.value = ''; }
-    });
-    box.querySelectorAll('[data-preset]').forEach(el => {
-      el.addEventListener('click', async () => {
-        const presetId = el.dataset.preset;
-        try {
-          if (u.banner_url && !/^https?:\/\//i.test(u.banner_url)) { try { await sb.storage.from(BUCKETS.POSTS).remove([u.banner_url]); } catch (err) {} }
-          await State.saveUser({ banner_url: null, banner_preset: presetId });
-          U.toast('🎨 Capa aplicada', 2000, 'sucesso');
-          abrir(u.id);
-        } catch (err) { logErr('[Banner] preset:', err); U.toast('Erro ao aplicar capa', 2400, 'erro'); }
-      });
-    });
-    document.getElementById('banner-remove')?.addEventListener('click', async () => {
-      const antigo = u.banner_url;
-      try {
-        await State.saveUser({ banner_url: null, banner_preset: null });
-        if (antigo && !/^https?:\/\//i.test(antigo)) { try { await sb.storage.from(BUCKETS.POSTS).remove([antigo]); } catch (err) {} }
-        U.toast('Capa removida', 2200, 'info');
-        abrir(u.id);
-      } catch (err) { logErr('[Banner] remover:', err); U.toast('Erro ao remover capa', 2400, 'erro'); }
-    });
+    upInput?.addEventListener('change', async (e) => { const file = e.target.files?.[0]; if (!file) return; if (!file.type.startsWith('image/')) { U.toast('Selecione uma imagem válida', 2400, 'erro'); return; } if (file.size > 12 * 1024 * 1024) { U.toast('Imagem muito grande (máx 12MB)', 2600, 'erro'); return; } upBtn.classList.add('is-loading'); upBtn.disabled = true; const originalText = upBtn.innerHTML; upBtn.innerHTML = '📤 Enviando…'; try { const blob = await U.resizeImage(file, 1600, 0.85); const path = `${u.id}/banner-${Date.now()}.jpg`; const { error: upErr } = await sb.storage.from(BUCKETS.POSTS).upload(path, blob, { upsert: true, contentType: 'image/jpeg', cacheControl: '3600' }); if (upErr) throw upErr; const bannerAntigo = u.banner_url; const updated = await State.saveUser({ banner_url: path, banner_preset: null }); if (!updated) throw new Error('Falha ao salvar no perfil'); if (bannerAntigo && !/^https?:\/\//i.test(bannerAntigo)) { try { await sb.storage.from(BUCKETS.POSTS).remove([bannerAntigo]); } catch (err) {} } U.toast('✅ Capa atualizada!', 2400, 'sucesso'); setTimeout(() => abrir(u.id), 400); } catch (err) { logErr('[Banner] upload:', err); U.toast('⚠️ Erro ao enviar capa: ' + (err.message || 'desconhecido'), 3200, 'erro'); upBtn.classList.remove('is-loading'); upBtn.disabled = false; upBtn.innerHTML = originalText; } finally { upInput.value = ''; } });
+    box.querySelectorAll('[data-preset]').forEach(el => { el.addEventListener('click', async () => { const presetId = el.dataset.preset; try { if (u.banner_url && !/^https?:\/\//i.test(u.banner_url)) { try { await sb.storage.from(BUCKETS.POSTS).remove([u.banner_url]); } catch (err) {} } await State.saveUser({ banner_url: null, banner_preset: presetId }); U.toast('🎨 Capa aplicada', 2000, 'sucesso'); abrir(u.id); } catch (err) { logErr('[Banner] preset:', err); U.toast('Erro ao aplicar capa', 2400, 'erro'); } }); });
+    document.getElementById('banner-remove')?.addEventListener('click', async () => { const antigo = u.banner_url; try { await State.saveUser({ banner_url: null, banner_preset: null }); if (antigo && !/^https?:\/\//i.test(antigo)) { try { await sb.storage.from(BUCKETS.POSTS).remove([antigo]); } catch (err) {} } U.toast('Capa removida', 2200, 'info'); abrir(u.id); } catch (err) { logErr('[Banner] remover:', err); U.toast('Erro ao remover capa', 2400, 'erro'); } });
   };
 
-  // ═══════════════════════════════════════════════════════════
-  // ✅ ADMIN: Painel com toggle de convites + diagnóstico
-  // ═══════════════════════════════════════════════════════════
   const renderAdmin = () => {
-    const box = document.getElementById('perfil-tab-admin');
-    if (!box) return;
+    const box = document.getElementById('perfil-tab-admin'); if (!box) return;
     box.innerHTML = `
       <div class="admin-card" style="background:linear-gradient(135deg,rgba(219,168,74,.12),rgba(240,198,116,.06));border-color:rgba(219,168,74,.45);margin-bottom:var(--space-lg)">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
@@ -2221,45 +2141,19 @@ const Perfil = (() => {
     const statusIcon = document.getElementById('admin-convite-status-icon');
     const statusText = document.getElementById('admin-convite-status-text');
     const statusBox = document.getElementById('admin-convite-status');
-    const renderToggle = (aberto) => {
-      checkbox.checked = aberto;
-      if (aberto) { switchEl.style.background = 'var(--success)'; knob.style.transform = 'translateX(22px)'; statusIcon.textContent = '🟢'; statusText.textContent = 'ATIVO — Todos os usuários podem gerar convites'; statusBox.style.color = 'var(--success)'; }
-      else { switchEl.style.background = 'var(--border-default)'; knob.style.transform = 'translateX(0)'; statusIcon.textContent = '🔴'; statusText.textContent = 'DESATIVADO — Apenas admins podem gerar convites'; statusBox.style.color = 'var(--danger)'; }
-    };
-    (async () => {
-      try {
-        const aberto = await Convite.getConfigGlobal(true);
-        renderToggle(aberto);
-        checkbox.disabled = false;
-      } catch (e) {
-        statusIcon.textContent = '⚠️';
-        statusText.textContent = 'Erro ao carregar configuração';
-        statusBox.style.color = 'var(--danger)';
-      }
-    })();
+    const renderToggle = (aberto) => { checkbox.checked = aberto; if (aberto) { switchEl.style.background = 'var(--success)'; knob.style.transform = 'translateX(22px)'; statusIcon.textContent = '🟢'; statusText.textContent = 'ATIVO — Todos os usuários podem gerar convites'; statusBox.style.color = 'var(--success)'; } else { switchEl.style.background = 'var(--border-default)'; knob.style.transform = 'translateX(0)'; statusIcon.textContent = '🔴'; statusText.textContent = 'DESATIVADO — Apenas admins podem gerar convites'; statusBox.style.color = 'var(--danger)'; } };
+    (async () => { try { const aberto = await Convite.getConfigGlobal(true); renderToggle(aberto); checkbox.disabled = false; } catch (e) { statusIcon.textContent = '⚠️'; statusText.textContent = 'Erro ao carregar configuração'; statusBox.style.color = 'var(--danger)'; } })();
     checkbox.addEventListener('change', async (e) => {
-      const novoValor = e.target.checked;
-      checkbox.disabled = true;
-      statusIcon.textContent = '⏳';
-      statusText.textContent = 'Salvando…';
-      statusBox.style.color = 'var(--fg-secondary)';
+      const novoValor = e.target.checked; checkbox.disabled = true;
+      statusIcon.textContent = '⏳'; statusText.textContent = 'Salvando…'; statusBox.style.color = 'var(--fg-secondary)';
       try {
         await Convite.setConfigGlobal(novoValor);
         renderToggle(novoValor);
         U.toast(novoValor ? '✅ Geração de convites ATIVADA para todos' : '🔒 Geração de convites restrita a admins', 3000, 'sucesso');
         try { if (State.get('view') === 'convite') Convite.carregar(); } catch (e) {}
-      } catch (err) {
-        logErr('toggle convite:', err);
-        statusIcon.textContent = '⚠️';
-        statusText.textContent = 'Erro ao salvar: ' + (err.message || '');
-        statusBox.style.color = 'var(--danger)';
-        checkbox.checked = !novoValor;
-        renderToggle(!novoValor);
-      } finally {
-        checkbox.disabled = false;
-      }
+      } catch (err) { logErr('toggle convite:', err); statusIcon.textContent = '⚠️'; statusText.textContent = 'Erro ao salvar: ' + (err.message || ''); statusBox.style.color = 'var(--danger)'; checkbox.checked = !novoValor; renderToggle(!novoValor); }
+      finally { checkbox.disabled = false; }
     });
-    // Diagnóstico numa área temporária
     const diagArea = document.getElementById('admin-diag-container');
     if (diagArea && typeof Diagnostico !== 'undefined' && Diagnostico.render) {
       const tmp = document.createElement('div');
@@ -2269,18 +2163,26 @@ const Perfil = (() => {
       const realAdmin = document.getElementById('perfil-tab-admin');
       if (realAdmin) realAdmin.id = 'perfil-tab-admin-real';
       tmp.id = 'perfil-tab-admin';
-      try {
-        Diagnostico.render();
-        diagArea.innerHTML = tmp.innerHTML;
-      } catch (e) { logErr('diag render:', e); }
+      try { Diagnostico.render(); diagArea.innerHTML = tmp.innerHTML; } catch (e) { logErr('diag render:', e); }
       tmp.remove();
       if (realAdmin) realAdmin.id = 'perfil-tab-admin';
     }
   };
 
-  const renderConfig = () => { const box = document.getElementById('perfil-tab-config'); if (!box) return; const u = State.get('user'); const isAdmin = State.isAdmin(); box.innerHTML = `${isAdmin ? `<div class="admin-card"><strong style="font-family:var(--font-display);font-size:var(--text-title-sm);font-weight:900">👑 Você é Administrador</strong><p style="font-size:var(--text-caption);color:var(--fg-secondary);margin-top:4px">Personalize sua aparência nas abas <b>Aparência</b> e <b>Admin</b>.</p></div>` : ''}<h3 class="x-heading">Conta</h3><div class="config-row"><div class="config-row__info"><strong id="config-nome">—</strong><small id="config-email">—</small></div><button type="button" class="x-link" data-action="editar-perfil">Editar</button></div><h3 class="x-heading">Sobre</h3><div class="config-row"><div class="config-row__info"><strong>Orixiconnect 🌆</strong><small>versão 27.0 · Beta (convites liberados)</small></div><button type="button" class="x-link" data-action="logout">Sair</button></div>`; const n = document.getElementById('config-nome'); const e = document.getElementById('config-email'); if (n) n.textContent = u?.nome || '—'; if (e) e.textContent = u?.email || '—'; document.querySelectorAll('#perfil-tab-config [data-action]').forEach(b => b.addEventListener('click', () => { const a = b.dataset.action; if (a === 'editar-perfil') editar(); else if (a === 'logout') { if (confirm('Sair?')) State.logout().then(() => { U.hide('#app'); U.show('#landing'); }); } })); };
+  const renderConfig = () => { const box = document.getElementById('perfil-tab-config'); if (!box) return; const u = State.get('user'); const isAdmin = State.isAdmin(); box.innerHTML = `${isAdmin ? `<div class="admin-card"><strong style="font-family:var(--font-display);font-size:var(--text-title-sm);font-weight:900">👑 Você é Administrador</strong><p style="font-size:var(--text-caption);color:var(--fg-secondary);margin-top:4px">Personalize sua aparência nas abas <b>Aparência</b> e <b>Admin</b>.</p></div>` : ''}<h3 class="x-heading">Conta</h3><div class="config-row"><div class="config-row__info"><strong id="config-nome">—</strong><small id="config-email">—</small></div><button type="button" class="x-link" data-action="editar-perfil">Editar</button></div><h3 class="x-heading">Sobre</h3><div class="config-row"><div class="config-row__info"><strong>Orixiconnect 🌆</strong><small>versão 28.0 · 17 bairros + Outro</small></div><button type="button" class="x-link" data-action="logout">Sair</button></div>`; const n = document.getElementById('config-nome'); const e = document.getElementById('config-email'); if (n) n.textContent = u?.nome || '—'; if (e) e.textContent = u?.email || '—'; document.querySelectorAll('#perfil-tab-config [data-action]').forEach(b => b.addEventListener('click', () => { const a = b.dataset.action; if (a === 'editar-perfil') editar(); else if (a === 'logout') { if (confirm('Sair?')) State.logout().then(() => { U.hide('#app'); U.show('#landing'); }); } })); };
 
-  const editar = () => { const u = State.get('user'); if (!u) return; const bairros = BAIRROS.map(b => `<option value="${U.escapeHtml(b)}" ${b === u.bairro ? 'selected' : ''}>${U.escapeHtml(b)}</option>`).join(''); const body = `<div class="x-field"><label class="x-field__label">Nome</label><input class="x-field__input" id="ed-nome" value="${U.escapeHtml(u.nome || '')}" maxlength="60"></div><div class="x-field"><label class="x-field__label">Bio</label><textarea class="x-field__textarea" id="ed-bio" maxlength="200" rows="3">${U.escapeHtml(u.bio || '')}</textarea></div><div class="x-field"><label class="x-field__label">Bairro</label><select class="x-field__select" id="ed-bairro">${bairros}</select></div>`; Modal.abrir({ title: 'Editar perfil', body, submitLabel: 'Salvar', onSubmit: async () => { const nome = document.getElementById('ed-nome')?.value.trim(); if (!nome || nome.length < 2) { U.toast('Nome muito curto', 2400, 'erro'); return; } const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true); try { await State.saveUser({ nome, bio: document.getElementById('ed-bio')?.value.trim(), bairro: document.getElementById('ed-bairro')?.value }); U.toast('Perfil atualizado ✅', 2400, 'sucesso'); Modal.fechar(); abrir(); } catch { U.toast('Erro ao salvar', 2600, 'erro'); } finally { U.btnLoading(btn, false, 'Salvar'); } } }); };
+  const editar = () => {
+    const u = State.get('user'); if (!u) return;
+    let bairroSelEdit = u.bairro || null;
+    const body = `<div class="x-field"><label class="x-field__label">Nome</label><input class="x-field__input" id="ed-nome" value="${U.escapeHtml(u.nome || '')}" maxlength="60"></div><div class="x-field"><label class="x-field__label">Bio</label><textarea class="x-field__textarea" id="ed-bio" maxlength="200" rows="3">${U.escapeHtml(u.bio || '')}</textarea></div><div class="x-field"><label class="x-field__label">Bairro</label><div class="bairros" id="ed-bairro-grid" role="radiogroup"></div></div>`;
+    Modal.abrir({ title: 'Editar perfil', body, submitLabel: 'Salvar', onSubmit: async () => {
+      const nome = document.getElementById('ed-nome')?.value.trim();
+      if (!nome || nome.length < 2) { U.toast('Nome muito curto', 2400, 'erro'); return; }
+      const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true);
+      try { await State.saveUser({ nome, bio: document.getElementById('ed-bio')?.value.trim(), bairro: bairroSelEdit }); U.toast('Perfil atualizado ✅', 2400, 'sucesso'); Modal.fechar(); abrir(); } catch { U.toast('Erro ao salvar', 2600, 'erro'); } finally { U.btnLoading(btn, false, 'Salvar'); }
+    } });
+    setTimeout(() => { const grid = document.getElementById('ed-bairro-grid'); U.renderBairrosPicker(grid, u.bairro, (valor) => { bairroSelEdit = valor; }); }, 80);
+  };
 
   const init = () => { State.on('view:change', (v) => { if (v === 'perfil') abrir(); }); };
   return { init, abrir, renderConfig, renderAdmin, renderAparencia };
@@ -2301,7 +2203,7 @@ const PostInteractions = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 17: Auth (com recompensa + renovação automática para todos)
+   BLOCO 17: Auth (com renderBairrosPicker no cadastro)
    ═══════════════════════════════════════════════════════════ */
 const Auth = (() => {
   let modo = 'signup', bairroSel = null;
@@ -2309,10 +2211,10 @@ const Auth = (() => {
   const cache = () => { E.title = document.getElementById('auth-title'); E.sub = document.getElementById('auth-sub'); E.error = document.getElementById('auth-error'); E.form = document.getElementById('auth-form'); E.fConvite = document.getElementById('field-convite'); E.fNome = document.getElementById('field-nome'); E.fBairro = document.getElementById('field-bairro'); E.grid = document.getElementById('bairros-auth'); E.iConvite = document.getElementById('auth-convite'); E.iNome = document.getElementById('auth-nome'); E.iEmail = document.getElementById('auth-email'); E.iSenha = document.getElementById('auth-senha'); E.submit = document.getElementById('auth-submit'); E.swapT = document.getElementById('auth-swap-text'); E.swapL = document.getElementById('auth-swap-link'); E.back = document.getElementById('auth-back'); };
   const setErr = (m) => { if (E.error) E.error.textContent = m || ''; };
   const aplicarModo = () => { const s = modo === 'signup'; if (E.title) E.title.textContent = s ? 'Criar conta' : 'Entrar'; if (E.sub) E.sub.textContent = s ? 'Fase 1 — entrada por convite.' : 'Bem-vindo de volta.'; E.fConvite?.classList.toggle('hidden', !s); E.fNome?.classList.toggle('hidden', !s); E.fBairro?.classList.toggle('hidden', !s); if (E.swapT) E.swapT.textContent = s ? 'Já tem conta?' : 'Ainda não tem conta?'; if (E.swapL) E.swapL.textContent = s ? 'Entrar' : 'Tenho um convite'; if (E.submit) E.submit.textContent = s ? 'Criar conta' : 'Entrar'; setErr(''); };
-  const renderBairros = () => { if (!E.grid) return; E.grid.innerHTML = ''; BAIRROS.forEach(b => { const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'bairro-option'; btn.textContent = b; btn.addEventListener('click', () => { bairroSel = b; E.grid.querySelectorAll('.bairro-option').forEach(x => x.classList.toggle('is-active', x.textContent === b)); }); E.grid.appendChild(btn); }); };
+  const renderBairros = () => { if (!E.grid) return; bairroSel = null; U.renderBairrosPicker(E.grid, null, (valor) => { bairroSel = valor; }, { incluirOutro: true }); };
   const abrir = (t = 'signup') => { modo = t === 'login' ? 'login' : 'signup'; aplicarModo(); U.hide('#landing'); U.hide('#app'); U.show('#auth'); };
   const fechar = () => { U.hide('#auth'); if (State.isLogged()) U.show('#app'); else U.show('#landing'); };
-  const validar = () => { const email = E.iEmail?.value.trim() || ''; const senha = E.iSenha?.value || ''; if (!U.isEmail(email)) { setErr('E-mail inválido.'); return null; } if (senha.length < 6) { setErr('Senha precisa ter 6+ caracteres.'); return null; } if (modo === 'signup') { const convite = (E.iConvite?.value || '').trim().toUpperCase(); const nome = (E.iNome?.value || '').trim(); if (!U.isCode(convite)) { setErr('Código de convite inválido.'); return null; } if (!nome || nome.length < 2) { setErr('Digite seu nome.'); return null; } if (!bairroSel) { setErr('Escolha seu bairro.'); return null; } return { email, senha, convite, nome, bairro: bairroSel }; } return { email, senha }; };
+  const validar = () => { const email = E.iEmail?.value.trim() || ''; const senha = E.iSenha?.value || ''; if (!U.isEmail(email)) { setErr('E-mail inválido.'); return null; } if (senha.length < 6) { setErr('Senha precisa ter 6+ caracteres.'); return null; } if (modo === 'signup') { const convite = (E.iConvite?.value || '').trim().toUpperCase(); const nome = (E.iNome?.value || '').trim(); if (!U.isCode(convite)) { setErr('Código de convite inválido.'); return null; } if (!nome || nome.length < 2) { setErr('Digite seu nome.'); return null; } if (!bairroSel || bairroSel.length < 2) { setErr('Escolha ou digite seu bairro.'); return null; } return { email, senha, convite, nome, bairro: bairroSel }; } return { email, senha }; };
 
   const cadastrar = async ({ email, senha, convite, nome, bairro }) => {
     const c = await DB.convites.validar(convite);
@@ -2328,23 +2230,17 @@ const Auth = (() => {
     const isAdmin = U.isAdminEmail(email) || U.isAdminUuid(data.user.id);
     await sb.from('profiles').upsert({ id: data.user.id, email, nome, bairro, is_admin: isAdmin, ultima_atividade: new Date().toISOString() }, { onConflict: 'id' });
     try { await DB.convites.marcarUsado(convite, data.user.id); } catch (e) { logErr('marcarUsado:', e); }
-
-    // ✅ BETA: Todo novo usuário recebe um convite automático
     try {
       const expiraEm = new Date(Date.now() + DB.convites.VALIDADE_DIAS * 24 * 60 * 60 * 1000).toISOString();
       await sb.from('convites').insert({ codigo: U.randomCode(6), dono_id: data.user.id, expira_em: expiraEm, ativo: true });
     } catch (e) { logErr('convite novo user:', e); }
-
-    // ✅ BETA: Recompensa + renovação automática para quem convidou (dono do convite)
     try {
       if (c.dono_id) {
         const { data: donoProfile } = await sb.from('profiles').select('pontos, is_admin, email, nome').eq('id', c.dono_id).maybeSingle();
         if (donoProfile) {
           const xpAtual = donoProfile.pontos || 0;
           await sb.from('profiles').update({ pontos: xpAtual + 50 }).eq('id', c.dono_id).then(() => {}).catch((err) => logErr('recompensa convite:', err));
-          try {
-            await sb.from('notificacoes').insert({ user_id: c.dono_id, tipo: 'convite', ator_id: data.user.id, ref_id: null, texto: `${nome} aceitou seu convite! +50 XP` });
-          } catch (e) { logErr('notif convite:', e); }
+          try { await sb.from('notificacoes').insert({ user_id: c.dono_id, tipo: 'convite', ator_id: data.user.id, ref_id: null, texto: `${nome} aceitou seu convite! +50 XP` }); } catch (e) { logErr('notif convite:', e); }
         }
         const expiraEm = new Date(Date.now() + DB.convites.VALIDADE_DIAS * 24 * 60 * 60 * 1000).toISOString();
         await sb.from('convites').insert({ codigo: U.randomCode(6), dono_id: c.dono_id, expira_em: expiraEm, ativo: true }).then(() => {}).catch((err) => logErr('convite renovado:', err));
@@ -2362,166 +2258,82 @@ const Auth = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 18: Convite (BETA — liberado para todos + controle admin)
+   BLOCO 18: Convite (BETA + controle admin)
    ═══════════════════════════════════════════════════════════ */
 const Convite = (() => {
   const CONFIG_KEY = 'orixi-beta-convites-abertos';
   const CONFIG_DEFAULT = true;
-
-  const getConfigGlobal = async (forcarRefresh = false) => {
-    return await ConfigGlobal.get(CONFIG_KEY, CONFIG_DEFAULT, forcarRefresh);
-  };
-  const setConfigGlobal = async (aberto) => {
-    return await ConfigGlobal.set(CONFIG_KEY, aberto);
-  };
-  const podeGerarConvite = async () => {
-    if (State.isAdmin()) return true;
-    const aberto = await getConfigGlobal();
-    return aberto === true;
-  };
+  const getConfigGlobal = async (forcarRefresh = false) => { return await ConfigGlobal.get(CONFIG_KEY, CONFIG_DEFAULT, forcarRefresh); };
+  const setConfigGlobal = async (aberto) => { return await ConfigGlobal.set(CONFIG_KEY, aberto); };
+  const podeGerarConvite = async () => { if (State.isAdmin()) return true; const aberto = await getConfigGlobal(); return aberto === true; };
 
   const carregar = async () => {
-    const u = State.get('user');
-    if (!u) return;
+    const u = State.get('user'); if (!u) return;
     const codeEl = document.getElementById('meu-codigo');
     const valEl = document.getElementById('convite-validade');
     const histEl = document.getElementById('lista-convidados');
     const btnGerar = document.getElementById('btn-gerar-convite');
     const btnDesativar = document.getElementById('btn-desativar-convite');
     if (!codeEl) return;
-
     const permitido = await podeGerarConvite();
     const ehAdmin = State.isAdmin();
-
     try {
       const agora = Date.now();
       const todos = await DB.convites.meu(true);
-      const ativosValidos = todos.filter(c => {
-        if (c.ativo === false) return false;
-        if (c.usado_por) return false;
-        if (c.expira_em && new Date(c.expira_em).getTime() < agora) return false;
-        return true;
-      });
+      const ativosValidos = todos.filter(c => { if (c.ativo === false) return false; if (c.usado_por) return false; if (c.expira_em && new Date(c.expira_em).getTime() < agora) return false; return true; });
       const proprio = ativosValidos[0];
-
       if (proprio) {
-        codeEl.textContent = proprio.codigo;
-        codeEl.style.opacity = '1';
-        codeEl.style.textDecoration = 'none';
-        if (valEl && proprio.expira_em) {
-          const dias = Math.ceil((new Date(proprio.expira_em).getTime() - agora) / 86400000);
-          if (dias <= 0) { valEl.textContent = '⏰ Expirado'; valEl.style.color = 'var(--danger)'; }
-          else if (dias === 1) { valEl.textContent = '⏰ Vence amanhã'; valEl.style.color = 'var(--warning)'; }
-          else { valEl.textContent = `⏰ Vence em ${dias} dias`; valEl.style.color = dias <= 2 ? 'var(--warning)' : 'var(--fg-secondary)'; }
-        }
+        codeEl.textContent = proprio.codigo; codeEl.style.opacity = '1'; codeEl.style.textDecoration = 'none';
+        if (valEl && proprio.expira_em) { const dias = Math.ceil((new Date(proprio.expira_em).getTime() - agora) / 86400000); if (dias <= 0) { valEl.textContent = '⏰ Expirado'; valEl.style.color = 'var(--danger)'; } else if (dias === 1) { valEl.textContent = '⏰ Vence amanhã'; valEl.style.color = 'var(--warning)'; } else { valEl.textContent = `⏰ Vence em ${dias} dias`; valEl.style.color = dias <= 2 ? 'var(--warning)' : 'var(--fg-secondary)'; } }
         if (btnDesativar) btnDesativar.style.display = '';
       } else if (permitido) {
-        try {
-          const novo = await DB.convites.criar();
-          codeEl.textContent = novo.codigo;
-          codeEl.style.opacity = '1';
-          codeEl.style.textDecoration = 'none';
-          if (valEl) { valEl.textContent = `⏰ Vence em ${DB.convites.VALIDADE_DIAS} dias`; valEl.style.color = 'var(--fg-secondary)'; }
-          if (btnDesativar) btnDesativar.style.display = '';
-        } catch (err) {
-          logErr('auto-criar convite:', err);
-          codeEl.textContent = '------';
-          codeEl.style.opacity = '.5';
-          if (valEl) { valEl.textContent = 'Erro ao gerar convite'; valEl.style.color = 'var(--danger)'; }
-          if (btnDesativar) btnDesativar.style.display = 'none';
-        }
+        try { const novo = await DB.convites.criar(); codeEl.textContent = novo.codigo; codeEl.style.opacity = '1'; codeEl.style.textDecoration = 'none'; if (valEl) { valEl.textContent = `⏰ Vence em ${DB.convites.VALIDADE_DIAS} dias`; valEl.style.color = 'var(--fg-secondary)'; } if (btnDesativar) btnDesativar.style.display = ''; } catch (err) { logErr('auto-criar convite:', err); codeEl.textContent = '------'; codeEl.style.opacity = '.5'; if (valEl) { valEl.textContent = 'Erro ao gerar convite'; valEl.style.color = 'var(--danger)'; } if (btnDesativar) btnDesativar.style.display = 'none'; }
       } else {
-        codeEl.textContent = '------';
-        codeEl.style.opacity = '.5';
-        codeEl.style.textDecoration = 'none';
+        codeEl.textContent = '------'; codeEl.style.opacity = '.5'; codeEl.style.textDecoration = 'none';
         if (valEl) { valEl.textContent = '🔒 Geração de convites temporariamente pausada'; valEl.style.color = 'var(--warning)'; }
         if (btnDesativar) btnDesativar.style.display = 'none';
       }
-
       if (btnGerar) btnGerar.style.display = (ehAdmin || permitido) ? '' : 'none';
-
       if (histEl) {
         const usados = todos.filter(c => c.usado_por && !String(c.usado_por).startsWith('reserva_'));
-        if (usados.length) {
-          histEl.innerHTML = `<h3 class="x-heading" style="margin-top:var(--space-3xl)">📜 Histórico</h3>` + usados.map(c => {
-            const usouEm = c.usado_em ? U.formatDate(c.usado_em) : '—';
-            return `<div class="convite-historico-item"><div class="config-row__info" style="flex:1"><span class="convite-codigo-usado">${U.escapeHtml(c.codigo)}</span><small style="font-size:var(--text-caption);color:var(--fg-secondary)">Usado em ${usouEm}</small></div><span class="convite-badge-inativo">Inativo</span></div>`;
-          }).join('');
-        } else { histEl.innerHTML = ''; }
+        if (usados.length) { histEl.innerHTML = `<h3 class="x-heading" style="margin-top:var(--space-3xl)">📜 Histórico</h3>` + usados.map(c => { const usouEm = c.usado_em ? U.formatDate(c.usado_em) : '—'; return `<div class="convite-historico-item"><div class="config-row__info" style="flex:1"><span class="convite-codigo-usado">${U.escapeHtml(c.codigo)}</span><small style="font-size:var(--text-caption);color:var(--fg-secondary)">Usado em ${usouEm}</small></div><span class="convite-badge-inativo">Inativo</span></div>`; }).join(''); } else { histEl.innerHTML = ''; }
       }
     } catch (err) { logErr('convite:', err); }
   };
 
   const init = () => {
     State.on('view:change', (v) => { if (v === 'convite') carregar(); });
-
-    document.getElementById('btn-copiar-codigo')?.addEventListener('click', () => {
-      const c = document.getElementById('meu-codigo')?.textContent;
-      if (c && c !== '------') U.copy(c);
-    });
-    document.getElementById('meu-codigo')?.addEventListener('click', () => {
-      const c = document.getElementById('meu-codigo')?.textContent;
-      if (c && c !== '------') U.copy(c);
-    });
-
+    document.getElementById('btn-copiar-codigo')?.addEventListener('click', () => { const c = document.getElementById('meu-codigo')?.textContent; if (c && c !== '------') U.copy(c); });
+    document.getElementById('meu-codigo')?.addEventListener('click', () => { const c = document.getElementById('meu-codigo')?.textContent; if (c && c !== '------') U.copy(c); });
     document.getElementById('btn-gerar-convite')?.addEventListener('click', async (e) => {
       if (!State.isLogged()) return U.toast('Entre para gerar convites', 2400, 'info');
-      const permitido = await podeGerarConvite();
-      if (!permitido) return U.toast('🔒 Geração de convites pausada', 2600, 'info');
-      const btn = e.currentTarget;
-      const codigoAtual = document.getElementById('meu-codigo')?.textContent;
-      if (codigoAtual && codigoAtual !== '------') {
-        if (!confirm('Você já tem um convite ativo. Gerar um novo irá desativar o antigo. Continuar?')) return;
-      }
+      const permitido = await podeGerarConvite(); if (!permitido) return U.toast('🔒 Geração de convites pausada', 2600, 'info');
+      const btn = e.currentTarget; const codigoAtual = document.getElementById('meu-codigo')?.textContent;
+      if (codigoAtual && codigoAtual !== '------') { if (!confirm('Você já tem um convite ativo. Gerar um novo irá desativar o antigo. Continuar?')) return; }
       U.btnLoading(btn, true);
-      try {
-        const ativos = (await DB.convites.meu(false)) || [];
-        for (const c of ativos) { try { await DB.convites.desativar(c.codigo); } catch (err) { logErr('desativar antigo:', err); } }
-        const novo = await DB.convites.criar();
-        if (novo?.codigo) {
-          document.getElementById('meu-codigo').textContent = novo.codigo;
-          const valEl = document.getElementById('convite-validade');
-          if (valEl) { valEl.textContent = `⏰ Vence em ${DB.convites.VALIDADE_DIAS} dias`; valEl.style.color = 'var(--fg-secondary)'; }
-          U.toast(`🎟️ Novo convite: ${novo.codigo}`, 3500, 'sucesso');
-          await carregar();
-        }
-      } catch (err) { U.toast('Erro: ' + (err.message || ''), 2600, 'erro'); }
-      finally { U.btnLoading(btn, false, '🎟️ Novo convite'); }
+      try { const ativos = (await DB.convites.meu(false)) || []; for (const c of ativos) { try { await DB.convites.desativar(c.codigo); } catch (err) { logErr('desativar antigo:', err); } } const novo = await DB.convites.criar(); if (novo?.codigo) { document.getElementById('meu-codigo').textContent = novo.codigo; const valEl = document.getElementById('convite-validade'); if (valEl) { valEl.textContent = `⏰ Vence em ${DB.convites.VALIDADE_DIAS} dias`; valEl.style.color = 'var(--fg-secondary)'; } U.toast(`🎟️ Novo convite: ${novo.codigo}`, 3500, 'sucesso'); await carregar(); } } catch (err) { U.toast('Erro: ' + (err.message || ''), 2600, 'erro'); } finally { U.btnLoading(btn, false, '🎟️ Novo convite'); }
     });
-
     document.getElementById('btn-desativar-convite')?.addEventListener('click', async (e) => {
       if (!State.isLogged()) return;
-      const codigo = document.getElementById('meu-codigo')?.textContent;
-      if (!codigo || codigo === '------') return U.toast('Nenhum convite ativo', 2200, 'info');
+      const codigo = document.getElementById('meu-codigo')?.textContent; if (!codigo || codigo === '------') return U.toast('Nenhum convite ativo', 2200, 'info');
       if (!confirm('Desativar este convite? Você poderá gerar outro depois.')) return;
-      const btn = e.currentTarget;
-      U.btnLoading(btn, true);
-      try {
-        await DB.convites.desativar(codigo);
-        U.toast('🗑️ Convite desativado', 2200, 'sucesso');
-        await carregar();
-      } catch { U.toast('Erro ao desativar', 2400, 'erro'); }
-      finally { U.btnLoading(btn, false, '🗑️ Desativar'); }
+      const btn = e.currentTarget; U.btnLoading(btn, true);
+      try { await DB.convites.desativar(codigo); U.toast('🗑️ Convite desativado', 2200, 'sucesso'); await carregar(); } catch { U.toast('Erro ao desativar', 2400, 'erro'); } finally { U.btnLoading(btn, false, '🗑️ Desativar'); }
     });
-
     document.getElementById('btn-compartilhar-convite')?.addEventListener('click', async () => {
-      const c = document.getElementById('meu-codigo')?.textContent;
-      if (!c || c === '------') return U.toast('Nenhum convite ativo', 2400, 'info');
-      const u = State.get('user');
-      const nome = (u?.nome || 'um vizinho').split(' ')[0];
+      const c = document.getElementById('meu-codigo')?.textContent; if (!c || c === '------') return U.toast('Nenhum convite ativo', 2400, 'info');
+      const u = State.get('user'); const nome = (u?.nome || 'um vizinho').split(' ')[0];
       const txt = `🌆 *OrixiConnect* — a rede viva de Oriximiná!\n\n${nome} te convidou para entrar.\n\nCódigo: *${c}*\n\nEntre em: ${location.origin}`;
-      if (navigator.share) { try { await navigator.share({ text: txt, title: 'Convite OrixiConnect' }); } catch {} }
-      else { window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank'); }
+      if (navigator.share) { try { await navigator.share({ text: txt, title: 'Convite OrixiConnect' }); } catch {} } else { window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank'); }
     });
   };
 
   return { init, carregar, getConfigGlobal, setConfigGlobal, podeGerarConvite, CONFIG_KEY };
 })();
 </script>
-
 <script>
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 19: Zeladoria
+   BLOCO 19: Zeladoria (com renderBairrosPicker no reportar)
    ═══════════════════════════════════════════════════════════ */
 const Zeladoria = (() => {
   const local = { status: 'todos', categoria: 'todos', carregando: false, chamados: [], apoios: new Set(), mode: 'lista' };
@@ -2535,7 +2347,34 @@ const Zeladoria = (() => {
   const renderLista = () => { if (!E.lista) return; E.lista.innerHTML = ''; E.lista.className = 'zel-lista-wrap'; if (local.mode === 'galeria') E.lista.className = 'zel-gallery'; if (!local.chamados.length) { E.lista.innerHTML = `<div class="zel-empty"><div class="zel-empty__icon">🧹</div><div class="zel-empty__title">Tudo em ordem por aqui</div><p class="zel-empty__text">Nenhum chamado nesta categoria. Que tal reportar algo da sua rua?</p><button type="button" class="x-btn x-btn--primary" id="zel-empty-cta" style="margin-top:8px">🧹 Reportar agora</button></div>`; document.getElementById('zel-empty-cta')?.addEventListener('click', abrirComposer); return; } local.chamados.forEach(c => E.lista.appendChild(renderCard(c))); };
   const carregar = async () => { if (!E.lista || local.carregando) return; local.carregando = true; if (!local.chamados.length) E.lista.innerHTML = `<div class="x-skeleton"></div><div class="x-skeleton"></div>`; try { const [chamados, apoios] = await Promise.all([ZDB.chamados.list({ status: local.status === 'todos' ? null : local.status, categoria: local.categoria === 'todos' ? null : local.categoria, limit: 50, offset: 0 }), State.isLogged() ? ZDB.apoios.listByUser(State.get('user').id) : Promise.resolve(new Set())]); local.chamados = chamados || []; local.apoios = apoios; renderLista(); renderStats(); } catch (e) { logErr('zel carregar:', e); if (E.lista) E.lista.innerHTML = `<p style="text-align:center;padding:20px;color:var(--fg-secondary);font-size:13px">Erro ao carregar.</p>`; } finally { local.carregando = false; } };
   const apoiar = async (chamadoId, btn) => { if (!State.isLogged()) { U.toast('Entre para apoiar', 2400, 'info'); return; } try { btn.disabled = true; const apoiou = await ZDB.apoios.toggle(chamadoId); if (apoiou) local.apoios.add(chamadoId); else local.apoios.delete(chamadoId); btn.classList.toggle('is-ativo', apoiou); const count = btn.querySelector('[data-apoio-count]'); const label = btn.querySelector('span:last-child'); const atual = Number(count.textContent.replace(/\D/g, '')) || 0; count.textContent = U.formatNum(apoiou ? atual + 1 : Math.max(0, atual - 1)); label.textContent = apoiou ? 'Apoiei' : 'Apoiar'; if (apoiou) { const ch = local.chamados.find(c => c.id === chamadoId); if (ch?.user_id && ch.user_id !== State.get('user')?.id) { DB.notificacoes.criar({ user_id: ch.user_id, tipo: 'zel_apoio', ator_id: State.get('user')?.id, ref_id: chamadoId, texto: 'apoiou seu reporte' }).catch(() => {}); } State.addXP(3, 'apoio'); } } catch (e) { logErr('apoiar:', e); U.toast('Erro ao apoiar', 2400, 'erro'); } finally { btn.disabled = false; } };
-  const abrirComposer = () => { if (!State.isLogged()) { U.toast('Entre para reportar', 2400, 'info'); return; } const u = State.get('user'); let fotoSel = null, categoriaSel = 'buraco'; const bairros = BAIRROS.map(b => `<option value="${U.escapeHtml(b)}" ${b === u?.bairro ? 'selected' : ''}>${U.escapeHtml(b)}</option>`).join(''); const cats = ZEL_CATEGORIAS.map(c => `<button type="button" class="zel-cat-btn ${c.id === 'buraco' ? 'is-active' : ''}" data-zel-cat="${c.id}"><span class="zel-cat-btn__icon">${c.icon}</span><span>${c.label}</span></button>`).join(''); const body = `<div class="x-field"><label class="x-field__label">O que está acontecendo?</label><div class="zel-form__cats">${cats}</div></div><div class="x-field"><label class="x-field__label">Título do problema</label><input class="x-field__input" id="zel-titulo" placeholder="Ex: Buraco enorme na Rua Principal" maxlength="100"></div><div class="x-field"><label class="x-field__label">Descrição (opcional)</label><textarea class="x-field__textarea" id="zel-desc" rows="3" maxlength="500" placeholder="Detalhe o problema…"></textarea></div><div class="x-field"><label class="x-field__label">📷 Foto (muito importante!)</label><div class="zel-foto-upload" id="zel-foto-wrap"><span style="font-size:32px">📷</span><span>Tirar ou escolher foto</span><input type="file" id="zel-foto" accept="image/*" capture="environment"></div></div><div class="x-field"><label class="x-field__label">Bairro</label><select class="x-field__select" id="zel-bairro">${bairros}</select></div><div class="x-field"><label class="x-field__label">Endereço / ponto de referência</label><input class="x-field__input" id="zel-endereco" placeholder="Ex: Em frente ao mercado do Zé" maxlength="150"></div>`; Modal.abrir({ title: '🧹 Reportar problema', body, submitLabel: 'Enviar reporte', onSubmit: async () => { const titulo = document.getElementById('zel-titulo')?.value.trim(); if (!titulo || titulo.length < 5) { U.toast('Escreva um título (5+ caracteres)', 2600, 'erro'); return; } const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true); try { let foto_url = null; if (fotoSel) foto_url = await DB.upload.image(BUCKETS.POSTS, fotoSel, 'zel'); const ch = await ZDB.chamados.create({ categoria: categoriaSel, titulo, descricao: document.getElementById('zel-desc')?.value.trim() || null, foto_url, bairro: document.getElementById('zel-bairro')?.value || null, endereco: document.getElementById('zel-endereco')?.value.trim() || null }); U.toast('🧹 Reporte enviado! Protocolo ' + (ch?.protocolo || ''), 4000, 'sucesso'); Modal.fechar(); local.chamados = []; carregar(); State.addXP(15, 'reporte'); Badges.conceder('zelador'); } catch (e) { logErr('zel criar:', e); U.toast('Erro: ' + (e.message || ''), 3200, 'erro'); } finally { U.btnLoading(btn, false, 'Enviar reporte'); } } }); document.querySelectorAll('[data-zel-cat]').forEach(b => b.addEventListener('click', () => { categoriaSel = b.dataset.zelCat; document.querySelectorAll('[data-zel-cat]').forEach(x => x.classList.remove('is-active')); b.classList.add('is-active'); })); document.getElementById('zel-foto')?.addEventListener('change', (e) => { const f = e.target.files?.[0]; if (!f) return; if (f.size > 8 * 1024 * 1024) { U.toast('Máx 8MB', 2600, 'erro'); return; } fotoSel = f; const wrap = document.getElementById('zel-foto-wrap'); if (wrap) { const url = URL.createObjectURL(f); wrap.innerHTML = `<img src="${url}" alt=""><input type="file" id="zel-foto" accept="image/*">`; } }); };
+
+  const abrirComposer = () => {
+    if (!State.isLogged()) { U.toast('Entre para reportar', 2400, 'info'); return; }
+    const u = State.get('user'); let fotoSel = null, categoriaSel = 'buraco';
+    let bairroZelSel = u?.bairro || null;
+    const cats = ZEL_CATEGORIAS.map(c => `<button type="button" class="zel-cat-btn ${c.id === 'buraco' ? 'is-active' : ''}" data-zel-cat="${c.id}"><span class="zel-cat-btn__icon">${c.icon}</span><span>${c.label}</span></button>`).join('');
+    const body = `<div class="x-field"><label class="x-field__label">O que está acontecendo?</label><div class="zel-form__cats">${cats}</div></div><div class="x-field"><label class="x-field__label">Título do problema</label><input class="x-field__input" id="zel-titulo" placeholder="Ex: Buraco enorme na Rua Principal" maxlength="100"></div><div class="x-field"><label class="x-field__label">Descrição (opcional)</label><textarea class="x-field__textarea" id="zel-desc" rows="3" maxlength="500" placeholder="Detalhe o problema…"></textarea></div><div class="x-field"><label class="x-field__label">📷 Foto (muito importante!)</label><div class="zel-foto-upload" id="zel-foto-wrap"><span style="font-size:32px">📷</span><span>Tirar ou escolher foto</span><input type="file" id="zel-foto" accept="image/*" capture="environment"></div></div><div class="x-field"><label class="x-field__label">Bairro</label><div class="bairros" id="zel-bairro-grid" role="radiogroup"></div></div><div class="x-field"><label class="x-field__label">Endereço / ponto de referência</label><input class="x-field__input" id="zel-endereco" placeholder="Ex: Em frente ao mercado do Zé" maxlength="150"></div>`;
+    Modal.abrir({ title: '🧹 Reportar problema', body, submitLabel: 'Enviar reporte', onSubmit: async () => {
+      const titulo = document.getElementById('zel-titulo')?.value.trim();
+      if (!titulo || titulo.length < 5) { U.toast('Escreva um título (5+ caracteres)', 2600, 'erro'); return; }
+      if (!bairroZelSel || bairroZelSel.length < 2) { U.toast('Escolha ou digite o bairro', 2600, 'erro'); return; }
+      const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true);
+      try {
+        let foto_url = null;
+        if (fotoSel) foto_url = await DB.upload.image(BUCKETS.POSTS, fotoSel, 'zel');
+        const ch = await ZDB.chamados.create({ categoria: categoriaSel, titulo, descricao: document.getElementById('zel-desc')?.value.trim() || null, foto_url, bairro: bairroZelSel, endereco: document.getElementById('zel-endereco')?.value.trim() || null });
+        U.toast('🧹 Reporte enviado! Protocolo ' + (ch?.protocolo || ''), 4000, 'sucesso');
+        Modal.fechar(); local.chamados = []; carregar(); State.addXP(15, 'reporte'); Badges.conceder('zelador');
+      } catch (e) { logErr('zel criar:', e); U.toast('Erro: ' + (e.message || ''), 3200, 'erro'); } finally { U.btnLoading(btn, false, 'Enviar reporte'); }
+    } });
+    setTimeout(() => {
+      const grid = document.getElementById('zel-bairro-grid');
+      U.renderBairrosPicker(grid, u?.bairro, (valor) => { bairroZelSel = valor; });
+    }, 80);
+    document.querySelectorAll('[data-zel-cat]').forEach(b => b.addEventListener('click', () => { categoriaSel = b.dataset.zelCat; document.querySelectorAll('[data-zel-cat]').forEach(x => x.classList.remove('is-active')); b.classList.add('is-active'); }));
+    document.getElementById('zel-foto')?.addEventListener('change', (e) => { const f = e.target.files?.[0]; if (!f) return; if (f.size > 8 * 1024 * 1024) { U.toast('Máx 8MB', 2600, 'erro'); return; } fotoSel = f; const wrap = document.getElementById('zel-foto-wrap'); if (wrap) { const url = URL.createObjectURL(f); wrap.innerHTML = `<img src="${url}" alt=""><input type="file" id="zel-foto" accept="image/*">`; } });
+  };
+
   const abrirDetalhe = async (chamadoId) => { Modal.abrir({ title: 'Detalhes do chamado', body: `<div class="x-skeleton x-skeleton--sm"></div>` }); try { const { data: ch } = await sb.from('zeladoria_chamados').select(`id,protocolo,user_id,categoria,titulo,descricao,foto_url,bairro,endereco,status,apoios,criado_em,autor:profiles!zeladoria_chamados_user_id_fkey ( id,nome,avatar_url )`).eq('id', chamadoId).maybeSingle(); if (!ch) { document.querySelector('#global-modal [data-body]').innerHTML = `<p>Chamado não encontrado.</p>`; return; } const cat = getCatInfo(ch.categoria); const st = getStInfo(ch.status); const a = ch.autor || {}; const fotoH = ch.foto_url ? `<img src="${U.escapeHtml(U.publicUrl(BUCKETS.POSTS, ch.foto_url))}" style="width:100%;border-radius:var(--radius-lg);margin-bottom:var(--space-lg);cursor:zoom-in" class="zel-detail__foto" alt="">` : ''; document.querySelector('#global-modal [data-body]').innerHTML = `<div class="zel-detail__head"><div style="display:flex;gap:12px;align-items:flex-start"><div style="width:52px;height:52px;border-radius:14px;background:${cat.cor};color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">${cat.icon}</div><div style="flex:1;min-width:0"><h3 style="font-family:var(--font-display);font-size:20px;font-weight:900;line-height:1.2;margin-bottom:6px">${U.escapeHtml(ch.titulo)}</h3><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:11px"><span class="zel-status zel-status--${ch.status}"><span class="zel-status__dot"></span>${st.label}</span><span class="zel-card__protocolo">${U.escapeHtml(ch.protocolo || '')}</span></div></div></div></div>${fotoH}${ch.descricao ? `<p style="font-size:14px;line-height:1.6;margin-bottom:var(--space-lg);color:var(--fg-primary)">${U.escapeHtml(ch.descricao)}</p>` : ''}<div class="config-row" style="margin-bottom:8px"><div class="config-row__info"><strong style="font-size:12px">Reportado por</strong><small>${U.escapeHtml(a.nome || 'Morador')} · ${U.timeAgo(ch.criado_em)}</small></div></div>${ch.bairro ? `<div class="config-row" style="margin-bottom:8px"><div class="config-row__info"><strong style="font-size:12px">📍 Bairro</strong><small>${U.escapeHtml(ch.bairro)}</small></div></div>` : ''}${ch.endereco ? `<div class="config-row" style="margin-bottom:8px"><div class="config-row__info"><strong style="font-size:12px">📌 Referência</strong><small>${U.escapeHtml(ch.endereco)}</small></div></div>` : ''}<div class="config-row" style="margin-bottom:8px"><div class="config-row__info"><strong style="font-size:12px">🙋 Apoios</strong><small>${U.formatNum(ch.apoios || 0)} pessoas apoiam</small></div></div>`; document.querySelector('#global-modal .zel-detail__foto')?.addEventListener('click', (e) => abrirLightbox(e.target.src)); } catch (e) { logErr('detalhe:', e); document.querySelector('#global-modal [data-body]').innerHTML = `<p>Erro ao carregar.</p>`; } };
   const bindEventos = () => { document.querySelectorAll('[data-stat]').forEach(s => s.addEventListener('click', () => { local.status = s.dataset.stat; document.querySelectorAll('[data-stat]').forEach(x => x.classList.toggle('is-active', x === s)); carregar(); })); document.querySelectorAll('[data-zel-mode]').forEach(b => b.addEventListener('click', () => { local.mode = b.dataset.zelMode; document.querySelectorAll('[data-zel-mode]').forEach(x => x.classList.toggle('is-active', x === b)); renderLista(); })); document.getElementById('zel-btn-novo')?.addEventListener('click', abrirComposer); document.addEventListener('click', (e) => { const apoioBtn = e.target.closest('[data-zel-apoio]'); if (apoioBtn) { e.stopPropagation(); apoiar(apoioBtn.dataset.zelApoio, apoioBtn); return; } const card = e.target.closest('.zel-card'); if (card && card.dataset.chamadoId) { abrirDetalhe(card.dataset.chamadoId); return; } }); };
   const init = () => { cache(); if (!E.lista) return; renderFiltros(); bindEventos(); State.on('view:change', (v) => { if (v === 'zeladoria') { local.chamados = []; carregar(); } }); };
@@ -2568,13 +2407,8 @@ const Trending = (() => {
    BLOCO 21: Chat
    ═══════════════════════════════════════════════════════════ */
 const Chat = (() => {
-  let conversaCom = null;
-  let conversaComNome = null;
-  let conversaComAvatar = null;
-  let pollTimer = null;
-  let typingDebounce = null;
-  let typingStopTimer = null;
-  let statusTicker = null;
+  let conversaCom = null, conversaComNome = null, conversaComAvatar = null;
+  let pollTimer = null, typingDebounce = null, typingStopTimer = null, statusTicker = null;
 
   const avatarHtmlFor = (u, size = 'md', withPresence = false) => {
     const nome = u?.nome || '?';
@@ -2592,34 +2426,21 @@ const Chat = (() => {
     if (Presence.isOnline(conversaCom)) { el.dataset.status = 'online'; el.innerHTML = `<span class="presence-dot"></span> Online agora`; return; }
     const lastSeen = Presence.getLastSeen(conversaCom);
     el.dataset.status = 'offline';
-    if (lastSeen) {
-      const diff = Date.now() - new Date(lastSeen).getTime();
-      if (diff < 60 * 1000) el.textContent = 'Visto agora mesmo';
-      else if (diff < 60 * 60 * 1000) el.textContent = `Visto há ${Math.max(1, Math.floor(diff / 60000))} min`;
-      else if (diff < 24 * 60 * 60 * 1000) el.textContent = `Visto há ${Math.floor(diff / 3600000)} h`;
-      else el.textContent = `Visto em ${U.formatDate(lastSeen)}`;
-    } else { el.textContent = 'Offline'; }
+    if (lastSeen) { const diff = Date.now() - new Date(lastSeen).getTime(); if (diff < 60 * 1000) el.textContent = 'Visto agora mesmo'; else if (diff < 60 * 60 * 1000) el.textContent = `Visto há ${Math.max(1, Math.floor(diff / 60000))} min`; else if (diff < 24 * 60 * 60 * 1000) el.textContent = `Visto há ${Math.floor(diff / 3600000)} h`; else el.textContent = `Visto em ${U.formatDate(lastSeen)}`; } else { el.textContent = 'Offline'; }
   };
 
   const renderAvatarHeader = () => { const el = document.getElementById('chat-avatar-wrap'); if (!el) return; el.innerHTML = avatarHtmlFor({ id: conversaCom, nome: conversaComNome, avatar_url: conversaComAvatar }, 'md', true); };
   const emitTypingStart = () => { if (!conversaCom) return; Presence.emitTyping(conversaCom, false); if (typingStopTimer) clearTimeout(typingStopTimer); typingStopTimer = setTimeout(() => { Presence.emitTyping(conversaCom, true); }, 2500); };
 
   const carregarLista = async () => {
-    const lista = document.getElementById('chat-list');
-    if (!lista) return;
+    const lista = document.getElementById('chat-list'); if (!lista) return;
     lista.innerHTML = `<div class="x-skeleton x-skeleton--sm"></div>`;
     try {
       const cs = await DB.mensagens.listaConversas();
       const totalNaoLidas = cs.reduce((sum, c) => sum + (c.naoLidas || 0), 0);
       TabbarBadges.setChat(totalNaoLidas);
       if (!cs.length) { lista.innerHTML = Empty.criar({ icone: 'chat', titulo: 'Nenhuma conversa', sub: 'Encontre vizinhos no Explorar.' }); return; }
-      lista.innerHTML = cs.map(c => {
-        const u = c.user;
-        const av = avatarHtmlFor(u, 'md', true);
-        const badgeNaoLidas = c.naoLidas > 0 ? `<span style="min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--gradient-primary);color:#fff;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center">${c.naoLidas}</span>` : '';
-        const statusPrefix = Presence.isOnline(u.id) ? '🟢 ' : '';
-        return `<div class="config-row" style="cursor:pointer" data-uid="${U.escapeHtml(u.id)}" data-unome="${U.escapeHtml(u.nome)}" data-uavatar="${U.escapeHtml(u.avatar_url || '')}">${av}<div class="config-row__info" style="flex:1"><strong>${statusPrefix}${U.escapeHtml(u.nome)}</strong><small>${U.escapeHtml(U.truncate(c.ultima, 40))} · ${U.timeAgo(c.quando)}</small></div>${badgeNaoLidas}</div>`;
-      }).join('');
+      lista.innerHTML = cs.map(c => { const u = c.user; const av = avatarHtmlFor(u, 'md', true); const badgeNaoLidas = c.naoLidas > 0 ? `<span style="min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--gradient-primary);color:#fff;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center">${c.naoLidas}</span>` : ''; const statusPrefix = Presence.isOnline(u.id) ? '🟢 ' : ''; return `<div class="config-row" style="cursor:pointer" data-uid="${U.escapeHtml(u.id)}" data-unome="${U.escapeHtml(u.nome)}" data-uavatar="${U.escapeHtml(u.avatar_url || '')}">${av}<div class="config-row__info" style="flex:1"><strong>${statusPrefix}${U.escapeHtml(u.nome)}</strong><small>${U.escapeHtml(U.truncate(c.ultima, 40))} · ${U.timeAgo(c.quando)}</small></div>${badgeNaoLidas}</div>`; }).join('');
       lista.querySelectorAll('[data-uid]').forEach(el => el.addEventListener('click', () => abrir(el.dataset.uid, el.dataset.unome, el.dataset.uavatar || null)));
     } catch (e) { logErr('chat lista:', e); lista.innerHTML = `<p style="text-align:center;padding:20px;color:var(--fg-secondary)">Erro ao carregar.</p>`; }
   };
@@ -2637,67 +2458,22 @@ const Chat = (() => {
     TabbarBadges.setChat(cs.reduce((sum, c) => sum + (c.naoLidas || 0), 0));
   };
 
-  const carregarMsgs = async () => {
-    const box = document.getElementById('chat-mensagens');
-    if (!box || !conversaCom) return;
-    try {
-      const l = await DB.mensagens.conversa(conversaCom);
-      if (!l.length) { box.innerHTML = `<p style="text-align:center;padding:24px;color:var(--fg-secondary)">Diga oi 👋</p>`; return; }
-      box.innerHTML = '';
-      l.forEach(m => box.appendChild(bubble(m)));
-      box.scrollTop = box.scrollHeight;
-    } catch (e) { logErr('carregarMsgs:', e); }
-  };
-
+  const carregarMsgs = async () => { const box = document.getElementById('chat-mensagens'); if (!box || !conversaCom) return; try { const l = await DB.mensagens.conversa(conversaCom); if (!l.length) { box.innerHTML = `<p style="text-align:center;padding:24px;color:var(--fg-secondary)">Diga oi 👋</p>`; return; } box.innerHTML = ''; l.forEach(m => box.appendChild(bubble(m))); box.scrollTop = box.scrollHeight; } catch (e) { logErr('carregarMsgs:', e); } };
   const bubble = (m) => { const meu = m.de_id === State.get('user')?.id; const d = document.createElement('div'); d.className = 'chat__bubble chat__bubble--' + (meu ? 'out' : 'in'); d.innerHTML = `${U.formatPostText(m.texto)}<small>${U.formatHora(m.criado_em)}</small>`; return d; };
-
-  const enviar = async (e) => {
-    e.preventDefault();
-    const inp = document.getElementById('chat-input');
-    const t = inp?.value.trim();
-    if (!t || !conversaCom) return;
-    inp.value = '';
-    Presence.emitTyping(conversaCom, true);
-    if (typingStopTimer) { clearTimeout(typingStopTimer); typingStopTimer = null; }
-    try {
-      await DB.mensagens.send(conversaCom, t);
-      await carregarMsgs();
-      if (U.isNight()) Badges.conceder('noturno');
-      State.addXP(2, 'mensagem');
-    } catch (err) { logErr('enviar:', err); U.toast('Erro ao enviar', 2600, 'erro'); }
-  };
-
+  const enviar = async (e) => { e.preventDefault(); const inp = document.getElementById('chat-input'); const t = inp?.value.trim(); if (!t || !conversaCom) return; inp.value = ''; Presence.emitTyping(conversaCom, true); if (typingStopTimer) { clearTimeout(typingStopTimer); typingStopTimer = null; } try { await DB.mensagens.send(conversaCom, t); await carregarMsgs(); if (U.isNight()) Badges.conceder('noturno'); State.addXP(2, 'mensagem'); } catch (err) { logErr('enviar:', err); U.toast('Erro ao enviar', 2600, 'erro'); } };
   const onInputChange = () => { if (!conversaCom) return; if (typingDebounce) clearTimeout(typingDebounce); typingDebounce = setTimeout(emitTypingStart, 200); };
-
-  const voltar = () => {
-    pararPoll(); pararStatusTicker();
-    conversaCom = null; conversaComNome = null; conversaComAvatar = null;
-    document.getElementById('chat-lista-wrap')?.classList.remove('hidden');
-    document.getElementById('chat-conversa-wrap')?.classList.add('hidden');
-    carregarLista();
-  };
-
+  const voltar = () => { pararPoll(); pararStatusTicker(); conversaCom = null; conversaComNome = null; conversaComAvatar = null; document.getElementById('chat-lista-wrap')?.classList.remove('hidden'); document.getElementById('chat-conversa-wrap')?.classList.add('hidden'); carregarLista(); };
   const iniciarPoll = () => { pararPoll(); pollTimer = setInterval(carregarMsgs, 5000); };
   const pararPoll = () => { if (pollTimer) { clearInterval(pollTimer); pollTimer = null; } };
   const iniciarStatusTicker = () => { pararStatusTicker(); statusTicker = setInterval(renderStatusChat, 2000); };
   const pararStatusTicker = () => { if (statusTicker) { clearInterval(statusTicker); statusTicker = null; } };
   const abrirCom = (id, nome) => { State.setView('chat'); setTimeout(() => abrir(id, nome), 200); };
-
-  const init = () => {
-    State.on('view:change', (v) => { if (v === 'chat' && !conversaCom) carregarLista(); if (v !== 'chat') pararPoll(); });
-    document.getElementById('chat-form')?.addEventListener('submit', enviar);
-    document.getElementById('chat-voltar')?.addEventListener('click', voltar);
-    document.getElementById('chat-input')?.addEventListener('input', onInputChange);
-    Presence.on('presence:sync', () => { renderStatusChat(); renderAvatarHeader(); });
-    Presence.on('typing:change', (p) => { if (p.para === State.get('user')?.id && p.de === conversaCom) renderStatusChat(); });
-    window.addEventListener('beforeunload', () => { if (conversaCom) Presence.emitTyping(conversaCom, true); });
-  };
-
+  const init = () => { State.on('view:change', (v) => { if (v === 'chat' && !conversaCom) carregarLista(); if (v !== 'chat') pararPoll(); }); document.getElementById('chat-form')?.addEventListener('submit', enviar); document.getElementById('chat-voltar')?.addEventListener('click', voltar); document.getElementById('chat-input')?.addEventListener('input', onInputChange); Presence.on('presence:sync', () => { renderStatusChat(); renderAvatarHeader(); }); Presence.on('typing:change', (p) => { if (p.para === State.get('user')?.id && p.de === conversaCom) renderStatusChat(); }); window.addEventListener('beforeunload', () => { if (conversaCom) Presence.emitTyping(conversaCom, true); }); };
   return { init, abrirCom, carregarLista };
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 22: Grupos
+   BLOCO 22: Grupos (com renderBairrosPicker no criar grupo)
    ═══════════════════════════════════════════════════════════ */
 const Grupos = (() => {
   const st = { lista: [], gruposMap: new Map(), aberto: null, realtime: null, carregando: false, typingTicker: null, typingDebounce: null, typingStopTimer: null };
@@ -2722,26 +2498,7 @@ const Grupos = (() => {
   const fotoHTML = (g) => { const url = g?.foto_url ? U.publicUrl('grupos', g.foto_url) : null; if (url) return `<img src="${U.escapeHtml(url)}" alt="">`; return U.initials(g?.nome || '?'); };
   const tempoMsg = (m) => { if (!m) return ''; const t = m.tipo === 'sistema' ? '' : (m.autor?.nome ? m.autor.nome.split(' ')[0] + ': ' : ''); const txt = m.texto ? U.truncate(m.texto, 40) : (m.imagem_url ? '📷 Foto' : ''); return t + txt; };
 
-  const renderTypingGroupHeader = () => {
-    const el = document.getElementById('grupo-chat-sub');
-    if (!el || !st.aberto) return;
-    const g = st.gruposMap.get(st.aberto);
-    if (!g) return;
-    const eu = State.get('user')?.id;
-    const digitandoIds = Presence.getTypingUsersForGroup(st.aberto, eu);
-    if (digitandoIds.length > 0) {
-      let nomes = digitandoIds.map(id => { const membro = (g._membrosCache || []).find(m => m.user_id === id); return (membro?.perfil?.nome || 'Alguém').split(' ')[0]; });
-      const texto = nomes.length === 1 ? `${nomes[0]} está digitando` : `${nomes.slice(0, 2).join(', ')} estão digitando`;
-      el.dataset.status = 'typing';
-      el.innerHTML = `${U.escapeHtml(texto)} <span class="presence-typing"><span></span><span></span><span></span></span>`;
-      return;
-    }
-    el.dataset.status = 'idle';
-    let sub = `${g._totalMembros} membros`;
-    if (g._meuPapel === 'dono') sub += ' · Você é dono';
-    else if (g._meuPapel === 'admin') sub += ' · Você é admin';
-    el.textContent = sub;
-  };
+  const renderTypingGroupHeader = () => { const el = document.getElementById('grupo-chat-sub'); if (!el || !st.aberto) return; const g = st.gruposMap.get(st.aberto); if (!g) return; const eu = State.get('user')?.id; const digitandoIds = Presence.getTypingUsersForGroup(st.aberto, eu); if (digitandoIds.length > 0) { let nomes = digitandoIds.map(id => { const membro = (g._membrosCache || []).find(m => m.user_id === id); return (membro?.perfil?.nome || 'Alguém').split(' ')[0]; }); const texto = nomes.length === 1 ? `${nomes[0]} está digitando` : `${nomes.slice(0, 2).join(', ')} estão digitando`; el.dataset.status = 'typing'; el.innerHTML = `${U.escapeHtml(texto)} <span class="presence-typing"><span></span><span></span><span></span></span>`; return; } el.dataset.status = 'idle'; let sub = `${g._totalMembros} membros`; if (g._meuPapel === 'dono') sub += ' · Você é dono'; else if (g._meuPapel === 'admin') sub += ' · Você é admin'; el.textContent = sub; };
 
   const emitTypingGroup = (stopped = false) => { if (!st.aberto) return; Presence.emitTyping('grupo:' + st.aberto, stopped); };
 
@@ -2759,11 +2516,37 @@ const Grupos = (() => {
   const onGroupInputChange = () => { if (!st.aberto) return; if (st.typingDebounce) clearTimeout(st.typingDebounce); st.typingDebounce = setTimeout(() => { emitTypingGroup(false); if (st.typingStopTimer) clearTimeout(st.typingStopTimer); st.typingStopTimer = setTimeout(() => emitTypingGroup(true), 2500); }, 200); };
   const enviarMensagem = async (e) => { e?.preventDefault(); const inp = E.chatInput; const txt = inp?.value.trim(); if (!txt || !st.aberto) return; inp.value = ''; emitTypingGroup(true); if (st.typingStopTimer) { clearTimeout(st.typingStopTimer); st.typingStopTimer = null; } try { const btn = E.chatForm?.querySelector('button[type="submit"]'); if (btn) btn.disabled = true; await DBg.enviar(st.aberto, { texto: txt }); await carregarMensagens(st.aberto); State.addXP(1, 'mensagem em grupo'); } catch (err) { logErr('grupo enviar:', err); U.toast('Erro ao enviar', 2200, 'erro'); } finally { const btn = E.chatForm?.querySelector('button[type="submit"]'); if (btn) btn.disabled = false; } };
   const enviarImagem = async (file) => { if (!file || !st.aberto) return; if (file.size > 8 * 1024 * 1024) { U.toast('Máx 8MB', 2200, 'erro'); return; } U.toast('📤 Enviando imagem…', 3000, 'info'); try { const path = await DBg.uploadFoto(file); await DBg.enviar(st.aberto, { imagem_url: path }); await carregarMensagens(st.aberto); } catch (err) { logErr('grupo enviar imagem:', err); U.toast('Erro ao enviar imagem', 2400, 'erro'); } };
-  const abrirComposer = () => { if (!State.isLogged()) { U.toast('Entre para criar grupos', 2200, 'info'); return; } const u = State.get('user'); let fotoFile = null; let privado = false; let soAdmin = false; const selecionados = new Set(); const bairrosH = BAIRROS.map(b => `<option value="${U.escapeHtml(b)}" ${b === u?.bairro ? 'selected' : ''}>${U.escapeHtml(b)}</option>`).join(''); const body = `<div class="x-field" style="margin-bottom:12px"><label class="x-field__label">📷 Foto do grupo</label><div class="grupo-detalhes__foto" id="grp-foto-wrap" style="margin:0"><span style="font-size:44px">👥</span><input type="file" id="grp-foto-input" accept="image/*" style="display:none"></div></div><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Nome do grupo *</label><input class="x-field__input" id="grp-nome" placeholder="Ex: Vizinhos da Rua 7" maxlength="80"></div><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Descrição</label><textarea class="x-field__textarea" id="grp-desc" rows="2" maxlength="300" placeholder="Sobre o que é esse grupo?"></textarea></div><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Bairro</label><select class="x-field__select" id="grp-bairro">${bairrosH}</select></div><div class="opt-toggle" id="grp-privado"><div class="opt-toggle__info"><strong>🔒 Grupo privado</strong><small>Só entra quem tiver o código de convite</small></div><div class="opt-toggle__switch"></div></div><div class="opt-toggle" id="grp-soadmin"><div class="opt-toggle__info"><strong>📢 Só admins falam</strong><small>Membros comuns só podem ler</small></div><div class="opt-toggle__switch"></div></div><div class="x-field" style="margin-top:16px"><label class="x-field__label">👥 Adicionar membros</label><input class="x-field__input" id="grp-busca" placeholder="Buscar por nome ou bairro…" autocomplete="off" style="margin-bottom:8px"><div class="membros-selecionados" id="grp-selecionados"><span style="color:var(--fg-tertiary);font-size:12px;align-self:center;padding:0 4px">Ninguém selecionado ainda</span></div><div class="membros-picker" id="grp-picker"><div class="x-skeleton x-skeleton--sm"></div></div></div>`; Modal.abrir({ title: '👥 Novo grupo', body, submitLabel: '✅ Criar grupo', onSubmit: async () => { const nome = document.getElementById('grp-nome')?.value.trim(); if (!nome || nome.length < 2) { U.toast('Nome muito curto', 2200, 'erro'); return; } const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true); try { let foto_url = null; if (fotoFile) foto_url = await DBg.uploadFoto(fotoFile); const grupoId = await DBg.criar({ nome, descricao: document.getElementById('grp-desc')?.value.trim() || null, foto_url, bairro: document.getElementById('grp-bairro')?.value || null, privado, membros: Array.from(selecionados) }); U.toast('🎉 Grupo criado!', 2600, 'sucesso'); Modal.fechar(); await carregarLista(); setTimeout(() => abrirChat(grupoId), 300); State.addXP(15, 'criou um grupo'); } catch (err) { logErr('criar grupo:', err); U.toast('Erro: ' + (err.message || ''), 3000, 'erro'); } finally { U.btnLoading(btn, false, '✅ Criar grupo'); } } }); document.getElementById('grp-foto-wrap')?.addEventListener('click', () => document.getElementById('grp-foto-input')?.click()); document.getElementById('grp-foto-input')?.addEventListener('change', (e) => { const f = e.target.files?.[0]; if (!f) return; fotoFile = f; const wrap = document.getElementById('grp-foto-wrap'); if (wrap) wrap.innerHTML = `<img src="${URL.createObjectURL(f)}" alt="">`; }); document.getElementById('grp-privado')?.addEventListener('click', function() { privado = !privado; this.classList.toggle('is-on', privado); }); document.getElementById('grp-soadmin')?.addEventListener('click', function() { soAdmin = !soAdmin; this.classList.toggle('is-on', soAdmin); }); const buscarUsuarios = async (termo = '') => { const picker = document.getElementById('grp-picker'); if (!picker) return; picker.innerHTML = `<div style="padding:12px;color:var(--fg-secondary);font-size:12px;text-align:center">Buscando…</div>`; try { let q = sb.from('profiles').select('id, nome, bairro, avatar_url, is_admin, admin_frame').neq('id', u.id).limit(30); if (termo) q = q.or(`nome.ilike.%${termo}%,bairro.ilike.%${termo}%`); const { data } = await q; if (!data?.length) { picker.innerHTML = `<div style="padding:12px;color:var(--fg-secondary);font-size:12px;text-align:center">Ninguém encontrado</div>`; return; } picker.innerHTML = data.map(p => { const sel = selecionados.has(p.id) ? 'is-selecionado' : ''; const av = p.avatar_url ? `<img src="${U.escapeHtml(U.publicUrl(BUCKETS.AVATARS, p.avatar_url))}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0">` : `<div style="width:36px;height:36px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">${U.initials(p.nome)}</div>`; return `<div class="membro-opt ${sel}" data-uid="${U.escapeHtml(p.id)}" data-unome="${U.escapeHtml(p.nome)}"><div class="membro-opt__check">✓</div>${av}<div class="membro-opt__info"><span class="membro-opt__nome">${p.is_admin ? '👑 ' : ''}${U.escapeHtml(p.nome)}</span><span class="membro-opt__bairro">📍 ${U.escapeHtml(p.bairro || 'Oriximiná')}</span></div></div>`; }).join(''); picker.querySelectorAll('[data-uid]').forEach(el => { el.addEventListener('click', () => { const uid = el.dataset.uid; if (selecionados.has(uid)) { selecionados.delete(uid); el.classList.remove('is-selecionado'); } else { selecionados.add(uid); el.classList.add('is-selecionado'); } atualizarChips(); }); }); } catch (err) { logErr('buscar usuarios:', err); } }; const atualizarChips = () => { const box = document.getElementById('grp-selecionados'); if (!box) return; if (!selecionados.size) { box.innerHTML = `<span style="color:var(--fg-tertiary);font-size:12px;align-self:center;padding:0 4px">Ninguém selecionado ainda</span>`; return; } box.innerHTML = Array.from(selecionados).map(uid => { const el = document.querySelector(`.membro-opt[data-uid="${uid}"]`); const nome = el?.dataset.unome || 'Membro'; return `<span class="membro-chip">${U.escapeHtml(nome.split(' ')[0])}<button type="button" data-remove="${U.escapeHtml(uid)}">×</button></span>`; }).join(''); box.querySelectorAll('[data-remove]').forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); const uid = b.dataset.remove; selecionados.delete(uid); document.querySelector(`.membro-opt[data-uid="${uid}"]`)?.classList.remove('is-selecionado'); atualizarChips(); })); }; let buscaTimer = null; document.getElementById('grp-busca')?.addEventListener('input', (e) => { clearTimeout(buscaTimer); buscaTimer = setTimeout(() => buscarUsuarios(e.target.value.trim()), 300); }); buscarUsuarios(); };
+
+  const abrirComposer = () => {
+    if (!State.isLogged()) { U.toast('Entre para criar grupos', 2200, 'info'); return; }
+    const u = State.get('user'); let fotoFile = null; let privado = false; let soAdmin = false;
+    let bairroGrupoSel = u?.bairro || null;
+    const selecionados = new Set();
+    const body = `<div class="x-field" style="margin-bottom:12px"><label class="x-field__label">📷 Foto do grupo</label><div class="grupo-detalhes__foto" id="grp-foto-wrap" style="margin:0"><span style="font-size:44px">👥</span><input type="file" id="grp-foto-input" accept="image/*" style="display:none"></div></div><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Nome do grupo *</label><input class="x-field__input" id="grp-nome" placeholder="Ex: Vizinhos da Rua 7" maxlength="80"></div><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Descrição</label><textarea class="x-field__textarea" id="grp-desc" rows="2" maxlength="300" placeholder="Sobre o que é esse grupo?"></textarea></div><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Bairro</label><div class="bairros" id="grp-bairro-grid" role="radiogroup"></div></div><div class="opt-toggle" id="grp-privado"><div class="opt-toggle__info"><strong>🔒 Grupo privado</strong><small>Só entra quem tiver o código de convite</small></div><div class="opt-toggle__switch"></div></div><div class="opt-toggle" id="grp-soadmin"><div class="opt-toggle__info"><strong>📢 Só admins falam</strong><small>Membros comuns só podem ler</small></div><div class="opt-toggle__switch"></div></div><div class="x-field" style="margin-top:16px"><label class="x-field__label">👥 Adicionar membros</label><input class="x-field__input" id="grp-busca" placeholder="Buscar por nome ou bairro…" autocomplete="off" style="margin-bottom:8px"><div class="membros-selecionados" id="grp-selecionados"><span style="color:var(--fg-tertiary);font-size:12px;align-self:center;padding:0 4px">Ninguém selecionado ainda</span></div><div class="membros-picker" id="grp-picker"><div class="x-skeleton x-skeleton--sm"></div></div></div>`;
+    Modal.abrir({ title: '👥 Novo grupo', body, submitLabel: '✅ Criar grupo', onSubmit: async () => {
+      const nome = document.getElementById('grp-nome')?.value.trim();
+      if (!nome || nome.length < 2) { U.toast('Nome muito curto', 2200, 'erro'); return; }
+      const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true);
+      try { let foto_url = null; if (fotoFile) foto_url = await DBg.uploadFoto(fotoFile); const grupoId = await DBg.criar({ nome, descricao: document.getElementById('grp-desc')?.value.trim() || null, foto_url, bairro: bairroGrupoSel, privado, membros: Array.from(selecionados) }); U.toast('🎉 Grupo criado!', 2600, 'sucesso'); Modal.fechar(); await carregarLista(); setTimeout(() => abrirChat(grupoId), 300); State.addXP(15, 'criou um grupo'); } catch (err) { logErr('criar grupo:', err); U.toast('Erro: ' + (err.message || ''), 3000, 'erro'); } finally { U.btnLoading(btn, false, '✅ Criar grupo'); }
+    } });
+    setTimeout(() => { const grid = document.getElementById('grp-bairro-grid'); U.renderBairrosPicker(grid, u?.bairro, (valor) => { bairroGrupoSel = valor; }); }, 80);
+    document.getElementById('grp-foto-wrap')?.addEventListener('click', () => document.getElementById('grp-foto-input')?.click());
+    document.getElementById('grp-foto-input')?.addEventListener('change', (e) => { const f = e.target.files?.[0]; if (!f) return; fotoFile = f; const wrap = document.getElementById('grp-foto-wrap'); if (wrap) wrap.innerHTML = `<img src="${URL.createObjectURL(f)}" alt="">`; });
+    document.getElementById('grp-privado')?.addEventListener('click', function() { privado = !privado; this.classList.toggle('is-on', privado); });
+    document.getElementById('grp-soadmin')?.addEventListener('click', function() { soAdmin = !soAdmin; this.classList.toggle('is-on', soAdmin); });
+    const buscarUsuarios = async (termo = '') => { const picker = document.getElementById('grp-picker'); if (!picker) return; picker.innerHTML = `<div style="padding:12px;color:var(--fg-secondary);font-size:12px;text-align:center">Buscando…</div>`; try { let q = sb.from('profiles').select('id, nome, bairro, avatar_url, is_admin, admin_frame').neq('id', u.id).limit(30); if (termo) q = q.or(`nome.ilike.%${termo}%,bairro.ilike.%${termo}%`); const { data } = await q; if (!data?.length) { picker.innerHTML = `<div style="padding:12px;color:var(--fg-secondary);font-size:12px;text-align:center">Ninguém encontrado</div>`; return; } picker.innerHTML = data.map(p => { const sel = selecionados.has(p.id) ? 'is-selecionado' : ''; const av = p.avatar_url ? `<img src="${U.escapeHtml(U.publicUrl(BUCKETS.AVATARS, p.avatar_url))}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0">` : `<div style="width:36px;height:36px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">${U.initials(p.nome)}</div>`; return `<div class="membro-opt ${sel}" data-uid="${U.escapeHtml(p.id)}" data-unome="${U.escapeHtml(p.nome)}"><div class="membro-opt__check">✓</div>${av}<div class="membro-opt__info"><span class="membro-opt__nome">${p.is_admin ? '👑 ' : ''}${U.escapeHtml(p.nome)}</span><span class="membro-opt__bairro">📍 ${U.escapeHtml(p.bairro || 'Oriximiná')}</span></div></div>`; }).join(''); picker.querySelectorAll('[data-uid]').forEach(el => { el.addEventListener('click', () => { const uid = el.dataset.uid; if (selecionados.has(uid)) { selecionados.delete(uid); el.classList.remove('is-selecionado'); } else { selecionados.add(uid); el.classList.add('is-selecionado'); } atualizarChips(); }); }); } catch (err) { logErr('buscar usuarios:', err); } };
+    const atualizarChips = () => { const box = document.getElementById('grp-selecionados'); if (!box) return; if (!selecionados.size) { box.innerHTML = `<span style="color:var(--fg-tertiary);font-size:12px;align-self:center;padding:0 4px">Ninguém selecionado ainda</span>`; return; } box.innerHTML = Array.from(selecionados).map(uid => { const el = document.querySelector(`.membro-opt[data-uid="${uid}"]`); const nome = el?.dataset.unome || 'Membro'; return `<span class="membro-chip">${U.escapeHtml(nome.split(' ')[0])}<button type="button" data-remove="${U.escapeHtml(uid)}">×</button></span>`; }).join(''); box.querySelectorAll('[data-remove]').forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); const uid = b.dataset.remove; selecionados.delete(uid); document.querySelector(`.membro-opt[data-uid="${uid}"]`)?.classList.remove('is-selecionado'); atualizarChips(); })); };
+    let buscaTimer = null; document.getElementById('grp-busca')?.addEventListener('input', (e) => { clearTimeout(buscaTimer); buscaTimer = setTimeout(() => buscarUsuarios(e.target.value.trim()), 300); });
+    buscarUsuarios();
+  };
+
   const abrirDetalhes = async (grupoId) => { const g = st.gruposMap.get(grupoId) || st.lista.find(x => x.id === grupoId); if (!g) return; const membros = await DBg.getMembros(grupoId); g._membrosCache = membros; const souDono = g.dono_id === State.get('user')?.id; const souAdmin = g._meuPapel === 'dono' || g._meuPapel === 'admin'; const membrosH = membros.map(m => { const p = m.perfil || {}; const av = p.avatar_url ? `<img src="${U.escapeHtml(U.publicUrl(BUCKETS.AVATARS, p.avatar_url))}" style="width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0">` : `<div style="width:38px;height:38px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0">${U.initials(p.nome)}</div>`; const papel = m.papel === 'dono' ? '<span class="gmembro-row__papel gmembro-row__papel--dono">👑 Dono</span>' : m.papel === 'admin' ? '<span class="gmembro-row__papel gmembro-row__papel--admin">🛡️ Admin</span>' : ''; const removerBtn = (souAdmin && m.papel !== 'dono') ? `<button type="button" data-remover="${U.escapeHtml(m.user_id)}" style="background:transparent;border:0;color:var(--danger);font-size:12px;font-weight:700;cursor:pointer;padding:4px 8px">Remover</button>` : ''; const onlineDot = Presence.isOnline(m.user_id) ? '<span class="presence-dot--sm" style="position:static;display:inline-block;margin-left:4px"></span>' : ''; return `<div class="gmembro-row">${av}<div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700;color:var(--fg-primary)">${U.escapeHtml(p.nome || 'Morador')}${onlineDot}</div><div style="font-size:11px;color:var(--fg-secondary);margin-top:2px">📍 ${U.escapeHtml(p.bairro || 'Oriximiná')} ${papel}</div></div>${removerBtn}</div>`; }).join(''); const fotoUrl = g.foto_url ? U.publicUrl('grupos', g.foto_url) : null; const fotoCls = souDono ? 'grupo-detalhes__foto' : 'grupo-detalhes__foto grupo-detalhes__foto--readonly'; const fotoH = fotoUrl ? `<img src="${U.escapeHtml(fotoUrl)}" alt="">` : `<span>${U.initials(g.nome)}</span>`; const conviteH = `<div class="admin-card" style="background:var(--accent-soft);border-color:var(--accent-soft);margin-top:12px"><strong style="font-family:var(--font-display);font-size:14px;display:block;margin-bottom:4px">🔗 Convidar para o grupo</strong><small style="color:var(--fg-secondary);font-size:11px;display:block;margin-bottom:10px">Gere um link/código e envie no WhatsApp</small><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="x-btn x-btn--primary x-btn--sm" id="grp-gerar-convite" style="flex:1">🎟️ Gerar convite</button><button type="button" class="x-btn x-btn--ghost x-btn--sm" id="grp-add-membros" style="flex:1">+ Adicionar</button></div></div>`; const body = `<div style="text-align:center;margin-bottom:20px"><div class="${fotoCls}" id="grp-detalhes-foto">${fotoH}<input type="file" id="grp-detalhes-foto-input" accept="image/*" style="display:none"></div><h3 style="font-family:var(--font-display);font-size:20px;font-weight:900;margin:8px 0 4px">${U.escapeHtml(g.nome)}</h3>${g.descricao ? `<p style="font-size:13px;color:var(--fg-secondary);line-height:1.5;max-width:320px;margin:0 auto">${U.escapeHtml(g.descricao)}</p>` : ''}<div style="display:flex;gap:8px;justify-content:center;margin-top:8px;flex-wrap:wrap;font-size:11px;color:var(--fg-secondary);font-weight:600"><span>👥 ${membros.length} membros</span>${g.bairro ? `<span>📍 ${U.escapeHtml(g.bairro)}</span>` : ''}${g.privado ? '<span>🔒 Privado</span>' : '<span>🌐 Público</span>'}${g.so_admin_fala ? '<span>📢 Só admins falam</span>' : ''}</div></div>${conviteH}<h4 class="x-heading x-heading--sm" style="margin-top:20px">👥 Membros (${membros.length})</h4><div>${membrosH}</div><button type="button" class="x-btn x-btn--ghost x-btn--block" id="grp-sair" style="margin-top:20px;color:var(--danger);border-color:rgba(194,80,62,.4)">🚪 Sair do grupo</button>`; Modal.abrir({ title: 'Detalhes do grupo', body }); if (souDono) { document.getElementById('grp-detalhes-foto')?.addEventListener('click', () => document.getElementById('grp-detalhes-foto-input')?.click()); document.getElementById('grp-detalhes-foto-input')?.addEventListener('change', async (e) => { const f = e.target.files?.[0]; if (!f) return; try { const path = await DBg.uploadFoto(f); await sb.from('grupos').update({ foto_url: path }).eq('id', grupoId); U.toast('✅ Foto atualizada', 2200, 'sucesso'); Modal.fechar(); await carregarLista(); setTimeout(() => abrirDetalhes(grupoId), 200); } catch (err) { U.toast('Erro ao atualizar foto', 2200, 'erro'); } }); } document.querySelectorAll('#global-modal [data-remover]').forEach(btn => btn.addEventListener('click', async () => { if (!confirm('Remover este membro?')) return; try { await DBg.removerMembro(grupoId, btn.dataset.remover); U.toast('Membro removido', 2000, 'sucesso'); Modal.fechar(); setTimeout(() => abrirDetalhes(grupoId), 200); } catch (err) { U.toast('Erro', 2200, 'erro'); } })); document.getElementById('grp-gerar-convite')?.addEventListener('click', async () => { try { const c = await DBg.gerarConvite(grupoId); const txt = `👥 Entre no grupo *${g.nome}* no Orixiconnect!\n\nCódigo: *${c.codigo}*\n\n${location.origin}`; await U.copy(c.codigo); if (navigator.share) { try { await navigator.share({ text: txt }); } catch {} } else window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank'); } catch (err) { U.toast('Erro ao gerar convite', 2200, 'erro'); } }); document.getElementById('grp-add-membros')?.addEventListener('click', () => { Modal.fechar(); setTimeout(() => abrirAddMembros(grupoId, membros), 200); }); document.getElementById('grp-sair')?.addEventListener('click', async () => { if (g.dono_id === State.get('user')?.id) { U.toast('Dono não pode sair. Transfira ou delete o grupo.', 3200, 'erro'); return; } if (!confirm('Sair deste grupo?')) return; try { await DBg.sair(grupoId); U.toast('Você saiu do grupo', 2200, 'info'); Modal.fechar(); desligarRealtime(); st.aberto = null; U.hide(E.chatWrap); U.show(E.wrapLista); await carregarLista(); } catch (err) { U.toast('Erro', 2200, 'erro'); } }); };
+
   const abrirAddMembros = async (grupoId, membrosAtuais) => { const u = State.get('user'); const jaMembros = new Set(membrosAtuais.map(m => m.user_id)); const selecionados = new Set(); const body = `<input class="x-field__input" id="add-busca" placeholder="Buscar por nome…" autocomplete="off" style="margin-bottom:12px"><div class="membros-selecionados" id="add-selecionados"><span style="color:var(--fg-tertiary);font-size:12px;align-self:center;padding:0 4px">Ninguém selecionado</span></div><div class="membros-picker" id="add-picker"><div class="x-skeleton x-skeleton--sm"></div></div>`; Modal.abrir({ title: '➕ Adicionar membros', body, submitLabel: '✅ Adicionar', onSubmit: async () => { if (!selecionados.size) { U.toast('Selecione alguém', 2000, 'info'); return; } const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true); try { await DBg.adicionarMembros(grupoId, Array.from(selecionados)); await sb.from('grupo_mensagens').insert({ grupo_id: grupoId, user_id: u.id, texto: 'Novos membros adicionados', tipo: 'sistema' }); U.toast('✅ Membros adicionados!', 2200, 'sucesso'); Modal.fechar(); setTimeout(() => abrirDetalhes(grupoId), 200); } catch (err) { U.toast('Erro', 2400, 'erro'); } finally { U.btnLoading(btn, false, '✅ Adicionar'); } } }); const atualizarChips = () => { const box = document.getElementById('add-selecionados'); if (!selecionados.size) { box.innerHTML = `<span style="color:var(--fg-tertiary);font-size:12px;align-self:center;padding:0 4px">Ninguém selecionado</span>`; return; } box.innerHTML = Array.from(selecionados).map(uid => { const el = document.querySelector(`#add-picker .membro-opt[data-uid="${uid}"]`); const nome = el?.dataset.unome || 'Membro'; return `<span class="membro-chip">${U.escapeHtml(nome.split(' ')[0])}<button type="button" data-remove="${U.escapeHtml(uid)}">×</button></span>`; }).join(''); box.querySelectorAll('[data-remove]').forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); const uid = b.dataset.remove; selecionados.delete(uid); document.querySelector(`#add-picker .membro-opt[data-uid="${uid}"]`)?.classList.remove('is-selecionado'); atualizarChips(); })); }; const buscar = async (termo = '') => { const picker = document.getElementById('add-picker'); picker.innerHTML = `<div style="padding:12px;color:var(--fg-secondary);font-size:12px;text-align:center">Buscando…</div>`; let q = sb.from('profiles').select('id, nome, bairro, avatar_url, is_admin, admin_frame').neq('id', u.id).limit(40); if (termo) q = q.ilike('nome', `%${termo}%`); const { data } = await q; const disponiveis = (data || []).filter(p => !jaMembros.has(p.id)); if (!disponiveis.length) { picker.innerHTML = `<div style="padding:12px;color:var(--fg-secondary);font-size:12px;text-align:center">Ninguém disponível</div>`; return; } picker.innerHTML = disponiveis.map(p => { const av = p.avatar_url ? `<img src="${U.escapeHtml(U.publicUrl(BUCKETS.AVATARS, p.avatar_url))}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0">` : `<div style="width:36px;height:36px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">${U.initials(p.nome)}</div>`; return `<div class="membro-opt" data-uid="${U.escapeHtml(p.id)}" data-unome="${U.escapeHtml(p.nome)}"><div class="membro-opt__check">✓</div>${av}<div class="membro-opt__info"><span class="membro-opt__nome">${p.is_admin ? '👑 ' : ''}${U.escapeHtml(p.nome)}</span><span class="membro-opt__bairro">📍 ${U.escapeHtml(p.bairro || 'Oriximiná')}</span></div></div>`; }).join(''); picker.querySelectorAll('[data-uid]').forEach(el => el.addEventListener('click', () => { const uid = el.dataset.uid; if (selecionados.has(uid)) { selecionados.delete(uid); el.classList.remove('is-selecionado'); } else { selecionados.add(uid); el.classList.add('is-selecionado'); } atualizarChips(); })); }; let t; document.getElementById('add-busca')?.addEventListener('input', (e) => { clearTimeout(t); t = setTimeout(() => buscar(e.target.value.trim()), 300); }); buscar(); };
+
   const abrirEntrarCodigo = () => { if (!State.isLogged()) { U.toast('Entre para entrar em grupos', 2200, 'info'); return; } const body = `<div class="x-field"><label class="x-field__label">Código de convite</label><input class="x-field__input x-field__input--code" id="grp-codigo" maxlength="8" placeholder="ABCD1234" autocapitalize="characters" autocomplete="off"></div>`; Modal.abrir({ title: '🎟️ Entrar com código', body, submitLabel: 'Entrar', onSubmit: async () => { const codigo = document.getElementById('grp-codigo')?.value.trim().toUpperCase(); if (!codigo) { U.toast('Digite o código', 2000, 'info'); return; } const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true); try { const grupoId = await DBg.entrarPorCodigo(codigo); U.toast('✅ Você entrou no grupo!', 2400, 'sucesso'); Modal.fechar(); await carregarLista(); if (grupoId) setTimeout(() => abrirChat(grupoId), 300); } catch (err) { U.toast(err.message || 'Código inválido', 2600, 'erro'); } finally { U.btnLoading(btn, false, 'Entrar'); } } }); document.getElementById('grp-codigo')?.addEventListener('input', (e) => { e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ''); }); };
   const abrirExplorar = async () => { const body = `<div class="x-field"><input class="x-field__input" id="expl-busca" placeholder="Buscar grupos públicos…" autocomplete="off"></div><div id="expl-lista" style="margin-top:12px"><div class="x-skeleton x-skeleton--sm"></div></div>`; Modal.abrir({ title: '🌐 Descobrir grupos', body }); const carregar = async (termo = '') => { const box = document.getElementById('expl-lista'); if (!box) return; const grupos = await DBg.buscarPublicos(termo); if (!grupos.length) { box.innerHTML = `<div style="padding:20px;text-align:center;color:var(--fg-secondary);font-size:13px">Nenhum grupo público encontrado.</div>`; return; } box.innerHTML = grupos.map(g => { const foto = g.foto_url ? `<img src="${U.escapeHtml(U.publicUrl('grupos', g.foto_url))}" style="width:48px;height:48px;border-radius:50%;object-fit:cover">` : `<div style="width:48px;height:48px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px">${U.initials(g.nome)}</div>`; return `<div class="grupo-item"><div style="flex-shrink:0">${foto}</div><div class="grupo-item__info"><span class="grupo-item__nome">${U.escapeHtml(g.nome)}</span><span class="grupo-item__meta">${g.bairro ? '📍 ' + U.escapeHtml(g.bairro) : '🌐 Público'}</span></div><button type="button" class="x-btn x-btn--primary x-btn--xs" data-entrar="${U.escapeHtml(g.id)}">Entrar</button></div>`; }).join(''); box.querySelectorAll('[data-entrar]').forEach(btn => btn.addEventListener('click', async () => { try { const u = State.get('user'); await DBg.adicionarMembros(btn.dataset.entrar, [u.id]); U.toast('✅ Você entrou!', 2200, 'sucesso'); Modal.fechar(); await carregarLista(); setTimeout(() => abrirChat(btn.dataset.entrar), 300); } catch (err) { U.toast('Erro ao entrar', 2200, 'erro'); } })); }; let t; document.getElementById('expl-busca')?.addEventListener('input', (e) => { clearTimeout(t); t = setTimeout(() => carregar(e.target.value.trim()), 300); }); carregar(); };
+
   const init = () => { cache(); if (!E.lista) { log('👥 Grupos: DOM não encontrado, pulando'); return; } E.chatForm?.addEventListener('submit', enviarMensagem); E.chatInput?.addEventListener('input', onGroupInputChange); document.getElementById('grupo-chat-back')?.addEventListener('click', voltarLista); document.getElementById('grupo-chat-foto')?.addEventListener('click', () => { if (st.aberto) abrirDetalhes(st.aberto); }); document.getElementById('grupo-chat-info')?.addEventListener('click', () => { if (st.aberto) abrirDetalhes(st.aberto); }); document.getElementById('grupo-chat-menu')?.addEventListener('click', (e) => { e.stopPropagation(); if (!st.aberto) return; const box = document.querySelector('.grupo-chat__head'); if (!box) return; document.querySelector('.grupo-menu')?.remove(); const menu = document.createElement('div'); menu.className = 'grupo-menu'; menu.innerHTML = `<button type="button" data-action="detalhes">ℹ️ Detalhes do grupo</button><button type="button" data-action="add">➕ Adicionar membros</button><button type="button" data-action="convite">🎟️ Convidar por código</button><button type="button" data-action="sair" class="danger">🚪 Sair do grupo</button>`; box.style.position = 'relative'; box.appendChild(menu); menu.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { const a = b.dataset.action; menu.remove(); if (a === 'detalhes') abrirDetalhes(st.aberto); else if (a === 'add') { DBg.getMembros(st.aberto).then(m => abrirAddMembros(st.aberto, m)); } else if (a === 'convite') abrirDetalhes(st.aberto); else if (a === 'sair') { const g = st.gruposMap.get(st.aberto); if (g?.dono_id === State.get('user')?.id) { U.toast('Dono não pode sair', 2600, 'erro'); return; } if (confirm('Sair deste grupo?')) DBg.sair(st.aberto).then(() => { U.toast('Você saiu', 2000, 'info'); voltarLista(); }).catch(() => {}); } })); setTimeout(() => document.addEventListener('click', function h() { menu.remove(); document.removeEventListener('click', h); }, { once: true }), 50); }); E.chatAttach?.addEventListener('click', () => E.chatFile?.click()); E.chatFile?.addEventListener('change', (e) => { const f = e.target.files?.[0]; if (!f) return; enviarImagem(f); e.target.value = ''; }); document.getElementById('grupos-btn-novo')?.addEventListener('click', abrirComposer); document.getElementById('grupos-btn-entrar')?.addEventListener('click', abrirEntrarCodigo); document.getElementById('grupos-btn-explorar')?.addEventListener('click', abrirExplorar); State.on('view:change', (v) => { if (v === 'chat') setTimeout(carregarLista, 150); else { desligarRealtime(); pararTypingTicker(); } }); if (State.isLogged()) setTimeout(carregarLista, 500); Presence.on('presence:sync', () => { if (st.aberto) renderTypingGroupHeader(); }); log('👥 Grupos prontos'); };
   return { init, carregarLista, abrirChat, abrirComposer, abrirDetalhes, abrirEntrarCodigo, abrirExplorar, _db: DBg };
 })();
@@ -2826,12 +2609,8 @@ const LevelUp = (() => {
    ═══════════════════════════════════════════════════════════ */
 const LevelBar = (() => {
   const atualizar = () => {
-    const u = State.get('user');
-    const bar = document.getElementById('level-bar');
-    if (!bar || !u) return;
-    const xp = u.pontos || 0;
-    const lvl = U.getLevel(xp);
-    const prog = U.getLevelProgress(xp);
+    const u = State.get('user'); const bar = document.getElementById('level-bar'); if (!bar || !u) return;
+    const xp = u.pontos || 0; const lvl = U.getLevel(xp); const prog = U.getLevelProgress(xp);
     document.getElementById('level-medal').textContent = lvl.icon;
     document.getElementById('level-nome').textContent = `Nível ${lvl.medal} · ${lvl.name}`;
     document.getElementById('level-xp').textContent = prog.nextLevel ? `${U.formatNum(prog.current)} / ${U.formatNum(prog.next)} XP` : `${U.formatNum(xp)} XP`;
@@ -2872,12 +2651,27 @@ const Pulso = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 31: Explorar
+   BLOCO 31: Explorar (com renderBairrosPicker no novo produto)
    ═══════════════════════════════════════════════════════════ */
 const Explorar = (() => {
   const carregarSemanal = async () => { const box = document.getElementById('rank-semanal'); if (!box) return; try { const r = await DB.profiles.topUsers(5); if (!r.length) { box.innerHTML = `<p style="color:var(--fg-secondary)">Sem dados.</p>`; return; } box.innerHTML = r.map((u, i) => { const ini = U.initials(u.nome || ''); const isAdmin = u.is_admin === true; const frameAttr = isAdmin && u.admin_frame && u.admin_frame !== 'none' ? ` data-frame="${u.admin_frame}"` : ''; const adminClass = isAdmin && u.admin_frame && u.admin_frame !== 'none' ? ' x-avatar--admin' : ''; const av = u.avatar_url ? `<img class="x-avatar x-avatar--sm${adminClass}"${frameAttr} src="${U.escapeHtml(U.publicUrl(BUCKETS.AVATARS, u.avatar_url))}" alt="">` : `<div class="x-avatar x-avatar--sm x-avatar--grad${adminClass}"${frameAttr}>${ini}</div>`; const online = Presence.isOnline(u.id) ? '<span class="presence-dot--sm" style="position:static;display:inline-block;margin-left:4px"></span>' : ''; return `<div class="leaderboard__row leaderboard__row--${i + 1}" data-user-id="${U.escapeHtml(u.id)}"><div class="leaderboard__rank">${i + 1}</div>${av}<div class="leaderboard__user"><span class="leaderboard__nome">${isAdmin ? '👑 ' : ''}${U.escapeHtml(u.nome)}${online}</span><span class="leaderboard__bairro">${U.escapeHtml(u.bairro || '')}</span></div><span class="leaderboard__pts">⚡ ${U.formatNum(u.pontos)}</span></div>`; }).join(''); box.querySelectorAll('[data-user-id]').forEach(el => el.addEventListener('click', () => { State.setView('perfil'); setTimeout(() => Perfil.abrir(el.dataset.userId), 250); })); } catch (e) { logErr(e); } };
   const carregarMarket = async () => { const box = document.getElementById('market-grid'); if (!box) return; box.innerHTML = `<div class="x-skeleton x-skeleton--sm"></div>`; try { const { data, error } = await sb.from('produtos').select('id,titulo,preco,imagem_url,bairro,whatsapp,descricao').eq('deletado', false).eq('vendido', false).order('criado_em', { ascending: false }).limit(30); if (error) throw error; if (!data?.length) { box.innerHTML = `<p style="text-align:center;padding:20px;color:var(--fg-secondary);font-size:14px">Mercado vazio. Anuncie algo que não usa mais.</p><button type="button" class="x-btn x-btn--primary x-btn--sm" id="market-empty-cta" style="display:block;margin:12px auto 0">+ Anunciar produto</button>`; document.getElementById('market-empty-cta')?.addEventListener('click', abrirNovoProduto); return; } box.innerHTML = `<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">${data.map(p => `<div class="x-card" style="padding:0;overflow:hidden;display:flex;flex-direction:column">${p.imagem_url ? `<img src="${U.escapeHtml(U.publicUrl(BUCKETS.POSTS, p.imagem_url))}" style="width:100%;aspect-ratio:1;object-fit:cover;background:var(--bg-sunken)" loading="lazy" alt="" onerror="this.style.display='none'">` : `<div style="width:100%;aspect-ratio:1;background:var(--gradient-primary-soft);display:flex;align-items:center;justify-content:center;font-size:48px">🛒</div>`}<div style="padding:var(--space-md);display:flex;flex-direction:column;gap:6px;flex:1"><strong style="font-size:13px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${U.escapeHtml(p.titulo)}</strong><span style="font-family:var(--font-display);font-weight:900;color:var(--accent);font-size:var(--text-title-sm)">${p.preco ? Number(p.preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : 'A combinar'}</span>${p.bairro ? `<span style="font-size:11px;color:var(--fg-secondary)">📍 ${U.escapeHtml(p.bairro)}</span>` : ''}${p.whatsapp ? `<button type="button" class="x-btn x-btn--primary x-btn--xs" data-wa="${U.escapeHtml(p.whatsapp)}" data-titulo="${U.escapeHtml(p.titulo)}" style="width:100%;margin-top:auto">💬 WhatsApp</button>` : ''}</div></div>`).join('')}</div>`; box.querySelectorAll('[data-wa]').forEach(btn => btn.addEventListener('click', () => { const limpo = String(btn.dataset.wa).replace(/\D/g, ''); const full = limpo.length <= 11 ? '55' + limpo : limpo; window.open(`https://wa.me/${full}?text=${encodeURIComponent('Olá! Vi seu anúncio "' + btn.dataset.titulo + '" no Orixiconnect.')}`, '_blank'); })); } catch (e) { logErr('market:', e); box.innerHTML = `<p style="text-align:center;padding:20px;color:var(--fg-secondary);font-size:13px">Erro ao carregar mercado.</p>`; } };
-  const abrirNovoProduto = () => { if (!State.isLogged()) { U.toast('Entre para vender', 2400, 'info'); return; } const u = State.get('user'); let imgSel = null; const bairros = BAIRROS.map(b => `<option value="${U.escapeHtml(b)}" ${b === u?.bairro ? 'selected' : ''}>${U.escapeHtml(b)}</option>`).join(''); const body = `<div class="x-field"><label class="x-field__label">Título</label><input class="x-field__input" id="prod-titulo" placeholder="Ex: Bicicleta aro 29" maxlength="80"></div><div class="x-field"><label class="x-field__label">Descrição</label><textarea class="x-field__textarea" id="prod-desc" rows="3" maxlength="400" placeholder="Detalhes, estado de conservação…"></textarea></div><div class="x-field"><label class="x-field__label">Preço (R$)</label><input class="x-field__input" id="prod-preco" type="number" step="0.01" min="0" placeholder="Deixe vazio para 'A combinar'"></div><div class="x-field"><label class="x-field__label">WhatsApp (com DDD)</label><input class="x-field__input" id="prod-wpp" placeholder="Ex: 93999998888" inputmode="numeric" maxlength="15"></div><div class="x-field"><label class="x-field__label">Bairro</label><select class="x-field__select" id="prod-bairro">${bairros}</select></div><div class="x-field"><label class="x-field__label">📷 Foto do produto</label><div class="zel-foto-upload" id="prod-foto-wrap"><span style="font-size:32px">📷</span><span>Adicionar foto</span><input type="file" id="prod-foto" accept="image/*"></div></div>`; Modal.abrir({ title: '🛒 Anunciar produto', body, submitLabel: 'Publicar anúncio', onSubmit: async () => { const titulo = document.getElementById('prod-titulo')?.value.trim(); if (!titulo || titulo.length < 3) { U.toast('Digite um título', 2600, 'erro'); return; } const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true); try { let imagem_url = null; if (imgSel) imagem_url = await DB.upload.image(BUCKETS.POSTS, imgSel, 'produto'); await sb.from('produtos').insert({ user_id: u.id, titulo, descricao: document.getElementById('prod-desc')?.value.trim() || null, preco: parseFloat(document.getElementById('prod-preco')?.value) || null, whatsapp: document.getElementById('prod-wpp')?.value.trim() || null, bairro: document.getElementById('prod-bairro')?.value || null, imagem_url }); U.toast('🛒 Anúncio publicado!', 2600, 'sucesso'); Modal.fechar(); carregarMarket(); State.addXP(5, 'venda'); } catch (e) { logErr('novo-produto:', e); U.toast('Erro ao publicar', 3000, 'erro'); } finally { U.btnLoading(btn, false, 'Publicar anúncio'); } } }); document.getElementById('prod-foto')?.addEventListener('change', (e) => { const f = e.target.files?.[0]; if (!f) return; imgSel = f; const wrap = document.getElementById('prod-foto-wrap'); if (wrap) { const url = URL.createObjectURL(f); wrap.innerHTML = `<img src="${url}" alt=""><input type="file" id="prod-foto" accept="image/*">`; } }); };
+
+  const abrirNovoProduto = () => {
+    if (!State.isLogged()) { U.toast('Entre para vender', 2400, 'info'); return; }
+    const u = State.get('user'); let imgSel = null;
+    let bairroProdutoSel = u?.bairro || null;
+    const body = `<div class="x-field"><label class="x-field__label">Título</label><input class="x-field__input" id="prod-titulo" placeholder="Ex: Bicicleta aro 29" maxlength="80"></div><div class="x-field"><label class="x-field__label">Descrição</label><textarea class="x-field__textarea" id="prod-desc" rows="3" maxlength="400" placeholder="Detalhes, estado de conservação…"></textarea></div><div class="x-field"><label class="x-field__label">Preço (R$)</label><input class="x-field__input" id="prod-preco" type="number" step="0.01" min="0" placeholder="Deixe vazio para 'A combinar'"></div><div class="x-field"><label class="x-field__label">WhatsApp (com DDD)</label><input class="x-field__input" id="prod-wpp" placeholder="Ex: 93999998888" inputmode="numeric" maxlength="15"></div><div class="x-field"><label class="x-field__label">Bairro</label><div class="bairros" id="prod-bairro-grid" role="radiogroup"></div></div><div class="x-field"><label class="x-field__label">📷 Foto do produto</label><div class="zel-foto-upload" id="prod-foto-wrap"><span style="font-size:32px">📷</span><span>Adicionar foto</span><input type="file" id="prod-foto" accept="image/*"></div></div>`;
+    Modal.abrir({ title: '🛒 Anunciar produto', body, submitLabel: 'Publicar anúncio', onSubmit: async () => {
+      const titulo = document.getElementById('prod-titulo')?.value.trim();
+      if (!titulo || titulo.length < 3) { U.toast('Digite um título', 2600, 'erro'); return; }
+      const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true);
+      try { let imagem_url = null; if (imgSel) imagem_url = await DB.upload.image(BUCKETS.POSTS, imgSel, 'produto'); await sb.from('produtos').insert({ user_id: u.id, titulo, descricao: document.getElementById('prod-desc')?.value.trim() || null, preco: parseFloat(document.getElementById('prod-preco')?.value) || null, whatsapp: document.getElementById('prod-wpp')?.value.trim() || null, bairro: bairroProdutoSel, imagem_url }); U.toast('🛒 Anúncio publicado!', 2600, 'sucesso'); Modal.fechar(); carregarMarket(); State.addXP(5, 'venda'); } catch (e) { logErr('novo-produto:', e); U.toast('Erro ao publicar', 3000, 'erro'); } finally { U.btnLoading(btn, false, 'Publicar anúncio'); }
+    } });
+    setTimeout(() => { const grid = document.getElementById('prod-bairro-grid'); U.renderBairrosPicker(grid, u?.bairro, (valor) => { bairroProdutoSel = valor; }); }, 80);
+    document.getElementById('prod-foto')?.addEventListener('change', (e) => { const f = e.target.files?.[0]; if (!f) return; imgSel = f; const wrap = document.getElementById('prod-foto-wrap'); if (wrap) { const url = URL.createObjectURL(f); wrap.innerHTML = `<img src="${url}" alt=""><input type="file" id="prod-foto" accept="image/*">`; } });
+  };
+
   const carregarTags = async () => { const box = document.getElementById('trending-tags'); if (!box) return; try { const { data } = await sb.from('posts').select('texto').eq('deletado', false).gte('criado_em', new Date(Date.now() - 7 * 86400000).toISOString()).limit(200); const tagCount = new Map(); (data || []).forEach(p => { if (!p.texto) return; const tags = p.texto.match(/#([a-zA-Z0-9_\u00C0-\u017F]{2,30})/g) || []; tags.forEach(t => { const k = t.toLowerCase(); tagCount.set(k, (tagCount.get(k) || 0) + 1); }); }); const top = Array.from(tagCount.entries()).sort((a, b) => b[1] - a[1]).slice(0, 12); if (!top.length) { box.innerHTML = `<p style="color:var(--fg-secondary);font-size:13px">Nenhuma hashtag nos últimos 7 dias.</p>`; return; } box.innerHTML = top.map(([tag, count]) => `<button type="button" class="x-chip" data-tag="${U.escapeHtml(tag)}">${U.escapeHtml(tag)} <span class="x-chip__count">${count}</span></button>`).join(''); box.querySelectorAll('[data-tag]').forEach(btn => btn.addEventListener('click', () => { const tag = btn.dataset.tag; State.setView('feed'); setTimeout(() => { const inp = document.getElementById('busca-global'); const bar = document.getElementById('search-bar'); if (inp && bar) { bar.classList.remove('hidden'); inp.value = tag; inp.dispatchEvent(new Event('input')); Search.buscar(tag); } }, 200); })); } catch (e) { logErr('tags:', e); box.innerHTML = `<p style="color:var(--fg-secondary);font-size:13px">Não foi possível carregar.</p>`; } };
   const init = () => { State.on('view:change', (v) => { if (v === 'explorar') { carregarSemanal(); carregarMarket(); carregarTags(); } }); document.getElementById('btn-novo-produto')?.addEventListener('click', abrirNovoProduto); };
   return { init };
@@ -2887,7 +2681,7 @@ const Explorar = (() => {
    BLOCO 32: Diagnostico
    ═══════════════════════════════════════════════════════════ */
 const Diagnostico = (() => {
-  const modulos = [{ nome: 'Supabase Client', icone: '🔌', teste: async () => { if (!window.sb) throw new Error('Cliente Supabase não inicializado'); const { error } = await sb.auth.getSession(); if (error) throw error; return 'Conectado'; } },{ nome: 'Auth — Sessão', icone: '👤', teste: async () => { const { data } = await sb.auth.getSession(); if (!data?.session) return 'Sem sessão (visitante)'; return `Logado como ${data.session.user.email}`; } },{ nome: 'Tabela: profiles', icone: '📋', teste: async () => { const { count, error } = await sb.from('profiles').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Tabela: posts', icone: '📝', teste: async () => { const { count, error } = await sb.from('posts').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Tabela: config_global', icone: '⚙️', teste: async () => { const { data, error } = await sb.from('config_global').select('chave,valor').limit(5); if (error) throw error; return `${(data || []).length} config(s)`; } },{ nome: 'Bucket: avatars', icone: '🖼️', teste: async () => { const { error } = await sb.storage.from('avatars').list('', { limit: 1 }); if (error) throw error; return 'OK'; } },{ nome: 'Presence (Realtime)', icone: '🟢', teste: async () => { if (typeof Presence === 'undefined') throw new Error('Presence não existe'); return 'OK'; } },{ nome: 'Módulo: Convite', icone: '🎟️', teste: async () => { if (typeof Convite === 'undefined') throw new Error('Convite não existe'); if (typeof Convite.getConfigGlobal !== 'function') throw new Error('getConfigGlobal ausente'); return 'OK'; } },{ nome: 'Módulo: Perfil', icone: '👤', teste: async () => { if (typeof Perfil === 'undefined') throw new Error('Perfil não existe'); if (typeof Perfil.renderAdmin !== 'function') throw new Error('renderAdmin ausente'); return 'OK'; } },{ nome: 'Módulo: DeletePost', icone: '🗑️', teste: async () => { if (typeof DeletePost === 'undefined') throw new Error('DeletePost não existe'); return 'OK'; } },{ nome: 'Módulo: Guia', icone: '🎨', teste: async () => { if (typeof Guia === 'undefined') throw new Error('Guia não existe'); return 'OK'; } },{ nome: 'Módulo: StoriesExt', icone: '📸', teste: async () => { if (typeof StoriesExt === 'undefined') throw new Error('StoriesExt não existe'); return 'OK'; } },{ nome: 'Módulo: Trending', icone: '📊', teste: async () => { if (typeof Trending === 'undefined') throw new Error('Trending não existe'); return 'OK'; } },{ nome: 'Módulo: Grupos', icone: '👥', teste: async () => { if (typeof Grupos === 'undefined') throw new Error('Grupos não existe'); return 'OK'; } }];
+  const modulos = [{ nome: 'Supabase Client', icone: '🔌', teste: async () => { if (!window.sb) throw new Error('Cliente Supabase não inicializado'); const { error } = await sb.auth.getSession(); if (error) throw error; return 'Conectado'; } },{ nome: 'Auth — Sessão', icone: '👤', teste: async () => { const { data } = await sb.auth.getSession(); if (!data?.session) return 'Sem sessão (visitante)'; return `Logado como ${data.session.user.email}`; } },{ nome: 'Tabela: profiles', icone: '📋', teste: async () => { const { count, error } = await sb.from('profiles').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Tabela: posts', icone: '📝', teste: async () => { const { count, error } = await sb.from('posts').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Tabela: config_global', icone: '⚙️', teste: async () => { const { data, error } = await sb.from('config_global').select('chave,valor').limit(5); if (error) throw error; return `${(data || []).length} config(s)`; } },{ nome: 'Bucket: avatars', icone: '🖼️', teste: async () => { const { error } = await sb.storage.from('avatars').list('', { limit: 1 }); if (error) throw error; return 'OK'; } },{ nome: 'Presence (Realtime)', icone: '🟢', teste: async () => { if (typeof Presence === 'undefined') throw new Error('Presence não existe'); return 'OK'; } },{ nome: 'Bairros (17 + Outro)', icone: '📍', teste: async () => { if (typeof BAIRROS === 'undefined') throw new Error('BAIRROS não existe'); if (BAIRROS.length !== 17) throw new Error(`Esperado 17 bairros, encontrado ${BAIRROS.length}`); return `${BAIRROS.length} bairros + Outro`; } },{ nome: 'Helper renderBairrosPicker', icone: '🎨', teste: async () => { if (typeof U === 'undefined' || typeof U.renderBairrosPicker !== 'function') throw new Error('renderBairrosPicker ausente'); return 'OK'; } },{ nome: 'Módulo: Convite', icone: '🎟️', teste: async () => { if (typeof Convite === 'undefined') throw new Error('Convite não existe'); if (typeof Convite.getConfigGlobal !== 'function') throw new Error('getConfigGlobal ausente'); return 'OK'; } },{ nome: 'Módulo: Perfil', icone: '👤', teste: async () => { if (typeof Perfil === 'undefined') throw new Error('Perfil não existe'); if (typeof Perfil.renderAdmin !== 'function') throw new Error('renderAdmin ausente'); return 'OK'; } },{ nome: 'Módulo: DeletePost', icone: '🗑️', teste: async () => { if (typeof DeletePost === 'undefined') throw new Error('DeletePost não existe'); return 'OK'; } },{ nome: 'Módulo: Guia', icone: '🏪', teste: async () => { if (typeof Guia === 'undefined') throw new Error('Guia não existe'); return 'OK'; } },{ nome: 'Módulo: StoriesExt', icone: '📸', teste: async () => { if (typeof StoriesExt === 'undefined') throw new Error('StoriesExt não existe'); return 'OK'; } },{ nome: 'Módulo: Trending', icone: '📊', teste: async () => { if (typeof Trending === 'undefined') throw new Error('Trending não existe'); return 'OK'; } },{ nome: 'Módulo: Grupos', icone: '👥', teste: async () => { if (typeof Grupos === 'undefined') throw new Error('Grupos não existe'); return 'OK'; } }];
   const rodar = async () => { const box = document.getElementById('diag-resultados'); if (!box) return; box.innerHTML = ''; for (const m of modulos) { const linha = document.createElement('div'); linha.style.cssText = 'display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:10px;margin-bottom:6px;font-size:13px'; linha.innerHTML = `<span style="font-size:18px">${m.icone}</span><strong style="flex:1;color:var(--fg-primary)">${m.nome}</strong><span data-status style="font-size:12px;color:var(--fg-secondary)">⏳ testando…</span>`; box.appendChild(linha); const statusEl = linha.querySelector('[data-status]'); try { const r = await m.teste(); const txt = typeof r === 'string' ? r : 'OK'; statusEl.innerHTML = `<span style="color:#2D8659;font-weight:700">✅ ${U.escapeHtml(txt)}</span>`; linha.style.borderColor = 'rgba(45,134,89,.35)'; } catch (err) { const msg = err?.message || String(err); statusEl.innerHTML = `<span style="color:#C2503E;font-weight:700">❌ ${U.escapeHtml(msg)}</span>`; linha.style.borderColor = 'rgba(194,80,62,.45)'; } } };
   const render = () => { const box = document.getElementById('perfil-tab-admin'); if (!box) return; box.innerHTML = `<div class="admin-card" style="background:linear-gradient(135deg,rgba(45,134,89,.10),rgba(240,198,116,.06));border-color:rgba(45,134,89,.35)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="font-size:1.5rem">🔬</span><strong style="font-family:var(--font-display);font-size:var(--text-title);font-weight:900">Diagnóstico do Sistema</strong></div><p style="font-size:var(--text-caption);color:var(--fg-secondary);line-height:1.5;margin-bottom:12px">Testa módulos e tabelas em tempo real.</p><button type="button" class="x-btn x-btn--primary x-btn--block" id="diag-rodar" style="margin-bottom:14px">🧪 Rodar Diagnóstico</button></div><h3 class="x-heading x-heading--sm">📊 Resultados</h3><div id="diag-resultados"></div>`; document.getElementById('diag-rodar')?.addEventListener('click', async (e) => { const btn = e.currentTarget; btn.disabled = true; btn.textContent = '🧪 Testando…'; await rodar(); btn.disabled = false; btn.textContent = '🔁 Rodar de novo'; }); };
   return { render, rodar };
@@ -2896,7 +2690,7 @@ const Diagnostico = (() => {
 
 <script>
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 33: Guia
+   BLOCO 33: Guia (com renderBairrosPicker no comércio + filtros)
    ═══════════════════════════════════════════════════════════ */
 const Guia = (() => {
   const local = { categoria: 'todos', bairro: null, busca: '', carregando: false, comercios: [], meusComercios: [] };
@@ -2904,13 +2698,62 @@ const Guia = (() => {
   const cache = () => { E.view = document.getElementById('view-guia'); E.hero = document.getElementById('guia-hero'); E.busca = document.getElementById('guia-busca-input'); E.cats = document.getElementById('guia-cats'); E.filtros = document.getElementById('guia-filtros'); E.grid = document.getElementById('guia-grid'); E.empty = document.getElementById('guia-empty'); };
   const renderHero = async () => { if (!E.hero) return; try { const { count: totalComercios } = await sb.from('comercios').select('id', { count: 'exact', head: true }).eq('ativo', true).eq('deletado', false); const { count: totalVerificados } = await sb.from('comercios').select('id', { count: 'exact', head: true }).eq('verificado', true).eq('ativo', true).eq('deletado', false); E.hero.innerHTML = `<h2 class="guia-hero__title">Encontre o que <span class="guia-hero__title-accent">precisa</span> aqui perto</h2><p class="guia-hero__sub">O guia comercial de Oriximiná. Comércios, serviços e profissionais da nossa cidade.</p><div class="guia-hero__stats"><div class="guia-hero__stat"><span class="guia-hero__stat-num">${U.formatNum(totalComercios || 0)}</span><span class="guia-hero__stat-label">Comércios</span></div><div class="guia-hero__stat"><span class="guia-hero__stat-num">${U.formatNum(totalVerificados || 0)}</span><span class="guia-hero__stat-label">Verificados</span></div><div class="guia-hero__stat"><span class="guia-hero__stat-num">${ComercioDB.CATEGORIAS.length}</span><span class="guia-hero__stat-label">Categorias</span></div></div>`; } catch (e) { logErr('guia hero:', e); E.hero.innerHTML = `<h2 class="guia-hero__title">Guia <span class="guia-hero__title-accent">Comercial</span></h2><p class="guia-hero__sub">Encontre comércios, serviços e profissionais de Oriximiná.</p>`; } };
   const renderCats = () => { if (!E.cats) return; const todas = [{ id: 'todos', nome: 'Todos', icone: '🌆' }, ...ComercioDB.CATEGORIAS]; E.cats.innerHTML = todas.map(c => `<button type="button" class="guia-cat ${c.id === local.categoria ? 'is-active' : ''}" data-cat="${c.id}"><span class="guia-cat__icon">${c.icone}</span><span class="guia-cat__label">${U.escapeHtml(c.nome)}</span></button>`).join(''); E.cats.querySelectorAll('[data-cat]').forEach(btn => { btn.addEventListener('click', () => { local.categoria = btn.dataset.cat; E.cats.querySelectorAll('[data-cat]').forEach(x => x.classList.toggle('is-active', x === btn)); carregarLista(); }); }); };
-  const renderFiltros = () => { if (!E.filtros) return; E.filtros.innerHTML = `<button type="button" class="guia-filtro ${local.bairro ? '' : 'is-ativo'}" data-bairro="">🌍 Todos os bairros</button>` + ['Centro','Cidade Nova','Santa Terezinha','São Sebastião','Bela Vista','Nossa Senhora de Fátima'].map(b => `<button type="button" class="guia-filtro ${local.bairro === b ? 'is-ativo' : ''}" data-bairro="${U.escapeHtml(b)}">📍 ${U.escapeHtml(b)}</button>`).join(''); E.filtros.querySelectorAll('[data-bairro]').forEach(btn => { btn.addEventListener('click', () => { local.bairro = btn.dataset.bairro || null; E.filtros.querySelectorAll('[data-bairro]').forEach(x => x.classList.toggle('is-ativo', x === btn)); carregarLista(); }); }); };
+
+  const renderFiltros = () => {
+    if (!E.filtros) return;
+    const bairrosTop = BAIRROS.slice(0, 8);
+    E.filtros.innerHTML =
+      `<button type="button" class="guia-filtro ${local.bairro ? '' : 'is-ativo'}" data-bairro="">🌍 Todos</button>` +
+      bairrosTop.map(b => `<button type="button" class="guia-filtro ${local.bairro === b ? 'is-ativo' : ''}" data-bairro="${U.escapeHtml(b)}">📍 ${U.escapeHtml(b)}</button>`).join('') +
+      `<button type="button" class="guia-filtro" id="guia-filtro-mais">⋯ Ver todos (${BAIRROS.length})</button>`;
+    E.filtros.querySelectorAll('[data-bairro]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        local.bairro = btn.dataset.bairro || null;
+        E.filtros.querySelectorAll('[data-bairro]').forEach(x => x.classList.toggle('is-ativo', x === btn));
+        carregarLista();
+      });
+    });
+    document.getElementById('guia-filtro-mais')?.addEventListener('click', () => {
+      const body = `<div class="bairros" id="guia-todos-bairros-grid" role="radiogroup"></div>`;
+      Modal.abrir({ title: '📍 Filtrar por bairro', body });
+      setTimeout(() => {
+        const grid = document.getElementById('guia-todos-bairros-grid');
+        U.renderBairrosPicker(grid, local.bairro, (valor) => {
+          local.bairro = valor;
+          Modal.fechar();
+          E.filtros.querySelectorAll('[data-bairro]').forEach(x => x.classList.toggle('is-ativo', x.dataset.bairro === valor));
+          carregarLista();
+        }, { incluirOutro: false });
+      }, 80);
+    });
+  };
+
   const renderCard = (c) => { const cat = ComercioDB.CATEGORIAS.find(x => x.id === c.categoria) || ComercioDB.CATEGORIAS[ComercioDB.CATEGORIAS.length - 1]; const aberto = ComercioDB.estaAberto(c.horarios); const statusBadge = aberto === true ? `<span class="guia-badge guia-badge--aberto">● Aberto agora</span>` : aberto === false ? `<span class="guia-badge guia-badge--fechado">● Fechado</span>` : ''; const verificadoBadge = c.verificado ? `<span class="guia-badge guia-badge--verificado">✓ Verificado</span>` : ''; const destaqueBadge = c.destaque ? `<span class="guia-badge guia-badge--destaque">⭐ Destaque</span>` : ''; const logoUrl = c.logo_url ? U.publicUrl('comercios', c.logo_url) : null; const capa = logoUrl ? `<img src="${U.escapeHtml(logoUrl)}" loading="lazy" alt="${U.escapeHtml(c.nome)}">` : `<div class="guia-card__capa-placeholder">${cat.icone}</div>`; const whats = c.whatsapp ? String(c.whatsapp).replace(/\D/g, '') : null; const whatsFull = whats ? (whats.length <= 11 ? '55' + whats : whats) : null; return `<article class="guia-card ${c.destaque ? 'guia-card--destaque' : ''}" data-comercio-id="${U.escapeHtml(c.id)}"><div class="guia-card__capa">${capa}<div class="guia-card__badges">${destaqueBadge}${verificadoBadge}${statusBadge}</div><button type="button" class="guia-card__fav" data-fav="${U.escapeHtml(c.id)}" aria-label="Favoritar">🤍</button></div><div class="guia-card__body"><h3 class="guia-card__nome">${U.escapeHtml(c.nome)}</h3><span class="guia-card__cat">${cat.icone} ${U.escapeHtml(cat.nome)}</span>${c.descricao ? `<p class="guia-card__desc">${U.escapeHtml(c.descricao)}</p>` : ''}<div class="guia-card__meta">${c.bairro ? `<span class="guia-card__meta-item">📍 ${U.escapeHtml(c.bairro)}</span>` : ''}${c.visualizacoes ? `<span class="guia-card__meta-item">👁️ ${U.formatNum(c.visualizacoes)}</span>` : ''}</div><div class="guia-card__foot"><button type="button" class="guia-card__btn guia-card__btn--ghost" data-ver="${U.escapeHtml(c.id)}">Ver detalhes</button>${whatsFull ? `<button type="button" class="guia-card__btn guia-card__btn--primary" data-wa="${U.escapeHtml(whatsFull)}" data-nome="${U.escapeHtml(c.nome)}" data-cid="${U.escapeHtml(c.id)}">💬 WhatsApp</button>` : ''}</div></div></article>`; };
   const renderLista = () => { if (!E.grid) return; E.grid.innerHTML = ''; if (!local.comercios.length) { E.grid.innerHTML = Empty.criar({ icone: 'mercado', titulo: 'Nada por aqui ainda', sub: 'Nenhum comércio nesta categoria. Que tal cadastrar o seu?', cta: State.isLogged() ? { label: '🏪 Cadastrar comércio', action: 'novo-comercio' } : null }); return; } local.comercios.forEach(c => { const wrap = document.createElement('div'); wrap.innerHTML = renderCard(c).trim(); E.grid.appendChild(wrap.firstElementChild); }); };
   const carregarLista = async () => { if (!E.grid || local.carregando) return; local.carregando = true; E.grid.innerHTML = `<div class="x-skeleton"></div><div class="x-skeleton"></div><div class="x-skeleton"></div>`; try { const resultado = await ComercioDB.listar({ categoria: local.categoria, bairro: local.bairro, busca: local.busca, limit: 60 }); local.comercios = Array.isArray(resultado) ? resultado : []; renderLista(); } catch (e) { logErr('guia lista:', e); E.grid.innerHTML = `<div style="text-align:center;padding:24px;color:var(--danger);font-size:13px"><strong>Erro ao carregar o guia</strong><br><small style="color:var(--fg-secondary);display:block;margin-top:8px">${U.escapeHtml(e?.message || 'Erro desconhecido')}</small><button type="button" class="x-btn x-btn--ghost x-btn--sm" style="margin-top:12px" onclick="Guia.carregarLista()">🔄 Tentar de novo</button></div>`; } finally { local.carregando = false; } };
   const abrirDetalhe = async (id) => { Modal.abrir({ title: '🏪 Carregando…', body: `<div class="x-skeleton x-skeleton--tall"></div>` }); try { const { comercio: c, fotos, avaliacoes, minhaAvaliacao, favorito } = await ComercioDB.get(id); if (!c) { document.querySelector('#global-modal [data-body]').innerHTML = `<p>Comércio não encontrado.</p>`; return; } renderDetalhe(c, fotos, avaliacoes, minhaAvaliacao, favorito); } catch (e) { logErr('guia detalhe:', e); document.querySelector('#global-modal [data-body]').innerHTML = `<p>Erro ao carregar.</p>`; } };
   const renderDetalhe = (c, fotos, avaliacoes, minhaAvaliacao, favorito) => { const cat = ComercioDB.CATEGORIAS.find(x => x.id === c.categoria) || ComercioDB.CATEGORIAS[ComercioDB.CATEGORIAS.length - 1]; const logoUrl = c.logo_url ? U.publicUrl('comercios', c.logo_url) : null; const mediaNota = avaliacoes.length ? (avaliacoes.reduce((s, a) => s + a.nota, 0) / avaliacoes.length).toFixed(1) : null; const aberto = ComercioDB.estaAberto(c.horarios); const isDono = State.get('user')?.id === c.user_id; const logoH = logoUrl ? `<div class="comercio-detalhe__logo"><img src="${U.escapeHtml(logoUrl)}" alt=""></div>` : `<div class="comercio-detalhe__logo">${cat.icone}</div>`; const verifBadge = c.verificado ? `<span class="guia-badge guia-badge--verificado">✓ Verificado</span>` : ''; const destBadge = c.destaque ? `<span class="guia-badge guia-badge--destaque">⭐ Destaque</span>` : ''; const statusBadge = aberto === true ? `<span class="guia-badge guia-badge--aberto">● Aberto</span>` : aberto === false ? `<span class="guia-badge guia-badge--fechado">● Fechado</span>` : ''; const contatos = []; if (c.whatsapp) { const limpo = String(c.whatsapp).replace(/\D/g, ''); const full = limpo.length <= 11 ? '55' + limpo : limpo; contatos.push({ icon: '💬', label: 'WhatsApp', valor: c.whatsapp, href: `https://wa.me/${full}` }); } if (c.telefone) contatos.push({ icon: '📞', label: 'Telefone', valor: c.telefone, href: `tel:${c.telefone.replace(/\D/g, '')}` }); if (c.email) contatos.push({ icon: '✉️', label: 'E-mail', valor: c.email, href: `mailto:${c.email}` }); if (c.instagram) { const ig = String(c.instagram).replace(/^@/, ''); contatos.push({ icon: '📸', label: 'Instagram', valor: '@' + ig, href: `https://instagram.com/${ig}` }); } const contatosH = contatos.length ? `<div class="comercio-detalhe__section"><h4 class="comercio-detalhe__section-title">📞 Contato</h4>${contatos.map(x => `<div class="comercio-detalhe__row"><div class="comercio-detalhe__row-icon">${x.icon}</div><div class="comercio-detalhe__row-body"><div class="comercio-detalhe__row-label">${x.label}</div><div class="comercio-detalhe__row-valor"><a href="${U.escapeHtml(x.href)}" target="_blank" rel="noopener">${U.escapeHtml(x.valor)}</a></div></div></div>`).join('')}</div>` : ''; const enderecoPartes = []; if (c.endereco) enderecoPartes.push(U.escapeHtml(c.endereco)); if (c.bairro) enderecoPartes.push(U.escapeHtml(c.bairro)); const enderecoH = enderecoPartes.length ? `<div class="comercio-detalhe__section"><h4 class="comercio-detalhe__section-title">📍 Endereço</h4><div class="comercio-detalhe__row"><div class="comercio-detalhe__row-icon">📍</div><div class="comercio-detalhe__row-body"><div class="comercio-detalhe__row-valor">${enderecoPartes.join('<br>')}</div></div></div></div>` : ''; const descH = c.descricao ? `<div class="comercio-detalhe__section"><h4 class="comercio-detalhe__section-title">ℹ️ Sobre</h4><p style="font-size:var(--text-body);line-height:1.6;color:var(--fg-primary)">${U.escapeHtml(c.descricao)}</p></div>` : ''; const starsH = (nota) => '★'.repeat(nota) + '☆'.repeat(5 - nota); const avaliacoesH = `<div class="comercio-detalhe__section"><h4 class="comercio-detalhe__section-title">⭐ Avaliações ${mediaNota ? `<span style="color:#8A621E;font-size:14px">${mediaNota} · ${avaliacoes.length}</span>` : ''}</h4>${avaliacoes.length ? avaliacoes.map(a => `<div class="review"><div class="x-avatar x-avatar--sm x-avatar--grad">${U.initials(a.autor?.nome || '?')}</div><div class="review__body"><div class="review__head"><span class="review__nome">${U.escapeHtml(a.autor?.nome || 'Morador')}</span><span class="review__time">${U.timeAgo(a.criado_em)}</span></div><div class="review__stars">${starsH(a.nota)}</div>${a.comentario ? `<p class="review__texto">${U.escapeHtml(a.comentario)}</p>` : ''}</div></div>`).join('') : `<p style="font-size:13px;color:var(--fg-secondary);text-align:center;padding:16px 0">Nenhuma avaliação ainda.</p>`}</div>`; const whats = c.whatsapp ? String(c.whatsapp).replace(/\D/g, '') : null; const whatsFull = whats ? (whats.length <= 11 ? '55' + whats : whats) : null; const ctasH = `<div class="comercio-detalhe__ctas">${whatsFull ? `<button type="button" class="x-btn x-btn--primary" data-wa="${U.escapeHtml(whatsFull)}" data-nome="${U.escapeHtml(c.nome)}" data-cid="${U.escapeHtml(c.id)}" style="grid-column:1/-1">💬 Chamar no WhatsApp</button>` : ''}${c.telefone ? `<button type="button" class="x-btn x-btn--ghost" data-tel="${U.escapeHtml(c.telefone.replace(/\D/g, ''))}">📞 Ligar</button>` : ''}${isDono ? `<button type="button" class="x-btn x-btn--ghost" id="comercio-editar" data-cid="${U.escapeHtml(c.id)}">✏️ Editar</button>` : ''}</div>`; const bodyHtml = `<div class="comercio-detalhe__head">${logoH}<div class="comercio-detalhe__info"><h2 class="comercio-detalhe__nome">${U.escapeHtml(c.nome)} ${verifBadge}${destBadge}${statusBadge}</h2><div class="comercio-detalhe__cat">${cat.icone} ${U.escapeHtml(cat.nome)}</div>${mediaNota ? `<div class="comercio-detalhe__rating"><span class="comercio-detalhe__stars">${starsH(Math.round(mediaNota))}</span><span>${mediaNota} · ${avaliacoes.length} avaliações</span></div>` : ''}</div></div>${descH}${contatosH}${enderecoH}${avaliacoesH}${ctasH}`; Modal.abrir({ title: U.escapeHtml(c.nome), body: bodyHtml }); const body = document.querySelector('#global-modal [data-body]'); body.querySelectorAll('[data-wa]').forEach(btn => btn.addEventListener('click', () => { const wa = btn.dataset.wa; const nome = btn.dataset.nome; const cid = btn.dataset.cid; if (cid) ComercioDB.registrarClique(cid); window.open(`https://wa.me/${wa}?text=${encodeURIComponent(`Olá! Vi o "${nome}" no Orixiconnect.`)}`, '_blank'); })); body.querySelectorAll('[data-tel]').forEach(btn => btn.addEventListener('click', () => { window.location.href = `tel:${btn.dataset.tel}`; })); body.querySelector('#comercio-editar')?.addEventListener('click', () => { Modal.fechar(); setTimeout(() => abrirComposer(c), 200); }); };
-  const abrirComposer = (comercioExistente = null) => { if (!State.isLogged()) { U.toast('Entre para cadastrar um comércio', 2600, 'info'); return; } const u = State.get('user'); const editando = !!comercioExistente; let logoFile = null; const horarios = comercioExistente?.horarios || {}; ComercioDB.DIAS_SEMANA.forEach(d => { if (!horarios[d.id]) horarios[d.id] = { fechado: true, abre: '08:00', fecha: '18:00' }; }); const catsH = ComercioDB.CATEGORIAS.map(c => `<button type="button" class="zel-cat-btn ${(comercioExistente?.categoria || 'outros') === c.id ? 'is-active' : ''}" data-com-cat="${c.id}"><span class="zel-cat-btn__icon">${c.icone}</span><span>${c.nome}</span></button>`).join(''); const horariosH = ComercioDB.DIAS_SEMANA.map(d => { const h = horarios[d.id] || { fechado: true, abre: '08:00', fecha: '18:00' }; return `<div class="horario-edit-row" data-dia-row="${d.id}"><span class="horario-edit-row__dia">${d.label}</span><input type="time" data-dia-abre="${d.id}" value="${U.escapeHtml(h.abre || '08:00')}" ${h.fechado ? 'disabled' : ''}><input type="time" data-dia-fecha="${d.id}" value="${U.escapeHtml(h.fecha || '18:00')}" ${h.fechado ? 'disabled' : ''}><label style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--fg-secondary);cursor:pointer"><input type="checkbox" data-dia-fechado="${d.id}" ${h.fechado ? 'checked' : ''}>Fechado</label></div>`; }).join(''); const bairrosH = BAIRROS.map(b => `<option value="${U.escapeHtml(b)}" ${(comercioExistente?.bairro || u?.bairro) === b ? 'selected' : ''}>${U.escapeHtml(b)}</option>`).join(''); const body = `<div class="comercio-form__section"><h4 class="comercio-form__section-title">📷 Logo / Capa</h4><div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap"><div class="zel-foto-upload" id="com-logo-wrap" style="flex:0 0 140px;aspect-ratio:1;min-height:auto;padding:12px">${comercioExistente?.logo_url ? `<img src="${U.escapeHtml(U.publicUrl('comercios', comercioExistente.logo_url))}" alt="">` : `<span style="font-size:32px">🏪</span><span style="font-size:11px">Logo</span>`}<input type="file" id="com-logo-input" accept="image/*"></div></div></div><div class="comercio-form__section"><h4 class="comercio-form__section-title">🏪 Informações básicas</h4><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Nome do comércio *</label><input class="x-field__input" id="com-nome" placeholder="Ex: Padaria do Zé" maxlength="80" value="${U.escapeHtml(comercioExistente?.nome || '')}"></div><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Categoria *</label><div class="zel-form__cats">${catsH}</div></div><div class="x-field"><label class="x-field__label">Descrição</label><textarea class="x-field__textarea" id="com-desc" rows="3" maxlength="400" placeholder="Conte o que seu comércio oferece…">${U.escapeHtml(comercioExistente?.descricao || '')}</textarea></div></div><div class="comercio-form__section"><h4 class="comercio-form__section-title">📍 Localização</h4><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Bairro</label><select class="x-field__select" id="com-bairro">${bairrosH}</select></div><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Endereço</label><input class="x-field__input" id="com-endereco" placeholder="Ex: Rua Principal, 123" maxlength="150" value="${U.escapeHtml(comercioExistente?.endereco || '')}"></div></div><div class="comercio-form__section"><h4 class="comercio-form__section-title">📞 Contato</h4><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">WhatsApp (com DDD)</label><input class="x-field__input" id="com-wpp" placeholder="Ex: 93999998888" inputmode="numeric" maxlength="15" value="${U.escapeHtml(comercioExistente?.whatsapp || '')}"></div><div class="x-field"><label class="x-field__label">Telefone</label><input class="x-field__input" id="com-tel" placeholder="Ex: (93) 3544-1234" maxlength="20" value="${U.escapeHtml(comercioExistente?.telefone || '')}"></div></div><div class="comercio-form__section"><h4 class="comercio-form__section-title">🕐 Horário de funcionamento</h4><div class="horarios-editor">${horariosH}</div></div>`; Modal.abrir({ title: editando ? '✏️ Editar comércio' : '🏪 Cadastrar comércio', body, submitLabel: editando ? '💾 Salvar alterações' : '✅ Cadastrar comércio', onSubmit: async () => { const nome = document.getElementById('com-nome')?.value.trim(); if (!nome || nome.length < 3) { U.toast('Nome muito curto', 2600, 'erro'); return; } const categoria = document.querySelector('[data-com-cat].is-active')?.dataset.comCat || 'outros'; const novosHorarios = {}; ComercioDB.DIAS_SEMANA.forEach(d => { const fechado = document.querySelector(`[data-dia-fechado="${d.id}"]`)?.checked; const abre = document.querySelector(`[data-dia-abre="${d.id}"]`)?.value; const fecha = document.querySelector(`[data-dia-fecha="${d.id}"]`)?.value; novosHorarios[d.id] = fechado ? { fechado: true } : { fechado: false, abre, fecha }; }); const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true); try { let logo_url = comercioExistente?.logo_url || null; if (logoFile) logo_url = await ComercioDB.uploadImagem(logoFile, 'logo'); const dados = { nome, categoria, descricao: document.getElementById('com-desc')?.value.trim() || null, logo_url, bairro: document.getElementById('com-bairro')?.value || null, endereco: document.getElementById('com-endereco')?.value.trim() || null, whatsapp: document.getElementById('com-wpp')?.value.trim() || null, telefone: document.getElementById('com-tel')?.value.trim() || null, horarios: novosHorarios }; if (editando) { await ComercioDB.atualizar(comercioExistente.id, dados); U.toast('✅ Comércio atualizado!', 2400, 'sucesso'); } else { await ComercioDB.criar(dados); U.toast('🎉 Comércio cadastrado!', 3000, 'sucesso'); State.addXP(25, 'comércio'); } Modal.fechar(); carregarLista(); renderHero(); } catch (e) { logErr('salvar comércio:', e); U.toast('Erro: ' + (e.message || ''), 3200, 'erro'); } finally { U.btnLoading(btn, false, editando ? '💾 Salvar alterações' : '✅ Cadastrar comércio'); } } }); document.getElementById('com-logo-input')?.addEventListener('change', (e) => { const f = e.target.files?.[0]; if (!f) return; logoFile = f; const wrap = document.getElementById('com-logo-wrap'); if (wrap) wrap.innerHTML = `<img src="${URL.createObjectURL(f)}" alt=""><input type="file" id="com-logo-input" accept="image/*">`; }); document.querySelectorAll('[data-com-cat]').forEach(b => b.addEventListener('click', () => { document.querySelectorAll('[data-com-cat]').forEach(x => x.classList.remove('is-active')); b.classList.add('is-active'); })); };
+
+  const abrirComposer = (comercioExistente = null) => {
+    if (!State.isLogged()) { U.toast('Entre para cadastrar um comércio', 2600, 'info'); return; }
+    const u = State.get('user'); const editando = !!comercioExistente; let logoFile = null;
+    let bairroComercioSel = comercioExistente?.bairro || u?.bairro || null;
+    const horarios = comercioExistente?.horarios || {}; ComercioDB.DIAS_SEMANA.forEach(d => { if (!horarios[d.id]) horarios[d.id] = { fechado: true, abre: '08:00', fecha: '18:00' }; });
+    const catsH = ComercioDB.CATEGORIAS.map(c => `<button type="button" class="zel-cat-btn ${(comercioExistente?.categoria || 'outros') === c.id ? 'is-active' : ''}" data-com-cat="${c.id}"><span class="zel-cat-btn__icon">${c.icone}</span><span>${c.nome}</span></button>`).join('');
+    const horariosH = ComercioDB.DIAS_SEMANA.map(d => { const h = horarios[d.id] || { fechado: true, abre: '08:00', fecha: '18:00' }; return `<div class="horario-edit-row" data-dia-row="${d.id}"><span class="horario-edit-row__dia">${d.label}</span><input type="time" data-dia-abre="${d.id}" value="${U.escapeHtml(h.abre || '08:00')}" ${h.fechado ? 'disabled' : ''}><input type="time" data-dia-fecha="${d.id}" value="${U.escapeHtml(h.fecha || '18:00')}" ${h.fechado ? 'disabled' : ''}><label style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--fg-secondary);cursor:pointer"><input type="checkbox" data-dia-fechado="${d.id}" ${h.fechado ? 'checked' : ''}>Fechado</label></div>`; }).join('');
+    const body = `<div class="comercio-form__section"><h4 class="comercio-form__section-title">📷 Logo / Capa</h4><div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap"><div class="zel-foto-upload" id="com-logo-wrap" style="flex:0 0 140px;aspect-ratio:1;min-height:auto;padding:12px">${comercioExistente?.logo_url ? `<img src="${U.escapeHtml(U.publicUrl('comercios', comercioExistente.logo_url))}" alt="">` : `<span style="font-size:32px">🏪</span><span style="font-size:11px">Logo</span>`}<input type="file" id="com-logo-input" accept="image/*"></div></div></div><div class="comercio-form__section"><h4 class="comercio-form__section-title">🏪 Informações básicas</h4><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Nome do comércio *</label><input class="x-field__input" id="com-nome" placeholder="Ex: Padaria do Zé" maxlength="80" value="${U.escapeHtml(comercioExistente?.nome || '')}"></div><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Categoria *</label><div class="zel-form__cats">${catsH}</div></div><div class="x-field"><label class="x-field__label">Descrição</label><textarea class="x-field__textarea" id="com-desc" rows="3" maxlength="400" placeholder="Conte o que seu comércio oferece…">${U.escapeHtml(comercioExistente?.descricao || '')}</textarea></div></div><div class="comercio-form__section"><h4 class="comercio-form__section-title">📍 Localização</h4><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Bairro</label><div class="bairros" id="com-bairro-grid" role="radiogroup"></div></div><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Endereço</label><input class="x-field__input" id="com-endereco" placeholder="Ex: Rua Principal, 123" maxlength="150" value="${U.escapeHtml(comercioExistente?.endereco || '')}"></div></div><div class="comercio-form__section"><h4 class="comercio-form__section-title">📞 Contato</h4><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">WhatsApp (com DDD)</label><input class="x-field__input" id="com-wpp" placeholder="Ex: 93999998888" inputmode="numeric" maxlength="15" value="${U.escapeHtml(comercioExistente?.whatsapp || '')}"></div><div class="x-field"><label class="x-field__label">Telefone</label><input class="x-field__input" id="com-tel" placeholder="Ex: (93) 3544-1234" maxlength="20" value="${U.escapeHtml(comercioExistente?.telefone || '')}"></div></div><div class="comercio-form__section"><h4 class="comercio-form__section-title">🕐 Horário de funcionamento</h4><div class="horarios-editor">${horariosH}</div></div>`;
+    Modal.abrir({ title: editando ? '✏️ Editar comércio' : '🏪 Cadastrar comércio', body, submitLabel: editando ? '💾 Salvar alterações' : '✅ Cadastrar comércio', onSubmit: async () => {
+      const nome = document.getElementById('com-nome')?.value.trim(); if (!nome || nome.length < 3) { U.toast('Nome muito curto', 2600, 'erro'); return; }
+      const categoria = document.querySelector('[data-com-cat].is-active')?.dataset.comCat || 'outros';
+      const novosHorarios = {}; ComercioDB.DIAS_SEMANA.forEach(d => { const fechado = document.querySelector(`[data-dia-fechado="${d.id}"]`)?.checked; const abre = document.querySelector(`[data-dia-abre="${d.id}"]`)?.value; const fecha = document.querySelector(`[data-dia-fecha="${d.id}"]`)?.value; novosHorarios[d.id] = fechado ? { fechado: true } : { fechado: false, abre, fecha }; });
+      const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true);
+      try { let logo_url = comercioExistente?.logo_url || null; if (logoFile) logo_url = await ComercioDB.uploadImagem(logoFile, 'logo'); const dados = { nome, categoria, descricao: document.getElementById('com-desc')?.value.trim() || null, logo_url, bairro: bairroComercioSel, endereco: document.getElementById('com-endereco')?.value.trim() || null, whatsapp: document.getElementById('com-wpp')?.value.trim() || null, telefone: document.getElementById('com-tel')?.value.trim() || null, horarios: novosHorarios }; if (editando) { await ComercioDB.atualizar(comercioExistente.id, dados); U.toast('✅ Comércio atualizado!', 2400, 'sucesso'); } else { await ComercioDB.criar(dados); U.toast('🎉 Comércio cadastrado!', 3000, 'sucesso'); State.addXP(25, 'comércio'); } Modal.fechar(); carregarLista(); renderHero(); } catch (e) { logErr('salvar comércio:', e); U.toast('Erro: ' + (e.message || ''), 3200, 'erro'); } finally { U.btnLoading(btn, false, editando ? '💾 Salvar alterações' : '✅ Cadastrar comércio'); }
+    } });
+    setTimeout(() => { const grid = document.getElementById('com-bairro-grid'); U.renderBairrosPicker(grid, bairroComercioSel, (valor) => { bairroComercioSel = valor; }); }, 80);
+    document.getElementById('com-logo-input')?.addEventListener('change', (e) => { const f = e.target.files?.[0]; if (!f) return; logoFile = f; const wrap = document.getElementById('com-logo-wrap'); if (wrap) wrap.innerHTML = `<img src="${URL.createObjectURL(f)}" alt=""><input type="file" id="com-logo-input" accept="image/*">`; });
+    document.querySelectorAll('[data-com-cat]').forEach(b => b.addEventListener('click', () => { document.querySelectorAll('[data-com-cat]').forEach(x => x.classList.remove('is-active')); b.classList.add('is-active'); }));
+  };
+
   const carregarMeus = async () => { const box = document.getElementById('guia-meus-lista'); if (!box) return; box.innerHTML = `<div class="x-skeleton x-skeleton--sm"></div>`; try { local.meusComercios = await ComercioDB.meus(); if (!local.meusComercios.length) { box.innerHTML = Empty.criar({ icone: 'mercado', titulo: 'Você ainda não tem comércio', sub: 'Cadastre seu negócio e apareça no guia.', cta: { label: '🏪 Cadastrar agora', action: 'novo-comercio' } }); return; } box.innerHTML = local.meusComercios.map(c => { const cat = ComercioDB.CATEGORIAS.find(x => x.id === c.categoria) || ComercioDB.CATEGORIAS[ComercioDB.CATEGORIAS.length - 1]; const logo = c.logo_url ? `<img src="${U.escapeHtml(U.publicUrl('comercios', c.logo_url))}" style="width:56px;height:56px;border-radius:14px;object-fit:cover;flex-shrink:0" alt="">` : `<div style="width:56px;height:56px;border-radius:14px;background:var(--gradient-primary-soft);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">${cat.icone}</div>`; return `<div class="config-row">${logo}<div class="config-row__info"><strong>${U.escapeHtml(c.nome)}</strong><small>${cat.icone} ${cat.nome} · 👁️ ${U.formatNum(c.visualizacoes || 0)}</small></div><button type="button" class="x-btn x-btn--ghost x-btn--sm" data-edit-meu="${U.escapeHtml(c.id)}">Editar</button></div>`; }).join(''); box.querySelectorAll('[data-edit-meu]').forEach(btn => btn.addEventListener('click', () => { const c = local.meusComercios.find(x => x.id === btn.dataset.editMeu); if (c) abrirComposer(c); })); } catch (e) { logErr('meus comércios:', e); box.innerHTML = `<p style="text-align:center;color:var(--fg-secondary);padding:20px">Erro.</p>`; } };
   const bindEventos = () => { let buscaTimer = null; E.busca?.addEventListener('input', (e) => { clearTimeout(buscaTimer); buscaTimer = setTimeout(() => { local.busca = e.target.value.trim(); carregarLista(); }, 350); }); E.view?.addEventListener('click', (e) => { const favBtn = e.target.closest('[data-fav]'); if (favBtn) { e.stopPropagation(); if (!State.isLogged()) { U.toast('Entre para favoritar', 2400, 'info'); return; } const cid = favBtn.dataset.fav; ComercioDB.favoritar(cid).then(fav => { favBtn.textContent = fav ? '❤️' : '🤍'; favBtn.classList.toggle('is-ativo', fav); }).catch(() => {}); return; } const waBtn = e.target.closest('[data-wa]'); if (waBtn) { e.stopPropagation(); ComercioDB.registrarClique(waBtn.dataset.cid); window.open(`https://wa.me/${waBtn.dataset.wa}?text=${encodeURIComponent(`Olá! Vi o "${waBtn.dataset.nome}" no Orixiconnect.`)}`, '_blank'); return; } const verBtn = e.target.closest('[data-ver]'); if (verBtn) { e.stopPropagation(); abrirDetalhe(verBtn.dataset.ver); return; } const card = e.target.closest('.guia-card'); if (card && card.dataset.comercioId) abrirDetalhe(card.dataset.comercioId); }); };
   const init = () => { cache(); if (!E.view) return; renderHero(); renderCats(); renderFiltros(); bindEventos(); document.getElementById('guia-btn-novo')?.addEventListener('click', () => abrirComposer()); document.getElementById('guia-btn-meus')?.addEventListener('click', () => { const box = document.getElementById('guia-meus-wrap'); const exploreBox = document.getElementById('guia-explorar-wrap'); if (box && exploreBox) { box.classList.toggle('hidden'); exploreBox.classList.toggle('hidden'); if (!box.classList.contains('hidden')) carregarMeus(); } }); document.addEventListener('click', (e) => { const cta = e.target.closest('[data-action="novo-comercio"]'); if (cta) { e.preventDefault(); abrirComposer(); } }); document.getElementById('btn-guia')?.addEventListener('click', () => { State.setView('guia'); }); State.on('view:change', (v) => { if (v === 'guia') { carregarLista(); renderHero(); } }); };
@@ -2970,7 +2813,7 @@ const App = (() => {
   const bindNewPostButtons = () => { const handleNewPost = (e) => { e.preventDefault(); e.stopPropagation(); try { Composer.abrir(); } catch (err) { logErr('new-post:', err); } }; document.getElementById('fab-novo-post')?.addEventListener('click', handleNewPost); document.querySelectorAll('[data-action="new-post"]').forEach(btn => btn.addEventListener('click', handleNewPost)); document.addEventListener('click', (e) => { const alvo = e.target.closest('[data-action="new-post"]'); if (alvo && !alvo.dataset._bound) { alvo.dataset._bound = '1'; alvo.addEventListener('click', handleNewPost); } }); };
   const bindChatSubtabs = () => { const btnConversas = document.getElementById('chat-sub-conversas'); const btnGrupos = document.getElementById('chat-sub-grupos'); const abaConversas = document.getElementById('chat-aba-conversas'); const abaGrupos = document.getElementById('chat-aba-grupos'); btnConversas?.addEventListener('click', () => { btnConversas.classList.add('is-active'); btnGrupos?.classList.remove('is-active'); abaConversas?.classList.remove('hidden'); abaGrupos?.classList.add('hidden'); }); btnGrupos?.addEventListener('click', () => { btnGrupos.classList.add('is-active'); btnConversas?.classList.remove('is-active'); abaGrupos?.classList.remove('hidden'); abaConversas?.classList.add('hidden'); try { Grupos.carregarLista(); } catch (e) { logErr('grupos carregar:', e); } }); };
   const init = async () => {
-    log('🚀 Inicializando Orixi v27.0 — Beta (convites liberados)…');
+    log('🚀 Inicializando Orixi v28.0 — 17 bairros + Outro…');
     SkinSwitcher.init();
     await State.init();
     try { Auth.init(); } catch (e) { logErr('Auth:', e); }
@@ -3003,10 +2846,10 @@ const App = (() => {
     window.addEventListener('hashchange', () => { if (State.isLogged()) irPara((location.hash || '').replace('#', '') || 'feed'); });
     window.addEventListener('orixi:logged', () => { mostrarApp(); irPara('feed'); });
     document.addEventListener('pointerdown', (e) => U.ripple(e));
-    window.Orixi = { ir: irPara, state: State, db: DB, zdb: ZDB, comercio: ComercioDB, xp: State.addXP, stories: StoriesExt, trending: Trending, grupos: Grupos, deletePost: DeletePost, perfil: Perfil, presence: Presence, convite: Convite, config: ConfigGlobal, _app: App };
+    window.Orixi = { ir: irPara, state: State, db: DB, zdb: ZDB, comercio: ComercioDB, xp: State.addXP, stories: StoriesExt, trending: Trending, grupos: Grupos, deletePost: DeletePost, perfil: Perfil, presence: Presence, convite: Convite, config: ConfigGlobal, _app: App, bairros: BAIRROS };
     window.addEventListener('resize', () => { document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px'); });
     window.dispatchEvent(new Event('resize'));
-    log('✅ Pronto — Bem-vindo a Oriximiná v27.0');
+    log('✅ Pronto — Bem-vindo a Oriximiná v28.0 (17 bairros + Outro)');
   };
   return { irPara, init };
 })();
