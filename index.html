@@ -1562,6 +1562,102 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .trending-item:nth-child(5){animation-delay:160ms}
 </style>
 
+<!-- ═══════════════════════════════════════════════════════════
+     CSS NOVO: GRUPOS estilo WhatsApp
+     ═══════════════════════════════════════════════════════════ -->
+<style id="grupos-css">
+.grupos-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:var(--space-lg)}
+.grupos-header h3{margin:0}
+.grupos-lista{display:flex;flex-direction:column;gap:6px}
+.grupo-item{display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:var(--radius-lg);cursor:pointer;transition:all var(--dur-fast) var(--ease-swift);width:100%;text-align:left;font-family:var(--font-sans);color:var(--fg-primary)}
+.grupo-item:hover{background:var(--bg-surface-alt);transform:translateX(3px);border-color:var(--border-subtle)}
+.grupo-item__foto{width:52px;height:52px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;text-transform:uppercase}
+.grupo-item__foto img{width:100%;height:100%;object-fit:cover}
+.grupo-item__info{flex:1;min-width:0}
+.grupo-item__nome{font-size:14px;font-weight:700;color:var(--fg-primary);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.grupo-item__meta{font-size:11px;color:var(--fg-secondary);display:flex;align-items:center;gap:6px;margin-top:2px}
+.grupo-item__badge{min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:var(--gradient-primary);color:#fff;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.grupo-chat{display:flex;flex-direction:column;height:calc(100dvh - var(--header-h) - var(--tabbar-h) - var(--safe-bottom) - 40px);background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:var(--radius-2xl);overflow:hidden}
+.grupo-chat__head{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border-hairline);background:var(--bg-surface-alt)}
+.grupo-chat__back{width:38px;height:38px;border-radius:50%;background:transparent;border:0;color:var(--fg-primary);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:background var(--dur-fast)}
+.grupo-chat__back:hover{background:var(--bg-sunken)}
+.grupo-chat__foto{width:42px;height:42px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;flex-shrink:0;overflow:hidden;text-transform:uppercase;cursor:pointer}
+.grupo-chat__foto img{width:100%;height:100%;object-fit:cover}
+.grupo-chat__info{flex:1;min-width:0;cursor:pointer}
+.grupo-chat__nome{font-size:15px;font-weight:800;color:var(--fg-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.grupo-chat__sub{font-size:11px;color:var(--fg-secondary);font-weight:600}
+.grupo-chat__menu{width:38px;height:38px;border-radius:50%;border:0;background:transparent;color:var(--fg-secondary);cursor:pointer;font-size:20px;flex-shrink:0;transition:all var(--dur-fast)}
+.grupo-chat__menu:hover{background:var(--bg-sunken);color:var(--fg-primary)}
+.grupo-chat__msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:6px;background:var(--bg-canvas);background-image:radial-gradient(circle at 20% 30%,var(--accent-soft) 0%,transparent 40%),radial-gradient(circle at 80% 70%,var(--secondary-soft) 0%,transparent 40%);background-size:100% 100%}
+.gmsg{max-width:78%;padding:8px 12px;border-radius:16px;font-size:14px;line-height:1.5;word-wrap:break-word;position:relative;animation:gmsgIn .25s var(--ease-glide) both}
+@keyframes gmsgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.gmsg--in{align-self:flex-start;background:var(--bg-surface);border:1px solid var(--border-hairline);border-bottom-left-radius:4px;color:var(--fg-primary)}
+.gmsg--out{align-self:flex-end;background:linear-gradient(135deg,#DCF8C6,#C7E9B0);color:#0a1a0a;border-bottom-right-radius:4px}
+:root[data-theme="dark"] .gmsg--out{background:linear-gradient(135deg,#075E54,#0a7a6a);color:#E8F5E9}
+.gmsg--sistema{align-self:center;background:var(--bg-sunken);color:var(--fg-secondary);font-size:11px;font-weight:600;padding:6px 14px;border-radius:999px;text-align:center;max-width:80%}
+.gmsg__autor{font-size:11px;font-weight:800;color:var(--accent);margin-bottom:3px;display:block}
+.gmsg--out .gmsg__autor{display:none}
+.gmsg__texto{white-space:pre-wrap}
+.gmsg__hora{font-size:10px;opacity:.6;margin-left:8px;float:right;margin-top:4px}
+.gmsg__img{margin-top:6px;border-radius:12px;overflow:hidden;cursor:zoom-in;max-width:240px}
+.gmsg__img img{width:100%;display:block}
+.grupo-chat__input{display:flex;align-items:center;gap:8px;padding:10px 12px;border-top:1px solid var(--border-hairline);background:var(--bg-surface-alt)}
+.grupo-chat__input input[type="text"]{flex:1;padding:10px 16px;border-radius:999px;border:1px solid var(--border-subtle);background:var(--bg-surface);color:var(--fg-primary);font-size:14px;outline:none;font-family:var(--font-sans)}
+.grupo-chat__input input[type="text"]:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.grupo-chat__send{width:44px;height:44px;border-radius:50%;background:var(--gradient-primary);color:#fff;border:0;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;box-shadow:var(--shadow-accent);transition:all var(--dur-fast)}
+.grupo-chat__send:hover{transform:scale(1.06)}
+.grupo-chat__send:active{transform:scale(.94)}
+.grupo-chat__send:disabled{opacity:.5;pointer-events:none}
+.grupo-chat__attach{width:44px;height:44px;border-radius:50%;background:transparent;border:0;color:var(--fg-secondary);font-size:22px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.grupo-chat__attach:hover{background:var(--bg-sunken);color:var(--fg-primary)}
+.grupo-chat__aviso{padding:10px 16px;background:var(--warning-soft);color:var(--warning);font-size:12px;font-weight:700;text-align:center;border-top:1px solid rgba(221,148,83,.3)}
+.membros-picker{display:flex;flex-direction:column;gap:6px;max-height:280px;overflow-y:auto;padding:4px}
+.membro-opt{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;cursor:pointer;transition:background var(--dur-fast)}
+.membro-opt:hover{background:var(--bg-surface-alt)}
+.membro-opt.is-selecionado{background:var(--accent-soft)}
+.membro-opt__check{width:22px;height:22px;border-radius:50%;border:2px solid var(--border-default);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;color:transparent;transition:all var(--dur-fast)}
+.membro-opt.is-selecionado .membro-opt__check{background:var(--accent);border-color:var(--accent);color:#fff}
+.membro-opt__info{flex:1;min-width:0}
+.membro-opt__nome{font-size:13px;font-weight:700;color:var(--fg-primary);display:block}
+.membro-opt__bairro{font-size:11px;color:var(--fg-secondary)}
+.membros-selecionados{display:flex;gap:6px;flex-wrap:wrap;padding:10px;background:var(--bg-sunken);border-radius:var(--radius-md);min-height:44px;margin-bottom:10px}
+.membro-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:var(--accent-soft);color:var(--accent);border-radius:999px;font-size:12px;font-weight:700}
+.membro-chip button{background:transparent;border:0;color:currentColor;cursor:pointer;font-size:14px;line-height:1;padding:0;margin-left:2px;opacity:.7}
+.membro-chip button:hover{opacity:1}
+.grupo-detalhes__foto{width:100px;height:100px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:800;margin:0 auto var(--space-lg);overflow:hidden;text-transform:uppercase;cursor:pointer;position:relative}
+.grupo-detalhes__foto img{width:100%;height:100%;object-fit:cover}
+.grupo-detalhes__foto::after{content:'📷';position:absolute;bottom:-4px;right:-4px;width:32px;height:32px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;border:3px solid var(--bg-surface)}
+.grupo-detalhes__foto--readonly::after{display:none}
+.grupo-detalhes__foto--readonly{cursor:default}
+.gmembro-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-hairline)}
+.gmembro-row:last-child{border-bottom:0}
+.gmembro-row__papel{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);padding:2px 8px;background:var(--accent-soft);border-radius:999px}
+.gmembro-row__papel--dono{background:var(--gradient-gold);color:#fff}
+.gmembro-row__papel--admin{background:var(--info-soft);color:var(--info)}
+.grupos-vazio{padding:40px 20px;text-align:center}
+.grupos-vazio__icon{font-size:64px;margin-bottom:12px;opacity:.5}
+.grupos-vazio__title{font-family:var(--font-display);font-size:20px;font-weight:900;color:var(--fg-primary);margin-bottom:6px}
+.grupos-vazio__text{font-size:13px;color:var(--fg-secondary);max-width:280px;margin:0 auto 20px;line-height:1.5}
+.opt-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;background:var(--bg-surface-alt);border:1px solid var(--border-hairline);border-radius:var(--radius-md);margin-bottom:8px;cursor:pointer}
+.opt-toggle__info{flex:1;min-width:0}
+.opt-toggle__info strong{font-size:13px;color:var(--fg-primary);display:block}
+.opt-toggle__info small{font-size:11px;color:var(--fg-secondary);display:block;margin-top:2px}
+.opt-toggle__switch{width:44px;height:26px;border-radius:999px;background:var(--border-default);position:relative;flex-shrink:0;transition:background var(--dur-fast)}
+.opt-toggle__switch::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform var(--dur-fast) var(--ease-bounce);box-shadow:0 2px 4px rgba(0,0,0,.15)}
+.opt-toggle.is-on .opt-toggle__switch{background:var(--accent)}
+.opt-toggle.is-on .opt-toggle__switch::after{transform:translateX(18px)}
+.grupo-menu{position:absolute;top:56px;right:12px;background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:var(--radius-lg);box-shadow:var(--shadow-2xl);padding:6px;min-width:200px;z-index:50;animation:menuIn .18s var(--ease-glide)}
+@keyframes menuIn{from{opacity:0;transform:scale(.95) translateY(-6px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.grupo-menu button{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border-radius:var(--radius-md);background:transparent;border:0;color:var(--fg-primary);font-size:13px;font-weight:600;cursor:pointer;text-align:left;transition:background var(--dur-fast);font-family:var(--font-sans)}
+.grupo-menu button:hover{background:var(--bg-surface-alt)}
+.grupo-menu button.danger{color:var(--danger)}
+.grupo-menu button.danger:hover{background:var(--danger-soft)}
+.chat-subtabs{display:flex;gap:6px;margin-bottom:var(--space-lg)}
+@media (max-width: 480px){
+  .grupo-chat{border-radius:var(--radius-lg);height:calc(100dvh - var(--header-h) - var(--tabbar-h) - var(--safe-bottom) - 20px)}
+}
+</style>
+
 </head>
 
 <body>
@@ -1704,7 +1800,6 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
           <div class="pulso-stat"><span>🧹</span><span class="pulso-stat__valor" id="pulso-abertos">—</span></div>
         </div>
       </div>
-      <!-- 🔥 TRENDING TOPICS — Widget no Feed -->
       <aside class="x-card trending-widget-card" id="trending-widget-card">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
           <h3 class="x-heading x-heading--sm" style="margin:0">🔥 Assuntos do momento</h3>
@@ -1730,7 +1825,6 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
       <div class="hidden" id="feed-empty"></div>
     </section>
     <section class="view hidden" id="view-explorar">
-      <!-- 📊 TRENDING TOPICS — Ranking no Explorar -->
       <div class="x-card" id="trending-ranking-card" style="padding:0;overflow:hidden">
         <div style="padding:var(--space-lg);border-bottom:1px solid var(--border-hairline);display:flex;align-items:center;justify-content:space-between">
           <h3 class="x-heading x-heading--sm" style="margin:0">📊 Assuntos do momento</h3>
@@ -1746,17 +1840,62 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
       <div class="x-card"><h3 class="x-heading x-heading--sm">🔥 Hashtags em alta</h3><div id="trending-tags" style="display:flex;flex-wrap:wrap;gap:8px"></div></div>
     </section>
     <section class="view hidden" id="view-chat">
-      <div id="chat-lista-wrap"><h3 class="x-heading">Conversas</h3><div id="chat-list"></div></div>
-      <div id="chat-conversa-wrap" class="hidden">
-        <header class="chat__header">
-          <button type="button" class="x-icon-btn" id="chat-voltar" aria-label="Voltar"><span class="x-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6 9 12l6 6"/></svg></span></button>
-          <strong class="chat__name" id="chat-nome">—</strong>
-        </header>
-        <div class="chat__messages" id="chat-mensagens"></div>
-        <form class="chat__form" id="chat-form">
-          <input class="chat__input" type="text" id="chat-input" placeholder="Mensagem…" autocomplete="off" maxlength="1000">
-          <button type="submit" class="chat__send" aria-label="Enviar"><svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></svg></button>
-        </form>
+      <div class="chat-subtabs">
+        <button type="button" class="x-chip is-active" id="chat-sub-conversas">👤 Conversas</button>
+        <button type="button" class="x-chip" id="chat-sub-grupos">👥 Grupos</button>
+      </div>
+      <div id="chat-aba-conversas">
+        <div id="chat-lista-wrap"><h3 class="x-heading" style="margin-top:0">Conversas</h3><div id="chat-list"></div></div>
+        <div id="chat-conversa-wrap" class="hidden">
+          <header class="chat__header">
+            <button type="button" class="x-icon-btn" id="chat-voltar" aria-label="Voltar"><span class="x-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6 9 12l6 6"/></svg></span></button>
+            <strong class="chat__name" id="chat-nome">—</strong>
+          </header>
+          <div class="chat__messages" id="chat-mensagens"></div>
+          <form class="chat__form" id="chat-form">
+            <input class="chat__input" type="text" id="chat-input" placeholder="Mensagem…" autocomplete="off" maxlength="1000">
+            <button type="submit" class="chat__send" aria-label="Enviar"><svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></svg></button>
+          </form>
+        </div>
+      </div>
+      <div id="chat-aba-grupos" class="hidden">
+        <div id="grupos-lista-wrap">
+          <div class="grupos-header">
+            <h3 class="x-heading" style="margin:0">Grupos</h3>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <button type="button" class="x-btn x-btn--primary x-btn--xs" id="grupos-btn-novo">+ Criar</button>
+              <button type="button" class="x-btn x-btn--ghost x-btn--xs" id="grupos-btn-entrar">🎟️ Entrar</button>
+              <button type="button" class="x-btn x-btn--ghost x-btn--xs" id="grupos-btn-explorar">🌐 Descobrir</button>
+            </div>
+          </div>
+          <div class="grupos-lista" id="grupos-lista"></div>
+          <div class="hidden" id="grupos-vazio"></div>
+        </div>
+        <div id="grupo-chat-wrap" class="hidden">
+          <div class="grupo-chat">
+            <header class="grupo-chat__head">
+              <button type="button" class="grupo-chat__back" id="grupo-chat-back" aria-label="Voltar">
+                <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M15 6 9 12l6 6"/></svg>
+              </button>
+              <div class="grupo-chat__foto" id="grupo-chat-foto">👥</div>
+              <div class="grupo-chat__info" id="grupo-chat-info">
+                <div class="grupo-chat__nome" id="grupo-chat-nome">—</div>
+                <div class="grupo-chat__sub" id="grupo-chat-sub">—</div>
+              </div>
+              <button type="button" class="grupo-chat__menu" id="grupo-chat-menu" aria-label="Menu">⋮</button>
+            </header>
+            <div class="grupo-chat__msgs" id="grupo-chat-msgs"></div>
+            <div class="grupo-chat__aviso hidden" id="grupo-chat-aviso">🔒 Só admins podem enviar mensagens neste grupo</div>
+            <form class="grupo-chat__input" id="grupo-chat-form">
+              <button type="button" class="grupo-chat__attach" id="grupo-chat-attach" aria-label="Anexar">📎</button>
+              <input type="file" id="grupo-chat-file" accept="image/*" style="display:none">
+              <input type="text" id="grupo-chat-input" placeholder="Mensagem…" autocomplete="off" maxlength="2000">
+              <button type="submit" class="grupo-chat__send" aria-label="Enviar">
+                <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></svg>
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
     <section class="view hidden" id="view-guia">
@@ -1846,7 +1985,7 @@ const ADMIN_EMAILS = ['lucascalderaro30@gmail.com'];
 const DEBUG = new URLSearchParams(location.search).has('debug');
 const log = (...a) => DEBUG && console.log('%c[Orixi]', 'color:#D96754;font-weight:bold', ...a);
 const logErr = (...a) => console.error('%c[Orixi]', 'color:#D96754;font-weight:bold', ...a);
-const BUCKETS = { AVATARS: 'avatars', POSTS: 'posts', STORIES: 'stories', COMERCIOS: 'comercios' };
+const BUCKETS = { AVATARS: 'avatars', POSTS: 'posts', STORIES: 'stories', COMERCIOS: 'comercios', GRUPOS: 'grupos' };
 const BAIRROS = ['Centro','Cidade Nova','Santa Terezinha','São Sebastião','Bela Vista','Nossa Senhora de Fátima','Perpétuo Socorro','Nova Esperança','Alvorada','Cidade Velha','Uruará','Boa Vista','Outro'];
 const CATEGORIAS = [{id:'geral',label:'Geral',icon:'💬'},{id:'noticia',label:'Notícia',icon:'📰'},{id:'evento',label:'Evento',icon:'🎉'},{id:'venda',label:'Venda',icon:'🛒'},{id:'duvida',label:'Dúvida',icon:'❓'},{id:'alerta',label:'Alerta',icon:'⚠️'},{id:'cultura',label:'Cultura',icon:'🎭'},{id:'comida',label:'Comida',icon:'🍲'}];
 const ZEL_CATEGORIAS = [{id:'buraco',label:'Buraco',icon:'🕳️',cor:'#C2503E'},{id:'iluminacao',label:'Iluminação',icon:'💡',cor:'#DBA84A'},{id:'lixo',label:'Lixo',icon:'🗑️',cor:'#7D6951'},{id:'esgoto',label:'Esgoto',icon:'💧',cor:'#5A88B3'},{id:'calcada',label:'Calçada',icon:'🚶',cor:'#9462A4'},{id:'sinalizacao',label:'Sinalização',icon:'🚦',cor:'#DD9453'},{id:'poda',label:'Poda',icon:'🌳',cor:'#2D8659'},{id:'praça',label:'Praça',icon:'🌳',cor:'#359789'},{id:'limpeza',label:'Limpeza',icon:'🧹',cor:'#5A88B3'},{id:'drenagem',label:'Drenagem',icon:'🌊',cor:'#4DB8A8'},{id:'outro',label:'Outro',icon:'❓',cor:'#7D6951'}];
@@ -2103,16 +2242,12 @@ const Zeladoria = (() => {
   return { init, abrirComposer };
 })();
 
-/* ═══════════════════════════════════════════════════════════════
-   TRENDING TOPICS v1.0 — Assuntos do Momento (estilo Twitter)
-   ═══════════════════════════════════════════════════════════════ */
 const Trending = (() => {
   const cache = new Map();
   const CACHE_TTL = 5 * 60 * 1000;
   const ICONES_TIPO = { hashtag: '#️⃣', keyword: '💬', bairro: '📍' };
   const LABELS_PERIODO = { '1h': 'Última hora', '6h': '6 horas', '24h': '24 horas', '7d': '7 dias' };
   let periodoAtual = '24h';
-
   async function buscar({ tipo = null, periodo = '24h', limit = 10, forcarRefresh = false } = {}) {
     const k = `${periodo}:${tipo || 'all'}:${limit}`;
     const c = cache.get(k);
@@ -2123,63 +2258,32 @@ const Trending = (() => {
       const dados = data || [];
       cache.set(k, { dados, timestamp: Date.now() });
       return dados;
-    } catch (e) {
-      logErr('Trending buscar:', e);
-      return [];
-    }
+    } catch (e) { logErr('Trending buscar:', e); return []; }
   }
-
   async function renderWidgetFeed() {
     const box = document.getElementById('trending-widget');
     if (!box) return;
     box.innerHTML = `<div class="x-skeleton x-skeleton--sm"></div>`;
     const top = await buscar({ periodo: '24h', limit: 5 });
-    if (!top.length) {
-      box.innerHTML = `<p style="text-align:center;padding:16px;color:var(--fg-secondary);font-size:13px">Sem tendências ainda. Poste com #hashtags!</p>`;
-      return;
-    }
+    if (!top.length) { box.innerHTML = `<p style="text-align:center;padding:16px;color:var(--fg-secondary);font-size:13px">Sem tendências ainda. Poste com #hashtags!</p>`; return; }
     box.innerHTML = top.map((t, i) => trendingItemHTML(t, i, true)).join('');
     bindItens(box);
   }
-
   async function renderRanking() {
     const box = document.getElementById('trending-ranking');
     if (!box) return;
     box.innerHTML = `<div class="x-skeleton"></div>`;
-
-    const [hashtags, keywords, bairros] = await Promise.all([
-      buscar({ tipo: 'hashtag', periodo: periodoAtual, limit: 15 }),
-      buscar({ tipo: 'keyword', periodo: periodoAtual, limit: 10 }),
-      buscar({ tipo: 'bairro', periodo: periodoAtual, limit: 8 })
-    ]);
-
+    const [hashtags, keywords, bairros] = await Promise.all([buscar({ tipo: 'hashtag', periodo: periodoAtual, limit: 15 }), buscar({ tipo: 'keyword', periodo: periodoAtual, limit: 10 }), buscar({ tipo: 'bairro', periodo: periodoAtual, limit: 8 })]);
     let html = '';
-    html += `<div class="trending-periodos">${
-      Object.keys(LABELS_PERIODO).map(p => 
-        `<button type="button" class="trending-periodo ${p === periodoAtual ? 'is-active' : ''}" data-periodo="${p}">${LABELS_PERIODO[p]}</button>`
-      ).join('')
-    }</div>`;
-
-    if (hashtags.length) {
-      html += `<div class="trending-section"><div class="trending-section__head"><span class="trending-section__icon">#️⃣</span><span class="trending-section__title">Hashtags em alta</span><span class="trending-section__count">${hashtags.length}</span></div>${hashtags.map((t, i) => trendingItemHTML(t, i)).join('')}</div>`;
-    }
-    if (keywords.length) {
-      html += `<div class="trending-section"><div class="trending-section__head"><span class="trending-section__icon">💬</span><span class="trending-section__title">Assuntos comentados</span><span class="trending-section__count">${keywords.length}</span></div>${keywords.map((t, i) => trendingItemHTML(t, i)).join('')}</div>`;
-    }
-    if (bairros.length) {
-      html += `<div class="trending-section"><div class="trending-section__head"><span class="trending-section__icon">📍</span><span class="trending-section__title">Bairros em evidência</span><span class="trending-section__count">${bairros.length}</span></div>${bairros.map((t, i) => trendingItemHTML(t, i)).join('')}</div>`;
-    }
-    if (!hashtags.length && !keywords.length && !bairros.length) {
-      html += `<div class="zel-empty"><div class="zel-empty__icon">📊</div><div class="zel-empty__title">Sem tendências ainda</div><p class="zel-empty__text">Quando a cidade começar a postar, os assuntos do momento aparecerão aqui.</p></div>`;
-    }
-
+    html += `<div class="trending-periodos">${Object.keys(LABELS_PERIODO).map(p => `<button type="button" class="trending-periodo ${p === periodoAtual ? 'is-active' : ''}" data-periodo="${p}">${LABELS_PERIODO[p]}</button>`).join('')}</div>`;
+    if (hashtags.length) { html += `<div class="trending-section"><div class="trending-section__head"><span class="trending-section__icon">#️⃣</span><span class="trending-section__title">Hashtags em alta</span><span class="trending-section__count">${hashtags.length}</span></div>${hashtags.map((t, i) => trendingItemHTML(t, i)).join('')}</div>`; }
+    if (keywords.length) { html += `<div class="trending-section"><div class="trending-section__head"><span class="trending-section__icon">💬</span><span class="trending-section__title">Assuntos comentados</span><span class="trending-section__count">${keywords.length}</span></div>${keywords.map((t, i) => trendingItemHTML(t, i)).join('')}</div>`; }
+    if (bairros.length) { html += `<div class="trending-section"><div class="trending-section__head"><span class="trending-section__icon">📍</span><span class="trending-section__title">Bairros em evidência</span><span class="trending-section__count">${bairros.length}</span></div>${bairros.map((t, i) => trendingItemHTML(t, i)).join('')}</div>`; }
+    if (!hashtags.length && !keywords.length && !bairros.length) { html += `<div class="zel-empty"><div class="zel-empty__icon">📊</div><div class="zel-empty__title">Sem tendências ainda</div><p class="zel-empty__text">Quando a cidade começar a postar, os assuntos do momento aparecerão aqui.</p></div>`; }
     box.innerHTML = html;
-    box.querySelectorAll('[data-periodo]').forEach(btn => {
-      btn.addEventListener('click', () => { periodoAtual = btn.dataset.periodo; renderRanking(); });
-    });
+    box.querySelectorAll('[data-periodo]').forEach(btn => { btn.addEventListener('click', () => { periodoAtual = btn.dataset.periodo; renderRanking(); }); });
     bindItens(box);
   }
-
   function trendingItemHTML(t, index, compacto = false) {
     const pos = index + 1;
     const isTop3 = pos <= 3;
@@ -2187,58 +2291,26 @@ const Trending = (() => {
     const classeTop = isTop3 ? ` trending-item--top${pos}` : '';
     const prefixo = t.tipo === 'hashtag' ? '#' : '';
     const icone = ICONES_TIPO[t.tipo] || '';
-    if (compacto) {
-      return `<button type="button" class="trending-item trending-item--compact${classeTop}" data-trending-termo="${U.escapeHtml(t.termo)}" data-trending-tipo="${t.tipo}"><span class="trending-item__rank">${medalha || pos}</span><span class="trending-item__termo">${prefixo}${U.escapeHtml(t.termo)}</span><span class="trending-item__contagem">${U.formatNum(t.contagem)}</span></button>`;
-    }
+    if (compacto) { return `<button type="button" class="trending-item trending-item--compact${classeTop}" data-trending-termo="${U.escapeHtml(t.termo)}" data-trending-tipo="${t.tipo}"><span class="trending-item__rank">${medalha || pos}</span><span class="trending-item__termo">${prefixo}${U.escapeHtml(t.termo)}</span><span class="trending-item__contagem">${U.formatNum(t.contagem)}</span></button>`; }
     return `<button type="button" class="trending-item${classeTop}" data-trending-termo="${U.escapeHtml(t.termo)}" data-trending-tipo="${t.tipo}"><div class="trending-item__rank-wrap"><span class="trending-item__rank">${medalha || pos}</span></div><div class="trending-item__body"><span class="trending-item__termo">${prefixo}${U.escapeHtml(t.termo)}</span><span class="trending-item__meta">${icone} ${U.formatNum(t.contagem)} ${t.contagem === 1 ? 'post' : 'posts'} · score ${Number(t.score).toFixed(0)}</span></div><span class="trending-item__arrow">→</span></button>`;
   }
-
   function filtrarPorTermo(termo, tipo) {
     State.setView('feed');
     setTimeout(() => {
       const inp = document.getElementById('busca-global');
       const bar = document.getElementById('search-bar');
-      if (inp && bar) {
-        bar.classList.remove('hidden');
-        const termoBusca = tipo === 'hashtag' ? '#' + termo : termo;
-        inp.value = termoBusca;
-        inp.dispatchEvent(new Event('input'));
-        if (typeof Search !== 'undefined' && Search.buscar) Search.buscar(termoBusca);
-        U.toast(`🔎 Mostrando posts sobre ${termoBusca}`, 2500, 'info');
-      }
+      if (inp && bar) { bar.classList.remove('hidden'); const termoBusca = tipo === 'hashtag' ? '#' + termo : termo; inp.value = termoBusca; inp.dispatchEvent(new Event('input')); if (typeof Search !== 'undefined' && Search.buscar) Search.buscar(termoBusca); U.toast(`🔎 Mostrando posts sobre ${termoBusca}`, 2500, 'info'); }
     }, 250);
   }
-
-  function bindItens(container) {
-    container.querySelectorAll('[data-trending-termo]').forEach(el => {
-      if (el.dataset._bound) return;
-      el.dataset._bound = '1';
-      el.addEventListener('click', () => {
-        filtrarPorTermo(el.dataset.trendingTermo, el.dataset.trendingTipo);
-      });
-    });
-  }
-
-  function invalidar() {
-    cache.clear();
-    try { sb.rpc('recalcular_trending', { p_periodo: '24h' }).then(() => {}); } catch (e) {}
-  }
-
+  function bindItens(container) { container.querySelectorAll('[data-trending-termo]').forEach(el => { if (el.dataset._bound) return; el.dataset._bound = '1'; el.addEventListener('click', () => { filtrarPorTermo(el.dataset.trendingTermo, el.dataset.trendingTipo); }); }); }
+  function invalidar() { cache.clear(); try { sb.rpc('recalcular_trending', { p_periodo: '24h' }).then(() => {}); } catch (e) {} }
   const init = () => {
-    State.on('view:change', (v) => {
-      if (v === 'feed') setTimeout(renderWidgetFeed, 300);
-      if (v === 'explorar') setTimeout(renderRanking, 200);
-    });
+    State.on('view:change', (v) => { if (v === 'feed') setTimeout(renderWidgetFeed, 300); if (v === 'explorar') setTimeout(renderRanking, 200); });
     if (State.isLogged()) setTimeout(renderWidgetFeed, 800);
-    setInterval(() => {
-      if (State.get('view') === 'feed' && State.isLogged()) renderWidgetFeed();
-    }, 3 * 60 * 1000);
-    document.getElementById('trending-ver-tudo')?.addEventListener('click', () => {
-      State.setView('explorar');
-    });
+    setInterval(() => { if (State.get('view') === 'feed' && State.isLogged()) renderWidgetFeed(); }, 3 * 60 * 1000);
+    document.getElementById('trending-ver-tudo')?.addEventListener('click', () => { State.setView('explorar'); });
     log('📊 Trending Topics pronto');
   };
-
   return { init, buscar, renderWidgetFeed, renderRanking, invalidar, filtrarPorTermo };
 })();
 </script>
@@ -2259,15 +2331,369 @@ const Chat = (() => {
   return { init, abrirCom };
 })();
 
+/* ═══════════════════════════════════════════════════════════════
+   GRUPOS v1.0 — estilo WhatsApp (NOVO)
+   ═══════════════════════════════════════════════════════════════ */
+const Grupos = (() => {
+  const st = { lista: [], gruposMap: new Map(), aberto: null, realtime: null, carregando: false };
+  const E = {};
+  const cache = () => {
+    E.wrapLista = document.getElementById('grupos-lista-wrap');
+    E.lista = document.getElementById('grupos-lista');
+    E.vazio = document.getElementById('grupos-vazio');
+    E.chatWrap = document.getElementById('grupo-chat-wrap');
+    E.chatMsgs = document.getElementById('grupo-chat-msgs');
+    E.chatNome = document.getElementById('grupo-chat-nome');
+    E.chatSub = document.getElementById('grupo-chat-sub');
+    E.chatFoto = document.getElementById('grupo-chat-foto');
+    E.chatInput = document.getElementById('grupo-chat-input');
+    E.chatForm = document.getElementById('grupo-chat-form');
+    E.chatAviso = document.getElementById('grupo-chat-aviso');
+    E.chatAttach = document.getElementById('grupo-chat-attach');
+    E.chatFile = document.getElementById('grupo-chat-file');
+  };
+  const DBg = {
+    async listarMeus() {
+      const u = State.get('user'); if (!u?.id) return [];
+      const { data, error } = await sb.from('grupo_membros')
+        .select(`grupo_id, papel, entrou_em, grupo:grupos!grupo_membros_grupo_id_fkey ( id, nome, descricao, foto_url, dono_id, bairro, privado, so_admin_fala, criado_em, atualizado_em, deletado )`)
+        .eq('user_id', u.id);
+      if (error) { logErr('grupos.listarMeus:', error); return []; }
+      const grupos = (data || []).map(x => x.grupo).filter(g => g && !g.deletado).sort((a, b) => new Date(b.atualizado_em) - new Date(a.atualizado_em));
+      const ids = grupos.map(g => g.id);
+      if (!ids.length) return [];
+      const [{ data: msgs }, { data: membros }] = await Promise.all([
+        sb.from('grupo_mensagens').select('grupo_id, texto, tipo, criado_em, user_id').in('grupo_id', ids).eq('deletado', false).order('criado_em', { ascending: false }),
+        sb.from('grupo_membros').select('grupo_id, user_id').in('grupo_id', ids)
+      ]);
+      const ultimaPorGrupo = new Map();
+      const contagemMembros = new Map();
+      const meuPapel = new Map();
+      (msgs || []).forEach(m => { if (!ultimaPorGrupo.has(m.grupo_id)) ultimaPorGrupo.set(m.grupo_id, m); });
+      (membros || []).forEach(m => { contagemMembros.set(m.grupo_id, (contagemMembros.get(m.grupo_id) || 0) + 1); });
+      (data || []).forEach(x => { if (x.grupo_id) meuPapel.set(x.grupo_id, x.papel); });
+      return grupos.map(g => ({ ...g, _ultimaMsg: ultimaPorGrupo.get(g.id) || null, _totalMembros: contagemMembros.get(g.id) || 0, _meuPapel: meuPapel.get(g.id) || 'membro' }));
+    },
+    async buscarPublicos(termo = '') {
+      const u = State.get('user'); if (!u?.id) return [];
+      let q = sb.from('grupos').select('id, nome, descricao, foto_url, bairro, privado, dono_id, criado_em').eq('privado', false).eq('deletado', false).order('criado_em', { ascending: false }).limit(40);
+      if (termo) q = q.ilike('nome', `%${termo}%`);
+      const { data, error } = await q;
+      if (error) { logErr('grupos.buscarPublicos:', error); return []; }
+      const meus = new Set(st.lista.map(g => g.id));
+      return (data || []).filter(g => !meus.has(g.id));
+    },
+    async criar({ nome, descricao, foto_url, bairro, privado, membros }) {
+      const { data, error } = await sb.rpc('criar_grupo_com_membros', { p_nome: nome, p_descricao: descricao || null, p_foto_url: foto_url || null, p_bairro: bairro || null, p_privado: !!privado, p_membros: membros || [] });
+      if (error) throw error;
+      return data;
+    },
+    async getMembros(grupoId) {
+      const { data, error } = await sb.from('grupo_membros').select(`user_id, papel, entrou_em, silenciado, perfil:profiles!grupo_membros_user_id_fkey ( id, nome, avatar_url, bairro, is_admin, admin_frame )`).eq('grupo_id', grupoId).order('entrou_em', { ascending: true });
+      if (error) { logErr('grupos.getMembros:', error); return []; }
+      return data || [];
+    },
+    async adicionarMembros(grupoId, userIds) {
+      const u = State.get('user'); if (!u?.id) throw new Error('Não autenticado');
+      const rows = userIds.map(uid => ({ grupo_id: grupoId, user_id: uid, papel: 'membro' }));
+      const { error } = await sb.from('grupo_membros').upsert(rows, { onConflict: 'grupo_id,user_id', ignoreDuplicates: true });
+      if (error) throw error;
+    },
+    async removerMembro(grupoId, userId) { const { error } = await sb.from('grupo_membros').delete().eq('grupo_id', grupoId).eq('user_id', userId); if (error) throw error; },
+    async sair(grupoId) { const u = State.get('user'); if (!u?.id) return; const { error } = await sb.from('grupo_membros').delete().eq('grupo_id', grupoId).eq('user_id', u.id); if (error) throw error; },
+    async mensagens(grupoId, limit = 80) {
+      const { data, error } = await sb.from('grupo_mensagens').select(`id, texto, imagem_url, tipo, criado_em, user_id, autor:profiles!grupo_mensagens_user_id_fkey ( id, nome, avatar_url, is_admin, admin_frame )`).eq('grupo_id', grupoId).eq('deletado', false).order('criado_em', { ascending: true }).limit(limit);
+      if (error) { logErr('grupos.mensagens:', error); return []; }
+      return data || [];
+    },
+    async enviar(grupoId, { texto, imagem_url }) {
+      const u = State.get('user'); if (!u?.id) throw new Error('Não autenticado');
+      const { data, error } = await sb.from('grupo_mensagens').insert({ grupo_id: grupoId, user_id: u.id, texto: texto || null, imagem_url: imagem_url || null, tipo: imagem_url ? 'imagem' : 'texto' }).select(`id, texto, imagem_url, tipo, criado_em, user_id, autor:profiles!grupo_mensagens_user_id_fkey ( id, nome, avatar_url, is_admin, admin_frame )`).single();
+      if (error) throw error;
+      sb.from('grupos').update({ atualizado_em: new Date().toISOString() }).eq('id', grupoId).then(() => {});
+      return data;
+    },
+    async gerarConvite(grupoId) {
+      const u = State.get('user'); if (!u?.id) throw new Error('Não autenticado');
+      const codigo = U.randomCode(8);
+      const { data, error } = await sb.from('grupo_convites').insert({ grupo_id: grupoId, codigo, criador_id: u.id, expira_em: new Date(Date.now() + 7 * 86400000).toISOString() }).select().single();
+      if (error) throw error;
+      return data;
+    },
+    async entrarPorCodigo(codigo) {
+      const { data, error } = await sb.rpc('entrar_grupo_por_codigo', { p_codigo: codigo });
+      if (error) throw error;
+      return data;
+    },
+    async uploadFoto(file) {
+      const u = State.get('user'); if (!u?.id) throw new Error('Não autenticado');
+      const blob = await U.resizeImage(file, 800, 0.85);
+      const path = `${u.id}/grupo-${Date.now()}.jpg`;
+      const { error } = await sb.storage.from('grupos').upload(path, blob, { contentType: 'image/jpeg' });
+      if (error) throw error;
+      return path;
+    }
+  };
+  const fotoHTML = (g) => { const url = g?.foto_url ? U.publicUrl('grupos', g.foto_url) : null; if (url) return `<img src="${U.escapeHtml(url)}" alt="">`; return U.initials(g?.nome || '?'); };
+  const tempoMsg = (m) => { if (!m) return ''; const t = m.tipo === 'sistema' ? '' : (m.autor?.nome ? m.autor.nome.split(' ')[0] + ': ' : ''); const txt = m.texto ? U.truncate(m.texto, 40) : (m.imagem_url ? '📷 Foto' : ''); return t + txt; };
+  const renderLista = () => {
+    if (!E.lista) return;
+    if (!st.lista.length) {
+      E.lista.innerHTML = '';
+      if (E.vazio) {
+        E.vazio.innerHTML = `<div class="grupos-vazio__icon">👥</div><div class="grupos-vazio__title">Nenhum grupo ainda</div><p class="grupos-vazio__text">Crie um grupo para reunir a vizinhança, a família, o time ou a rua.</p><button type="button" class="x-btn x-btn--primary" id="grupos-vazio-cta">+ Criar primeiro grupo</button>`;
+        E.vazio.classList.remove('hidden');
+        document.getElementById('grupos-vazio-cta')?.addEventListener('click', abrirComposer);
+      }
+      return;
+    }
+    if (E.vazio) E.vazio.classList.add('hidden');
+    E.lista.innerHTML = st.lista.map(g => {
+      const foto = fotoHTML(g);
+      const temUrl = g.foto_url;
+      const fotoCls = temUrl ? '' : 'x-avatar--grad';
+      const ult = g._ultimaMsg;
+      const sub = ult ? tempoMsg(ult) : (g._totalMembros + ' membros');
+      const quando = ult ? U.timeAgo(ult.criado_em) : U.timeAgo(g.criado_em);
+      const papelBadge = g._meuPapel === 'dono' ? '👑 ' : g._meuPapel === 'admin' ? '🛡️ ' : '';
+      return `<button type="button" class="grupo-item" data-grupo-id="${U.escapeHtml(g.id)}"><div class="grupo-item__foto ${fotoCls}">${foto}</div><div class="grupo-item__info"><span class="grupo-item__nome">${papelBadge}${U.escapeHtml(g.nome)}</span><span class="grupo-item__meta">${U.escapeHtml(U.truncate(sub, 36))} · ${quando}</span></div>${g.privado ? '<span title="Grupo privado" style="font-size:14px">🔒</span>' : ''}</button>`;
+    }).join('');
+    E.lista.querySelectorAll('[data-grupo-id]').forEach(el => el.addEventListener('click', () => abrirChat(el.dataset.grupoId)));
+  };
+  const carregarLista = async () => {
+    if (!E.lista || st.carregando) return;
+    st.carregando = true;
+    E.lista.innerHTML = `<div class="x-skeleton x-skeleton--sm"></div><div class="x-skeleton x-skeleton--sm"></div>`;
+    try { st.lista = await DBg.listarMeus(); st.gruposMap = new Map(st.lista.map(g => [g.id, g])); renderLista(); } catch (e) { logErr('grupos lista:', e); } finally { st.carregando = false; }
+  };
+  const renderMensagens = (msgs) => {
+    if (!E.chatMsgs) return;
+    const u = State.get('user');
+    if (!msgs.length) { E.chatMsgs.innerHTML = `<div style="text-align:center;padding:40px 20px;color:var(--fg-secondary);font-size:13px">Nenhuma mensagem ainda. Diga oi 👋</div>`; return; }
+    E.chatMsgs.innerHTML = msgs.map(m => {
+      if (m.tipo === 'sistema') return `<div class="gmsg gmsg--sistema">${U.escapeHtml(m.texto || '')} · ${U.timeAgo(m.criado_em)}</div>`;
+      const meu = m.user_id === u?.id;
+      const autor = m.autor?.nome?.split(' ')[0] || 'Morador';
+      const textoH = m.texto ? `<div class="gmsg__texto">${U.formatPostText(m.texto)}</div>` : '';
+      const imgH = m.imagem_url ? `<div class="gmsg__img" data-img="${U.escapeHtml(U.publicUrl('grupos', m.imagem_url))}"><img src="${U.escapeHtml(U.publicUrl('grupos', m.imagem_url))}" loading="lazy" alt=""></div>` : '';
+      const autorH = meu ? '' : `<span class="gmsg__autor">${U.escapeHtml(autor)}</span>`;
+      return `<div class="gmsg gmsg--${meu ? 'out' : 'in'}">${autorH}${textoH}${imgH}<span class="gmsg__hora">${U.formatHora(m.criado_em)}</span></div>`;
+    }).join('');
+    E.chatMsgs.querySelectorAll('[data-img]').forEach(el => el.addEventListener('click', () => abrirLightbox(el.dataset.img)));
+    E.chatMsgs.scrollTop = E.chatMsgs.scrollHeight;
+  };
+  const carregarMensagens = async (grupoId) => { if (!E.chatMsgs) return; try { const msgs = await DBg.mensagens(grupoId); renderMensagens(msgs); } catch (e) { logErr('grupos msgs:', e); } };
+  const renderHeadChat = (g) => {
+    if (!E.chatNome) return;
+    E.chatNome.textContent = g.nome || 'Grupo';
+    let sub = `${g._totalMembros} membros`;
+    if (g._meuPapel === 'dono') sub += ' · Você é dono'; else if (g._meuPapel === 'admin') sub += ' · Você é admin';
+    E.chatSub.textContent = sub;
+    if (E.chatFoto) { const url = g.foto_url ? U.publicUrl('grupos', g.foto_url) : null; if (url) E.chatFoto.innerHTML = `<img src="${U.escapeHtml(url)}" alt="">`; else E.chatFoto.textContent = U.initials(g.nome || '?'); }
+    if (E.chatAviso) {
+      const euMembro = g._meuPapel === 'dono' || g._meuPapel === 'admin';
+      const podeFalar = !g.so_admin_fala || euMembro;
+      E.chatAviso.classList.toggle('hidden', podeFalar);
+      if (E.chatInput) E.chatInput.disabled = !podeFalar;
+    }
+  };
+  const abrirChat = async (grupoId) => {
+    const g = st.gruposMap.get(grupoId) || st.lista.find(x => x.id === grupoId);
+    if (!g) { U.toast('Grupo não encontrado', 2200, 'erro'); return; }
+    st.aberto = grupoId;
+    U.hide(E.wrapLista); U.show(E.chatWrap);
+    renderHeadChat(g);
+    await carregarMensagens(grupoId);
+    ligarRealtime(grupoId);
+  };
+  const voltarLista = () => { desligarRealtime(); st.aberto = null; U.hide(E.chatWrap); U.show(E.wrapLista); carregarLista(); };
+  const ligarRealtime = (grupoId) => { desligarRealtime(); try { st.realtime = sb.channel('grupo:' + grupoId).on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'grupo_mensagens', filter: `grupo_id=eq.${grupoId}` }, async () => { await carregarMensagens(grupoId); }).subscribe(); } catch (e) { logErr('realtime:', e); } };
+  const desligarRealtime = () => { if (st.realtime) { try { sb.removeChannel(st.realtime); } catch (e) {} st.realtime = null; } };
+  const enviarMensagem = async (e) => {
+    e?.preventDefault();
+    const inp = E.chatInput; const txt = inp?.value.trim();
+    if (!txt || !st.aberto) return;
+    inp.value = '';
+    try { const btn = E.chatForm?.querySelector('button[type="submit"]'); if (btn) btn.disabled = true; await DBg.enviar(st.aberto, { texto: txt }); await carregarMensagens(st.aberto); State.addXP(1, 'mensagem em grupo'); } catch (err) { logErr('grupo enviar:', err); U.toast('Erro ao enviar', 2200, 'erro'); } finally { const btn = E.chatForm?.querySelector('button[type="submit"]'); if (btn) btn.disabled = false; }
+  };
+  const enviarImagem = async (file) => {
+    if (!file || !st.aberto) return;
+    if (file.size > 8 * 1024 * 1024) { U.toast('Máx 8MB', 2200, 'erro'); return; }
+    U.toast('📤 Enviando imagem…', 3000, 'info');
+    try { const path = await DBg.uploadFoto(file); await DBg.enviar(st.aberto, { imagem_url: path }); await carregarMensagens(st.aberto); } catch (err) { logErr('grupo enviar imagem:', err); U.toast('Erro ao enviar imagem', 2400, 'erro'); }
+  };
+  const abrirComposer = () => {
+    if (!State.isLogged()) { U.toast('Entre para criar grupos', 2200, 'info'); return; }
+    const u = State.get('user');
+    let fotoFile = null; let privado = false; let soAdmin = false;
+    const selecionados = new Set();
+    const bairrosH = BAIRROS.map(b => `<option value="${U.escapeHtml(b)}" ${b === u?.bairro ? 'selected' : ''}>${U.escapeHtml(b)}</option>`).join('');
+    const body = `<div class="x-field" style="margin-bottom:12px"><label class="x-field__label">📷 Foto do grupo</label><div class="grupo-detalhes__foto" id="grp-foto-wrap" style="margin:0"><span style="font-size:44px">👥</span><input type="file" id="grp-foto-input" accept="image/*" style="display:none"></div></div><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Nome do grupo *</label><input class="x-field__input" id="grp-nome" placeholder="Ex: Vizinhos da Rua 7" maxlength="80"></div><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Descrição</label><textarea class="x-field__textarea" id="grp-desc" rows="2" maxlength="300" placeholder="Sobre o que é esse grupo?"></textarea></div><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Bairro</label><select class="x-field__select" id="grp-bairro">${bairrosH}</select></div><div class="opt-toggle" id="grp-privado"><div class="opt-toggle__info"><strong>🔒 Grupo privado</strong><small>Só entra quem tiver o código de convite</small></div><div class="opt-toggle__switch"></div></div><div class="opt-toggle" id="grp-soadmin"><div class="opt-toggle__info"><strong>📢 Só admins falam</strong><small>Membros comuns só podem ler</small></div><div class="opt-toggle__switch"></div></div><div class="x-field" style="margin-top:16px"><label class="x-field__label">👥 Adicionar membros</label><input class="x-field__input" id="grp-busca" placeholder="Buscar por nome ou bairro…" autocomplete="off" style="margin-bottom:8px"><div class="membros-selecionados" id="grp-selecionados"><span style="color:var(--fg-tertiary);font-size:12px;align-self:center;padding:0 4px">Ninguém selecionado ainda</span></div><div class="membros-picker" id="grp-picker"><div class="x-skeleton x-skeleton--sm"></div></div></div>`;
+    Modal.abrir({ title: '👥 Novo grupo', body, submitLabel: '✅ Criar grupo', onSubmit: async () => {
+      const nome = document.getElementById('grp-nome')?.value.trim();
+      if (!nome || nome.length < 2) { U.toast('Nome muito curto', 2200, 'erro'); return; }
+      const btn = document.querySelector('#global-modal [data-submit]');
+      U.btnLoading(btn, true);
+      try {
+        let foto_url = null;
+        if (fotoFile) foto_url = await DBg.uploadFoto(fotoFile);
+        const grupoId = await DBg.criar({ nome, descricao: document.getElementById('grp-desc')?.value.trim() || null, foto_url, bairro: document.getElementById('grp-bairro')?.value || null, privado, membros: Array.from(selecionados) });
+        U.toast('🎉 Grupo criado!', 2600, 'sucesso');
+        Modal.fechar();
+        await carregarLista();
+        setTimeout(() => abrirChat(grupoId), 300);
+        State.addXP(15, 'criou um grupo');
+      } catch (err) { logErr('criar grupo:', err); U.toast('Erro: ' + (err.message || ''), 3000, 'erro'); } finally { U.btnLoading(btn, false, '✅ Criar grupo'); }
+    }});
+    document.getElementById('grp-foto-wrap')?.addEventListener('click', () => document.getElementById('grp-foto-input')?.click());
+    document.getElementById('grp-foto-input')?.addEventListener('change', (e) => { const f = e.target.files?.[0]; if (!f) return; fotoFile = f; const wrap = document.getElementById('grp-foto-wrap'); if (wrap) wrap.innerHTML = `<img src="${URL.createObjectURL(f)}" alt="">`; });
+    document.getElementById('grp-privado')?.addEventListener('click', function() { privado = !privado; this.classList.toggle('is-on', privado); });
+    document.getElementById('grp-soadmin')?.addEventListener('click', function() { soAdmin = !soAdmin; this.classList.toggle('is-on', soAdmin); });
+    const buscarUsuarios = async (termo = '') => {
+      const picker = document.getElementById('grp-picker');
+      if (!picker) return;
+      picker.innerHTML = `<div style="padding:12px;color:var(--fg-secondary);font-size:12px;text-align:center">Buscando…</div>`;
+      try {
+        let q = sb.from('profiles').select('id, nome, bairro, avatar_url, is_admin, admin_frame').neq('id', u.id).limit(30);
+        if (termo) q = q.or(`nome.ilike.%${termo}%,bairro.ilike.%${termo}%`);
+        const { data } = await q;
+        if (!data?.length) { picker.innerHTML = `<div style="padding:12px;color:var(--fg-secondary);font-size:12px;text-align:center">Ninguém encontrado</div>`; return; }
+        picker.innerHTML = data.map(p => { const sel = selecionados.has(p.id) ? 'is-selecionado' : ''; const av = p.avatar_url ? `<img src="${U.escapeHtml(U.publicUrl(BUCKETS.AVATARS, p.avatar_url))}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0">` : `<div style="width:36px;height:36px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">${U.initials(p.nome)}</div>`; return `<div class="membro-opt ${sel}" data-uid="${U.escapeHtml(p.id)}" data-unome="${U.escapeHtml(p.nome)}"><div class="membro-opt__check">✓</div>${av}<div class="membro-opt__info"><span class="membro-opt__nome">${p.is_admin ? '👑 ' : ''}${U.escapeHtml(p.nome)}</span><span class="membro-opt__bairro">📍 ${U.escapeHtml(p.bairro || 'Oriximiná')}</span></div></div>`; }).join('');
+        picker.querySelectorAll('[data-uid]').forEach(el => { el.addEventListener('click', () => { const uid = el.dataset.uid; if (selecionados.has(uid)) { selecionados.delete(uid); el.classList.remove('is-selecionado'); } else { selecionados.add(uid); el.classList.add('is-selecionado'); } atualizarChips(); }); });
+      } catch (err) { logErr('buscar usuarios:', err); }
+    };
+    const atualizarChips = () => {
+      const box = document.getElementById('grp-selecionados');
+      if (!box) return;
+      if (!selecionados.size) { box.innerHTML = `<span style="color:var(--fg-tertiary);font-size:12px;align-self:center;padding:0 4px">Ninguém selecionado ainda</span>`; return; }
+      box.innerHTML = Array.from(selecionados).map(uid => { const el = document.querySelector(`.membro-opt[data-uid="${uid}"]`); const nome = el?.dataset.unome || 'Membro'; return `<span class="membro-chip">${U.escapeHtml(nome.split(' ')[0])}<button type="button" data-remove="${U.escapeHtml(uid)}">×</button></span>`; }).join('');
+      box.querySelectorAll('[data-remove]').forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); const uid = b.dataset.remove; selecionados.delete(uid); document.querySelector(`.membro-opt[data-uid="${uid}"]`)?.classList.remove('is-selecionado'); atualizarChips(); }));
+    };
+    let buscaTimer = null;
+    document.getElementById('grp-busca')?.addEventListener('input', (e) => { clearTimeout(buscaTimer); buscaTimer = setTimeout(() => buscarUsuarios(e.target.value.trim()), 300); });
+    buscarUsuarios();
+  };
+  const abrirDetalhes = async (grupoId) => {
+    const g = st.gruposMap.get(grupoId) || st.lista.find(x => x.id === grupoId);
+    if (!g) return;
+    const membros = await DBg.getMembros(grupoId);
+    const souDono = g.dono_id === State.get('user')?.id;
+    const souAdmin = g._meuPapel === 'dono' || g._meuPapel === 'admin';
+    const membrosH = membros.map(m => { const p = m.perfil || {}; const av = p.avatar_url ? `<img src="${U.escapeHtml(U.publicUrl(BUCKETS.AVATARS, p.avatar_url))}" style="width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0">` : `<div style="width:38px;height:38px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0">${U.initials(p.nome)}</div>`; const papel = m.papel === 'dono' ? '<span class="gmembro-row__papel gmembro-row__papel--dono">👑 Dono</span>' : m.papel === 'admin' ? '<span class="gmembro-row__papel gmembro-row__papel--admin">🛡️ Admin</span>' : ''; const removerBtn = (souAdmin && m.papel !== 'dono') ? `<button type="button" data-remover="${U.escapeHtml(m.user_id)}" style="background:transparent;border:0;color:var(--danger);font-size:12px;font-weight:700;cursor:pointer;padding:4px 8px">Remover</button>` : ''; return `<div class="gmembro-row">${av}<div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700;color:var(--fg-primary)">${U.escapeHtml(p.nome || 'Morador')}</div><div style="font-size:11px;color:var(--fg-secondary);margin-top:2px">📍 ${U.escapeHtml(p.bairro || 'Oriximiná')} ${papel}</div></div>${removerBtn}</div>`; }).join('');
+    const fotoUrl = g.foto_url ? U.publicUrl('grupos', g.foto_url) : null;
+    const fotoCls = souDono ? 'grupo-detalhes__foto' : 'grupo-detalhes__foto grupo-detalhes__foto--readonly';
+    const fotoH = fotoUrl ? `<img src="${U.escapeHtml(fotoUrl)}" alt="">` : `<span>${U.initials(g.nome)}</span>`;
+    const conviteH = `<div class="admin-card" style="background:var(--accent-soft);border-color:var(--accent-soft);margin-top:12px"><strong style="font-family:var(--font-display);font-size:14px;display:block;margin-bottom:4px">🔗 Convidar para o grupo</strong><small style="color:var(--fg-secondary);font-size:11px;display:block;margin-bottom:10px">Gere um link/código e envie no WhatsApp</small><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="x-btn x-btn--primary x-btn--sm" id="grp-gerar-convite" style="flex:1">🎟️ Gerar convite</button><button type="button" class="x-btn x-btn--ghost x-btn--sm" id="grp-add-membros" style="flex:1">+ Adicionar</button></div></div>`;
+    const body = `<div style="text-align:center;margin-bottom:20px"><div class="${fotoCls}" id="grp-detalhes-foto">${fotoH}<input type="file" id="grp-detalhes-foto-input" accept="image/*" style="display:none"></div><h3 style="font-family:var(--font-display);font-size:20px;font-weight:900;margin:8px 0 4px">${U.escapeHtml(g.nome)}</h3>${g.descricao ? `<p style="font-size:13px;color:var(--fg-secondary);line-height:1.5;max-width:320px;margin:0 auto">${U.escapeHtml(g.descricao)}</p>` : ''}<div style="display:flex;gap:8px;justify-content:center;margin-top:8px;flex-wrap:wrap;font-size:11px;color:var(--fg-secondary);font-weight:600"><span>👥 ${membros.length} membros</span>${g.bairro ? `<span>📍 ${U.escapeHtml(g.bairro)}</span>` : ''}${g.privado ? '<span>🔒 Privado</span>' : '<span>🌐 Público</span>'}${g.so_admin_fala ? '<span>📢 Só admins falam</span>' : ''}</div></div>${conviteH}<h4 class="x-heading x-heading--sm" style="margin-top:20px">👥 Membros (${membros.length})</h4><div>${membrosH}</div><button type="button" class="x-btn x-btn--ghost x-btn--block" id="grp-sair" style="margin-top:20px;color:var(--danger);border-color:rgba(194,80,62,.4)">🚪 Sair do grupo</button>`;
+    Modal.abrir({ title: 'Detalhes do grupo', body });
+    if (souDono) { document.getElementById('grp-detalhes-foto')?.addEventListener('click', () => document.getElementById('grp-detalhes-foto-input')?.click()); document.getElementById('grp-detalhes-foto-input')?.addEventListener('change', async (e) => { const f = e.target.files?.[0]; if (!f) return; try { const path = await DBg.uploadFoto(f); await sb.from('grupos').update({ foto_url: path }).eq('id', grupoId); U.toast('✅ Foto atualizada', 2200, 'sucesso'); Modal.fechar(); await carregarLista(); setTimeout(() => abrirDetalhes(grupoId), 200); } catch (err) { U.toast('Erro ao atualizar foto', 2200, 'erro'); } }); }
+    document.querySelectorAll('#global-modal [data-remover]').forEach(btn => btn.addEventListener('click', async () => { if (!confirm('Remover este membro?')) return; try { await DBg.removerMembro(grupoId, btn.dataset.remover); U.toast('Membro removido', 2000, 'sucesso'); Modal.fechar(); setTimeout(() => abrirDetalhes(grupoId), 200); } catch (err) { U.toast('Erro', 2200, 'erro'); } }));
+    document.getElementById('grp-gerar-convite')?.addEventListener('click', async () => { try { const c = await DBg.gerarConvite(grupoId); const txt = `👥 Entre no grupo *${g.nome}* no Orixiconnect!\n\nCódigo: *${c.codigo}*\n\n${location.origin}`; await U.copy(c.codigo); if (navigator.share) { try { await navigator.share({ text: txt }); } catch {} } else window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank'); } catch (err) { U.toast('Erro ao gerar convite', 2200, 'erro'); } });
+    document.getElementById('grp-add-membros')?.addEventListener('click', () => { Modal.fechar(); setTimeout(() => abrirAddMembros(grupoId, membros), 200); });
+    document.getElementById('grp-sair')?.addEventListener('click', async () => { if (g.dono_id === State.get('user')?.id) { U.toast('Dono não pode sair. Transfira ou delete o grupo.', 3200, 'erro'); return; } if (!confirm('Sair deste grupo?')) return; try { await DBg.sair(grupoId); U.toast('Você saiu do grupo', 2200, 'info'); Modal.fechar(); desligarRealtime(); st.aberto = null; U.hide(E.chatWrap); U.show(E.wrapLista); await carregarLista(); } catch (err) { U.toast('Erro', 2200, 'erro'); } });
+  };
+  const abrirAddMembros = async (grupoId, membrosAtuais) => {
+    const u = State.get('user');
+    const jaMembros = new Set(membrosAtuais.map(m => m.user_id));
+    const selecionados = new Set();
+    const body = `<input class="x-field__input" id="add-busca" placeholder="Buscar por nome…" autocomplete="off" style="margin-bottom:12px"><div class="membros-selecionados" id="add-selecionados"><span style="color:var(--fg-tertiary);font-size:12px;align-self:center;padding:0 4px">Ninguém selecionado</span></div><div class="membros-picker" id="add-picker"><div class="x-skeleton x-skeleton--sm"></div></div>`;
+    Modal.abrir({ title: '➕ Adicionar membros', body, submitLabel: '✅ Adicionar', onSubmit: async () => {
+      if (!selecionados.size) { U.toast('Selecione alguém', 2000, 'info'); return; }
+      const btn = document.querySelector('#global-modal [data-submit]');
+      U.btnLoading(btn, true);
+      try { await DBg.adicionarMembros(grupoId, Array.from(selecionados)); await sb.from('grupo_mensagens').insert({ grupo_id: grupoId, user_id: u.id, texto: 'Novos membros adicionados', tipo: 'sistema' }); U.toast('✅ Membros adicionados!', 2200, 'sucesso'); Modal.fechar(); setTimeout(() => abrirDetalhes(grupoId), 200); } catch (err) { U.toast('Erro', 2400, 'erro'); } finally { U.btnLoading(btn, false, '✅ Adicionar'); }
+    }});
+    const atualizarChips = () => { const box = document.getElementById('add-selecionados'); if (!selecionados.size) { box.innerHTML = `<span style="color:var(--fg-tertiary);font-size:12px;align-self:center;padding:0 4px">Ninguém selecionado</span>`; return; } box.innerHTML = Array.from(selecionados).map(uid => { const el = document.querySelector(`#add-picker .membro-opt[data-uid="${uid}"]`); const nome = el?.dataset.unome || 'Membro'; return `<span class="membro-chip">${U.escapeHtml(nome.split(' ')[0])}<button type="button" data-remove="${U.escapeHtml(uid)}">×</button></span>`; }).join(''); box.querySelectorAll('[data-remove]').forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); const uid = b.dataset.remove; selecionados.delete(uid); document.querySelector(`#add-picker .membro-opt[data-uid="${uid}"]`)?.classList.remove('is-selecionado'); atualizarChips(); })); };
+    const buscar = async (termo = '') => {
+      const picker = document.getElementById('add-picker');
+      picker.innerHTML = `<div style="padding:12px;color:var(--fg-secondary);font-size:12px;text-align:center">Buscando…</div>`;
+      let q = sb.from('profiles').select('id, nome, bairro, avatar_url, is_admin, admin_frame').neq('id', u.id).limit(40);
+      if (termo) q = q.ilike('nome', `%${termo}%`);
+      const { data } = await q;
+      const disponiveis = (data || []).filter(p => !jaMembros.has(p.id));
+      if (!disponiveis.length) { picker.innerHTML = `<div style="padding:12px;color:var(--fg-secondary);font-size:12px;text-align:center">Ninguém disponível</div>`; return; }
+      picker.innerHTML = disponiveis.map(p => { const av = p.avatar_url ? `<img src="${U.escapeHtml(U.publicUrl(BUCKETS.AVATARS, p.avatar_url))}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0">` : `<div style="width:36px;height:36px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">${U.initials(p.nome)}</div>`; return `<div class="membro-opt" data-uid="${U.escapeHtml(p.id)}" data-unome="${U.escapeHtml(p.nome)}"><div class="membro-opt__check">✓</div>${av}<div class="membro-opt__info"><span class="membro-opt__nome">${p.is_admin ? '👑 ' : ''}${U.escapeHtml(p.nome)}</span><span class="membro-opt__bairro">📍 ${U.escapeHtml(p.bairro || 'Oriximiná')}</span></div></div>`; }).join('');
+      picker.querySelectorAll('[data-uid]').forEach(el => el.addEventListener('click', () => { const uid = el.dataset.uid; if (selecionados.has(uid)) { selecionados.delete(uid); el.classList.remove('is-selecionado'); } else { selecionados.add(uid); el.classList.add('is-selecionado'); } atualizarChips(); }));
+    };
+    let t; document.getElementById('add-busca')?.addEventListener('input', (e) => { clearTimeout(t); t = setTimeout(() => buscar(e.target.value.trim()), 300); });
+    buscar();
+  };
+  const abrirEntrarCodigo = () => {
+    if (!State.isLogged()) { U.toast('Entre para entrar em grupos', 2200, 'info'); return; }
+    const body = `<div class="x-field"><label class="x-field__label">Código de convite</label><input class="x-field__input x-field__input--code" id="grp-codigo" maxlength="8" placeholder="ABCD1234" autocapitalize="characters" autocomplete="off"></div>`;
+    Modal.abrir({ title: '🎟️ Entrar com código', body, submitLabel: 'Entrar', onSubmit: async () => {
+      const codigo = document.getElementById('grp-codigo')?.value.trim().toUpperCase();
+      if (!codigo) { U.toast('Digite o código', 2000, 'info'); return; }
+      const btn = document.querySelector('#global-modal [data-submit]');
+      U.btnLoading(btn, true);
+      try { const grupoId = await DBg.entrarPorCodigo(codigo); U.toast('✅ Você entrou no grupo!', 2400, 'sucesso'); Modal.fechar(); await carregarLista(); if (grupoId) setTimeout(() => abrirChat(grupoId), 300); } catch (err) { U.toast(err.message || 'Código inválido', 2600, 'erro'); } finally { U.btnLoading(btn, false, 'Entrar'); }
+    }});
+    document.getElementById('grp-codigo')?.addEventListener('input', (e) => { e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ''); });
+  };
+  const abrirExplorar = async () => {
+    const body = `<div class="x-field"><input class="x-field__input" id="expl-busca" placeholder="Buscar grupos públicos…" autocomplete="off"></div><div id="expl-lista" style="margin-top:12px"><div class="x-skeleton x-skeleton--sm"></div></div>`;
+    Modal.abrir({ title: '🌐 Descobrir grupos', body });
+    const carregar = async (termo = '') => {
+      const box = document.getElementById('expl-lista');
+      if (!box) return;
+      const grupos = await DBg.buscarPublicos(termo);
+      if (!grupos.length) { box.innerHTML = `<div style="padding:20px;text-align:center;color:var(--fg-secondary);font-size:13px">Nenhum grupo público encontrado.</div>`; return; }
+      box.innerHTML = grupos.map(g => { const foto = g.foto_url ? `<img src="${U.escapeHtml(U.publicUrl('grupos', g.foto_url))}" style="width:48px;height:48px;border-radius:50%;object-fit:cover">` : `<div style="width:48px;height:48px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px">${U.initials(g.nome)}</div>`; return `<div class="grupo-item"><div style="flex-shrink:0">${foto}</div><div class="grupo-item__info"><span class="grupo-item__nome">${U.escapeHtml(g.nome)}</span><span class="grupo-item__meta">${g.bairro ? '📍 ' + U.escapeHtml(g.bairro) : '🌐 Público'}</span></div><button type="button" class="x-btn x-btn--primary x-btn--xs" data-entrar="${U.escapeHtml(g.id)}">Entrar</button></div>`; }).join('');
+      box.querySelectorAll('[data-entrar]').forEach(btn => btn.addEventListener('click', async () => { try { const u = State.get('user'); await DBg.adicionarMembros(btn.dataset.entrar, [u.id]); U.toast('✅ Você entrou!', 2200, 'sucesso'); Modal.fechar(); await carregarLista(); setTimeout(() => abrirChat(btn.dataset.entrar), 300); } catch (err) { U.toast('Erro ao entrar', 2200, 'erro'); } }));
+    };
+    let t; document.getElementById('expl-busca')?.addEventListener('input', (e) => { clearTimeout(t); t = setTimeout(() => carregar(e.target.value.trim()), 300); });
+    carregar();
+  };
+  const init = () => {
+    cache();
+    if (!E.lista) { log('👥 Grupos: DOM não encontrado, pulando'); return; }
+    E.chatForm?.addEventListener('submit', enviarMensagem);
+    document.getElementById('grupo-chat-back')?.addEventListener('click', voltarLista);
+    document.getElementById('grupo-chat-foto')?.addEventListener('click', () => { if (st.aberto) abrirDetalhes(st.aberto); });
+    document.getElementById('grupo-chat-info')?.addEventListener('click', () => { if (st.aberto) abrirDetalhes(st.aberto); });
+    document.getElementById('grupo-chat-menu')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!st.aberto) return;
+      const box = document.querySelector('.grupo-chat__head');
+      if (!box) return;
+      document.querySelector('.grupo-menu')?.remove();
+      const menu = document.createElement('div');
+      menu.className = 'grupo-menu';
+      menu.innerHTML = `<button type="button" data-action="detalhes">ℹ️ Detalhes do grupo</button><button type="button" data-action="add">➕ Adicionar membros</button><button type="button" data-action="convite">🎟️ Convidar por código</button><button type="button" data-action="sair" class="danger">🚪 Sair do grupo</button>`;
+      box.style.position = 'relative';
+      box.appendChild(menu);
+      menu.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+        const a = b.dataset.action;
+        menu.remove();
+        if (a === 'detalhes') abrirDetalhes(st.aberto);
+        else if (a === 'add') { DBg.getMembros(st.aberto).then(m => abrirAddMembros(st.aberto, m)); }
+        else if (a === 'convite') abrirDetalhes(st.aberto);
+        else if (a === 'sair') { const g = st.gruposMap.get(st.aberto); if (g?.dono_id === State.get('user')?.id) { U.toast('Dono não pode sair', 2600, 'erro'); return; } if (confirm('Sair deste grupo?')) DBg.sair(st.aberto).then(() => { U.toast('Você saiu', 2000, 'info'); voltarLista(); }).catch(() => {}); }
+      }));
+      setTimeout(() => document.addEventListener('click', function h() { menu.remove(); document.removeEventListener('click', h); }, { once: true }), 50);
+    });
+    E.chatAttach?.addEventListener('click', () => E.chatFile?.click());
+    E.chatFile?.addEventListener('change', (e) => { const f = e.target.files?.[0]; if (!f) return; enviarImagem(f); e.target.value = ''; });
+    document.getElementById('grupos-btn-novo')?.addEventListener('click', abrirComposer);
+    document.getElementById('grupos-btn-entrar')?.addEventListener('click', abrirEntrarCodigo);
+    document.getElementById('grupos-btn-explorar')?.addEventListener('click', abrirExplorar);
+    State.on('view:change', (v) => { if (v === 'chat') setTimeout(carregarLista, 150); else desligarRealtime(); });
+    if (State.isLogged()) setTimeout(carregarLista, 500);
+    log('👥 Grupos prontos');
+  };
+  return { init, carregarLista, abrirChat, abrirComposer, abrirDetalhes, abrirEntrarCodigo, abrirExplorar, _db: DBg };
+})();
+
 const TabbarBadges = (() => {
   const setBadge = (id, count) => { const el = document.getElementById(id); if (!el) return; if (count > 0) { el.textContent = count > 99 ? '99+' : count; el.classList.remove('hidden'); } else { el.classList.add('hidden'); } };
   const setChat = (n) => setBadge('tab-chat-badge', n);
   const setNotif = (n) => setBadge('tab-notif-badge', n);
+  const setGrupos = (n) => { if (n > 0) setChat(n); };
   const atualizarNotif = async () => { if (!State.isLogged()) { setNotif(0); return; } try { const { count } = await sb.from('notificacoes').select('id', { count: 'exact', head: true }).eq('user_id', State.get('user').id).eq('lida', false); setNotif(count || 0); } catch { setNotif(0); } };
   const atualizarChat = async () => { if (!State.isLogged()) { setChat(0); return; } try { const cs = await DB.mensagens.listaConversas(); setChat(cs.reduce((sum, c) => sum + (c.naoLidas || 0), 0)); } catch { setChat(0); } };
   const atualizarTudo = () => { atualizarNotif(); atualizarChat(); };
   const init = () => { State.on('change:user', atualizarTudo); State.on('view:change', (v) => { if (v === 'notif') setTimeout(atualizarNotif, 500); }); setInterval(atualizarTudo, 30000); atualizarTudo(); };
-  return { init, setChat, setNotif, atualizarNotif, atualizarChat, atualizarTudo };
+  return { init, setChat, setNotif, setGrupos, atualizarNotif, atualizarChat, atualizarTudo };
 })();
 
 const Search = (() => {
@@ -2334,7 +2760,7 @@ const Explorar = (() => {
 })();
 
 const Diagnostico = (() => {
-  const modulos = [{ nome: 'Supabase Client', icone: '🔌', teste: async () => { if (!window.sb) throw new Error('Cliente Supabase não inicializado'); const { error } = await sb.auth.getSession(); if (error) throw error; return 'Conectado'; } },{ nome: 'Auth — Sessão', icone: '👤', teste: async () => { const { data } = await sb.auth.getSession(); if (!data?.session) return 'Sem sessão (visitante)'; return `Logado como ${data.session.user.email}`; } },{ nome: 'Tabela: profiles', icone: '📋', teste: async () => { const { count, error } = await sb.from('profiles').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Tabela: posts', icone: '📝', teste: async () => { const { count, error } = await sb.from('posts').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Tabela: stories', icone: '📸', teste: async () => { const { count, error } = await sb.from('stories').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} stories`; } },{ nome: 'Tabela: story_views', icone: '👁️', teste: async () => { const { count, error } = await sb.from('story_views').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} views`; } },{ nome: 'Tabela: comercios (Guia)', icone: '🏪', teste: async () => { const { count, error } = await sb.from('comercios').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} comércios`; } },{ nome: 'Tabela: trending_cache', icone: '📊', teste: async () => { const { count, error } = await sb.from('trending_cache').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Módulo: Guia', icone: '🎨', teste: async () => { if (typeof Guia === 'undefined') throw new Error('Guia não existe'); const v = document.getElementById('view-guia'); if (!v) throw new Error('#view-guia não existe'); return 'OK'; } },{ nome: 'Módulo: StoriesExt', icone: '📸', teste: async () => { if (typeof StoriesExt === 'undefined') throw new Error('StoriesExt não existe'); return 'OK'; } },{ nome: 'Módulo: Trending', icone: '📊', teste: async () => { if (typeof Trending === 'undefined') throw new Error('Trending não existe'); return 'OK'; } },{ nome: 'Módulo: ComercioDB', icone: '🏪', teste: async () => { if (typeof ComercioDB === 'undefined') throw new Error('ComercioDB não existe'); return `${ComercioDB.CATEGORIAS.length} categorias`; } }];
+  const modulos = [{ nome: 'Supabase Client', icone: '🔌', teste: async () => { if (!window.sb) throw new Error('Cliente Supabase não inicializado'); const { error } = await sb.auth.getSession(); if (error) throw error; return 'Conectado'; } },{ nome: 'Auth — Sessão', icone: '👤', teste: async () => { const { data } = await sb.auth.getSession(); if (!data?.session) return 'Sem sessão (visitante)'; return `Logado como ${data.session.user.email}`; } },{ nome: 'Tabela: profiles', icone: '📋', teste: async () => { const { count, error } = await sb.from('profiles').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Tabela: posts', icone: '📝', teste: async () => { const { count, error } = await sb.from('posts').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Tabela: stories', icone: '📸', teste: async () => { const { count, error } = await sb.from('stories').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} stories`; } },{ nome: 'Tabela: story_views', icone: '👁️', teste: async () => { const { count, error } = await sb.from('story_views').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} views`; } },{ nome: 'Tabela: comercios (Guia)', icone: '🏪', teste: async () => { const { count, error } = await sb.from('comercios').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} comércios`; } },{ nome: 'Tabela: trending_cache', icone: '📊', teste: async () => { const { count, error } = await sb.from('trending_cache').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Tabela: grupos (NOVO)', icone: '👥', teste: async () => { const { count, error } = await sb.from('grupos').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} grupos`; } },{ nome: 'RPC: criar_grupo_com_membros', icone: '⚙️', teste: async () => { const { error } = await sb.rpc('criar_grupo_com_membros', { p_nome: null, p_descricao: null, p_foto_url: null, p_bairro: null, p_privado: false, p_membros: [] }); if (error && error.code === '42883') throw new Error('RPC não existe'); return 'OK'; } },{ nome: 'Módulo: Guia', icone: '🎨', teste: async () => { if (typeof Guia === 'undefined') throw new Error('Guia não existe'); return 'OK'; } },{ nome: 'Módulo: StoriesExt', icone: '📸', teste: async () => { if (typeof StoriesExt === 'undefined') throw new Error('StoriesExt não existe'); return 'OK'; } },{ nome: 'Módulo: Trending', icone: '📊', teste: async () => { if (typeof Trending === 'undefined') throw new Error('Trending não existe'); return 'OK'; } },{ nome: 'Módulo: Grupos (NOVO)', icone: '👥', teste: async () => { if (typeof Grupos === 'undefined') throw new Error('Grupos não existe'); const el = document.getElementById('grupos-lista'); if (!el) throw new Error('#grupos-lista não existe'); return 'OK'; } }];
   const rodar = async () => { const box = document.getElementById('diag-resultados'); if (!box) return; box.innerHTML = ''; for (const m of modulos) { const linha = document.createElement('div'); linha.style.cssText = 'display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:10px;margin-bottom:6px;font-size:13px'; linha.innerHTML = `<span style="font-size:18px">${m.icone}</span><strong style="flex:1;color:var(--fg-primary)">${m.nome}</strong><span data-status style="font-size:12px;color:var(--fg-secondary)">⏳ testando…</span>`; box.appendChild(linha); const statusEl = linha.querySelector('[data-status]'); try { const r = await m.teste(); const txt = typeof r === 'string' ? r : 'OK'; statusEl.innerHTML = `<span style="color:#2D8659;font-weight:700">✅ ${U.escapeHtml(txt)}</span>`; linha.style.borderColor = 'rgba(45,134,89,.35)'; } catch (err) { const msg = err?.message || String(err); statusEl.innerHTML = `<span style="color:#C2503E;font-weight:700">❌ ${U.escapeHtml(msg)}</span>`; linha.style.borderColor = 'rgba(194,80,62,.45)'; } } };
   const render = () => { const box = document.getElementById('perfil-tab-admin'); if (!box) return; box.innerHTML = `<div class="admin-card" style="background:linear-gradient(135deg,rgba(45,134,89,.10),rgba(240,198,116,.06));border-color:rgba(45,134,89,.35)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="font-size:1.5rem">🔬</span><strong style="font-family:var(--font-display);font-size:var(--text-title);font-weight:900">Diagnóstico do Sistema</strong></div><p style="font-size:var(--text-caption);color:var(--fg-secondary);line-height:1.5;margin-bottom:12px">Testa módulos e tabelas em tempo real.</p><button type="button" class="x-btn x-btn--primary x-btn--block" id="diag-rodar" style="margin-bottom:14px">🧪 Rodar Diagnóstico</button></div><h3 class="x-heading x-heading--sm">📊 Resultados</h3><div id="diag-resultados"></div>`; document.getElementById('diag-rodar')?.addEventListener('click', async (e) => { const btn = e.currentTarget; btn.disabled = true; btn.textContent = '🧪 Testando…'; await rodar(); btn.disabled = false; btn.textContent = '🔁 Rodar de novo'; }); };
   return { render, rodar };
@@ -2362,7 +2788,7 @@ const Guia = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════════
-   STORIES v3.0 — REESCRITO TOTALMENTE NO ESTILO INSTAGRAM
+   STORIES v3.0 — estilo Instagram
    ═══════════════════════════════════════════════════════════════ */
 const StoriesExt = (() => {
   const st = { grupos: [], meuGrupo: null, grupoAtual: 0, storyAtual: 0, timer: null, duracaoTotal: 5000, inicioStory: 0, pausado: false, playerEl: null, composeEl: null, confirmEl: null, cs: null, longPressTimer: null, carregando: false };
@@ -2370,14 +2796,13 @@ const StoriesExt = (() => {
   const el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h != null) e.innerHTML = h; return e; };
   const avatarHTML = (u, size) => { size = size || 'md'; const nome = (u && u.nome) || '?'; const av = u && u.avatar_url ? U.publicUrl(BUCKETS.AVATARS, u.avatar_url) : null; const admin = u && u.is_admin === true; const frame = u && u.admin_frame; const fAttr = admin && frame && frame !== 'none' ? ' data-frame="' + frame + '"' : ''; const aCls = admin && frame && frame !== 'none' ? ' x-avatar--admin' : ''; const inner = av ? `<img src="${U.escapeHtml(av)}" alt="">` : U.initials(nome); return `<div class="x-avatar x-avatar--${size} x-avatar--grad${aCls}"${fAttr}>${inner}</div>`; };
   const DBx = {
-    async listarGrupos() { const u = State.get('user'); const eu = u && u.id; const { data, error } = await sb.from('stories').select('id,user_id,tipo,midia_url,texto,cor_fundo,duracao_seg,visualizacoes,criado_em,autor:profiles!stories_user_id_fkey ( id,nome,avatar_url,is_admin,admin_frame )').eq('deletado', false).gt('expira_em', new Date().toISOString()).order('criado_em', { ascending: true }).limit(300); if (error) { console.warn('[Stx] listar:', error.message); return []; } const lista = data || []; let vistos = {}; if (eu) { const { data: rv } = await sb.from('story_views').select('story_id').eq('user_id', eu); (rv || []).forEach(v => { vistos[v.story_id] = true; }); } const map = {}; lista.forEach(s => { if (!s.autor) return; if (!map[s.user_id]) map[s.user_id] = { user: s.autor, stories: [], naoVistos: 0 }; const g = map[s.user_id]; g.stories.push({ id: s.id, tipo: s.tipo, midia_url: s.midia_url, texto: s.texto, cor_fundo: s.cor_fundo, duracao_seg: s.duracao_seg, visualizacoes: s.visualizacoes, criado_em: s.criado_em, visto: !!vistos[s.id] }); if (!vistos[s.id]) g.naoVistos++; }); const arr = Object.values(map); st.meuGrupo = arr.find(g => g.user.id === eu) || null; const outros = arr.filter(g => g.user.id !== eu).sort((a, b) => { const an = a.naoVistos > 0 ? 0 : 1; const bn = b.naoVistos > 0 ? 0 : 1; if (an !== bn) return an - bn; const at = new Date(a.stories[a.stories.length - 1].criado_em).getTime(); const bt = new Date(b.stories[b.stories.length - 1].criado_em).getTime(); return bt - at; }); st.grupos = (st.meuGrupo ? [st.meuGrupo] : []).concat(outros); return st.grupos; },
+    async listarGrupos() { const u = State.get('user'); const eu = u && u.id; const { data, error } = await sb.from('stories').select('id,user_id,tipo,midia_url,texto,cor_fundo,duracao_seg,visualizacoes,criado_em,autor:profiles!stories_user_id_fkey ( id,nome,avatar_url,is_admin,admin_frame )').eq('deletado', false).gt('expira_em', new Date().toISOString()).order('criado_em', { ascending: true }).limit(300); if (error) { logErr('[Stx] listar:', error.message); return []; } const lista = data || []; let vistos = {}; if (eu) { const { data: rv } = await sb.from('story_views').select('story_id').eq('user_id', eu); (rv || []).forEach(v => { vistos[v.story_id] = true; }); } const map = {}; lista.forEach(s => { if (!s.autor) return; if (!map[s.user_id]) map[s.user_id] = { user: s.autor, stories: [], naoVistos: 0 }; const g = map[s.user_id]; g.stories.push({ id: s.id, tipo: s.tipo, midia_url: s.midia_url, texto: s.texto, cor_fundo: s.cor_fundo, duracao_seg: s.duracao_seg, visualizacoes: s.visualizacoes, criado_em: s.criado_em, visto: !!vistos[s.id] }); if (!vistos[s.id]) g.naoVistos++; }); const arr = Object.values(map); st.meuGrupo = arr.find(g => g.user.id === eu) || null; const outros = arr.filter(g => g.user.id !== eu).sort((a, b) => { const an = a.naoVistos > 0 ? 0 : 1; const bn = b.naoVistos > 0 ? 0 : 1; if (an !== bn) return an - bn; const at = new Date(a.stories[a.stories.length - 1].criado_em).getTime(); const bt = new Date(b.stories[b.stories.length - 1].criado_em).getTime(); return bt - at; }); st.grupos = (st.meuGrupo ? [st.meuGrupo] : []).concat(outros); return st.grupos; },
     async criar({ tipo, midia_url, texto, cor_fundo }) { const u = State.get('user'); if (!u || !u.id) throw new Error('Não autenticado'); const { data, error } = await sb.from('stories').insert({ user_id: u.id, tipo, midia_url: midia_url || null, texto: texto || null, cor_fundo: cor_fundo || null, expira_em: new Date(Date.now() + 24 * 3600 * 1000).toISOString() }).select().single(); if (error) throw error; return data; },
-    async deletar(storyId) { const u = State.get('user'); if (!u || !u.id) throw new Error('Não autenticado'); const { data: s } = await sb.from('stories').select('user_id,midia_url').eq('id', storyId).maybeSingle(); if (!s || s.user_id !== u.id) throw new Error('Sem permissão'); if (s.midia_url) { try { await sb.storage.from(BUCKETS.STORIES).remove([s.midia_url]); } catch (e) { console.warn('[Stx] storage remove:', e); } } const { error } = await sb.from('stories').update({ deletado: true }).eq('id', storyId); if (error) throw error; return true; },
-    async view(storyId) { const u = State.get('user'); const eu = u && u.id; if (!eu) return; const { error } = await sb.from('story_views').upsert({ story_id: storyId, user_id: eu }, { onConflict: 'story_id,user_id', ignoreDuplicates: true }); if (error) { console.warn('[Stx] view:', error.message); return; } try { await sb.rpc('increment_story_view', { sid: storyId }); } catch (e) {} },
-    async reagir(storyId, emoji) { const u = State.get('user'); const eu = u && u.id; if (!eu) return; try { await sb.from('story_reactions').insert({ story_id: storyId, user_id: eu, emoji }); } catch (e) { console.warn('[Stx] reagir:', e); } },
+    async deletar(storyId) { const u = State.get('user'); if (!u || !u.id) throw new Error('Não autenticado'); const { data: s } = await sb.from('stories').select('user_id,midia_url').eq('id', storyId).maybeSingle(); if (!s || s.user_id !== u.id) throw new Error('Sem permissão'); if (s.midia_url) { try { await sb.storage.from(BUCKETS.STORIES).remove([s.midia_url]); } catch (e) {} } const { error } = await sb.from('stories').update({ deletado: true }).eq('id', storyId); if (error) throw error; return true; },
+    async view(storyId) { const u = State.get('user'); const eu = u && u.id; if (!eu) return; const { error } = await sb.from('story_views').upsert({ story_id: storyId, user_id: eu }, { onConflict: 'story_id,user_id', ignoreDuplicates: true }); if (error) return; try { await sb.rpc('increment_story_view', { sid: storyId }); } catch (e) {} },
+    async reagir(storyId, emoji) { const u = State.get('user'); const eu = u && u.id; if (!eu) return; try { await sb.from('story_reactions').insert({ story_id: storyId, user_id: eu, emoji }); } catch (e) {} },
     async upload(file) { const u = State.get('user'); const eu = u && u.id; if (!eu) throw new Error('Não autenticado'); const blob = await U.resizeImage(file, 1080, 0.82); const path = `${eu}/${Date.now()}-${Math.random().toString(36).slice(2, 7)}.jpg`; const { error } = await sb.storage.from(BUCKETS.STORIES).upload(path, blob, { contentType: 'image/jpeg', upsert: false }); if (error) throw error; return path; }
   };
-
   async function renderStrip() {
     const strip = document.getElementById('stories-strip');
     if (!strip) return;
@@ -2392,24 +2817,11 @@ const StoriesExt = (() => {
     let html = '';
     const meuCls = temMeuStory ? 'story-item--vivo' : 'story-item--add';
     html += `<button type="button" class="story-item ${meuCls}" data-stx="meu"><div class="story-item__ring"><div class="story-item__ring-inner">${avatarHTML(eu, 'xl')}</div></div>${temMeuStory ? '<span class="story-item__badge">👁</span>' : '<span class="story-item__plus">+</span>'}<span class="story-nome">Seu story</span></button>`;
-    st.grupos.forEach(g => {
-      if (g.user.id === eu.id) return;
-      const temNovo = g.naoVistos > 0;
-      const cls = temNovo ? 'story-item--novo' : 'story-item--visto';
-      const badge = temNovo ? `<span class="story-item__badge">${g.naoVistos > 9 ? '9+' : g.naoVistos}</span>` : '';
-      html += `<button type="button" class="story-item ${cls}" data-stx="${U.escapeHtml(g.user.id)}"><div class="story-item__ring"><div class="story-item__ring-inner">${avatarHTML(g.user, 'xl')}</div></div>${badge}<span class="story-nome">${U.escapeHtml((g.user.nome || '').split(' ')[0] || 'Anônimo')}</span></button>`;
-    });
+    st.grupos.forEach(g => { if (g.user.id === eu.id) return; const temNovo = g.naoVistos > 0; const cls = temNovo ? 'story-item--novo' : 'story-item--visto'; const badge = temNovo ? `<span class="story-item__badge">${g.naoVistos > 9 ? '9+' : g.naoVistos}</span>` : ''; html += `<button type="button" class="story-item ${cls}" data-stx="${U.escapeHtml(g.user.id)}"><div class="story-item__ring"><div class="story-item__ring-inner">${avatarHTML(g.user, 'xl')}</div></div>${badge}<span class="story-nome">${U.escapeHtml((g.user.nome || '').split(' ')[0] || 'Anônimo')}</span></button>`; });
     strip.innerHTML = html;
     strip.classList.remove('hidden');
-    strip.querySelectorAll('[data-stx]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = btn.dataset.stx;
-        if (id === 'meu') { if (temMeuStory) abrirPlayer(eu.id, 0); else abrirCompose(); }
-        else { abrirPlayer(id, 0); }
-      });
-    });
+    strip.querySelectorAll('[data-stx]').forEach(btn => { btn.addEventListener('click', () => { const id = btn.dataset.stx; if (id === 'meu') { if (temMeuStory) abrirPlayer(eu.id, 0); else abrirCompose(); } else { abrirPlayer(id, 0); } }); });
   }
-
   function criarPlayer() {
     if (st.playerEl) return st.playerEl;
     const p = el('div', 'stx-player');
@@ -2422,14 +2834,12 @@ const StoriesExt = (() => {
     p.querySelectorAll('[data-react]').forEach(b => { b.addEventListener('click', (e) => { e.stopPropagation(); reagir(b.dataset.react, b); }); });
     p.querySelector('[data-reply-form]').addEventListener('submit', (e) => { e.preventDefault(); enviarResposta(); });
     document.addEventListener('keydown', (e) => { if (!p.classList.contains('is-open')) return; if (e.key === 'Escape') fecharPlayer(); if (e.key === 'ArrowLeft') navegar(-1); if (e.key === 'ArrowRight') navegar(1); });
-    const stage = p.querySelector('[data-stage]');
-    const pauseInd = p.querySelector('[data-pause-indicator]');
+    const stage = p.querySelector('[data-stage]'); const pauseInd = p.querySelector('[data-pause-indicator]');
     stage.addEventListener('pointerdown', () => { st.longPressTimer = setTimeout(() => { pausarTimer(); st.pausado = true; pauseInd.classList.add('is-visible'); }, 200); });
     stage.addEventListener('pointerup', () => { clearTimeout(st.longPressTimer); if (st.pausado) { st.pausado = false; pauseInd.classList.remove('is-visible'); retomarTimer(); } });
     stage.addEventListener('pointerleave', () => { clearTimeout(st.longPressTimer); if (st.pausado) { st.pausado = false; pauseInd.classList.remove('is-visible'); retomarTimer(); } });
     return p;
   }
-
   async function abrirPlayer(userId, idx) { idx = idx || 0; await DBx.listarGrupos(); let gi = -1; st.grupos.forEach((g, i) => { if (g.user.id === userId) gi = i; }); if (gi === -1) { U.toast('Nenhum story pra ver', 2000, 'info'); return; } st.grupoAtual = gi; st.storyAtual = idx; criarPlayer(); st.playerEl.classList.add('is-open'); document.body.style.overflow = 'hidden'; renderStory(); }
   function fecharPlayer() { if (!st.playerEl) return; pausarTimer(); st.pausado = false; st.playerEl.classList.remove('is-open'); document.body.style.overflow = ''; renderStrip(); }
   function navegar(delta) { const g = st.grupos[st.grupoAtual]; if (!g) { fecharPlayer(); return; } const novo = st.storyAtual + delta; if (novo < 0) { if (st.grupoAtual > 0) { st.grupoAtual--; st.storyAtual = st.grupos[st.grupoAtual].stories.length - 1; renderStory(); } else { renderStory(); } } else if (novo >= g.stories.length) { if (st.grupoAtual < st.grupos.length - 1) { st.grupoAtual++; st.storyAtual = 0; renderStory(); } else { fecharPlayer(); } } else { st.storyAtual = novo; renderStory(); } }
@@ -2437,7 +2847,6 @@ const StoriesExt = (() => {
   function retomarTimer() { const g = st.grupos[st.grupoAtual]; if (!g) return; const s = g.stories[st.storyAtual]; if (!s) return; agendarAvancar(s.duracao_seg || 5); }
   function agendarAvancar(seg) { if (st.timer) clearTimeout(st.timer); st.duracaoTotal = seg * 1000; st.inicioStory = Date.now(); const bar = st.playerEl && st.playerEl.querySelector('.stx-bar.is-current .stx-bar__fill'); if (bar) { bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = `stxProgress ${seg}s linear forwards`; } st.timer = setTimeout(() => { navegar(1); }, st.duracaoTotal); }
   function corIndex(c) { const i = cores.indexOf(c); return i >= 0 ? i : 0; }
-
   function renderStory() {
     const p = st.playerEl; const g = st.grupos[st.grupoAtual];
     if (!g) { fecharPlayer(); return; }
@@ -2459,7 +2868,6 @@ const StoriesExt = (() => {
     if (ehMeu) { views.style.display = 'flex'; views.querySelector('[data-views-n]').textContent = U.formatNum(s.visualizacoes || 0); } else { views.style.display = 'none'; DBx.view(s.id); }
     agendarAvancar(s.duracao_seg || 5);
   }
-
   function reagir(emoji, btn) {
     const g = st.grupos[st.grupoAtual]; if (!g) return;
     const s = g.stories[st.storyAtual]; if (!s) return;
@@ -2468,9 +2876,8 @@ const StoriesExt = (() => {
       for (let i = 0; i < 6; i++) { setTimeout(() => { const h = document.createElement('div'); h.className = 'stx-heart'; h.textContent = emoji; h.style.right = (20 + Math.random() * 60) + 'px'; h.style.setProperty('--rot', (Math.random() * 60 - 30) + 'deg'); st.playerEl.appendChild(h); setTimeout(() => h.remove(), 2000); }, i * 90); }
       const u = State.get('user');
       if (g.user.id !== (u && u.id)) { try { DB.notificacoes.criar({ user_id: g.user.id, tipo: 'reacao', ator_id: u && u.id, ref_id: s.id, texto: `reagiu ${emoji} ao seu story` }); } catch (e) {} }
-    }).catch(e => console.warn('[Stx] reagir:', e));
+    }).catch(e => logErr('[Stx] reagir:', e));
   }
-
   function enviarResposta() {
     const g = st.grupos[st.grupoAtual]; if (!g) return;
     const s = g.stories[st.storyAtual]; if (!s) return;
@@ -2482,10 +2889,8 @@ const StoriesExt = (() => {
     inp.value = '';
     DB.mensagens.send(g.user.id, `↩️ Story: ${txt}`).then(() => { U.toast('Mensagem enviada 💬', 2000, 'sucesso'); }).catch(() => { U.toast('Não foi possível responder', 2200, 'erro'); });
   }
-
   function criarConfirm() { if (st.confirmEl) return st.confirmEl; const c = el('div', 'stx-confirm'); c.innerHTML = `<div class="stx-confirm__card"><div class="stx-confirm__icon">🗑️</div><div class="stx-confirm__title">Deletar story?</div><div class="stx-confirm__text">Esta ação não pode ser desfeita. O story será removido permanentemente.</div><div class="stx-confirm__actions"><button type="button" class="stx-confirm__btn stx-confirm__btn--cancel" data-cancel>Cancelar</button><button type="button" class="stx-confirm__btn stx-confirm__btn--confirm" data-confirm>Deletar</button></div></div>`; document.body.appendChild(c); st.confirmEl = c; c.addEventListener('click', (e) => { if (e.target === c) fecharConfirm(); }); c.querySelector('[data-cancel]').addEventListener('click', fecharConfirm); return c; }
   function fecharConfirm() { if (!st.confirmEl) return; st.confirmEl.classList.remove('is-open'); st._pendingDelete = null; }
-
   function confirmarDelecao(storyId) {
     criarConfirm(); st._pendingDelete = storyId; st.confirmEl.classList.add('is-open');
     const btn = st.confirmEl.querySelector('[data-confirm]');
@@ -2502,21 +2907,16 @@ const StoriesExt = (() => {
         if (g) { g.stories = g.stories.filter(x => x.id !== id); if (g.stories.length === 0) { st.grupos = st.grupos.filter(gr => gr !== g); st.grupoAtual = Math.min(st.grupoAtual, st.grupos.length - 1); } }
         if (st.grupos.length === 0) { fecharPlayer(); } else { st.storyAtual = Math.min(st.storyAtual, st.grupos[st.grupoAtual]?.stories.length - 1 || 0); if (st.grupos[st.grupoAtual]?.stories.length === 0) { st.grupoAtual = Math.min(st.grupoAtual, st.grupos.length - 1); } renderStory(); }
         renderStrip();
-      } catch (e) { console.warn('[Stx] deletar:', e); U.toast('Erro ao deletar', 2400, 'erro'); } finally { novoBtn.classList.remove('is-loading'); }
+      } catch (e) { logErr('[Stx] deletar:', e); U.toast('Erro ao deletar', 2400, 'erro'); } finally { novoBtn.classList.remove('is-loading'); }
     });
   }
-
   function abrirCompose() { if (!State.isLogged()) { U.toast('Entre para postar', 2000, 'info'); return; } if (!st.composeEl) criarCompose(); st.cs = { tipo: 'foto', file: null, texto: '', cor: 0, enviando: false }; st.composeEl.classList.add('is-open'); document.body.style.overflow = 'hidden'; renderCompose(); }
   function fecharCompose() { if (!st.composeEl) return; st.composeEl.classList.remove('is-open'); document.body.style.overflow = ''; }
   function criarCompose() { const c = el('div', 'stx-compose'); c.innerHTML = `<div class="stx-compose__head"><div class="stx-compose__title">Novo story</div><button type="button" class="stx-compose__close" data-fechar aria-label="Fechar">✕</button></div><div class="stx-compose__body" data-body></div><div class="stx-compose__foot"><button type="button" class="stx-publish" data-publicar disabled>Publicar story</button><div class="stx-compose__progress" data-progress><span>📤</span><span>Enviando…</span></div></div>`; document.body.appendChild(c); st.composeEl = c; c.querySelector('[data-fechar]').addEventListener('click', fecharCompose); c.querySelector('[data-publicar]').addEventListener('click', publicar); return c; }
-
   function renderCompose() {
     const body = st.composeEl.querySelector('[data-body]'); const cs = st.cs;
-    if (cs.tipo === 'foto') {
-      body.innerHTML = `<div class="stx-tabs"><button type="button" class="stx-tab is-active" data-t="foto">📷 Foto</button><button type="button" class="stx-tab" data-t="texto">✍️ Texto</button></div><div class="stx-dropzone" data-drop>${cs.file ? `<img src="${URL.createObjectURL(cs.file)}" alt="">` : `<span style="font-size:52px">📷</span><span class="stx-dropzone__hint">Toque para escolher<br>uma foto</span>`}<input type="file" accept="image/*" capture="environment"></div><textarea class="x-field__textarea" data-legenda placeholder="Legenda (opcional)…" maxlength="200" rows="2">${U.escapeHtml(cs.texto)}</textarea>`;
-    } else {
-      body.innerHTML = `<div class="stx-tabs"><button type="button" class="stx-tab" data-t="foto">📷 Foto</button><button type="button" class="stx-tab is-active" data-t="texto">✍️ Texto</button></div><textarea class="stx-compose__texto ${cores[cs.cor]}" data-texto placeholder="Digite algo…" maxlength="280">${U.escapeHtml(cs.texto)}</textarea><div class="stx-cores">${cores.map((c, i) => `<div class="stx-cor ${c} ${i === cs.cor ? 'is-active' : ''}" data-cor="${i}"></div>`).join('')}</div>`;
-    }
+    if (cs.tipo === 'foto') { body.innerHTML = `<div class="stx-tabs"><button type="button" class="stx-tab is-active" data-t="foto">📷 Foto</button><button type="button" class="stx-tab" data-t="texto">✍️ Texto</button></div><div class="stx-dropzone" data-drop>${cs.file ? `<img src="${URL.createObjectURL(cs.file)}" alt="">` : `<span style="font-size:52px">📷</span><span class="stx-dropzone__hint">Toque para escolher<br>uma foto</span>`}<input type="file" accept="image/*" capture="environment"></div><textarea class="x-field__textarea" data-legenda placeholder="Legenda (opcional)…" maxlength="200" rows="2">${U.escapeHtml(cs.texto)}</textarea>`; }
+    else { body.innerHTML = `<div class="stx-tabs"><button type="button" class="stx-tab" data-t="foto">📷 Foto</button><button type="button" class="stx-tab is-active" data-t="texto">✍️ Texto</button></div><textarea class="stx-compose__texto ${cores[cs.cor]}" data-texto placeholder="Digite algo…" maxlength="280">${U.escapeHtml(cs.texto)}</textarea><div class="stx-cores">${cores.map((c, i) => `<div class="stx-cor ${c} ${i === cs.cor ? 'is-active' : ''}" data-cor="${i}"></div>`).join('')}</div>`; }
     body.querySelectorAll('[data-t]').forEach(t => { t.classList.toggle('is-active', t.dataset.t === cs.tipo); t.addEventListener('click', () => { cs.tipo = t.dataset.t; renderCompose(); }); });
     const fileInp = body.querySelector('input[type=file]');
     if (fileInp) fileInp.addEventListener('change', (e) => { const f = e.target.files && e.target.files[0]; if (!f) return; if (f.size > 12 * 1024 * 1024) { U.toast('Máx 12MB', 2200, 'erro'); return; } cs.file = f; renderCompose(); });
@@ -2525,9 +2925,7 @@ const StoriesExt = (() => {
     body.querySelectorAll('[data-cor]').forEach(cEl => { cEl.addEventListener('click', () => { cs.cor = parseInt(cEl.dataset.cor); body.querySelectorAll('[data-cor]').forEach(x => x.classList.toggle('is-active', x === cEl)); if (textoArea) { cores.forEach(c => textoArea.classList.remove(c)); textoArea.classList.add(cores[cs.cor]); } }); });
     atualizarPublicar();
   }
-
   function atualizarPublicar() { const btn = st.composeEl && st.composeEl.querySelector('[data-publicar]'); if (!btn) return; const cs = st.cs; const ok = cs.tipo === 'foto' ? !!cs.file : (cs.texto || '').trim().length > 0; btn.disabled = !ok || cs.enviando; }
-
   async function publicar() {
     const cs = st.cs; if (cs.enviando) return;
     cs.enviando = true; atualizarPublicar();
@@ -2543,70 +2941,62 @@ const StoriesExt = (() => {
       fecharCompose();
       await renderStrip();
       setTimeout(() => { const u = State.get('user'); if (u && u.id) abrirPlayer(u.id, 0); }, 400);
-    } catch (e) { console.warn('[Stx] publicar:', e); U.toast('Erro: ' + (e.message || ''), 3000, 'erro'); } finally { cs.enviando = false; if (btn && btn.isConnected) { btn.textContent = orig; atualizarPublicar(); } if (prog) prog.classList.remove('is-active'); }
+    } catch (e) { logErr('[Stx] publicar:', e); U.toast('Erro: ' + (e.message || ''), 3000, 'erro'); } finally { cs.enviando = false; if (btn && btn.isConnected) { btn.textContent = orig; atualizarPublicar(); } if (prog) prog.classList.remove('is-active'); }
   }
-
   const init = () => {
-    console.log('%c[Stx] ⏳ Stories v3.0 (Instagram) iniciando…', 'color:#D96754;font-weight:bold');
-    sb.from('stories').select('id', { count: 'exact', head: true }).then(r => { if (r.error) { console.error('%c[Stx] ❌ Tabela stories: ' + r.error.message, 'color:#C2503E;font-weight:bold'); } else { console.log('%c[Stx] ✅ Tabela stories OK', 'color:#2D8659;font-weight:bold'); } });
+    log('Stx: Stories v3.0 (Instagram) iniciando…');
     State.on('view:change', (v) => { if (v === 'feed' && State.isLogged()) setTimeout(renderStrip, 150); });
     State.on('change:user', () => { if (State.isLogged()) setTimeout(renderStrip, 300); });
     if (State.isLogged()) setTimeout(renderStrip, 400);
     setInterval(() => { if (State.get('view') === 'feed' && State.isLogged()) renderStrip(); }, 60000);
-    console.log('%c[Stx] ✨ Stories v3.0 prontos', 'color:#D96754;font-weight:bold');
+    log('Stx: Stories v3.0 prontos');
   };
-
   return { init, renderStrip, abrirCompose, abrirPlayer, _st: st, _DBx: DBx };
 })();
-</script>
 
-<script>
 const App = (() => {
   const mostrarLanding = () => { U.hide('#auth'); U.hide('#app'); U.show('#landing'); };
   const mostrarApp = () => { U.hide('#auth'); U.hide('#landing'); U.show('#app'); };
   const VIEWS = ['feed', 'explorar', 'zeladoria', 'chat', 'perfil', 'notif', 'convite', 'guia'];
-  const irPara = (v) => {
-    if (!VIEWS.includes(v)) v = 'feed';
-    State.setView(v);
-    if (location.hash !== '#' + v) history.replaceState(null, '', '#' + v);
-  };
+  const irPara = (v) => { if (!VIEWS.includes(v)) v = 'feed'; State.setView(v); if (location.hash !== '#' + v) history.replaceState(null, '', '#' + v); };
 
   const bindTabbar = () => {
-    document.querySelectorAll('.tab').forEach(t => {
-      t.addEventListener('click', () => {
-        if (t.dataset.view) irPara(t.dataset.view);
-      });
-    });
+    document.querySelectorAll('.tab').forEach(t => { t.addEventListener('click', () => { if (t.dataset.view) irPara(t.dataset.view); }); });
     document.getElementById('btn-notif')?.addEventListener('click', () => irPara('notif'));
   };
 
   const bindNewPostButtons = () => {
-    const handleNewPost = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      try { Composer.abrir(); } catch (err) { logErr('new-post:', err); }
-    };
+    const handleNewPost = (e) => { e.preventDefault(); e.stopPropagation(); try { Composer.abrir(); } catch (err) { logErr('new-post:', err); } };
     document.getElementById('fab-novo-post')?.addEventListener('click', handleNewPost);
     document.querySelectorAll('[data-action="new-post"]').forEach(btn => btn.addEventListener('click', handleNewPost));
-    document.addEventListener('click', (e) => {
-      const alvo = e.target.closest('[data-action="new-post"]');
-      if (alvo && !alvo.dataset._bound) {
-        alvo.dataset._bound = '1';
-        alvo.addEventListener('click', handleNewPost);
-      }
+    document.addEventListener('click', (e) => { const alvo = e.target.closest('[data-action="new-post"]'); if (alvo && !alvo.dataset._bound) { alvo.dataset._bound = '1'; alvo.addEventListener('click', handleNewPost); } });
+  };
+
+  const bindChatSubtabs = () => {
+    const btnConversas = document.getElementById('chat-sub-conversas');
+    const btnGrupos = document.getElementById('chat-sub-grupos');
+    const abaConversas = document.getElementById('chat-aba-conversas');
+    const abaGrupos = document.getElementById('chat-aba-grupos');
+    btnConversas?.addEventListener('click', () => {
+      btnConversas.classList.add('is-active');
+      btnGrupos?.classList.remove('is-active');
+      abaConversas?.classList.remove('hidden');
+      abaGrupos?.classList.add('hidden');
+    });
+    btnGrupos?.addEventListener('click', () => {
+      btnGrupos.classList.add('is-active');
+      btnConversas?.classList.remove('is-active');
+      abaGrupos?.classList.remove('hidden');
+      abaConversas?.classList.add('hidden');
+      try { Grupos.carregarLista(); } catch (e) { logErr('grupos carregar:', e); }
     });
   };
 
   const init = async () => {
-    log('🚀 Inicializando Orixi v21.0 — Stories Instagram + Trending Topics Edition…');
-
-    // 1. Tema / Skins
+    log('🚀 Inicializando Orixi v22.0 — Grupos WhatsApp Edition…');
     SkinSwitcher.init();
-
-    // 2. Estado / Auth
     await State.init();
 
-    // 3. Módulos core
     try { Auth.init(); } catch (e) { logErr('Auth:', e); }
     try { Badges.init(); } catch (e) { logErr('Badges:', e); }
     try { Feed.init(); } catch (e) { logErr('Feed:', e); }
@@ -2617,6 +3007,7 @@ const App = (() => {
     try { TabbarBadges.init(); } catch (e) { logErr('TabbarBadges:', e); }
     try { Search.init(); } catch (e) { logErr('Search:', e); }
     try { Chat.init(); } catch (e) { logErr('Chat:', e); }
+    try { Grupos.init(); } catch (e) { logErr('Grupos:', e); }
     try { LevelBar.init(); } catch (e) { logErr('LevelBar:', e); }
     try { LevelUp.init(); } catch (e) { logErr('LevelUp:', e); }
     try { Welcome.init(); } catch (e) { logErr('Welcome:', e); }
@@ -2628,50 +3019,26 @@ const App = (() => {
     try { StoriesExt.init(); } catch (e) { logErr('StoriesExt:', e); }
     try { Trending.init(); } catch (e) { logErr('Trending:', e); }
 
-    // 4. Bindings globais
     bindTabbar();
     bindNewPostButtons();
+    bindChatSubtabs();
 
-    // 5. Decide qual tela mostrar
     if (State.isLogged()) {
       mostrarApp();
       irPara('feed');
-      if (State.isAdmin()) {
-        setTimeout(() => U.toast('👑 Bem-vindo, Admin!', 3000, 'sucesso'), 800);
-      }
+      if (State.isAdmin()) setTimeout(() => U.toast('👑 Bem-vindo, Admin!', 3000, 'sucesso'), 800);
     } else {
       mostrarLanding();
     }
 
-    // 6. Listeners globais
-    window.addEventListener('hashchange', () => {
-      if (State.isLogged()) irPara((location.hash || '').replace('#', '') || 'feed');
-    });
-    window.addEventListener('orixi:logged', () => {
-      mostrarApp();
-      irPara('feed');
-    });
+    window.addEventListener('hashchange', () => { if (State.isLogged()) irPara((location.hash || '').replace('#', '') || 'feed'); });
+    window.addEventListener('orixi:logged', () => { mostrarApp(); irPara('feed'); });
 
-    // Ripple universal
     document.addEventListener('pointerdown', (e) => U.ripple(e));
 
-    // 7. API pública para debug
-    window.Orixi = {
-      ir: irPara,
-      state: State,
-      db: DB,
-      zdb: ZDB,
-      comercio: ComercioDB,
-      xp: State.addXP,
-      stories: StoriesExt,
-      trending: Trending,
-      _app: App
-    };
+    window.Orixi = { ir: irPara, state: State, db: DB, zdb: ZDB, comercio: ComercioDB, xp: State.addXP, stories: StoriesExt, trending: Trending, grupos: Grupos, _app: App };
 
-    // 8. Aviso de responsividade
-    window.addEventListener('resize', () => {
-      document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
-    });
+    window.addEventListener('resize', () => { document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px'); });
     window.dispatchEvent(new Event('resize'));
 
     log('✅ Pronto — Bem-vindo a Oriximiná');
@@ -2680,7 +3047,6 @@ const App = (() => {
   return { irPara, init };
 })();
 
-// ─── Bootstrap ───
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => App.init());
 } else {
