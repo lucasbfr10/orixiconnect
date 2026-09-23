@@ -206,7 +206,6 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;back
 :root[data-theme="dark"][data-skin="vidro"]{--bg-canvas:#0D0E1F;--bg-surface:rgba(30,30,60,.55);--bg-surface-alt:rgba(30,30,60,.42);--fg-primary:#E8E4FF;--fg-secondary:#9B96C8;--accent:#8B8FF5;}
 :root[data-theme="dark"][data-skin="brasil"]{--bg-canvas:#150608;--bg-surface:#200A0D;--bg-surface-alt:#2A0F13;--fg-primary:#F8E6D5;--fg-secondary:#C89B7A;--accent:#F0705A;}
 
-/* ─────────── RESET + BASE ─────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;scroll-behavior:smooth;font-size:16px;height:100%}
 body{font-family:var(--font-sans);font-size:var(--text-body);line-height:var(--lh-relaxed);color:var(--fg-primary);background:var(--bg-canvas);min-height:100dvh;overscroll-behavior-y:none;overflow-x:hidden;letter-spacing:var(--track-normal);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-feature-settings:"ss01","cv11","cv02";transition:background-color var(--dur-slow) var(--ease-calm),color var(--dur-slow) var(--ease-calm);position:relative}
@@ -234,7 +233,6 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .row{display:flex;align-items:center}
 .grow{flex:1;min-width:0}
 
-/* ─────────── BOTÕES ─────────── */
 .x-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:var(--space-xs);padding:var(--space-md) var(--space-xl);font-family:var(--font-sans);font-size:var(--text-body);font-weight:var(--fw-semibold);line-height:1;border-radius:var(--radius-pill);border:1.5px solid transparent;white-space:nowrap;cursor:pointer;user-select:none;transition:all var(--dur-base) var(--ease-glide);isolation:isolate;transform:translateZ(0);overflow:hidden;-webkit-tap-highlight-color:transparent}
 .x-btn::before{content:'';position:absolute;inset:0;background:var(--gradient-shine);opacity:0;transition:opacity var(--dur-base) var(--ease-glide);pointer-events:none;}
 .x-btn:hover::before{opacity:.6;animation:shineSlide 1.6s var(--ease-glide) infinite}
@@ -331,7 +329,6 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .x-empty__title{font-family:var(--font-display);font-size:var(--text-headline);font-weight:var(--fw-black);color:var(--fg-primary);margin-bottom:var(--space-sm);letter-spacing:var(--track-tight)}
 .x-empty__text{font-size:var(--text-body);line-height:var(--lh-loose);color:var(--fg-secondary);max-width:360px;margin:0 auto var(--space-xl)}
 
-/* ✅ NOVO: estilos para o input "Outro" de bairros */
 .bairro-custom-wrap{grid-column:1 / -1;margin-top:6px;padding:10px 12px;background:var(--bg-surface-alt);border:1.5px dashed var(--accent);border-radius:var(--radius-md);animation:bairroCustomIn .35s var(--ease-glide) both}
 @keyframes bairroCustomIn{from{opacity:0;transform:translateY(-6px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 .bairro-custom-wrap .x-field__input{border-color:var(--accent);background:var(--bg-surface)}
@@ -1162,7 +1159,90 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .delpost-confirm__aviso-admin{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:linear-gradient(135deg,rgba(219,168,74,.18),rgba(240,198,116,.12));border:1px solid rgba(219,168,74,.45);border-radius:999px;font-size:11px;font-weight:800;color:#8A621E;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
 </style>
 
+<style id="orixiperformance-css">
+.perf-panel{margin-bottom:var(--space-xl)}
+.perf-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:var(--space-lg)}
+.perf-metric{padding:14px;background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:var(--radius-lg);position:relative;overflow:hidden;transition:all var(--dur-fast)}
+.perf-metric::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient-primary);background-size:200% 100%;animation:gradientShift 6s linear infinite}
+.perf-metric.is-good::before{background:linear-gradient(90deg,#2D8659,#6EC19A,#2D8659)}
+.perf-metric.is-warn::before{background:linear-gradient(90deg,#DBA84A,#F0C674,#DBA84A)}
+.perf-metric.is-bad::before{background:linear-gradient(90deg,#C2503E,#E87C6E,#C2503E)}
+.perf-metric__label{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-secondary);display:block;margin-bottom:6px}
+.perf-metric__value{font-family:var(--font-display);font-size:clamp(20px,3vw,26px);font-weight:900;color:var(--fg-primary);line-height:1;display:block;letter-spacing:-.02em}
+.perf-metric__hint{font-size:10px;color:var(--fg-tertiary);display:block;margin-top:4px;font-weight:600}
+.perf-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:var(--radius-lg);margin-bottom:8px;cursor:pointer;transition:all var(--dur-fast);position:relative}
+.perf-toggle:hover{border-color:var(--border-subtle);transform:translateX(2px)}
+.perf-toggle.is-on{background:linear-gradient(135deg,rgba(45,134,89,.08),var(--bg-surface));border-color:rgba(45,134,89,.35)}
+.perf-toggle__icon{width:40px;height:40px;border-radius:12px;background:var(--bg-sunken);display:inline-flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;transition:all var(--dur-fast)}
+.perf-toggle.is-on .perf-toggle__icon{background:linear-gradient(135deg,#2D8659,#6EC19A);color:#fff;box-shadow:0 6px 16px -4px rgba(45,134,89,.5)}
+.perf-toggle__body{flex:1;min-width:0}
+.perf-toggle__title{font-size:13px;font-weight:800;color:var(--fg-primary);display:block;margin-bottom:2px}
+.perf-toggle__desc{font-size:11px;color:var(--fg-secondary);display:block;line-height:1.35}
+.perf-toggle__switch{width:48px;height:28px;border-radius:999px;background:var(--border-default);position:relative;flex-shrink:0;transition:background var(--dur-fast)}
+.perf-toggle__switch::after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform var(--dur-fast) var(--ease-bounce);box-shadow:0 2px 6px rgba(0,0,0,.18)}
+.perf-toggle.is-on .perf-toggle__switch{background:#2D8659}
+.perf-toggle.is-on .perf-toggle__switch::after{transform:translateX(20px)}
+.perf-action-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.perf-action-row .x-btn{flex:1;min-width:130px}
+.perf-score{display:flex;align-items:center;gap:16px;padding:20px;background:linear-gradient(135deg,rgba(45,134,89,.12),rgba(240,198,116,.06));border:1.5px solid rgba(45,134,89,.35);border-radius:var(--radius-2xl);margin-bottom:var(--space-lg);position:relative;overflow:hidden}
+.perf-score::before{content:'';position:absolute;inset:0;background:conic-gradient(from 0deg,transparent 0%,rgba(255,255,255,.14) 50%,transparent 100%);animation:gradientShift 5s linear infinite;pointer-events:none}
+.perf-score__ring{position:relative;width:86px;height:86px;flex-shrink:0}
+.perf-score__ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.perf-score__ring circle{fill:none;stroke-width:6;stroke-linecap:round}
+.perf-score__ring .bg{stroke:var(--border-hairline)}
+.perf-score__ring .fg{stroke:url(#perfGrad);stroke-dasharray:251.2;transition:stroke-dashoffset 1.2s var(--ease-glide)}
+.perf-score__ring-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--font-display);font-size:26px;font-weight:900;color:var(--fg-primary);line-height:1}
+.perf-score__info{flex:1;min-width:0;position:relative;z-index:1}
+.perf-score__title{font-family:var(--font-display);font-size:18px;font-weight:900;color:var(--fg-primary);letter-spacing:-.02em;margin-bottom:4px}
+.perf-score__desc{font-size:12px;color:var(--fg-secondary);line-height:1.5}
+.perf-score__desc b{color:var(--fg-primary);font-weight:700}
+.perf-live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2D8659;box-shadow:0 0 0 0 rgba(45,134,89,.7);animation:pulseDot 2.4s var(--ease-calm) infinite;margin-right:5px;vertical-align:middle}
+.perf-section-title{font-family:var(--font-display);font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-secondary);padding:14px 2px 8px;display:flex;align-items:center;gap:8px}
+.perf-section-title::after{content:'';flex:1;height:1px;background:var(--border-hairline)}
+.perf-chart{height:48px;display:flex;align-items:flex-end;gap:2px;padding:10px;background:var(--bg-sunken);border-radius:var(--radius-md);margin-top:10px;overflow:hidden}
+.perf-chart__bar{flex:1;background:linear-gradient(180deg,var(--accent),var(--accent-hover));border-radius:2px 2px 0 0;min-height:3px;transition:height .4s var(--ease-glide);position:relative}
+.perf-chart__bar--slow{background:linear-gradient(180deg,#DBA84A,#B8862C)}
+.perf-chart__bar--bad{background:linear-gradient(180deg,#E87C6E,#C2503E)}
+.perf-diag-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:10px;margin-bottom:6px;font-size:13px;transition:all var(--dur-fast)}
+.perf-diag-item:hover{border-color:var(--border-subtle);transform:translateX(2px)}
+.perf-diag-item__icon{font-size:17px;flex-shrink:0}
+.perf-diag-item__name{flex:1;color:var(--fg-primary);font-weight:700}
+.perf-diag-item__value{font-size:12px;font-weight:800;color:var(--fg-secondary)}
+.perf-mode-preset{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.perf-preset{padding:14px 10px;background:var(--bg-surface);border:1.5px solid var(--border-subtle);border-radius:var(--radius-md);cursor:pointer;text-align:center;transition:all var(--dur-fast);position:relative;overflow:hidden}
+.perf-preset:hover{transform:translateY(-2px);border-color:var(--border-strong);box-shadow:var(--shadow-md)}
+.perf-preset.is-active{background:var(--gradient-primary);color:#fff;border-color:transparent;box-shadow:var(--shadow-accent)}
+.perf-preset__icon{font-size:24px;display:block;margin-bottom:4px}
+.perf-preset__name{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.perf-preset__desc{font-size:9.5px;opacity:.8;display:block;margin-top:2px;font-weight:600}
+.perf-alert{padding:12px 14px;background:var(--warning-soft);border:1px solid rgba(219,168,74,.35);border-radius:var(--radius-md);font-size:12px;color:var(--fg-primary);font-weight:600;display:flex;align-items:flex-start;gap:8px;margin-top:12px;line-height:1.5}
+.perf-alert__icon{font-size:16px;flex-shrink:0}
+.perf-subtabs{display:flex;gap:4px;padding:4px;background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:var(--radius-pill);margin-bottom:var(--space-lg);overflow-x:auto;scrollbar-width:none}
+.perf-subtabs::-webkit-scrollbar{display:none}
+.perf-subtab{flex:1;min-width:90px;padding:10px 14px;background:transparent;border:0;border-radius:var(--radius-pill);cursor:pointer;font-size:12px;font-weight:800;color:var(--fg-secondary);display:flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap;transition:all var(--dur-fast)}
+.perf-subtab:hover{color:var(--fg-primary);background:var(--bg-surface-alt)}
+.perf-subtab.is-active{background:linear-gradient(135deg,#F0C674,#DBA84A,#B8862C);color:#fff;box-shadow:0 0 20px rgba(219,168,74,.5)}
+:root[data-perf-ghost="true"] .ambient-glow,
+:root[data-perf-ghost="true"] body::before,
+:root[data-perf-ghost="true"] .levelup-ring,
+:root[data-perf-ghost="true"] .levelup-ring--2{display:none !important}
+:root[data-perf-ghost="true"] .x-post,
+:root[data-perf-ghost="true"] .x-card,
+:root[data-perf-ghost="true"] .metric,
+:root[data-perf-ghost="true"] .feature,
+:root[data-perf-ghost="true"] .tab,
+:root[data-perf-ghost="true"] .x-chip,
+:root[data-perf-ghost="true"] .x-btn,
+:root[data-perf-ghost="true"] .story-item__ring,
+:root[data-perf-ghost="true"] .app__brand-mark,
+:root[data-perf-ghost="true"] .x-avatar--grad,
+:root[data-perf-ghost="true"] .badge__icon{animation:none !important;transition-duration:80ms !important}
+body.perf-idle *{animation-play-state:paused !important}
+body.perf-idle .ambient-glow{opacity:.1 !important}
+</style>
+
 </head>
+
 <body>
 <div class="ambient-glow" aria-hidden="true"></div>
 <div class="skin-overlay" id="skin-overlay"></div>
@@ -1498,7 +1578,7 @@ const log = (...a) => DEBUG && console.log('%c[Orixi]', 'color:#D96754;font-weig
 const logErr = (...a) => console.error('%c[Orixi]', 'color:#D96754;font-weight:bold', ...a);
 const BUCKETS = { AVATARS: 'avatars', POSTS: 'posts', STORIES: 'stories', COMERCIOS: 'comercios', GRUPOS: 'grupos' };
 
-/* ✅ NOVO: 17 bairros de Oriximiná */
+/* ✅ 17 bairros de Oriximiná */
 const BAIRROS = [
   'Centro',
   'Penta',
@@ -1548,7 +1628,7 @@ const SkinSwitcher = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 3: UTILITÁRIOS (U) — com helper renderBairrosPicker
+   BLOCO 3: UTILITÁRIOS (U)
    ═══════════════════════════════════════════════════════════ */
 const U = (() => {
   const $ = (s, c = document) => c.querySelector(s);
@@ -1587,7 +1667,6 @@ const U = (() => {
   const isAdminUuid = (uuid = '') => ADMIN_UUIDS.map(u => u.toLowerCase()).includes(String(uuid).toLowerCase());
   const solidColorFromGradient = (value, fallback = '#DBA84A') => { if (!value || value === 'none') return fallback; if (!value.includes('gradient')) return value; const m = String(value).match(/#[0-9A-Fa-f]{6}/); return m ? m[0] : fallback; };
 
-  /* ✅ NOVO: renderiza grade de bairros com opção "Outro (digitar)" */
   const renderBairrosPicker = (container, valorAtual, onSelect, opts = {}) => {
     if (!container) return;
     const incluirOutro = opts.incluirOutro !== false;
@@ -1710,7 +1789,7 @@ const Presence = (() => {
   const syncPresence = () => { st.onlines.clear(); if (st.channel) { const state = st.channel.presenceState(); Object.values(state).forEach(list => { (list || []).forEach(meta => { if (meta && meta.userId) st.onlines.set(meta.userId, { at: meta.online_at || Date.now(), nome: meta.nome || null }); }); }); } emit('presence:sync', { total: st.onlines.size }); };
   const handleBroadcastTyping = (payload) => { if (!payload || !payload.de || !payload.para) return; const key = `${payload.de}->${payload.para}`; if (payload.stopped) { st.typings.delete(key); } else { st.typings.set(key, Date.now() + TYPING_TIMEOUT_MS); } emit('typing:change', { de: payload.de, para: payload.para, typing: !payload.stopped }); };
   const emitTyping = (para, stopped = false) => { if (!st.typingChannel || !st.typingChannelSubscribed) return; const u = State.get('user'); if (!u?.id) return; try { st.typingChannel.send({ type: 'broadcast', event: 'typing', payload: { de: u.id, para, stopped, at: Date.now() } }); } catch (e) { logErr('Presence.emitTyping:', e); } };
-  const updateLastSeen = async () => { const u = State.get('user'); if (!u?.id) return; const now = new Date().toISOString(); st.lastSeen.set(u.id, now); try { await sb.from('profiles').update({ ultima_atividade: now }).eq('id', u.id); } catch (e) { /* coluna pode não existir */ } };
+  const updateLastSeen = async () => { const u = State.get('user'); if (!u?.id) return; const now = new Date().toISOString(); st.lastSeen.set(u.id, now); try { await sb.from('profiles').update({ ultima_atividade: now }).eq('id', u.id); } catch (e) {} };
   const subscribe = async () => {
     const u = State.get('user'); if (!u?.id) return;
     if (st.channel) { try { sb.removeChannel(st.channel); } catch (e) {} st.channel = null; }
@@ -1738,7 +1817,7 @@ const DB = (() => {
   const handle = (res, ctx) => { if (res.error) { logErr(ctx, res.error.message); throw res.error; } return res.data; };
   const profiles = { get: async (id) => handle(await sb.from('profiles').select('*').eq('id', id).maybeSingle(), 'profiles.get'), topUsers: async (limit = 10) => handle(await sb.from('profiles').select('id,nome,bairro,avatar_url,pontos,is_admin,admin_frame,admin_color,admin_title').order('pontos', { ascending: false }).limit(limit), 'topUsers'), rankingBairros: async () => { const rows = handle(await sb.from('profiles').select('bairro,pontos'), 'rankingBairros') || []; const map = new Map(); rows.forEach(x => { if (!x.bairro) return; const c = map.get(x.bairro) || { bairro: x.bairro, pontos: 0, moradores: 0 }; c.pontos += x.pontos || 0; c.moradores += 1; map.set(x.bairro, c); }); return Array.from(map.values()).sort((a, b) => b.pontos - a.pontos); } };
   const POST_SELECT = `id,user_id,texto,imagem_url,categoria,bairro,curtidas,comentarios_count,criado_em,autor:profiles!posts_user_id_fkey ( id,nome,avatar_url,bairro,pontos,is_admin,admin_frame,admin_color,admin_title )`;
-  const posts = { list: async ({ categoria = null, userId = null, limit = 30, offset = 0 } = {}) => { let q = sb.from('posts').select(POST_SELECT).eq('deletado', false).order('criado_em', { ascending: false }).range(offset, offset + limit - 1); if (categoria && categoria !== 'todos') q = q.eq('categoria', categoria); if (userId) q = q.eq('user_id', userId); return handle(await q, 'posts.list'); }, get: async (id) => handle(await sb.from('posts').select(POST_SELECT).eq('id', id).maybeSingle(), 'posts.get'), create: async ({ texto, imagem_url = null, categoria = 'geral', bairro = null }) => { const u = State.get('user'); if (!u?.id) throw new Error('Não autenticado'); return handle(await sb.from('posts').insert({ user_id: u.id, texto: texto?.trim() || null, imagem_url, categoria, bairro: bairro || u.bairro || null }).select(POST_SELECT).single(), 'posts.create'); }, deletar: async (postId) => { const u = State.get('user'); if (!u?.id) throw new Error('Não autenticado'); const { data: post, error: e1 } = await sb.from('posts').select('user_id,imagem_url').eq('id', postId).maybeSingle(); if (e1) throw e1; if (!post) throw new Error('Post não encontrado'); const isOwner = post.user_id === u.id; const isAdmin = State.isAdmin(); if (!isOwner && !isAdmin) throw new Error('Sem permissão para apagar este post'); const { error: e2 } = await sb.from('posts').update({ deletado: true, deletado_em: new Date().toISOString(), deletado_por: u.id }).eq('id', postId); if (e2) throw e2; if (post.imagem_url) { try { await sb.storage.from(BUCKETS.POSTS).remove([post.imagem_url]); } catch (err) { log('[DeletePost] Falha ao remover imagem do storage:', err?.message || err); } } try { await sb.from('likes').delete().eq('post_id', postId); } catch (err) {} return true; } };
+  const posts = { list: async ({ categoria = null, userId = null, limit = 30, offset = 0 } = {}) => { let q = sb.from('posts').select(POST_SELECT).eq('deletado', false).order('criado_em', { ascending: false }).range(offset, offset + limit - 1); if (categoria && categoria !== 'todos') q = q.eq('categoria', categoria); if (userId) q = q.eq('user_id', userId); return handle(await q, 'posts.list'); }, get: async (id) => handle(await sb.from('posts').select(POST_SELECT).eq('id', id).maybeSingle(), 'posts.get'), create: async ({ texto, imagem_url = null, categoria = 'geral', bairro = null }) => { const u = State.get('user'); if (!u?.id) throw new Error('Não autenticado'); return handle(await sb.from('posts').insert({ user_id: u.id, texto: texto?.trim() || null, imagem_url, categoria, bairro: bairro || u.bairro || null }).select(POST_SELECT).single(), 'posts.create'); }, deletar: async (postId) => { const u = State.get('user'); if (!u?.id) throw new Error('Não autenticado'); const { data: post, error: e1 } = await sb.from('posts').select('user_id,imagem_url').eq('id', postId).maybeSingle(); if (e1) throw e1; if (!post) throw new Error('Post não encontrado'); const isOwner = post.user_id === u.id; const isAdmin = State.isAdmin(); if (!isOwner && !isAdmin) throw new Error('Sem permissão para apagar este post'); const { error: e2 } = await sb.from('posts').update({ deletado: true, deletado_em: new Date().toISOString(), deletado_por: u.id }).eq('id', postId); if (e2) throw e2; if (post.imagem_url) { try { await sb.storage.from(BUCKETS.POSTS).remove([post.imagem_url]); } catch (err) { log('[DeletePost] Falha ao remover imagem do storage:', err?.message || err); } } try { await sb.from('likes').delete().eq('post_id', postId); } catch (err) {} return { autor_id: post.user_id }; } };
   const likes = { listByUser: async (userId) => { const { data } = await sb.from('likes').select('post_id,reaction').eq('user_id', userId); const map = new Map(); (data || []).forEach(x => map.set(x.post_id, x.reaction || 'like')); return map; }, add: async (postId, reaction = 'like') => { const u = State.get('user'); if (!u?.id) throw new Error('Não autenticado'); const { data: ex } = await sb.from('likes').select('id,reaction').eq('post_id', postId).eq('user_id', u.id).maybeSingle(); if (ex) { if (ex.reaction === reaction) { await sb.from('likes').delete().eq('id', ex.id); return { removed: true }; } await sb.from('likes').update({ reaction }).eq('id', ex.id); return { updated: true }; } await sb.from('likes').insert({ post_id: postId, user_id: u.id, reaction }); return { added: true }; } };
   const follows = { toggle: async (target) => { const u = State.get('user'); if (!u?.id || u.id === target) return false; const { data: ex } = await sb.from('follows').select('id').eq('follower_id', u.id).eq('following_id', target).maybeSingle(); if (ex) { await sb.from('follows').delete().eq('id', ex.id); return false; } await sb.from('follows').insert({ follower_id: u.id, following_id: target }); return true; }, isFollowing: async (target) => { const u = State.get('user'); if (!u?.id) return false; const { data } = await sb.from('follows').select('id').eq('follower_id', u.id).eq('following_id', target).maybeSingle(); return !!data; }, counts: async (userId) => { const [a, b] = await Promise.all([sb.from('follows').select('id', { count: 'exact', head: true }).eq('follower_id', userId), sb.from('follows').select('id', { count: 'exact', head: true }).eq('following_id', userId)]); return { seguindo: a.count || 0, seguidores: b.count || 0 }; } };
   const mensagens = { conversa: async (otherId, limit = 50) => { const u = State.get('user'); if (!u?.id) return []; return handle(await sb.from('mensagens').select('*').or(`and(de_id.eq.${u.id},para_id.eq.${otherId}),and(de_id.eq.${otherId},para_id.eq.${u.id})`).order('criado_em', { ascending: true }).limit(limit), 'conversa'); }, send: async (paraId, texto) => { const u = State.get('user'); if (!u?.id) throw new Error('Não autenticado'); return handle(await sb.from('mensagens').insert({ de_id: u.id, para_id: paraId, texto: texto.trim() }).select().single(), 'send'); }, marcarLidas: async (deId) => { const u = State.get('user'); if (!u?.id) return; await sb.from('mensagens').update({ lida: true }).eq('de_id', deId).eq('para_id', u.id).eq('lida', false); }, listaConversas: async () => { const u = State.get('user'); if (!u?.id) return []; const rows = handle(await sb.from('mensagens').select(`id,de_id,para_id,texto,lida,criado_em,de:profiles!mensagens_de_id_fkey ( id,nome,avatar_url ),para:profiles!mensagens_para_id_fkey ( id,nome,avatar_url )`).or(`de_id.eq.${u.id},para_id.eq.${u.id}`).order('criado_em', { ascending: false }), 'listaConversas') || []; const map = new Map(); rows.forEach(m => { const other = m.de_id === u.id ? m.para : m.de; if (!other) return; if (!map.has(other.id)) map.set(other.id, { user: other, ultima: m.texto, quando: m.criado_em, naoLidas: 0 }); if (m.para_id === u.id && !m.lida) map.get(other.id).naoLidas += 1; }); return Array.from(map.values()); } };
@@ -1848,10 +1927,9 @@ const DeletePost = (() => {
     const btnConfirm = confirmEl.querySelector('[data-confirm]'); btnConfirm.disabled = true; btnConfirm.textContent = 'Apagando…';
     if (btnEl) { btnEl.classList.add('is-loading'); btnEl.disabled = true; }
     try {
-      const { data: postInfo } = await sb.from('posts').select('user_id,texto').eq('id', postId).maybeSingle();
-      await DB.posts.deletar(postId);
+      const { autor_id } = await DB.posts.deletar(postId);
       U.toast('🗑️ Post apagado', 2400, 'sucesso');
-      if (postInfo?.user_id && postInfo.user_id !== State.get('user')?.id) { try { DB.notificacoes.criar({ user_id: postInfo.user_id, tipo: 'post_deletado', ator_id: State.get('user')?.id, ref_id: null, texto: 'Uma publicação sua foi removida por um administrador.' }).catch(() => {}); } catch (e) {} }
+      if (autor_id && autor_id !== State.get('user')?.id) { try { DB.notificacoes.criar({ user_id: autor_id, tipo: 'post_deletado', ator_id: State.get('user')?.id, ref_id: null, texto: 'Uma publicação sua foi removida por um administrador.' }).catch(() => {}); } catch (e) {} }
       fecharConfirm();
       if (cardEl && cardEl.isConnected) {
         cardEl.classList.add('is-deleting');
@@ -1913,7 +1991,9 @@ const DeletePost = (() => {
   };
   return { init, podeApagar, inserirBotoes, abrirConfirm, fecharConfirm, _db: DB.posts.deletar };
 })();
+</script>
 
+<script>
 /* ═══════════════════════════════════════════════════════════
    BLOCO 9: Modal
    ═══════════════════════════════════════════════════════════ */
@@ -1987,7 +2067,7 @@ const Composer = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 15: Perfil (com renderBairrosPicker no editar)
+   BLOCO 15: Perfil
    ═══════════════════════════════════════════════════════════ */
 const Perfil = (() => {
   const abrir = async (userId) => {
@@ -2203,7 +2283,7 @@ const PostInteractions = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 17: Auth (com renderBairrosPicker no cadastro)
+   BLOCO 17: Auth
    ═══════════════════════════════════════════════════════════ */
 const Auth = (() => {
   let modo = 'signup', bairroSel = null;
@@ -2258,7 +2338,7 @@ const Auth = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 18: Convite (BETA + controle admin)
+   BLOCO 18: Convite
    ═══════════════════════════════════════════════════════════ */
 const Convite = (() => {
   const CONFIG_KEY = 'orixi-beta-convites-abertos';
@@ -2331,9 +2411,10 @@ const Convite = (() => {
   return { init, carregar, getConfigGlobal, setConfigGlobal, podeGerarConvite, CONFIG_KEY };
 })();
 </script>
+
 <script>
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 19: Zeladoria (com renderBairrosPicker no reportar)
+   BLOCO 19: Zeladoria
    ═══════════════════════════════════════════════════════════ */
 const Zeladoria = (() => {
   const local = { status: 'todos', categoria: 'todos', carregando: false, chamados: [], apoios: new Set(), mode: 'lista' };
@@ -2400,9 +2481,7 @@ const Trending = (() => {
   const init = () => { State.on('view:change', (v) => { if (v === 'feed') setTimeout(renderWidgetFeed, 300); if (v === 'explorar') setTimeout(renderRanking, 200); }); if (State.isLogged()) setTimeout(renderWidgetFeed, 800); setInterval(() => { if (State.get('view') === 'feed' && State.isLogged()) renderWidgetFeed(); }, 3 * 60 * 1000); document.getElementById('trending-ver-tudo')?.addEventListener('click', () => { State.setView('explorar'); }); log('📊 Trending Topics pronto'); };
   return { init, buscar, renderWidgetFeed, renderRanking, invalidar, filtrarPorTermo };
 })();
-</script>
 
-<script>
 /* ═══════════════════════════════════════════════════════════
    BLOCO 21: Chat
    ═══════════════════════════════════════════════════════════ */
@@ -2473,7 +2552,7 @@ const Chat = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 22: Grupos (com renderBairrosPicker no criar grupo)
+   BLOCO 22: Grupos
    ═══════════════════════════════════════════════════════════ */
 const Grupos = (() => {
   const st = { lista: [], gruposMap: new Map(), aberto: null, realtime: null, carregando: false, typingTicker: null, typingDebounce: null, typingStopTimer: null };
@@ -2621,7 +2700,9 @@ const LevelBar = (() => {
   const init = () => { State.on('change:user', atualizar); State.on('view:change', atualizar); atualizar(); };
   return { init, atualizar };
 })();
+</script>
 
+<script>
 /* ═══════════════════════════════════════════════════════════
    BLOCO 28: Welcome
    ═══════════════════════════════════════════════════════════ */
@@ -2651,7 +2732,7 @@ const Pulso = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 31: Explorar (com renderBairrosPicker no novo produto)
+   BLOCO 31: Explorar
    ═══════════════════════════════════════════════════════════ */
 const Explorar = (() => {
   const carregarSemanal = async () => { const box = document.getElementById('rank-semanal'); if (!box) return; try { const r = await DB.profiles.topUsers(5); if (!r.length) { box.innerHTML = `<p style="color:var(--fg-secondary)">Sem dados.</p>`; return; } box.innerHTML = r.map((u, i) => { const ini = U.initials(u.nome || ''); const isAdmin = u.is_admin === true; const frameAttr = isAdmin && u.admin_frame && u.admin_frame !== 'none' ? ` data-frame="${u.admin_frame}"` : ''; const adminClass = isAdmin && u.admin_frame && u.admin_frame !== 'none' ? ' x-avatar--admin' : ''; const av = u.avatar_url ? `<img class="x-avatar x-avatar--sm${adminClass}"${frameAttr} src="${U.escapeHtml(U.publicUrl(BUCKETS.AVATARS, u.avatar_url))}" alt="">` : `<div class="x-avatar x-avatar--sm x-avatar--grad${adminClass}"${frameAttr}>${ini}</div>`; const online = Presence.isOnline(u.id) ? '<span class="presence-dot--sm" style="position:static;display:inline-block;margin-left:4px"></span>' : ''; return `<div class="leaderboard__row leaderboard__row--${i + 1}" data-user-id="${U.escapeHtml(u.id)}"><div class="leaderboard__rank">${i + 1}</div>${av}<div class="leaderboard__user"><span class="leaderboard__nome">${isAdmin ? '👑 ' : ''}${U.escapeHtml(u.nome)}${online}</span><span class="leaderboard__bairro">${U.escapeHtml(u.bairro || '')}</span></div><span class="leaderboard__pts">⚡ ${U.formatNum(u.pontos)}</span></div>`; }).join(''); box.querySelectorAll('[data-user-id]').forEach(el => el.addEventListener('click', () => { State.setView('perfil'); setTimeout(() => Perfil.abrir(el.dataset.userId), 250); })); } catch (e) { logErr(e); } };
@@ -2681,16 +2762,14 @@ const Explorar = (() => {
    BLOCO 32: Diagnostico
    ═══════════════════════════════════════════════════════════ */
 const Diagnostico = (() => {
-  const modulos = [{ nome: 'Supabase Client', icone: '🔌', teste: async () => { if (!window.sb) throw new Error('Cliente Supabase não inicializado'); const { error } = await sb.auth.getSession(); if (error) throw error; return 'Conectado'; } },{ nome: 'Auth — Sessão', icone: '👤', teste: async () => { const { data } = await sb.auth.getSession(); if (!data?.session) return 'Sem sessão (visitante)'; return `Logado como ${data.session.user.email}`; } },{ nome: 'Tabela: profiles', icone: '📋', teste: async () => { const { count, error } = await sb.from('profiles').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Tabela: posts', icone: '📝', teste: async () => { const { count, error } = await sb.from('posts').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Tabela: config_global', icone: '⚙️', teste: async () => { const { data, error } = await sb.from('config_global').select('chave,valor').limit(5); if (error) throw error; return `${(data || []).length} config(s)`; } },{ nome: 'Bucket: avatars', icone: '🖼️', teste: async () => { const { error } = await sb.storage.from('avatars').list('', { limit: 1 }); if (error) throw error; return 'OK'; } },{ nome: 'Presence (Realtime)', icone: '🟢', teste: async () => { if (typeof Presence === 'undefined') throw new Error('Presence não existe'); return 'OK'; } },{ nome: 'Bairros (17 + Outro)', icone: '📍', teste: async () => { if (typeof BAIRROS === 'undefined') throw new Error('BAIRROS não existe'); if (BAIRROS.length !== 17) throw new Error(`Esperado 17 bairros, encontrado ${BAIRROS.length}`); return `${BAIRROS.length} bairros + Outro`; } },{ nome: 'Helper renderBairrosPicker', icone: '🎨', teste: async () => { if (typeof U === 'undefined' || typeof U.renderBairrosPicker !== 'function') throw new Error('renderBairrosPicker ausente'); return 'OK'; } },{ nome: 'Módulo: Convite', icone: '🎟️', teste: async () => { if (typeof Convite === 'undefined') throw new Error('Convite não existe'); if (typeof Convite.getConfigGlobal !== 'function') throw new Error('getConfigGlobal ausente'); return 'OK'; } },{ nome: 'Módulo: Perfil', icone: '👤', teste: async () => { if (typeof Perfil === 'undefined') throw new Error('Perfil não existe'); if (typeof Perfil.renderAdmin !== 'function') throw new Error('renderAdmin ausente'); return 'OK'; } },{ nome: 'Módulo: DeletePost', icone: '🗑️', teste: async () => { if (typeof DeletePost === 'undefined') throw new Error('DeletePost não existe'); return 'OK'; } },{ nome: 'Módulo: Guia', icone: '🏪', teste: async () => { if (typeof Guia === 'undefined') throw new Error('Guia não existe'); return 'OK'; } },{ nome: 'Módulo: StoriesExt', icone: '📸', teste: async () => { if (typeof StoriesExt === 'undefined') throw new Error('StoriesExt não existe'); return 'OK'; } },{ nome: 'Módulo: Trending', icone: '📊', teste: async () => { if (typeof Trending === 'undefined') throw new Error('Trending não existe'); return 'OK'; } },{ nome: 'Módulo: Grupos', icone: '👥', teste: async () => { if (typeof Grupos === 'undefined') throw new Error('Grupos não existe'); return 'OK'; } }];
+  const modulos = [{ nome: 'Supabase Client', icone: '🔌', teste: async () => { if (!window.sb) throw new Error('Cliente Supabase não inicializado'); const { error } = await sb.auth.getSession(); if (error) throw error; return 'Conectado'; } },{ nome: 'Auth — Sessão', icone: '👤', teste: async () => { const { data } = await sb.auth.getSession(); if (!data?.session) return 'Sem sessão (visitante)'; return `Logado como ${data.session.user.email}`; } },{ nome: 'Tabela: profiles', icone: '📋', teste: async () => { const { count, error } = await sb.from('profiles').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Tabela: posts', icone: '📝', teste: async () => { const { count, error } = await sb.from('posts').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Tabela: config_global', icone: '⚙️', teste: async () => { const { data, error } = await sb.from('config_global').select('chave,valor').limit(5); if (error) throw error; return `${(data || []).length} config(s)`; } },{ nome: 'Bucket: avatars', icone: '🖼️', teste: async () => { const { error } = await sb.storage.from('avatars').list('', { limit: 1 }); if (error) throw error; return 'OK'; } },{ nome: 'Presence (Realtime)', icone: '🟢', teste: async () => { if (typeof Presence === 'undefined') throw new Error('Presence não existe'); return 'OK'; } },{ nome: 'Bairros (17 + Outro)', icone: '📍', teste: async () => { if (typeof BAIRROS === 'undefined') throw new Error('BAIRROS não existe'); if (BAIRROS.length !== 17) throw new Error(`Esperado 17 bairros, encontrado ${BAIRROS.length}`); return `${BAIRROS.length} bairros + Outro`; } },{ nome: 'Helper renderBairrosPicker', icone: '🎨', teste: async () => { if (typeof U === 'undefined' || typeof U.renderBairrosPicker !== 'function') throw new Error('renderBairrosPicker ausente'); return 'OK'; } },{ nome: 'Módulo: Convite', icone: '🎟️', teste: async () => { if (typeof Convite === 'undefined') throw new Error('Convite não existe'); if (typeof Convite.getConfigGlobal !== 'function') throw new Error('getConfigGlobal ausente'); return 'OK'; } },{ nome: 'Módulo: Perfil', icone: '👤', teste: async () => { if (typeof Perfil === 'undefined') throw new Error('Perfil não existe'); if (typeof Perfil.renderAdmin !== 'function') throw new Error('renderAdmin ausente'); return 'OK'; } },{ nome: 'Módulo: DeletePost', icone: '🗑️', teste: async () => { if (typeof DeletePost === 'undefined') throw new Error('DeletePost não existe'); return 'OK'; } },{ nome: 'Módulo: Guia', icone: '🏪', teste: async () => { if (typeof Guia === 'undefined') throw new Error('Guia não existe'); return 'OK'; } },{ nome: 'Módulo: StoriesExt', icone: '📸', teste: async () => { if (typeof StoriesExt === 'undefined') throw new Error('StoriesExt não existe'); return 'OK'; } },{ nome: 'Módulo: Trending', icone: '📊', teste: async () => { if (typeof Trending === 'undefined') throw new Error('Trending não existe'); return 'OK'; } },{ nome: 'Módulo: Grupos', icone: '👥', teste: async () => { if (typeof Grupos === 'undefined') throw new Error('Grupos não existe'); return 'OK'; } },{ nome: 'Módulo: Performance', icone: '⚡', teste: async () => { if (typeof Performance === 'undefined') throw new Error('Performance não existe'); return 'OK'; } }];
   const rodar = async () => { const box = document.getElementById('diag-resultados'); if (!box) return; box.innerHTML = ''; for (const m of modulos) { const linha = document.createElement('div'); linha.style.cssText = 'display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:10px;margin-bottom:6px;font-size:13px'; linha.innerHTML = `<span style="font-size:18px">${m.icone}</span><strong style="flex:1;color:var(--fg-primary)">${m.nome}</strong><span data-status style="font-size:12px;color:var(--fg-secondary)">⏳ testando…</span>`; box.appendChild(linha); const statusEl = linha.querySelector('[data-status]'); try { const r = await m.teste(); const txt = typeof r === 'string' ? r : 'OK'; statusEl.innerHTML = `<span style="color:#2D8659;font-weight:700">✅ ${U.escapeHtml(txt)}</span>`; linha.style.borderColor = 'rgba(45,134,89,.35)'; } catch (err) { const msg = err?.message || String(err); statusEl.innerHTML = `<span style="color:#C2503E;font-weight:700">❌ ${U.escapeHtml(msg)}</span>`; linha.style.borderColor = 'rgba(194,80,62,.45)'; } } };
   const render = () => { const box = document.getElementById('perfil-tab-admin'); if (!box) return; box.innerHTML = `<div class="admin-card" style="background:linear-gradient(135deg,rgba(45,134,89,.10),rgba(240,198,116,.06));border-color:rgba(45,134,89,.35)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="font-size:1.5rem">🔬</span><strong style="font-family:var(--font-display);font-size:var(--text-title);font-weight:900">Diagnóstico do Sistema</strong></div><p style="font-size:var(--text-caption);color:var(--fg-secondary);line-height:1.5;margin-bottom:12px">Testa módulos e tabelas em tempo real.</p><button type="button" class="x-btn x-btn--primary x-btn--block" id="diag-rodar" style="margin-bottom:14px">🧪 Rodar Diagnóstico</button></div><h3 class="x-heading x-heading--sm">📊 Resultados</h3><div id="diag-resultados"></div>`; document.getElementById('diag-rodar')?.addEventListener('click', async (e) => { const btn = e.currentTarget; btn.disabled = true; btn.textContent = '🧪 Testando…'; await rodar(); btn.disabled = false; btn.textContent = '🔁 Rodar de novo'; }); };
   return { render, rodar };
 })();
-</script>
 
-<script>
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 33: Guia (com renderBairrosPicker no comércio + filtros)
+   BLOCO 33: Guia
    ═══════════════════════════════════════════════════════════ */
 const Guia = (() => {
   const local = { categoria: 'todos', bairro: null, busca: '', carregando: false, comercios: [], meusComercios: [] };
@@ -2800,7 +2879,9 @@ const StoriesExt = (() => {
   const init = () => { log('Stx: Stories v3.0 iniciando…'); State.on('view:change', (v) => { if (v === 'feed' && State.isLogged()) setTimeout(renderStrip, 150); }); State.on('change:user', () => { if (State.isLogged()) setTimeout(renderStrip, 300); }); if (State.isLogged()) setTimeout(renderStrip, 400); setInterval(() => { if (State.get('view') === 'feed' && State.isLogged()) renderStrip(); }, 60000); log('Stx: Stories v3.0 prontos'); };
   return { init, renderStrip, abrirCompose, abrirPlayer, _st: st, _DBx: DBx };
 })();
+</script>
 
+<script>
 /* ═══════════════════════════════════════════════════════════
    BLOCO 35: App
    ═══════════════════════════════════════════════════════════ */
@@ -2839,6 +2920,7 @@ const App = (() => {
     try { Trending.init(); } catch (e) { logErr('Trending:', e); }
     try { DeletePost.init(); } catch (e) { logErr('DeletePost:', e); }
     try { Presence.init(); } catch (e) { logErr('Presence:', e); }
+    try { Performance.init(); } catch (e) { logErr('Performance:', e); }
     bindTabbar();
     bindNewPostButtons();
     bindChatSubtabs();
@@ -2846,7 +2928,7 @@ const App = (() => {
     window.addEventListener('hashchange', () => { if (State.isLogged()) irPara((location.hash || '').replace('#', '') || 'feed'); });
     window.addEventListener('orixi:logged', () => { mostrarApp(); irPara('feed'); });
     document.addEventListener('pointerdown', (e) => U.ripple(e));
-    window.Orixi = { ir: irPara, state: State, db: DB, zdb: ZDB, comercio: ComercioDB, xp: State.addXP, stories: StoriesExt, trending: Trending, grupos: Grupos, deletePost: DeletePost, perfil: Perfil, presence: Presence, convite: Convite, config: ConfigGlobal, _app: App, bairros: BAIRROS };
+    window.Orixi = { ir: irPara, state: State, db: DB, zdb: ZDB, comercio: ComercioDB, xp: State.addXP, stories: StoriesExt, trending: Trending, grupos: Grupos, deletePost: DeletePost, perfil: Perfil, presence: Presence, convite: Convite, config: ConfigGlobal, perf: Performance, _app: App, bairros: BAIRROS };
     window.addEventListener('resize', () => { document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px'); });
     window.dispatchEvent(new Event('resize'));
     log('✅ Pronto — Bem-vindo a Oriximiná v28.0 (17 bairros + Outro)');
@@ -2859,6 +2941,322 @@ if (document.readyState === 'loading') {
 } else {
   App.init();
 }
+</script>
+
+<script>
+'use strict';
+/* ═══════════════════════════════════════════════════════════
+   ORIXIPERFORMANCE · Sistema de Otimização em Tempo Real
+   (novo módulo — não modifica nada do original)
+   ═══════════════════════════════════════════════════════════ */
+const Performance = (() => {
+  const STORAGE_KEY = 'orixi:perf-config-v1';
+  const DEFAULT_CONFIG = {
+    lazyImages: true, virtualizeFeed: false, cacheEnabled: true,
+    debounceInputs: true, compressPayload: true, prefetchProfile: true,
+    trimOldFeed: true, realtimeThrottle: true, ghostAnimations: false,
+    aggressiveIdle: false
+  };
+  const st = {
+    config: { ...DEFAULT_CONFIG },
+    metrics: { ttfb: 0, apiCalls: 0, avgLatency: 0, cacheHits: 0, cacheMisses: 0, history: [], fps: 60 },
+    cache: new Map(),
+    inflightRequests: new Map(),
+    fpsFrames: 0, fpsStart: 0,
+    idleTimer: null,
+    observers: { img: null, feed: null },
+    originalFetch: null
+  };
+
+  const Cache = {
+    get(key) {
+      if (!st.config.cacheEnabled) return undefined;
+      const entry = st.cache.get(key);
+      if (!entry) { st.metrics.cacheMisses++; return undefined; }
+      if (Date.now() > entry.expires) { st.cache.delete(key); st.metrics.cacheMisses++; return undefined; }
+      st.cache.delete(key); st.cache.set(key, entry);
+      st.metrics.cacheHits++;
+      return entry.value;
+    },
+    set(key, value, ttlMs = 60000) {
+      if (!st.config.cacheEnabled) return;
+      if (st.cache.size > 200) { const k = st.cache.keys().next().value; st.cache.delete(k); }
+      st.cache.set(key, { value, expires: Date.now() + ttlMs });
+    },
+    invalidate(pattern) {
+      if (!pattern) { st.cache.clear(); return; }
+      const re = pattern instanceof RegExp ? pattern : new RegExp(pattern);
+      for (const k of st.cache.keys()) if (re.test(k)) st.cache.delete(k);
+    },
+    stats() { return { size: st.cache.size, hits: st.metrics.cacheHits, misses: st.metrics.cacheMisses }; }
+  };
+
+  const dedup = async (key, fn) => {
+    if (st.inflightRequests.has(key)) return st.inflightRequests.get(key);
+    const promise = fn().finally(() => st.inflightRequests.delete(key));
+    st.inflightRequests.set(key, promise);
+    return promise;
+  };
+
+  const aplicarLazyImages = () => {
+    if (!st.config.lazyImages || st.observers.img) return;
+    if (!('IntersectionObserver' in window)) return;
+    st.observers.img = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const img = entry.target;
+        if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; }
+        img.loading = 'lazy'; img.decoding = 'async';
+        st.observers.img.unobserve(img);
+      });
+    }, { rootMargin: '250px 0px', threshold: 0.01 });
+    varreImagens();
+  };
+  const varreImagens = () => {
+    if (!st.observers.img) return;
+    document.querySelectorAll('img:not([data-perf-observed])').forEach(img => {
+      img.dataset.perfObserved = '1';
+      if (!img.src && img.dataset.src) st.observers.img.observe(img);
+      else { img.loading = 'lazy'; img.decoding = 'async'; }
+    });
+  };
+
+  const aplicarVirtualizacao = () => {
+    if (!st.config.virtualizeFeed) { if (st.observers.feed) { st.observers.feed.disconnect(); st.observers.feed = null; } return; }
+    if (!('IntersectionObserver' in window)) return;
+    const feed = document.getElementById('feed-list'); if (!feed) return;
+    if (st.observers.feed) st.observers.feed.disconnect();
+    st.observers.feed = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const post = entry.target;
+        if (post.tagName !== 'ARTICLE') return;
+        if (entry.isIntersecting) { post.style.contentVisibility = 'visible'; post.style.containIntrinsicSize = ''; }
+        else {
+          if (!post.style.containIntrinsicSize && post.offsetHeight > 0) post.style.containIntrinsicSize = `auto ${post.offsetHeight}px`;
+          post.style.contentVisibility = 'auto';
+        }
+      });
+    }, { rootMargin: '400px 0px', threshold: 0 });
+    varreVirtualizacao();
+  };
+  const varreVirtualizacao = () => {
+    if (!st.observers.feed) return;
+    const feed = document.getElementById('feed-list'); if (!feed) return;
+    feed.querySelectorAll('.x-post:not([data-perf-virt])').forEach(p => { p.dataset.perfVirt = '1'; st.observers.feed.observe(p); });
+  };
+
+  const aplicarThrottleRealtime = () => {
+    if (!st.config.realtimeThrottle) return;
+    if (typeof sb === 'undefined' || !sb.channel) return;
+    try { const channels = sb.getChannels ? sb.getChannels() : []; channels.forEach(ch => { try { ch.params = ch.params || {}; ch.params.config = ch.params.config || {}; ch.params.config.broadcast = { self: false, ack: false }; } catch (e) {} }); } catch (e) {}
+  };
+
+  const aplicarTrimFeed = () => {
+    if (!st.config.trimOldFeed) return;
+    const feed = document.getElementById('feed-list'); if (!feed) return;
+    const posts = feed.querySelectorAll('.x-post');
+    const MAX = 40;
+    if (posts.length > MAX) for (let i = MAX; i < posts.length; i++) posts[i].remove();
+  };
+
+  const aplicarIdle = () => {
+    if (st.idleTimer) { clearTimeout(st.idleTimer); st.idleTimer = null; }
+    document.body.classList.remove('perf-idle');
+    if (!st.config.aggressiveIdle) return;
+    const reset = () => {
+      document.body.classList.remove('perf-idle');
+      if (st.idleTimer) clearTimeout(st.idleTimer);
+      st.idleTimer = setTimeout(() => { document.body.classList.add('perf-idle'); }, 60000);
+    };
+    ['pointerdown','keydown','scroll','touchstart'].forEach(ev => window.addEventListener(ev, reset, { passive: true }));
+    reset();
+  };
+
+  const startFpsMonitor = () => {
+    const tick = (now) => {
+      if (!st.fpsStart) st.fpsStart = now;
+      st.fpsFrames++;
+      const elapsed = now - st.fpsStart;
+      if (elapsed >= 1000) {
+        st.metrics.fps = Math.round((st.fpsFrames * 1000) / elapsed);
+        st.fpsFrames = 0; st.fpsStart = now;
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const instrumentarFetch = () => {
+    if (st.originalFetch) return;
+    st.originalFetch = window.fetch;
+    window.fetch = async function (...args) {
+      const url = String(args[0]);
+      const isAPI = url.includes('supabase') || url.includes('/rest/') || url.includes('/storage/');
+      if (!isAPI) return st.originalFetch.apply(this, args);
+      const t0 = performance.now(); st.metrics.apiCalls++;
+      try {
+        const res = await st.originalFetch.apply(this, args);
+        const dt = performance.now() - t0;
+        const n = st.metrics.apiCalls;
+        st.metrics.avgLatency = ((st.metrics.avgLatency * (n - 1)) + dt) / n;
+        st.metrics.history.push(dt);
+        if (st.metrics.history.length > 40) st.metrics.history.shift();
+        return res;
+      } catch (err) { st.metrics.history.push(performance.now() - t0); throw err; }
+    };
+  };
+
+  const aplicarPreset = (nome) => {
+    const presets = {
+      turbo: { lazyImages: true, virtualizeFeed: true, cacheEnabled: true, debounceInputs: true, compressPayload: true, prefetchProfile: true, trimOldFeed: true, realtimeThrottle: true, ghostAnimations: true, aggressiveIdle: true },
+      equilibrado: { ...DEFAULT_CONFIG },
+      economico: { lazyImages: true, virtualizeFeed: false, cacheEnabled: true, debounceInputs: true, compressPayload: false, prefetchProfile: false, trimOldFeed: true, realtimeThrottle: false, ghostAnimations: false, aggressiveIdle: false }
+    };
+    if (!presets[nome]) return;
+    st.config = { ...presets[nome] };
+    salvar(); aplicarTudo();
+    if (typeof U !== 'undefined' && U.toast) U.toast(`⚡ Modo ${nome} aplicado`, 2400, 'sucesso');
+    render();
+  };
+
+  const aplicarTudo = () => {
+    aplicarLazyImages(); aplicarVirtualizacao(); aplicarThrottleRealtime(); aplicarTrimFeed(); aplicarIdle();
+    document.documentElement.dataset.perfGhost = st.config.ghostAnimations ? 'true' : 'false';
+  };
+  const salvar = () => { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(st.config)); } catch (e) {} };
+  const carregar = () => { try { const raw = localStorage.getItem(STORAGE_KEY); if (raw) st.config = { ...DEFAULT_CONFIG, ...JSON.parse(raw) }; } catch (e) {} };
+
+  const startAutoVarredura = () => {
+    setInterval(() => { varreImagens(); varreVirtualizacao(); aplicarTrimFeed(); }, 5000);
+  };
+
+  const toggles = [
+    { key: 'lazyImages', icon: '🖼️', title: 'Lazy Load de imagens', desc: 'Carrega fotos só quando vão aparecer na tela' },
+    { key: 'virtualizeFeed', icon: '⚡', title: 'Virtualizar feed', desc: 'Reduz o peso do DOM em feeds com muitos posts' },
+    { key: 'cacheEnabled', icon: '💾', title: 'Cache inteligente (LRU)', desc: 'Guarda respostas por 60s para não repetir chamadas' },
+    { key: 'debounceInputs', icon: '⌨️', title: 'Debounce em buscas', desc: 'Evita disparar APIs a cada tecla digitada' },
+    { key: 'compressPayload', icon: '🗜️', title: 'Compressão de payload', desc: 'Reduz o tráfego de dados em listas grandes' },
+    { key: 'prefetchProfile', icon: '🔮', title: 'Prefetch de perfis', desc: 'Carrega dados de perfil antes do toque' },
+    { key: 'trimOldFeed', icon: '✂️', title: 'Trim de feed antigo', desc: 'Remove posts distantes da tela para liberar RAM' },
+    { key: 'realtimeThrottle', icon: '📡', title: 'Throttle Realtime', desc: 'Agrupa eventos do Supabase para não sobrecarregar' },
+    { key: 'ghostAnimations', icon: '👻', title: 'Modo Ghost (sem animações)', desc: 'Desliga animações em aparelhos lentos' },
+    { key: 'aggressiveIdle', icon: '😴', title: 'Modo Idle agressivo', desc: 'Pausa animações após 60s de inatividade' }
+  ];
+
+  const calcularScore = () => {
+    let score = 100;
+    if (st.metrics.fps < 55) score -= (55 - st.metrics.fps);
+    if (st.metrics.avgLatency > 500) score -= Math.min(20, (st.metrics.avgLatency - 500) / 100);
+    const cs = Cache.stats(); const total = cs.hits + cs.misses;
+    if (total > 0 && cs.hits / total < 0.3) score -= 8;
+    if (st.metrics.apiCalls > 200) score -= 5;
+    return Math.max(0, Math.min(100, Math.round(score)));
+  };
+  const scoreClass = (s) => s >= 80 ? 'is-good' : s >= 60 ? 'is-warn' : 'is-bad';
+
+  const render = () => {
+    const box = document.getElementById('perf-panel-content'); if (!box) return;
+    const score = calcularScore(); const cache = Cache.stats();
+    const total = cache.hits + cache.misses;
+    const hitRate = total > 0 ? Math.round((cache.hits / total) * 100) : 0;
+    const scoreRing = 251.2 * (1 - score / 100);
+    const presetAtual = JSON.stringify(st.config) === JSON.stringify({ lazyImages:true,virtualizeFeed:true,cacheEnabled:true,debounceInputs:true,compressPayload:true,prefetchProfile:true,trimOldFeed:true,realtimeThrottle:true,ghostAnimations:true,aggressiveIdle:true }) ? 'turbo'
+      : JSON.stringify(st.config) === JSON.stringify(DEFAULT_CONFIG) ? 'equilibrado'
+      : JSON.stringify(st.config) === JSON.stringify({ lazyImages:true,virtualizeFeed:false,cacheEnabled:true,debounceInputs:true,compressPayload:false,prefetchProfile:false,trimOldFeed:true,realtimeThrottle:false,ghostAnimations:false,aggressiveIdle:false }) ? 'economico' : null;
+    const chartBars = (st.metrics.history.length ? st.metrics.history : [40,60,55,80,45,70,50]).slice(-24).map(v => {
+      const h = Math.max(8, Math.min(100, (v / 800) * 100));
+      const cls = v > 600 ? 'perf-chart__bar--bad' : v > 300 ? 'perf-chart__bar--slow' : '';
+      return `<div class="perf-chart__bar ${cls}" style="height:${h}%"></div>`;
+    }).join('');
+    box.innerHTML = `
+      <div class="perf-score">
+        <div class="perf-score__ring">
+          <svg viewBox="0 0 100 100">
+            <defs><linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6EC19A"/><stop offset="50%" stop-color="#F0C674"/><stop offset="100%" stop-color="#D96754"/></linearGradient></defs>
+            <circle class="bg" cx="50" cy="50" r="40"/>
+            <circle class="fg" cx="50" cy="50" r="40" style="stroke-dashoffset:${scoreRing}"/>
+          </svg>
+          <span class="perf-score__ring-num">${score}</span>
+        </div>
+        <div class="perf-score__info">
+          <div class="perf-score__title">${score >= 80 ? '🚀 Performance excelente' : score >= 60 ? '⚙️ Performance boa' : '⚠️ Performance baixa'}</div>
+          <div class="perf-score__desc"><span class="perf-live-dot"></span>Atualiza ao vivo · <b>${st.metrics.fps} FPS</b> · <b>${Math.round(st.metrics.avgLatency)}ms</b> de latência · Cache <b>${hitRate}%</b> de acerto</div>
+        </div>
+      </div>
+      <div class="perf-metrics">
+        <div class="perf-metric ${scoreClass(st.metrics.fps >= 55 ? 90 : st.metrics.fps >= 40 ? 70 : 30)}"><span class="perf-metric__label">FPS</span><span class="perf-metric__value">${st.metrics.fps}</span><span class="perf-metric__hint">${st.metrics.fps >= 55 ? 'Fluido' : st.metrics.fps >= 40 ? 'Moderado' : 'Travando'}</span></div>
+        <div class="perf-metric ${scoreClass(st.metrics.avgLatency < 300 ? 90 : st.metrics.avgLatency < 700 ? 70 : 30)}"><span class="perf-metric__label">Latência API</span><span class="perf-metric__value">${Math.round(st.metrics.avgLatency)}<small style="font-size:12px">ms</small></span><span class="perf-metric__hint">${st.metrics.apiCalls} chamadas</span></div>
+        <div class="perf-metric ${scoreClass(hitRate >= 50 ? 90 : hitRate >= 25 ? 70 : 40)}"><span class="perf-metric__label">Cache Hit</span><span class="perf-metric__value">${hitRate}<small style="font-size:12px">%</small></span><span class="perf-metric__hint">${cache.hits} acertos / ${cache.misses} erros</span></div>
+        <div class="perf-metric"><span class="perf-metric__label">DOM</span><span class="perf-metric__value">${document.querySelectorAll('*').length}</span><span class="perf-metric__hint">elementos ativos</span></div>
+      </div>
+      <div class="perf-section-title">📈 Latência (últimas 24 chamadas)</div>
+      <div class="perf-chart">${chartBars}</div>
+      <div class="perf-section-title">🎛️ Ajustes finos</div>
+      <div id="perf-toggles-wrap">${toggles.map(t => `<div class="perf-toggle ${st.config[t.key] ? 'is-on' : ''}" data-perf-toggle="${t.key}"><div class="perf-toggle__icon">${t.icon}</div><div class="perf-toggle__body"><span class="perf-toggle__title">${t.title}</span><span class="perf-toggle__desc">${t.desc}</span></div><div class="perf-toggle__switch"></div></div>`).join('')}</div>
+      <div class="perf-section-title">⚡ Presets de modo</div>
+      <div class="perf-mode-preset">
+        <div class="perf-preset ${presetAtual === 'economico' ? 'is-active' : ''}" data-perf-preset="economico"><span class="perf-preset__icon">🍃</span><span class="perf-preset__name">Econômico</span><span class="perf-preset__desc">Aparelhos antigos</span></div>
+        <div class="perf-preset ${presetAtual === 'equilibrado' ? 'is-active' : ''}" data-perf-preset="equilibrado"><span class="perf-preset__icon">⚖️</span><span class="perf-preset__name">Equilibrado</span><span class="perf-preset__desc">Recomendado</span></div>
+        <div class="perf-preset ${presetAtual === 'turbo' ? 'is-active' : ''}" data-perf-preset="turbo"><span class="perf-preset__icon">🚀</span><span class="perf-preset__name">Turbo</span><span class="perf-preset__desc">Máxima velocidade</span></div>
+      </div>
+      <div class="perf-action-row">
+        <button type="button" class="x-btn x-btn--ghost x-btn--sm" data-perf-action="clearcache">🧹 Limpar cache (${cache.size})</button>
+        <button type="button" class="x-btn x-btn--ghost x-btn--sm" data-perf-action="reset">↺ Restaurar padrão</button>
+        <button type="button" class="x-btn x-btn--primary x-btn--sm" data-perf-action="forcerun">▶️ Aplicar agora</button>
+      </div>
+      ${score < 60 ? `<div class="perf-alert"><span class="perf-alert__icon">💡</span><div><b>Sugestão:</b> Ative o preset <b>Turbo</b> ou ligue o Modo Ghost para recuperar fluidez.</div></div>` : ''}
+      <div class="perf-section-title">🔬 Diagnóstico interno</div>
+      <div id="perf-diag-list"></div>
+    `;
+    box.querySelectorAll('[data-perf-toggle]').forEach(el => {
+      el.addEventListener('click', () => {
+        const k = el.dataset.perfToggle;
+        st.config[k] = !st.config[k];
+        el.classList.toggle('is-on', st.config[k]);
+        salvar(); aplicarTudo();
+        if (typeof U !== 'undefined' && U.toast) U.toast(`${st.config[k] ? '✅' : '⛔'} ${toggles.find(t => t.key === k)?.title}`, 1800, 'info');
+        setTimeout(() => render(), 400);
+      });
+    });
+    box.querySelectorAll('[data-perf-preset]').forEach(el => { el.addEventListener('click', () => aplicarPreset(el.dataset.perfPreset)); });
+    box.querySelector('[data-perf-action="clearcache"]')?.addEventListener('click', () => { Cache.invalidate(); st.metrics.cacheHits = 0; st.metrics.cacheMisses = 0; if (typeof U !== 'undefined' && U.toast) U.toast('🧹 Cache limpo', 2000, 'sucesso'); render(); });
+    box.querySelector('[data-perf-action="reset"]')?.addEventListener('click', () => { st.config = { ...DEFAULT_CONFIG }; salvar(); aplicarTudo(); if (typeof U !== 'undefined' && U.toast) U.toast('↺ Padrões restaurados', 2000, 'info'); render(); });
+    box.querySelector('[data-perf-action="forcerun"]')?.addEventListener('click', () => { aplicarTudo(); if (typeof U !== 'undefined' && U.toast) U.toast('▶️ Otimizações aplicadas', 1800, 'sucesso'); render(); });
+    const diagBox = document.getElementById('perf-diag-list');
+    if (diagBox) {
+      const diag = [
+        { icon: '🖼️', name: 'Imagens lazy', value: `${document.querySelectorAll('img[data-perf-observed]').length} observadas` },
+        { icon: '📦', name: 'Requests em voo', value: `${st.inflightRequests.size} ativos` },
+        { icon: '🎯', name: 'Interceptors', value: st.originalFetch ? 'ativos' : 'inativos' },
+        { icon: '📡', name: 'WebSocket', value: typeof sb !== 'undefined' ? 'conectado' : 'off' },
+        { icon: '💾', name: 'localStorage', value: `${Object.keys(localStorage).length} itens` },
+        { icon: '🧠', name: 'Memória JS', value: performance.memory ? `${Math.round(performance.memory.usedJSHeapSize / 1048576)}MB` : 'N/D' }
+      ];
+      diagBox.innerHTML = diag.map(d => `<div class="perf-diag-item"><span class="perf-diag-item__icon">${d.icon}</span><span class="perf-diag-item__name">${d.name}</span><span class="perf-diag-item__value">${d.value}</span></div>`).join('');
+    }
+  };
+
+  const init = () => {
+    carregar();
+    instrumentarFetch();
+    startFpsMonitor();
+    aplicarTudo();
+    startAutoVarredura();
+    log('⚡ Performance pronto');
+  };
+
+  // Re-render automático a cada 3s quando aba Admin > Performance estiver aberta
+  setInterval(() => {
+    if (State.get('view') === 'perfil' && !document.getElementById('perfil-tab-admin')?.classList.contains('hidden')) {
+      try { render(); } catch (e) {}
+    }
+  }, 3000);
+
+  // Auto-varredura quando novo conteúdo aparece
+  new MutationObserver(() => { varreImagens(); varreVirtualizacao(); }).observe(document.body, { childList: true, subtree: true });
+
+  return { init, render, Cache, dedup, _st: st, _config: st.config };
+})();
 </script>
 </body>
 </html>
