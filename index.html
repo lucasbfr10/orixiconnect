@@ -493,7 +493,19 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .leaderboard__bairro{font-size:var(--text-caption);color:var(--fg-secondary);display:block}
 .leaderboard__pts{font-family:var(--font-display);font-weight:var(--fw-black);color:var(--accent);flex-shrink:0}
 .chat__header{display:flex;align-items:center;gap:var(--space-md);padding:var(--space-md) 0;border-bottom:1px solid var(--border-hairline);margin-bottom:var(--space-md);position:sticky;top:var(--header-h);background:var(--bg-canvas);z-index:var(--z-sticky)}
-.chat__name{font-family:var(--font-display);font-size:var(--text-title);font-weight:var(--fw-extrabold);color:var(--fg-primary);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chat__header-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.chat__name{font-family:var(--font-display);font-size:var(--text-title);font-weight:var(--fw-extrabold);color:var(--fg-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chat__name-status{font-size:var(--text-caption);font-weight:var(--fw-bold);color:var(--fg-secondary);display:flex;align-items:center;gap:5px;line-height:1.2}
+.chat__name-status[data-status="online"]{color:var(--success)}
+.chat__name-status[data-status="typing"]{color:var(--accent)}
+.presence-dot{width:8px;height:8px;border-radius:50%;background:var(--success);flex-shrink:0;box-shadow:0 0 0 0 rgba(53,151,137,.7);animation:pulse 2.4s var(--ease-calm) infinite}
+.presence-dot--sm{width:9px;height:9px;position:absolute;bottom:0;right:0;border:2.5px solid var(--bg-surface);background:var(--success);z-index:3;animation:none;box-shadow:0 0 6px rgba(53,151,137,.8)}
+.chat__avatar-wrap{position:relative;flex-shrink:0}
+.presence-typing{display:inline-flex;align-items:center;gap:3px}
+.presence-typing span{width:4px;height:4px;border-radius:50%;background:currentColor;animation:typingBounce 1.2s var(--ease-calm) infinite}
+.presence-typing span:nth-child(2){animation-delay:.15s}
+.presence-typing span:nth-child(3){animation-delay:.3s}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:.55}30%{transform:translateY(-3px);opacity:1}}
 .chat__messages{display:flex;flex-direction:column;gap:var(--space-sm);min-height:320px;max-height:60dvh;overflow-y:auto;padding:var(--space-md)}
 .chat__bubble{max-width:78%;padding:var(--space-md) var(--space-lg);border-radius:var(--radius-xl);font-size:var(--text-body-sm);line-height:var(--lh-relaxed);word-break:break-word}
 .chat__bubble--in{align-self:flex-start;background:var(--bg-surface);border:1px solid var(--border-hairline);border-bottom-left-radius:6px;color:var(--fg-primary)}
@@ -503,6 +515,7 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .chat__input{flex:1;padding:var(--space-md) var(--space-lg);background:var(--bg-surface);border:1.5px solid var(--border-subtle);border-radius:var(--radius-pill);font-size:var(--text-body);color:var(--fg-primary)}
 .chat__input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
 .chat__send{width:44px;height:44px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;border:0;box-shadow:var(--shadow-accent)}
+.chat-row-avatar{position:relative;flex-shrink:0}
 .notif-group{margin-bottom:var(--space-2xl)}
 .notif-group__title{font-family:var(--font-display);font-size:var(--text-caption);font-weight:var(--fw-black);letter-spacing:var(--track-wider);text-transform:uppercase;color:var(--fg-tertiary);margin-bottom:var(--space-md)}
 .notif-row{display:flex;align-items:center;gap:var(--space-md);padding:var(--space-md) var(--space-lg);background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:var(--radius-lg);cursor:pointer;position:relative;overflow:hidden;margin-bottom:6px}
@@ -527,9 +540,6 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .profile__banner{position:relative;height:clamp(120px,22vw,180px);border-radius:var(--radius-3xl) var(--radius-3xl) 0 0;overflow:hidden;background:linear-gradient(135deg,var(--accent-soft),var(--secondary-soft));margin:0 calc(-1 * var(--space-3xl)) var(--space-lg);width:calc(100% + 2 * var(--space-3xl))}
 .profile__banner img{width:100%;height:100%;object-fit:cover;display:block}
 .profile__banner-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:clamp(14px,2vw,18px);font-weight:900;color:var(--fg-secondary);background:linear-gradient(135deg,var(--accent-soft),var(--secondary-soft));letter-spacing:.05em;text-transform:uppercase;opacity:.7}
-/* ═══════════════════════════════════════════════════════════
-   ⭐ v24: Estilos do avatar clicável (upload de foto de perfil)
-   ═══════════════════════════════════════════════════════════ */
 .profile__avatar-wrap{position:relative;flex-shrink:0;display:inline-block;cursor:pointer;transition:transform var(--dur-fast) var(--ease-bounce)}
 .profile__avatar-wrap:hover{transform:scale(1.03)}
 .profile__avatar-wrap:active{transform:scale(.97)}
@@ -539,7 +549,6 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .profile__avatar-wrap.is-loading{pointer-events:none}
 .profile__avatar-wrap.is-loading::after{content:'';position:absolute;inset:0;border-radius:50%;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:4}
 .profile__avatar-wrap.is-loading::before{content:'';position:absolute;top:50%;left:50%;width:26px;height:26px;margin:-13px 0 0 -13px;border:3px solid #fff;border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite;z-index:5}
-/* ═══════════════════════════════════════════════════════════ */
 .profile--has-banner .profile__head{margin-top:-50px}
 .profile--has-banner .profile__head .x-avatar{border-width:4px;border-color:var(--bg-surface);box-shadow:0 8px 24px -4px rgba(0,0,0,.2)}
 .profile__banner--admin{background:linear-gradient(135deg,#DBA84A 0%,#F0C674 25%,#9462A4 50%,#5A88B3 75%,#359789 100%);background-size:300% 300%;animation:adminBannerShift 8s ease infinite;position:relative}
@@ -711,9 +720,6 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 :root[data-theme="dark"] .x-empty__icon{opacity:.42}
 </style>
 
-<!-- ═══════════════════════════════════════════════════════════
-     CSS: STORIES ESTILO INSTAGRAM
-     ═══════════════════════════════════════════════════════════ -->
 <style id="stories-instagram-css">
 .stories-strip{display:flex;gap:var(--space-md);overflow-x:auto;padding:var(--space-xs) 0 var(--space-lg);scrollbar-width:none;-webkit-overflow-scrolling:touch;margin:0 calc(-1 * var(--space-lg));padding-left:var(--space-lg);padding-right:var(--space-lg)}
 .stories-strip::-webkit-scrollbar{display:none}
@@ -843,9 +849,6 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .stx-context-menu__item--danger:hover{background:var(--danger-soft)}
 </style>
 
-<!-- ═══════════════════════════════════════════════════════════
-     CSS: TRENDING TOPICS
-     ═══════════════════════════════════════════════════════════ -->
 <style id="trending-css">
 .trending-widget-card{background:linear-gradient(135deg,rgba(217,103,84,.04),rgba(221,148,83,.03));border:1px solid var(--border-hairline);padding:var(--space-md)}
 .trending-item{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;background:transparent;border:0;border-radius:var(--radius-md);cursor:pointer;text-align:left;transition:all var(--dur-fast) var(--ease-swift);position:relative}
@@ -889,9 +892,6 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .trending-item:nth-child(5){animation-delay:160ms}
 </style>
 
-<!-- ═══════════════════════════════════════════════════════════
-     CSS: GRUPOS estilo WhatsApp
-     ═══════════════════════════════════════════════════════════ -->
 <style id="grupos-css">
 .grupos-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:var(--space-lg)}
 .grupos-header h3{margin:0}
@@ -903,6 +903,7 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .grupo-item__info{flex:1;min-width:0}
 .grupo-item__nome{font-size:14px;font-weight:700;color:var(--fg-primary);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .grupo-item__meta{font-size:11px;color:var(--fg-secondary);display:flex;align-items:center;gap:6px;margin-top:2px}
+.grupo-item__meta[data-status="typing"]{color:var(--accent);font-weight:700}
 .grupo-item__badge{min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:var(--gradient-primary);color:#fff;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
 .grupo-chat{display:flex;flex-direction:column;height:calc(100dvh - var(--header-h) - var(--tabbar-h) - var(--safe-bottom) - 40px);background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:var(--radius-2xl);overflow:hidden}
 .grupo-chat__head{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border-hairline);background:var(--bg-surface-alt)}
@@ -912,7 +913,8 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .grupo-chat__foto img{width:100%;height:100%;object-fit:cover}
 .grupo-chat__info{flex:1;min-width:0;cursor:pointer}
 .grupo-chat__nome{font-size:15px;font-weight:800;color:var(--fg-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.grupo-chat__sub{font-size:11px;color:var(--fg-secondary);font-weight:600}
+.grupo-chat__sub{font-size:11px;color:var(--fg-secondary);font-weight:600;display:flex;align-items:center;gap:4px}
+.grupo-chat__sub[data-status="typing"]{color:var(--accent);font-weight:700}
 .grupo-chat__menu{width:38px;height:38px;border-radius:50%;border:0;background:transparent;color:var(--fg-secondary);cursor:pointer;font-size:20px;flex-shrink:0;transition:all var(--dur-fast)}
 .grupo-chat__menu:hover{background:var(--bg-sunken);color:var(--fg-primary)}
 .grupo-chat__msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:6px;background:var(--bg-canvas);background-image:radial-gradient(circle at 20% 30%,var(--accent-soft) 0%,transparent 40%),radial-gradient(circle at 80% 70%,var(--secondary-soft) 0%,transparent 40%);background-size:100% 100%}
@@ -985,9 +987,6 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 }
 </style>
 
-<!-- ═══════════════════════════════════════════════════════════
-     CSS: DELETE POST (botão de apagar posts)
-     ═══════════════════════════════════════════════════════════ -->
 <style id="delete-post-css">
 .x-post__head{position:relative}
 .x-post__delete{
@@ -1386,7 +1385,11 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
         <div id="chat-conversa-wrap" class="hidden">
           <header class="chat__header">
             <button type="button" class="x-icon-btn" id="chat-voltar" aria-label="Voltar"><span class="x-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6 9 12l6 6"/></svg></span></button>
-            <strong class="chat__name" id="chat-nome">—</strong>
+            <div class="chat__avatar-wrap" id="chat-avatar-wrap"></div>
+            <div class="chat__header-info">
+              <strong class="chat__name" id="chat-nome">—</strong>
+              <span class="chat__name-status" id="chat-status" data-status="offline"></span>
+            </div>
           </header>
           <div class="chat__messages" id="chat-mensagens"></div>
           <form class="chat__form" id="chat-form">
@@ -1417,7 +1420,7 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
               <div class="grupo-chat__foto" id="grupo-chat-foto">👥</div>
               <div class="grupo-chat__info" id="grupo-chat-info">
                 <div class="grupo-chat__nome" id="grupo-chat-nome">—</div>
-                <div class="grupo-chat__sub" id="grupo-chat-sub">—</div>
+                <div class="grupo-chat__sub" id="grupo-chat-sub" data-status="idle">—</div>
               </div>
               <button type="button" class="grupo-chat__menu" id="grupo-chat-menu" aria-label="Menu">⋮</button>
             </header>
@@ -1519,7 +1522,8 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 const SUPABASE_URL = 'https://ziemtqtyxkdvyvdhskvy.supabase.co';
 const SUPABASE_ANON = 'sb_publishable_EuNze_Cg5mDko0Kd6YQVhg_Dmzli8v5';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON, {
-  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, storageKey: 'orixi-auth' }
+  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, storageKey: 'orixi-auth' },
+  realtime: { params: { eventsPerSecond: 5 } }
 });
 const ADMIN_EMAILS = ['lucascalderaro30@gmail.com'];
 const DEBUG = new URLSearchParams(location.search).has('debug');
@@ -1539,6 +1543,7 @@ const BANNER_PRESETS = [{id:'sunset',label:'Sunset',value:'linear-gradient(135de
 const PALAVRAS_BLOQUEADAS = ['matar','morte','arma','estupr','pedofil','molest','cocaina','crack','maconh'];
 const PADROES_XSS = [/<script[^>]*>[\s\S]*?<\/script>/gi,/<iframe[^>]*>[\s\S]*?<\/iframe>/gi,/<object[^>]*>[\s\S]*?<\/object>/gi,/<embed[^>]*>/gi,/\son\w+\s*=\s*["']?[^"'>]*/gi,/javascript:/gi,/data:text\/html/gi];
 const SKINS = {amazonia:{name:'Amazônia',emoji:'🌅'},noite:{name:'Noite',emoji:'🌙'},festival:{name:'Festival',emoji:'🌺'},floresta:{name:'Floresta',emoji:'🌿'},aguas:{name:'Águas',emoji:'🌊'},aurora:{name:'Aurora',emoji:'✨'},cyberpunk:{name:'Cyberpunk',emoji:'⚡'},papel:{name:'Papel & Tinta',emoji:'📰'},retro:{name:'Retrô 80s',emoji:'🌃'},vidro:{name:'Vidro Líquido',emoji:'💎'},brasil:{name:'Brasil Raiz',emoji:'🇧🇷'}};
+const ADMIN_UUIDS = ['767fd8d0-98db-4639-8acf-f4deb9b7718c'];
 
 /* ═══════════════════════════════════════════════════════════
    BLOCO 2: SKIN SWITCHER
@@ -1590,13 +1595,9 @@ const U = (() => {
   const getLevelProgress = (xp = 0) => { const curr = getLevel(xp); const next = getNextLevel(xp); if (!next) return { percent: 100, current: xp, next: xp, nextLevel: null }; const range = next.min - curr.min; const progress = xp - curr.min; return { percent: Math.min(100, (progress / range) * 100), current: progress, next: range, nextLevel: next }; };
   const isNight = () => { const h = new Date().getHours(); return h >= 0 && h < 6; };
   const isAdminEmail = (email = '') => ADMIN_EMAILS.map(e => e.toLowerCase()).includes(String(email).toLowerCase());
-  const solidColorFromGradient = (value, fallback = '#DBA84A') => {
-    if (!value || value === 'none') return fallback;
-    if (!value.includes('gradient')) return value;
-    const m = String(value).match(/#[0-9A-Fa-f]{6}/);
-    return m ? m[0] : fallback;
-  };
-  return { $, $$, sanitize, escapeHtml, truncate, initials, timeAgo, formatDate, formatHora, formatNum, randomCode, store, toast, btnLoading, ripple, party, copy, resizeImage, isEmail, isCode, show, hide, scrollTop, publicUrl, formatPostText, getLevel, getNextLevel, getLevelProgress, isNight, isAdminEmail, solidColorFromGradient };
+  const isAdminUuid = (uuid = '') => ADMIN_UUIDS.map(u => u.toLowerCase()).includes(String(uuid).toLowerCase());
+  const solidColorFromGradient = (value, fallback = '#DBA84A') => { if (!value || value === 'none') return fallback; if (!value.includes('gradient')) return value; const m = String(value).match(/#[0-9A-Fa-f]{6}/); return m ? m[0] : fallback; };
+  return { $, $$, sanitize, escapeHtml, truncate, initials, timeAgo, formatDate, formatHora, formatNum, randomCode, store, toast, btnLoading, ripple, party, copy, resizeImage, isEmail, isCode, show, hide, scrollTop, publicUrl, formatPostText, getLevel, getNextLevel, getLevelProgress, isNight, isAdminEmail, isAdminUuid, solidColorFromGradient };
 })();
 
 /* ═══════════════════════════════════════════════════════════
@@ -1610,7 +1611,7 @@ const State = (() => {
   const get = (k) => k ? data[k] : { ...data };
   const set = (k, v) => { const prev = data[k]; data[k] = v; emit('change', { key: k, value: v, prev }); emit('change:' + k, v); return v; };
   const isLogged = () => !!data.user;
-  const isAdmin = () => { if (!data.user) return false; return data.user.is_admin === true || U.isAdminEmail(data.user.email); };
+  const isAdmin = () => { if (!data.user) return false; return data.user.is_admin === true || U.isAdminEmail(data.user.email) || U.isAdminUuid(data.user.id); };
   const loadUser = async () => { try { const { data: { session } } = await sb.auth.getSession(); set('session', session); if (!session?.user) { set('user', null); return null; } const { data: profile, error } = await sb.from('profiles').select('*').eq('id', session.user.id).maybeSingle(); if (error) throw error; if (!profile) { const fb = { id: session.user.id, email: session.user.email, nome: session.user.user_metadata?.nome || 'Morador', bairro: null, pontos: 0 }; set('user', fb); return fb; } set('user', profile); if (profile.badges) set('badges', profile.badges); return profile; } catch (err) { logErr('loadUser:', err); set('user', null); return null; } };
   const saveUser = async (patch) => { if (!data.user?.id) return null; try { const { data: updated, error } = await sb.from('profiles').update(patch).eq('id', data.user.id).select().single(); if (error) throw error; set('user', updated); return updated; } catch (err) { logErr('saveUser:', err); return null; } };
   const addXP = async (amount, reason = '') => { if (!data.user?.id) return; if (!Number.isFinite(amount) || amount <= 0) return; const currXP = data.user.pontos || 0; const newXP = currXP + amount; await saveUser({ pontos: newXP }); U.toast(`+${amount} XP${reason ? ' · ' + reason : ''}`, 2400, 'xp'); try { if (typeof LevelUp !== 'undefined' && LevelUp.detectar) { setTimeout(() => LevelUp.detectar(currXP, newXP), 500); } } catch (err) { logErr('levelup:', err); } };
@@ -1621,7 +1622,6 @@ const State = (() => {
     document.querySelectorAll('.view').forEach(el => { el.classList.toggle('hidden', el.id !== 'view-' + view); });
     document.querySelectorAll('.tab').forEach(t => t.classList.toggle('is-active', t.dataset.view === view));
     const btnGuia = document.getElementById('btn-guia'); if (btnGuia) btnGuia.classList.toggle('is-active', view === 'guia');
-    // Esconde a barra de nível do topo quando estiver visualizando o perfil de OUTRA pessoa
     const levelBarTop = document.getElementById('level-bar');
     if (levelBarTop) {
       const vendoOutroPerfil = view === 'perfil' && data.viewingProfileId && data.viewingProfileId !== data.user?.id;
@@ -1632,6 +1632,109 @@ const State = (() => {
   };
   const init = async () => { await loadUser(); set('ready', true); emit('ready'); };
   return { get, set, on, emit, isLogged, isAdmin, loadUser, saveUser, addXP, logout, setView, init };
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   BLOCO 4.5: Presence (online agora + digitando + último visto)
+   ═══════════════════════════════════════════════════════════ */
+const Presence = (() => {
+  const PRESENCE_KEY = 'orixi-presence-v1';
+  const TYPING_KEY = 'orixi-typing-v1';
+  const ONLINE_WINDOW_MS = 60 * 1000;
+  const TYPING_TIMEOUT_MS = 3500;
+  const HEARTBEAT_MS = 30000;
+  const st = {
+    channel: null,
+    typingChannel: null,
+    onlines: new Map(),
+    lastSeen: new Map(),
+    typings: new Map(),
+    heartbeatTimer: null,
+    purgeTimer: null,
+    subscribed: false,
+    typingChannelSubscribed: false
+  };
+  const listeners = new Map();
+  const on = (ev, fn) => { if (!listeners.has(ev)) listeners.set(ev, new Set()); listeners.get(ev).add(fn); };
+  const emit = (ev, p) => { if (listeners.has(ev)) listeners.get(ev).forEach(fn => { try { fn(p); } catch (e) { logErr('Presence.emit:', e); } }); };
+  const isOnline = (userId) => { if (!userId) return false; return st.onlines.has(userId); };
+  const getLastSeen = (userId) => { if (!userId) return null; return st.lastSeen.get(userId) || null; };
+  const isTyping = (fromUserId, toUserId) => { if (!fromUserId || !toUserId) return false; const key = `${fromUserId}->${toUserId}`; const exp = st.typings.get(key); if (!exp) return false; if (Date.now() > exp) { st.typings.delete(key); return false; } return true; };
+  const isTypingInGroup = (fromUserId, grupoId) => { if (!fromUserId || !grupoId) return false; const key = `${fromUserId}->grupo:${grupoId}`; const exp = st.typings.get(key); if (!exp) return false; if (Date.now() > exp) { st.typings.delete(key); return false; } return true; };
+  const getTypingUsersForGroup = (grupoId, excludeUserId) => { const out = []; const now = Date.now(); const suffix = `->grupo:${grupoId}`; st.typings.forEach((exp, key) => { if (!key.endsWith(suffix)) return; if (exp < now) { st.typings.delete(key); return; } const from = key.split('->')[0]; if (from === excludeUserId) return; out.push(from); }); return out; };
+  const syncPresence = () => {
+    st.onlines.clear();
+    if (st.channel) {
+      const state = st.channel.presenceState();
+      Object.values(state).forEach(list => {
+        (list || []).forEach(meta => {
+          if (meta && meta.userId) st.onlines.set(meta.userId, { at: meta.online_at || Date.now(), nome: meta.nome || null });
+        });
+      });
+    }
+    emit('presence:sync', { total: st.onlines.size });
+  };
+  const handleBroadcastTyping = (payload) => {
+    if (!payload || !payload.de || !payload.para) return;
+    const key = `${payload.de}->${payload.para}`;
+    if (payload.stopped) { st.typings.delete(key); } else { st.typings.set(key, Date.now() + TYPING_TIMEOUT_MS); }
+    emit('typing:change', { de: payload.de, para: payload.para, typing: !payload.stopped });
+  };
+  const emitTyping = (para, stopped = false) => {
+    if (!st.typingChannel || !st.typingChannelSubscribed) return;
+    const u = State.get('user'); if (!u?.id) return;
+    try {
+      st.typingChannel.send({
+        type: 'broadcast',
+        event: 'typing',
+        payload: { de: u.id, para, stopped, at: Date.now() }
+      });
+    } catch (e) { logErr('Presence.emitTyping:', e); }
+  };
+  const updateLastSeen = async () => {
+    const u = State.get('user'); if (!u?.id) return;
+    const now = new Date().toISOString();
+    st.lastSeen.set(u.id, now);
+    try { await sb.from('profiles').update({ ultima_atividade: now }).eq('id', u.id); } catch (e) { /* coluna pode não existir */ }
+  };
+  const subscribe = async () => {
+    const u = State.get('user'); if (!u?.id) return;
+    if (st.channel) { try { sb.removeChannel(st.channel); } catch (e) {} st.channel = null; }
+    if (st.typingChannel) { try { sb.removeChannel(st.typingChannel); } catch (e) {} st.typingChannel = null; }
+    st.channel = sb.channel(PRESENCE_KEY, { config: { presence: { key: u.id } } });
+    st.channel.on('presence', { event: 'sync' }, () => syncPresence());
+    st.channel.on('presence', { event: 'join' }, ({ newPresences }) => { (newPresences || []).forEach(p => { if (p.userId) st.onlines.set(p.userId, { at: p.online_at || Date.now(), nome: p.nome }); }); emit('presence:sync', { total: st.onlines.size }); });
+    st.channel.on('presence', { event: 'leave' }, ({ leftPresences }) => { (leftPresences || []).forEach(p => { if (p.userId) st.onlines.delete(p.userId); }); emit('presence:sync', { total: st.onlines.size }); });
+    st.channel.subscribe(async (status) => {
+      st.subscribed = (status === 'SUBSCRIBED');
+      if (st.subscribed) {
+        try { await st.channel.track({ userId: u.id, nome: u.nome || 'Morador', online_at: new Date().toISOString() }); } catch (e) { logErr('Presence.track:', e); }
+        await updateLastSeen();
+        if (st.heartbeatTimer) clearInterval(st.heartbeatTimer);
+        st.heartbeatTimer = setInterval(updateLastSeen, HEARTBEAT_MS);
+      }
+    });
+    st.typingChannel = sb.channel(TYPING_KEY);
+    st.typingChannel.on('broadcast', { event: 'typing' }, ({ payload }) => handleBroadcastTyping(payload));
+    st.typingChannel.subscribe((status) => { st.typingChannelSubscribed = (status === 'SUBSCRIBED'); });
+    if (st.purgeTimer) clearInterval(st.purgeTimer);
+    st.purgeTimer = setInterval(() => { const now = Date.now(); st.typings.forEach((exp, key) => { if (exp < now) st.typings.delete(key); }); }, 1000);
+  };
+  const unsubscribe = async () => {
+    if (st.heartbeatTimer) { clearInterval(st.heartbeatTimer); st.heartbeatTimer = null; }
+    if (st.purgeTimer) { clearInterval(st.purgeTimer); st.purgeTimer = null; }
+    st.onlines.clear(); st.typings.clear();
+    if (st.channel) { try { await st.channel.untrack(); } catch (e) {} try { sb.removeChannel(st.channel); } catch (e) {} st.channel = null; }
+    if (st.typingChannel) { try { sb.removeChannel(st.typingChannel); } catch (e) {} st.typingChannel = null; }
+    st.subscribed = false; st.typingChannelSubscribed = false;
+  };
+  const init = () => {
+    State.on('change:user', (u) => { if (u?.id) { subscribe(); } else { unsubscribe(); } });
+    const u = State.get('user'); if (u?.id) subscribe();
+    window.addEventListener('beforeunload', () => { try { st.channel?.untrack(); } catch (e) {} });
+    log('🟢 Presence pronto');
+  };
+  return { init, isOnline, getLastSeen, isTyping, isTypingInGroup, getTypingUsersForGroup, emitTyping, on, subscribe, unsubscribe, updateLastSeen };
 })();
 
 /* ═══════════════════════════════════════════════════════════
@@ -1827,11 +1930,6 @@ const abrirLightbox = (src) => { if (!_lightboxEl) { _lightboxEl = document.crea
 const PostRender = (() => {
   const avatarHtml = (autor, size = 'md') => { const a = autor || {}; const nome = a.nome || 'Morador'; const av = a.avatar_url ? U.publicUrl(BUCKETS.AVATARS, a.avatar_url) : null; const isAdmin = a.is_admin === true; const frame = a.admin_frame || 'none'; const frameAttr = isAdmin && frame !== 'none' ? ` data-frame="${frame}"` : ''; const adminClass = isAdmin && frame !== 'none' ? ` x-avatar--admin` : ''; if (av) return `<img class="x-avatar x-avatar--${size}${adminClass}"${frameAttr} src="${U.escapeHtml(av)}" loading="lazy" alt="">`; return `<div class="x-avatar x-avatar--${size} x-avatar--grad${adminClass}"${frameAttr}>${U.initials(nome)}</div>`; };
 
-  /* ═══════════════════════════════════════════════════════════
-     ✅ CORRIGIDO (Android-safe): nome de admin agora usa
-     cor SÓLIDA extraída do gradiente em vez de -webkit-background-clip:text
-     (que não renderiza no Chrome Android antigo, deixando o texto invisível)
-     ═══════════════════════════════════════════════════════════ */
   const authorNameHtml = (autor) => {
     const a = autor || {};
     const nome = a.nome || 'Morador';
@@ -1884,8 +1982,7 @@ const Composer = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 15: Perfil (com upload de foto de perfil, upload de capa e
-   ✅ CORRIGIDO: nome do admin com cor SÓLIDA — Android-safe)
+   BLOCO 15: Perfil
    ═══════════════════════════════════════════════════════════ */
 const Perfil = (() => {
   const abrir = async (userId) => {
@@ -1909,7 +2006,7 @@ const Perfil = (() => {
     const box = document.getElementById('perfil-view');
     if (!box) return;
     const eu = user.id === State.get('user')?.id;
-    const isAdmin = user.is_admin === true;
+    const isAdmin = user.is_admin === true || U.isAdminUuid(user.id);
     const frame = user.admin_frame || 'none';
     const colorId = user.admin_color || 'none';
     const colorObj = ADMIN_COLORS.find(c => c.id === colorId);
@@ -1932,17 +2029,12 @@ const Perfil = (() => {
       ? `<div class="profile__avatar-wrap" id="pf-avatar-wrap" role="button" tabindex="0" aria-label="Trocar foto de perfil">${avatarInner}<span class="profile__avatar-edit">📷</span><input type="file" id="pf-avatar-input" accept="image/*" style="display:none"></div>`
       : avatarInner;
 
-    /* ═══════════════════════════════════════════════════════════
-       ✅ CORRIGIDO (Android-safe): nome do admin com cor SÓLIDA
-       em vez de -webkit-background-clip:text (que falha no Android).
-       ═══════════════════════════════════════════════════════════ */
     let solidNameColor = null;
     if (isAdmin && colorObj?.value) {
       solidNameColor = U.solidColorFromGradient(colorObj.value, '#DBA84A');
     }
     const nameStyle = solidNameColor ? ` style="color:${solidNameColor}"` : '';
     const nameClass = 'profile__name' + (isAdmin ? ' profile__name--admin' : '');
-    /* ═══════════════════════════════════════════════════════════ */
 
     const seloH = isAdmin ? `<span class="verified-badge--admin">✓</span>` : (user.pontos || 0) >= 3000 ? `<span class="verified-badge">✓</span>` : '';
     const titleH = isAdmin && title ? `<div class="profile__custom-title">👑 ${U.escapeHtml(title)}</div>` : '';
@@ -1982,33 +2074,20 @@ const Perfil = (() => {
           try {
             const u = State.get('user');
             const avatarAntigo = u?.avatar_url || null;
-
             const blob = await U.resizeImage(file, 500, 0.9);
             const path = `${u.id}/avatar-${Date.now()}.jpg`;
-
-            const { error: upErr } = await sb.storage.from(BUCKETS.AVATARS).upload(path, blob, {
-              upsert: true,
-              contentType: 'image/jpeg',
-              cacheControl: '3600'
-            });
+            const { error: upErr } = await sb.storage.from(BUCKETS.AVATARS).upload(path, blob, { upsert: true, contentType: 'image/jpeg', cacheControl: '3600' });
             if (upErr) throw upErr;
-
             const updated = await State.saveUser({ avatar_url: path });
             if (!updated) throw new Error('Falha ao salvar no perfil');
-
-            if (avatarAntigo && !/^https?:\/\//i.test(avatarAntigo)) {
-              try { await sb.storage.from(BUCKETS.AVATARS).remove([avatarAntigo]); } catch (err) { log('[Perfil] Falha ao remover avatar antigo:', err?.message || err); }
-            }
-
+            if (avatarAntigo && !/^https?:\/\//i.test(avatarAntigo)) { try { await sb.storage.from(BUCKETS.AVATARS).remove([avatarAntigo]); } catch (err) {} }
             U.toast('✅ Foto de perfil atualizada!', 2400, 'sucesso');
             setTimeout(() => abrir(user.id), 400);
           } catch (err) {
             logErr('[Perfil] Upload avatar:', err);
             U.toast('⚠️ Erro ao enviar foto: ' + (err.message || 'desconhecido'), 3200, 'erro');
             avatarWrap.classList.remove('is-loading');
-          } finally {
-            avatarInput.value = '';
-          }
+          } finally { avatarInput.value = ''; }
         });
       }
     }
@@ -2076,18 +2155,12 @@ const renderAparencia = () => {
 
     <h3 class="x-heading x-heading--sm">🖼️ Foto de capa</h3>
     <div class="admin-card" style="padding:var(--space-md)">
-      <div id="banner-preview"
-           style="width:100%;aspect-ratio:16/9;border-radius:var(--radius-lg);overflow:hidden;border:1.5px solid var(--border-hairline);${bannerPreviewStyle}">
-      </div>
+      <div id="banner-preview" style="width:100%;aspect-ratio:16/9;border-radius:var(--radius-lg);overflow:hidden;border:1.5px solid var(--border-hairline);${bannerPreviewStyle}"></div>
       <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
         <button type="button" class="x-btn x-btn--primary x-btn--sm" id="banner-upload-btn" style="flex:1">
           📷 ${temBannerFoto ? 'Trocar foto de capa' : 'Enviar foto de capa'}
         </button>
-        ${(temBannerFoto || temBannerPreset) ? `
-          <button type="button" class="x-btn x-btn--ghost x-btn--sm" id="banner-remove" style="flex:1">
-            🗑️ Remover capa
-          </button>
-        ` : ''}
+        ${(temBannerFoto || temBannerPreset) ? `<button type="button" class="x-btn x-btn--ghost x-btn--sm" id="banner-remove" style="flex:1">🗑️ Remover capa</button>` : ''}
       </div>
       <input type="file" id="banner-upload-input" accept="image/*" style="display:none">
       <p style="font-size:11px;color:var(--fg-tertiary);margin-top:10px;text-align:center;line-height:1.4">
@@ -2103,88 +2176,41 @@ const renderAparencia = () => {
 
   const upBtn = document.getElementById('banner-upload-btn');
   const upInput = document.getElementById('banner-upload-input');
-
   upBtn?.addEventListener('click', () => upInput?.click());
-
   upInput?.addEventListener('change', async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
-    if (!file.type.startsWith('image/')) {
-      U.toast('Selecione uma imagem válida', 2400, 'erro');
-      return;
-    }
-    if (file.size > 12 * 1024 * 1024) {
-      U.toast('Imagem muito grande (máx 12MB)', 2600, 'erro');
-      return;
-    }
-
-    upBtn.classList.add('is-loading');
-    upBtn.disabled = true;
-    const originalText = upBtn.innerHTML;
-    upBtn.innerHTML = '📤 Enviando…';
-
+    if (!file.type.startsWith('image/')) { U.toast('Selecione uma imagem válida', 2400, 'erro'); return; }
+    if (file.size > 12 * 1024 * 1024) { U.toast('Imagem muito grande (máx 12MB)', 2600, 'erro'); return; }
+    upBtn.classList.add('is-loading'); upBtn.disabled = true;
+    const originalText = upBtn.innerHTML; upBtn.innerHTML = '📤 Enviando…';
     try {
       const blob = await U.resizeImage(file, 1600, 0.85);
       const path = `${u.id}/banner-${Date.now()}.jpg`;
-
-      const { error: upErr } = await sb.storage
-        .from(BUCKETS.POSTS)
-        .upload(path, blob, {
-          upsert: true,
-          contentType: 'image/jpeg',
-          cacheControl: '3600'
-        });
+      const { error: upErr } = await sb.storage.from(BUCKETS.POSTS).upload(path, blob, { upsert: true, contentType: 'image/jpeg', cacheControl: '3600' });
       if (upErr) throw upErr;
-
       const bannerAntigo = u.banner_url;
-
-      const updated = await State.saveUser({
-        banner_url: path,
-        banner_preset: null
-      });
+      const updated = await State.saveUser({ banner_url: path, banner_preset: null });
       if (!updated) throw new Error('Falha ao salvar no perfil');
-
-      if (bannerAntigo && !/^https?:\/\//i.test(bannerAntigo)) {
-        try {
-          await sb.storage.from(BUCKETS.POSTS).remove([bannerAntigo]);
-        } catch (err) {
-          log('[Banner] Falha ao remover capa antiga:', err?.message || err);
-        }
-      }
-
+      if (bannerAntigo && !/^https?:\/\//i.test(bannerAntigo)) { try { await sb.storage.from(BUCKETS.POSTS).remove([bannerAntigo]); } catch (err) {} }
       U.toast('✅ Capa atualizada!', 2400, 'sucesso');
-
       setTimeout(() => abrir(u.id), 400);
     } catch (err) {
       logErr('[Banner] upload:', err);
       U.toast('⚠️ Erro ao enviar capa: ' + (err.message || 'desconhecido'), 3200, 'erro');
-      upBtn.classList.remove('is-loading');
-      upBtn.disabled = false;
-      upBtn.innerHTML = originalText;
-    } finally {
-      upInput.value = '';
-    }
+      upBtn.classList.remove('is-loading'); upBtn.disabled = false; upBtn.innerHTML = originalText;
+    } finally { upInput.value = ''; }
   });
 
   box.querySelectorAll('[data-preset]').forEach(el => {
     el.addEventListener('click', async () => {
       const presetId = el.dataset.preset;
       try {
-        if (u.banner_url && !/^https?:\/\//i.test(u.banner_url)) {
-          try {
-            await sb.storage.from(BUCKETS.POSTS).remove([u.banner_url]);
-          } catch (err) {
-            log('[Banner] Falha ao remover foto antiga:', err?.message || err);
-          }
-        }
+        if (u.banner_url && !/^https?:\/\//i.test(u.banner_url)) { try { await sb.storage.from(BUCKETS.POSTS).remove([u.banner_url]); } catch (err) {} }
         await State.saveUser({ banner_url: null, banner_preset: presetId });
         U.toast('🎨 Capa aplicada', 2000, 'sucesso');
         abrir(u.id);
-      } catch (err) {
-        logErr('[Banner] preset:', err);
-        U.toast('Erro ao aplicar capa', 2400, 'erro');
-      }
+      } catch (err) { logErr('[Banner] preset:', err); U.toast('Erro ao aplicar capa', 2400, 'erro'); }
     });
   });
 
@@ -2192,25 +2218,16 @@ const renderAparencia = () => {
     const antigo = u.banner_url;
     try {
       await State.saveUser({ banner_url: null, banner_preset: null });
-      if (antigo && !/^https?:\/\//i.test(antigo)) {
-        try {
-          await sb.storage.from(BUCKETS.POSTS).remove([antigo]);
-        } catch (err) {
-          log('[Banner] Falha ao remover:', err?.message || err);
-        }
-      }
+      if (antigo && !/^https?:\/\//i.test(antigo)) { try { await sb.storage.from(BUCKETS.POSTS).remove([antigo]); } catch (err) {} }
       U.toast('Capa removida', 2200, 'info');
       abrir(u.id);
-    } catch (err) {
-      logErr('[Banner] remover:', err);
-      U.toast('Erro ao remover capa', 2400, 'erro');
-    }
+    } catch (err) { logErr('[Banner] remover:', err); U.toast('Erro ao remover capa', 2400, 'erro'); }
   });
 };
 
   const renderAdmin = () => { if (typeof Diagnostico !== 'undefined' && Diagnostico.render) { Diagnostico.render(); return; } const box = document.getElementById('perfil-tab-admin'); if (!box) return; box.innerHTML = `<p style="padding:20px;color:var(--danger)">Módulo Diagnostico não carregou.</p>`; };
 
-  const renderConfig = () => { const box = document.getElementById('perfil-tab-config'); if (!box) return; const u = State.get('user'); const isAdmin = State.isAdmin(); box.innerHTML = `${isAdmin ? `<div class="admin-card"><strong style="font-family:var(--font-display);font-size:var(--text-title-sm);font-weight:900">👑 Você é Administrador</strong><p style="font-size:var(--text-caption);color:var(--fg-secondary);margin-top:4px">Personalize sua aparência nas abas <b>Aparência</b> e <b>Admin</b>.</p></div>` : ''}<h3 class="x-heading">Conta</h3><div class="config-row"><div class="config-row__info"><strong id="config-nome">—</strong><small id="config-email">—</small></div><button type="button" class="x-link" data-action="editar-perfil">Editar</button></div><h3 class="x-heading">Sobre</h3><div class="config-row"><div class="config-row__info"><strong>Orixiconnect 🌆</strong><small>versão 24.0 · Upload de foto de perfil</small></div><button type="button" class="x-link" data-action="logout">Sair</button></div>`; const n = document.getElementById('config-nome'); const e = document.getElementById('config-email'); if (n) n.textContent = u?.nome || '—'; if (e) e.textContent = u?.email || '—'; document.querySelectorAll('#perfil-tab-config [data-action]').forEach(b => b.addEventListener('click', () => { const a = b.dataset.action; if (a === 'editar-perfil') editar(); else if (a === 'logout') { if (confirm('Sair?')) State.logout().then(() => { U.hide('#app'); U.show('#landing'); }); } })); };
+  const renderConfig = () => { const box = document.getElementById('perfil-tab-config'); if (!box) return; const u = State.get('user'); const isAdmin = State.isAdmin(); box.innerHTML = `${isAdmin ? `<div class="admin-card"><strong style="font-family:var(--font-display);font-size:var(--text-title-sm);font-weight:900">👑 Você é Administrador</strong><p style="font-size:var(--text-caption);color:var(--fg-secondary);margin-top:4px">Personalize sua aparência nas abas <b>Aparência</b> e <b>Admin</b>.</p></div>` : ''}<h3 class="x-heading">Conta</h3><div class="config-row"><div class="config-row__info"><strong id="config-nome">—</strong><small id="config-email">—</small></div><button type="button" class="x-link" data-action="editar-perfil">Editar</button></div><h3 class="x-heading">Sobre</h3><div class="config-row"><div class="config-row__info"><strong>Orixiconnect 🌆</strong><small>versão 25.0 · Online + Digitando</small></div><button type="button" class="x-link" data-action="logout">Sair</button></div>`; const n = document.getElementById('config-nome'); const e = document.getElementById('config-email'); if (n) n.textContent = u?.nome || '—'; if (e) e.textContent = u?.email || '—'; document.querySelectorAll('#perfil-tab-config [data-action]').forEach(b => b.addEventListener('click', () => { const a = b.dataset.action; if (a === 'editar-perfil') editar(); else if (a === 'logout') { if (confirm('Sair?')) State.logout().then(() => { U.hide('#app'); U.show('#landing'); }); } })); };
 
   const editar = () => { const u = State.get('user'); if (!u) return; const bairros = BAIRROS.map(b => `<option value="${U.escapeHtml(b)}" ${b === u.bairro ? 'selected' : ''}>${U.escapeHtml(b)}</option>`).join(''); const body = `<div class="x-field"><label class="x-field__label">Nome</label><input class="x-field__input" id="ed-nome" value="${U.escapeHtml(u.nome || '')}" maxlength="60"></div><div class="x-field"><label class="x-field__label">Bio</label><textarea class="x-field__textarea" id="ed-bio" maxlength="200" rows="3">${U.escapeHtml(u.bio || '')}</textarea></div><div class="x-field"><label class="x-field__label">Bairro</label><select class="x-field__select" id="ed-bairro">${bairros}</select></div>`; Modal.abrir({ title: 'Editar perfil', body, submitLabel: 'Salvar', onSubmit: async () => { const nome = document.getElementById('ed-nome')?.value.trim(); if (!nome || nome.length < 2) { U.toast('Nome muito curto', 2400, 'erro'); return; } const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true); try { await State.saveUser({ nome, bio: document.getElementById('ed-bio')?.value.trim(), bairro: document.getElementById('ed-bairro')?.value }); U.toast('Perfil atualizado ✅', 2400, 'sucesso'); Modal.fechar(); abrir(); } catch { U.toast('Erro ao salvar', 2600, 'erro'); } finally { U.btnLoading(btn, false, 'Salvar'); } } }); };
 
@@ -2233,7 +2250,7 @@ const PostInteractions = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 17: Auth (login/cadastro)
+   BLOCO 17: Auth
    ═══════════════════════════════════════════════════════════ */
 const Auth = (() => {
   let modo = 'signup', bairroSel = null;
@@ -2245,7 +2262,7 @@ const Auth = (() => {
   const abrir = (t = 'signup') => { modo = t === 'login' ? 'login' : 'signup'; aplicarModo(); U.hide('#landing'); U.hide('#app'); U.show('#auth'); };
   const fechar = () => { U.hide('#auth'); if (State.isLogged()) U.show('#app'); else U.show('#landing'); };
   const validar = () => { const email = E.iEmail?.value.trim() || ''; const senha = E.iSenha?.value || ''; if (!U.isEmail(email)) { setErr('E-mail inválido.'); return null; } if (senha.length < 6) { setErr('Senha precisa ter 6+ caracteres.'); return null; } if (modo === 'signup') { const convite = (E.iConvite?.value || '').trim().toUpperCase(); const nome = (E.iNome?.value || '').trim(); if (!U.isCode(convite)) { setErr('Código de convite inválido.'); return null; } if (!nome || nome.length < 2) { setErr('Digite seu nome.'); return null; } if (!bairroSel) { setErr('Escolha seu bairro.'); return null; } return { email, senha, convite, nome, bairro: bairroSel }; } return { email, senha }; };
-  const cadastrar = async ({ email, senha, convite, nome, bairro }) => { const c = await DB.convites.validar(convite); if (!c) throw new Error('Convite não encontrado.'); if (c._inativo || c.usado_por) throw new Error('Este convite já foi usado.'); if (c._expirado) throw new Error('Este convite expirou. Peça um novo.'); const reservaId = 'reserva_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6); try { await sb.from('convites').update({ usado_por: reservaId, usado_em: new Date().toISOString() }).eq('codigo', convite).eq('ativo', true).is('usado_por', null).select().single(); } catch (e) { throw new Error('Este convite acabou de ser usado por outra pessoa.'); } const { data, error } = await sb.auth.signUp({ email, password: senha, options: { data: { nome, bairro } } }); if (error) { await sb.from('convites').update({ usado_por: null, usado_em: null }).eq('codigo', convite).eq('usado_por', reservaId).then(() => {}).catch(() => {}); throw error; } if (!data?.user) throw new Error('Não foi possível criar a conta.'); if (!data.session) throw new Error('Confirme seu e-mail para continuar.'); const isAdmin = U.isAdminEmail(email); await sb.from('profiles').upsert({ id: data.user.id, email, nome, bairro, is_admin: isAdmin }, { onConflict: 'id' }); try { await DB.convites.marcarUsado(convite, data.user.id); } catch (e) { logErr('marcarUsado:', e); } if (isAdmin) { try { const expiraEm = new Date(Date.now() + DB.convites.VALIDADE_DIAS * 24 * 60 * 60 * 1000).toISOString(); await sb.from('convites').insert({ codigo: U.randomCode(6), dono_id: data.user.id, expira_em: expiraEm, ativo: true }); } catch (e) { logErr('convite novo:', e); } } try { if (c.dono_id) { const { data: donoProfile } = await sb.from('profiles').select('is_admin, email').eq('id', c.dono_id).maybeSingle(); const donoEhAdmin = donoProfile?.is_admin === true || U.isAdminEmail(donoProfile?.email); if (donoEhAdmin) { const expiraEm = new Date(Date.now() + DB.convites.VALIDADE_DIAS * 24 * 60 * 60 * 1000).toISOString(); await sb.from('convites').insert({ codigo: U.randomCode(6), dono_id: c.dono_id, expira_em: expiraEm, ativo: true }); } } } catch (e) { logErr('convite dono:', e); } return data.user; };
+  const cadastrar = async ({ email, senha, convite, nome, bairro }) => { const c = await DB.convites.validar(convite); if (!c) throw new Error('Convite não encontrado.'); if (c._inativo || c.usado_por) throw new Error('Este convite já foi usado.'); if (c._expirado) throw new Error('Este convite expirou. Peça um novo.'); const reservaId = 'reserva_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6); try { await sb.from('convites').update({ usado_por: reservaId, usado_em: new Date().toISOString() }).eq('codigo', convite).eq('ativo', true).is('usado_por', null).select().single(); } catch (e) { throw new Error('Este convite acabou de ser usado por outra pessoa.'); } const { data, error } = await sb.auth.signUp({ email, password: senha, options: { data: { nome, bairro } } }); if (error) { await sb.from('convites').update({ usado_por: null, usado_em: null }).eq('codigo', convite).eq('usado_por', reservaId).then(() => {}).catch(() => {}); throw error; } if (!data?.user) throw new Error('Não foi possível criar a conta.'); if (!data.session) throw new Error('Confirme seu e-mail para continuar.'); const isAdmin = U.isAdminEmail(email) || U.isAdminUuid(data.user.id); await sb.from('profiles').upsert({ id: data.user.id, email, nome, bairro, is_admin: isAdmin, ultima_atividade: new Date().toISOString() }, { onConflict: 'id' }); try { await DB.convites.marcarUsado(convite, data.user.id); } catch (e) { logErr('marcarUsado:', e); } if (isAdmin) { try { const expiraEm = new Date(Date.now() + DB.convites.VALIDADE_DIAS * 24 * 60 * 60 * 1000).toISOString(); await sb.from('convites').insert({ codigo: U.randomCode(6), dono_id: data.user.id, expira_em: expiraEm, ativo: true }); } catch (e) { logErr('convite novo:', e); } } try { if (c.dono_id) { const { data: donoProfile } = await sb.from('profiles').select('is_admin, email').eq('id', c.dono_id).maybeSingle(); const donoEhAdmin = donoProfile?.is_admin === true || U.isAdminEmail(donoProfile?.email) || U.isAdminUuid(c.dono_id); if (donoEhAdmin) { const expiraEm = new Date(Date.now() + DB.convites.VALIDADE_DIAS * 24 * 60 * 60 * 1000).toISOString(); await sb.from('convites').insert({ codigo: U.randomCode(6), dono_id: c.dono_id, expira_em: expiraEm, ativo: true }); } } } catch (e) { logErr('convite dono:', e); } return data.user; };
   const entrar = async ({ email, senha }) => { const { data, error } = await sb.auth.signInWithPassword({ email, password: senha }); if (error) throw error; return data.user; };
   const traduz = (err) => { const r = String(err?.message || err || '').toLowerCase(); if (r.includes('invalid login')) return 'E-mail ou senha incorretos.'; if (r.includes('email not confirmed')) return 'Confirme seu e-mail.'; if (r.includes('already registered')) return 'E-mail já cadastrado.'; return err?.message || 'Algo deu errado.'; };
   const onSubmit = async (e) => { e.preventDefault(); setErr(''); const d = validar(); if (!d) return; U.btnLoading(E.submit, true); try { if (modo === 'signup') { await cadastrar(d); U.toast('Bem-vindo à rede 🌆', 3200, 'sucesso'); } else { await entrar(d); U.toast('Bom te ver de novo 👋', 3200, 'sucesso'); } await State.loadUser(); U.hide('#auth'); U.show('#app'); window.dispatchEvent(new CustomEvent('orixi:logged')); } catch (err) { logErr('auth:', err); setErr(traduz(err)); } finally { U.btnLoading(E.submit, false, modo === 'signup' ? 'Criar conta' : 'Entrar'); } };
@@ -2308,30 +2325,177 @@ const Trending = (() => {
 
 <script>
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 21: Chat (conversas 1:1)
+   BLOCO 21: Chat (com Online + Digitando + Visto por último)
    ═══════════════════════════════════════════════════════════ */
 const Chat = (() => {
-  let conversaCom = null; let pollTimer = null;
-  const carregarLista = async () => { const lista = document.getElementById('chat-list'); if (!lista) return; lista.innerHTML = `<div class="x-skeleton x-skeleton--sm"></div>`; try { const cs = await DB.mensagens.listaConversas(); const totalNaoLidas = cs.reduce((sum, c) => sum + (c.naoLidas || 0), 0); TabbarBadges.setChat(totalNaoLidas); if (!cs.length) { lista.innerHTML = Empty.criar({ icone: 'chat', titulo: 'Nenhuma conversa', sub: 'Encontre vizinhos no Explorar.' }); return; } lista.innerHTML = cs.map(c => { const u = c.user; const ini = U.initials(u.nome || ''); const av = u.avatar_url ? `<img class="x-avatar x-avatar--md" src="${U.escapeHtml(U.publicUrl(BUCKETS.AVATARS, u.avatar_url))}" alt="">` : `<div class="x-avatar x-avatar--md x-avatar--grad">${ini}</div>`; const badgeNaoLidas = c.naoLidas > 0 ? `<span style="min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--gradient-primary);color:#fff;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center">${c.naoLidas}</span>` : ''; return `<div class="config-row" style="cursor:pointer" data-uid="${U.escapeHtml(u.id)}" data-unome="${U.escapeHtml(u.nome)}">${av}<div class="config-row__info" style="flex:1"><strong>${U.escapeHtml(u.nome)}</strong><small>${U.escapeHtml(U.truncate(c.ultima, 40))} · ${U.timeAgo(c.quando)}</small></div>${badgeNaoLidas}</div>`; }).join(''); lista.querySelectorAll('[data-uid]').forEach(el => el.addEventListener('click', () => abrir(el.dataset.uid, el.dataset.unome))); } catch (e) { logErr('chat lista:', e); lista.innerHTML = `<p style="text-align:center;padding:20px;color:var(--fg-secondary)">Erro ao carregar.</p>`; } };
-  const abrir = async (userId, nome) => { conversaCom = userId; document.getElementById('chat-lista-wrap')?.classList.add('hidden'); document.getElementById('chat-conversa-wrap')?.classList.remove('hidden'); document.getElementById('chat-nome').textContent = nome || '—'; await DB.mensagens.marcarLidas(userId); await carregarMsgs(); iniciarPoll(); const cs = await DB.mensagens.listaConversas(); TabbarBadges.setChat(cs.reduce((sum, c) => sum + (c.naoLidas || 0), 0)); };
-  const carregarMsgs = async () => { const box = document.getElementById('chat-mensagens'); if (!box || !conversaCom) return; try { const l = await DB.mensagens.conversa(conversaCom); if (!l.length) { box.innerHTML = `<p style="text-align:center;padding:24px;color:var(--fg-secondary)">Diga oi 👋</p>`; return; } box.innerHTML = ''; l.forEach(m => box.appendChild(bubble(m))); box.scrollTop = box.scrollHeight; } catch (e) { logErr('carregarMsgs:', e); } };
+  let conversaCom = null;
+  let conversaComNome = null;
+  let conversaComAvatar = null;
+  let pollTimer = null;
+  let typingDebounce = null;
+  let typingStopTimer = null;
+  let statusTicker = null;
+
+  const avatarHtmlFor = (u, size = 'md', withPresence = false) => {
+    const nome = u?.nome || '?';
+    const av = u?.avatar_url ? U.publicUrl(BUCKETS.AVATARS, u.avatar_url) : null;
+    const inner = av
+      ? `<img class="x-avatar x-avatar--${size}" src="${U.escapeHtml(av)}" alt="">`
+      : `<div class="x-avatar x-avatar--${size} x-avatar--grad">${U.initials(nome)}</div>`;
+    if (!withPresence) return inner;
+    const dot = (u?.id && Presence.isOnline(u.id)) ? `<span class="presence-dot--sm"></span>` : '';
+    return `<div class="chat-row-avatar">${inner}${dot}</div>`;
+  };
+
+  const renderStatusChat = () => {
+    const el = document.getElementById('chat-status');
+    if (!el || !conversaCom) return;
+    if (Presence.isTyping(conversaCom, State.get('user')?.id)) {
+      el.dataset.status = 'typing';
+      el.innerHTML = `digitando <span class="presence-typing"><span></span><span></span><span></span></span>`;
+      return;
+    }
+    if (Presence.isOnline(conversaCom)) {
+      el.dataset.status = 'online';
+      el.innerHTML = `<span class="presence-dot"></span> Online agora`;
+      return;
+    }
+    const lastSeen = Presence.getLastSeen(conversaCom);
+    el.dataset.status = 'offline';
+    if (lastSeen) {
+      const diff = Date.now() - new Date(lastSeen).getTime();
+      if (diff < 60 * 1000) el.textContent = 'Visto agora mesmo';
+      else if (diff < 60 * 60 * 1000) el.textContent = `Visto há ${Math.max(1, Math.floor(diff / 60000))} min`;
+      else if (diff < 24 * 60 * 60 * 1000) el.textContent = `Visto há ${Math.floor(diff / 3600000)} h`;
+      else el.textContent = `Visto em ${U.formatDate(lastSeen)}`;
+    } else {
+      el.textContent = 'Offline';
+    }
+  };
+
+  const renderAvatarHeader = () => {
+    const el = document.getElementById('chat-avatar-wrap');
+    if (!el) return;
+    el.innerHTML = avatarHtmlFor({ id: conversaCom, nome: conversaComNome, avatar_url: conversaComAvatar }, 'md', true);
+  };
+
+  const emitTypingStart = () => {
+    if (!conversaCom) return;
+    Presence.emitTyping(conversaCom, false);
+    if (typingStopTimer) clearTimeout(typingStopTimer);
+    typingStopTimer = setTimeout(() => { Presence.emitTyping(conversaCom, true); }, 2500);
+  };
+
+  const carregarLista = async () => {
+    const lista = document.getElementById('chat-list');
+    if (!lista) return;
+    lista.innerHTML = `<div class="x-skeleton x-skeleton--sm"></div>`;
+    try {
+      const cs = await DB.mensagens.listaConversas();
+      const totalNaoLidas = cs.reduce((sum, c) => sum + (c.naoLidas || 0), 0);
+      TabbarBadges.setChat(totalNaoLidas);
+      if (!cs.length) { lista.innerHTML = Empty.criar({ icone: 'chat', titulo: 'Nenhuma conversa', sub: 'Encontre vizinhos no Explorar.' }); return; }
+      lista.innerHTML = cs.map(c => {
+        const u = c.user;
+        const av = avatarHtmlFor(u, 'md', true);
+        const badgeNaoLidas = c.naoLidas > 0 ? `<span style="min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--gradient-primary);color:#fff;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center">${c.naoLidas}</span>` : '';
+        const statusPrefix = Presence.isOnline(u.id) ? '🟢 ' : '';
+        return `<div class="config-row" style="cursor:pointer" data-uid="${U.escapeHtml(u.id)}" data-unome="${U.escapeHtml(u.nome)}" data-uavatar="${U.escapeHtml(u.avatar_url || '')}">${av}<div class="config-row__info" style="flex:1"><strong>${statusPrefix}${U.escapeHtml(u.nome)}</strong><small>${U.escapeHtml(U.truncate(c.ultima, 40))} · ${U.timeAgo(c.quando)}</small></div>${badgeNaoLidas}</div>`;
+      }).join('');
+      lista.querySelectorAll('[data-uid]').forEach(el => el.addEventListener('click', () => abrir(el.dataset.uid, el.dataset.unome, el.dataset.uavatar || null)));
+    } catch (e) { logErr('chat lista:', e); lista.innerHTML = `<p style="text-align:center;padding:20px;color:var(--fg-secondary)">Erro ao carregar.</p>`; }
+  };
+
+  const abrir = async (userId, nome, avatarPath) => {
+    conversaCom = userId;
+    conversaComNome = nome;
+    conversaComAvatar = avatarPath;
+    document.getElementById('chat-lista-wrap')?.classList.add('hidden');
+    document.getElementById('chat-conversa-wrap')?.classList.remove('hidden');
+    document.getElementById('chat-nome').textContent = nome || '—';
+    renderAvatarHeader();
+    renderStatusChat();
+    await DB.mensagens.marcarLidas(userId);
+    await carregarMsgs();
+    iniciarPoll();
+    iniciarStatusTicker();
+    const cs = await DB.mensagens.listaConversas();
+    TabbarBadges.setChat(cs.reduce((sum, c) => sum + (c.naoLidas || 0), 0));
+  };
+
+  const carregarMsgs = async () => {
+    const box = document.getElementById('chat-mensagens');
+    if (!box || !conversaCom) return;
+    try {
+      const l = await DB.mensagens.conversa(conversaCom);
+      if (!l.length) { box.innerHTML = `<p style="text-align:center;padding:24px;color:var(--fg-secondary)">Diga oi 👋</p>`; return; }
+      box.innerHTML = '';
+      l.forEach(m => box.appendChild(bubble(m)));
+      box.scrollTop = box.scrollHeight;
+    } catch (e) { logErr('carregarMsgs:', e); }
+  };
+
   const bubble = (m) => { const meu = m.de_id === State.get('user')?.id; const d = document.createElement('div'); d.className = 'chat__bubble chat__bubble--' + (meu ? 'out' : 'in'); d.innerHTML = `${U.formatPostText(m.texto)}<small>${U.formatHora(m.criado_em)}</small>`; return d; };
-  const enviar = async (e) => { e.preventDefault(); const inp = document.getElementById('chat-input'); const t = inp?.value.trim(); if (!t || !conversaCom) return; inp.value = ''; try { await DB.mensagens.send(conversaCom, t); await carregarMsgs(); if (U.isNight()) Badges.conceder('noturno'); State.addXP(2, 'mensagem'); } catch (err) { logErr('enviar:', err); U.toast('Erro ao enviar', 2600, 'erro'); } };
-  const voltar = () => { pararPoll(); document.getElementById('chat-lista-wrap')?.classList.remove('hidden'); document.getElementById('chat-conversa-wrap')?.classList.add('hidden'); conversaCom = null; carregarLista(); };
+
+  const enviar = async (e) => {
+    e.preventDefault();
+    const inp = document.getElementById('chat-input');
+    const t = inp?.value.trim();
+    if (!t || !conversaCom) return;
+    inp.value = '';
+    Presence.emitTyping(conversaCom, true);
+    if (typingStopTimer) { clearTimeout(typingStopTimer); typingStopTimer = null; }
+    try {
+      await DB.mensagens.send(conversaCom, t);
+      await carregarMsgs();
+      if (U.isNight()) Badges.conceder('noturno');
+      State.addXP(2, 'mensagem');
+    } catch (err) { logErr('enviar:', err); U.toast('Erro ao enviar', 2600, 'erro'); }
+  };
+
+  const onInputChange = () => {
+    if (!conversaCom) return;
+    if (typingDebounce) clearTimeout(typingDebounce);
+    typingDebounce = setTimeout(emitTypingStart, 200);
+  };
+
+  const voltar = () => {
+    pararPoll();
+    pararStatusTicker();
+    conversaCom = null; conversaComNome = null; conversaComAvatar = null;
+    document.getElementById('chat-lista-wrap')?.classList.remove('hidden');
+    document.getElementById('chat-conversa-wrap')?.classList.add('hidden');
+    carregarLista();
+  };
+
   const iniciarPoll = () => { pararPoll(); pollTimer = setInterval(carregarMsgs, 5000); };
   const pararPoll = () => { if (pollTimer) { clearInterval(pollTimer); pollTimer = null; } };
+  const iniciarStatusTicker = () => { pararStatusTicker(); statusTicker = setInterval(renderStatusChat, 2000); };
+  const pararStatusTicker = () => { if (statusTicker) { clearInterval(statusTicker); statusTicker = null; } };
+
   const abrirCom = (id, nome) => { State.setView('chat'); setTimeout(() => abrir(id, nome), 200); };
-  const init = () => { State.on('view:change', (v) => { if (v === 'chat' && !conversaCom) carregarLista(); if (v !== 'chat') pararPoll(); }); document.getElementById('chat-form')?.addEventListener('submit', enviar); document.getElementById('chat-voltar')?.addEventListener('click', voltar); };
-  return { init, abrirCom };
+
+  const init = () => {
+    State.on('view:change', (v) => { if (v === 'chat' && !conversaCom) carregarLista(); if (v !== 'chat') pararPoll(); });
+    document.getElementById('chat-form')?.addEventListener('submit', enviar);
+    document.getElementById('chat-voltar')?.addEventListener('click', voltar);
+    document.getElementById('chat-input')?.addEventListener('input', onInputChange);
+    Presence.on('presence:sync', () => { renderStatusChat(); renderAvatarHeader(); });
+    Presence.on('typing:change', (p) => { if (p.para === State.get('user')?.id && p.de === conversaCom) renderStatusChat(); });
+    window.addEventListener('beforeunload', () => { if (conversaCom) Presence.emitTyping(conversaCom, true); });
+  };
+
+  return { init, abrirCom, carregarLista };
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   BLOCO 22: Grupos
+   BLOCO 22: Grupos (com Digitando)
    ═══════════════════════════════════════════════════════════ */
 const Grupos = (() => {
-  const st = { lista: [], gruposMap: new Map(), aberto: null, realtime: null, carregando: false };
+  const st = { lista: [], gruposMap: new Map(), aberto: null, realtime: null, carregando: false, typingTicker: null, typingDebounce: null, typingStopTimer: null };
   const E = {};
   const cache = () => { E.wrapLista = document.getElementById('grupos-lista-wrap'); E.lista = document.getElementById('grupos-lista'); E.vazio = document.getElementById('grupos-vazio'); E.chatWrap = document.getElementById('grupo-chat-wrap'); E.chatMsgs = document.getElementById('grupo-chat-msgs'); E.chatNome = document.getElementById('grupo-chat-nome'); E.chatSub = document.getElementById('grupo-chat-sub'); E.chatFoto = document.getElementById('grupo-chat-foto'); E.chatInput = document.getElementById('grupo-chat-input'); E.chatForm = document.getElementById('grupo-chat-form'); E.chatAviso = document.getElementById('grupo-chat-aviso'); E.chatAttach = document.getElementById('grupo-chat-attach'); E.chatFile = document.getElementById('grupo-chat-file'); };
+
   const DBg = {
     async listarMeus() { const u = State.get('user'); if (!u?.id) return []; const { data, error } = await sb.from('grupo_membros').select(`grupo_id, papel, entrou_em, grupo:grupos!grupo_membros_grupo_id_fkey ( id, nome, descricao, foto_url, dono_id, bairro, privado, so_admin_fala, criado_em, atualizado_em, deletado )`).eq('user_id', u.id); if (error) { logErr('grupos.listarMeus:', error); return []; } const grupos = (data || []).map(x => x.grupo).filter(g => g && !g.deletado).sort((a, b) => new Date(b.atualizado_em) - new Date(a.atualizado_em)); const ids = grupos.map(g => g.id); if (!ids.length) return []; const [{ data: msgs }, { data: membros }] = await Promise.all([sb.from('grupo_mensagens').select('grupo_id, texto, tipo, criado_em, user_id').in('grupo_id', ids).eq('deletado', false).order('criado_em', { ascending: false }), sb.from('grupo_membros').select('grupo_id, user_id').in('grupo_id', ids)]); const ultimaPorGrupo = new Map(); const contagemMembros = new Map(); const meuPapel = new Map(); (msgs || []).forEach(m => { if (!ultimaPorGrupo.has(m.grupo_id)) ultimaPorGrupo.set(m.grupo_id, m); }); (membros || []).forEach(m => { contagemMembros.set(m.grupo_id, (contagemMembros.get(m.grupo_id) || 0) + 1); }); (data || []).forEach(x => { if (x.grupo_id) meuPapel.set(x.grupo_id, x.papel); }); return grupos.map(g => ({ ...g, _ultimaMsg: ultimaPorGrupo.get(g.id) || null, _totalMembros: contagemMembros.get(g.id) || 0, _meuPapel: meuPapel.get(g.id) || 'membro' })); },
     async buscarPublicos(termo = '') { const u = State.get('user'); if (!u?.id) return []; let q = sb.from('grupos').select('id, nome, descricao, foto_url, bairro, privado, dono_id, criado_em').eq('privado', false).eq('deletado', false).order('criado_em', { ascending: false }).limit(40); if (termo) q = q.ilike('nome', `%${termo}%`); const { data, error } = await q; if (error) { logErr('grupos.buscarPublicos:', error); return []; } const meus = new Set(st.lista.map(g => g.id)); return (data || []).filter(g => !meus.has(g.id)); },
@@ -2346,25 +2510,59 @@ const Grupos = (() => {
     async entrarPorCodigo(codigo) { const { data, error } = await sb.rpc('entrar_grupo_por_codigo', { p_codigo: codigo }); if (error) throw error; return data; },
     async uploadFoto(file) { const u = State.get('user'); if (!u?.id) throw new Error('Não autenticado'); const blob = await U.resizeImage(file, 800, 0.85); const path = `${u.id}/grupo-${Date.now()}.jpg`; const { error } = await sb.storage.from('grupos').upload(path, blob, { contentType: 'image/jpeg' }); if (error) throw error; return path; }
   };
+
   const fotoHTML = (g) => { const url = g?.foto_url ? U.publicUrl('grupos', g.foto_url) : null; if (url) return `<img src="${U.escapeHtml(url)}" alt="">`; return U.initials(g?.nome || '?'); };
   const tempoMsg = (m) => { if (!m) return ''; const t = m.tipo === 'sistema' ? '' : (m.autor?.nome ? m.autor.nome.split(' ')[0] + ': ' : ''); const txt = m.texto ? U.truncate(m.texto, 40) : (m.imagem_url ? '📷 Foto' : ''); return t + txt; };
+
+  const renderTypingGroupHeader = () => {
+    const el = document.getElementById('grupo-chat-sub');
+    if (!el || !st.aberto) return;
+    const g = st.gruposMap.get(st.aberto);
+    if (!g) return;
+    const eu = State.get('user')?.id;
+    const digitandoIds = Presence.getTypingUsersForGroup(st.aberto, eu);
+    if (digitandoIds.length > 0) {
+      let nomes = digitandoIds.map(id => {
+        const membro = (g._membrosCache || []).find(m => m.user_id === id);
+        return (membro?.perfil?.nome || 'Alguém').split(' ')[0];
+      });
+      const texto = nomes.length === 1 ? `${nomes[0]} está digitando` : `${nomes.slice(0, 2).join(', ')} estão digitando`;
+      el.dataset.status = 'typing';
+      el.innerHTML = `${U.escapeHtml(texto)} <span class="presence-typing"><span></span><span></span><span></span></span>`;
+      return;
+    }
+    el.dataset.status = 'idle';
+    let sub = `${g._totalMembros} membros`;
+    if (g._meuPapel === 'dono') sub += ' · Você é dono';
+    else if (g._meuPapel === 'admin') sub += ' · Você é admin';
+    el.textContent = sub;
+  };
+
+  const emitTypingGroup = (stopped = false) => {
+    if (!st.aberto) return;
+    Presence.emitTyping('grupo:' + st.aberto, stopped);
+  };
+
   const renderLista = () => { if (!E.lista) return; if (!st.lista.length) { E.lista.innerHTML = ''; if (E.vazio) { E.vazio.innerHTML = `<div class="grupos-vazio__icon">👥</div><div class="grupos-vazio__title">Nenhum grupo ainda</div><p class="grupos-vazio__text">Crie um grupo para reunir a vizinhança, a família, o time ou a rua.</p><button type="button" class="x-btn x-btn--primary" id="grupos-vazio-cta">+ Criar primeiro grupo</button>`; E.vazio.classList.remove('hidden'); document.getElementById('grupos-vazio-cta')?.addEventListener('click', abrirComposer); } return; } if (E.vazio) E.vazio.classList.add('hidden'); E.lista.innerHTML = st.lista.map(g => { const foto = fotoHTML(g); const temUrl = g.foto_url; const fotoCls = temUrl ? '' : 'x-avatar--grad'; const ult = g._ultimaMsg; const sub = ult ? tempoMsg(ult) : (g._totalMembros + ' membros'); const quando = ult ? U.timeAgo(ult.criado_em) : U.timeAgo(g.criado_em); const papelBadge = g._meuPapel === 'dono' ? '👑 ' : g._meuPapel === 'admin' ? '🛡️ ' : ''; return `<button type="button" class="grupo-item" data-grupo-id="${U.escapeHtml(g.id)}"><div class="grupo-item__foto ${fotoCls}">${foto}</div><div class="grupo-item__info"><span class="grupo-item__nome">${papelBadge}${U.escapeHtml(g.nome)}</span><span class="grupo-item__meta">${U.escapeHtml(U.truncate(sub, 36))} · ${quando}</span></div>${g.privado ? '<span title="Grupo privado" style="font-size:14px">🔒</span>' : ''}</button>`; }).join(''); E.lista.querySelectorAll('[data-grupo-id]').forEach(el => el.addEventListener('click', () => abrirChat(el.dataset.grupoId))); };
   const carregarLista = async () => { if (!E.lista || st.carregando) return; st.carregando = true; E.lista.innerHTML = `<div class="x-skeleton x-skeleton--sm"></div><div class="x-skeleton x-skeleton--sm"></div>`; try { st.lista = await DBg.listarMeus(); st.gruposMap = new Map(st.lista.map(g => [g.id, g])); renderLista(); } catch (e) { logErr('grupos lista:', e); } finally { st.carregando = false; } };
   const renderMensagens = (msgs) => { if (!E.chatMsgs) return; const u = State.get('user'); if (!msgs.length) { E.chatMsgs.innerHTML = `<div style="text-align:center;padding:40px 20px;color:var(--fg-secondary);font-size:13px">Nenhuma mensagem ainda. Diga oi 👋</div>`; return; } E.chatMsgs.innerHTML = msgs.map(m => { if (m.tipo === 'sistema') return `<div class="gmsg gmsg--sistema">${U.escapeHtml(m.texto || '')} · ${U.timeAgo(m.criado_em)}</div>`; const meu = m.user_id === u?.id; const autor = m.autor?.nome?.split(' ')[0] || 'Morador'; const textoH = m.texto ? `<div class="gmsg__texto">${U.formatPostText(m.texto)}</div>` : ''; const imgH = m.imagem_url ? `<div class="gmsg__img" data-img="${U.escapeHtml(U.publicUrl('grupos', m.imagem_url))}"><img src="${U.escapeHtml(U.publicUrl('grupos', m.imagem_url))}" loading="lazy" alt=""></div>` : ''; const autorH = meu ? '' : `<span class="gmsg__autor">${U.escapeHtml(autor)}</span>`; return `<div class="gmsg gmsg--${meu ? 'out' : 'in'}">${autorH}${textoH}${imgH}<span class="gmsg__hora">${U.formatHora(m.criado_em)}</span></div>`; }).join(''); E.chatMsgs.querySelectorAll('[data-img]').forEach(el => el.addEventListener('click', () => abrirLightbox(el.dataset.img))); E.chatMsgs.scrollTop = E.chatMsgs.scrollHeight; };
   const carregarMensagens = async (grupoId) => { if (!E.chatMsgs) return; try { const msgs = await DBg.mensagens(grupoId); renderMensagens(msgs); } catch (e) { logErr('grupos msgs:', e); } };
-  const renderHeadChat = (g) => { if (!E.chatNome) return; E.chatNome.textContent = g.nome || 'Grupo'; let sub = `${g._totalMembros} membros`; if (g._meuPapel === 'dono') sub += ' · Você é dono'; else if (g._meuPapel === 'admin') sub += ' · Você é admin'; E.chatSub.textContent = sub; if (E.chatFoto) { const url = g.foto_url ? U.publicUrl('grupos', g.foto_url) : null; if (url) E.chatFoto.innerHTML = `<img src="${U.escapeHtml(url)}" alt="">`; else E.chatFoto.textContent = U.initials(g.nome || '?'); } if (E.chatAviso) { const euMembro = g._meuPapel === 'dono' || g._meuPapel === 'admin'; const podeFalar = !g.so_admin_fala || euMembro; E.chatAviso.classList.toggle('hidden', podeFalar); if (E.chatInput) E.chatInput.disabled = !podeFalar; } };
-  const abrirChat = async (grupoId) => { const g = st.gruposMap.get(grupoId) || st.lista.find(x => x.id === grupoId); if (!g) { U.toast('Grupo não encontrado', 2200, 'erro'); return; } st.aberto = grupoId; U.hide(E.wrapLista); U.show(E.chatWrap); renderHeadChat(g); await carregarMensagens(grupoId); ligarRealtime(grupoId); };
-  const voltarLista = () => { desligarRealtime(); st.aberto = null; U.hide(E.chatWrap); U.show(E.wrapLista); carregarLista(); };
+  const renderHeadChat = (g) => { if (!E.chatNome) return; E.chatNome.textContent = g.nome || 'Grupo'; if (E.chatFoto) { const url = g.foto_url ? U.publicUrl('grupos', g.foto_url) : null; if (url) E.chatFoto.innerHTML = `<img src="${U.escapeHtml(url)}" alt="">`; else E.chatFoto.textContent = U.initials(g.nome || '?'); } if (E.chatAviso) { const euMembro = g._meuPapel === 'dono' || g._meuPapel === 'admin'; const podeFalar = !g.so_admin_fala || euMembro; E.chatAviso.classList.toggle('hidden', podeFalar); if (E.chatInput) E.chatInput.disabled = !podeFalar; } renderTypingGroupHeader(); };
+  const abrirChat = async (grupoId) => { const g = st.gruposMap.get(grupoId) || st.lista.find(x => x.id === grupoId); if (!g) { U.toast('Grupo não encontrado', 2200, 'erro'); return; } st.aberto = grupoId; U.hide(E.wrapLista); U.show(E.chatWrap); renderHeadChat(g); await carregarMensagens(grupoId); ligarRealtime(grupoId); iniciarTypingTicker(); };
+  const voltarLista = () => { desligarRealtime(); pararTypingTicker(); if (st.aberto) emitTypingGroup(true); st.aberto = null; U.hide(E.chatWrap); U.show(E.wrapLista); carregarLista(); };
   const ligarRealtime = (grupoId) => { desligarRealtime(); try { st.realtime = sb.channel('grupo:' + grupoId).on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'grupo_mensagens', filter: `grupo_id=eq.${grupoId}` }, async () => { await carregarMensagens(grupoId); }).subscribe(); } catch (e) { logErr('realtime:', e); } };
   const desligarRealtime = () => { if (st.realtime) { try { sb.removeChannel(st.realtime); } catch (e) {} st.realtime = null; } };
-  const enviarMensagem = async (e) => { e?.preventDefault(); const inp = E.chatInput; const txt = inp?.value.trim(); if (!txt || !st.aberto) return; inp.value = ''; try { const btn = E.chatForm?.querySelector('button[type="submit"]'); if (btn) btn.disabled = true; await DBg.enviar(st.aberto, { texto: txt }); await carregarMensagens(st.aberto); State.addXP(1, 'mensagem em grupo'); } catch (err) { logErr('grupo enviar:', err); U.toast('Erro ao enviar', 2200, 'erro'); } finally { const btn = E.chatForm?.querySelector('button[type="submit"]'); if (btn) btn.disabled = false; } };
+  const iniciarTypingTicker = () => { pararTypingTicker(); st.typingTicker = setInterval(renderTypingGroupHeader, 1500); };
+  const pararTypingTicker = () => { if (st.typingTicker) { clearInterval(st.typingTicker); st.typingTicker = null; } };
+  const onGroupInputChange = () => { if (!st.aberto) return; if (st.typingDebounce) clearTimeout(st.typingDebounce); st.typingDebounce = setTimeout(() => { emitTypingGroup(false); if (st.typingStopTimer) clearTimeout(st.typingStopTimer); st.typingStopTimer = setTimeout(() => emitTypingGroup(true), 2500); }, 200); };
+  const enviarMensagem = async (e) => { e?.preventDefault(); const inp = E.chatInput; const txt = inp?.value.trim(); if (!txt || !st.aberto) return; inp.value = ''; emitTypingGroup(true); if (st.typingStopTimer) { clearTimeout(st.typingStopTimer); st.typingStopTimer = null; } try { const btn = E.chatForm?.querySelector('button[type="submit"]'); if (btn) btn.disabled = true; await DBg.enviar(st.aberto, { texto: txt }); await carregarMensagens(st.aberto); State.addXP(1, 'mensagem em grupo'); } catch (err) { logErr('grupo enviar:', err); U.toast('Erro ao enviar', 2200, 'erro'); } finally { const btn = E.chatForm?.querySelector('button[type="submit"]'); if (btn) btn.disabled = false; } };
   const enviarImagem = async (file) => { if (!file || !st.aberto) return; if (file.size > 8 * 1024 * 1024) { U.toast('Máx 8MB', 2200, 'erro'); return; } U.toast('📤 Enviando imagem…', 3000, 'info'); try { const path = await DBg.uploadFoto(file); await DBg.enviar(st.aberto, { imagem_url: path }); await carregarMensagens(st.aberto); } catch (err) { logErr('grupo enviar imagem:', err); U.toast('Erro ao enviar imagem', 2400, 'erro'); } };
   const abrirComposer = () => { if (!State.isLogged()) { U.toast('Entre para criar grupos', 2200, 'info'); return; } const u = State.get('user'); let fotoFile = null; let privado = false; let soAdmin = false; const selecionados = new Set(); const bairrosH = BAIRROS.map(b => `<option value="${U.escapeHtml(b)}" ${b === u?.bairro ? 'selected' : ''}>${U.escapeHtml(b)}</option>`).join(''); const body = `<div class="x-field" style="margin-bottom:12px"><label class="x-field__label">📷 Foto do grupo</label><div class="grupo-detalhes__foto" id="grp-foto-wrap" style="margin:0"><span style="font-size:44px">👥</span><input type="file" id="grp-foto-input" accept="image/*" style="display:none"></div></div><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Nome do grupo *</label><input class="x-field__input" id="grp-nome" placeholder="Ex: Vizinhos da Rua 7" maxlength="80"></div><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Descrição</label><textarea class="x-field__textarea" id="grp-desc" rows="2" maxlength="300" placeholder="Sobre o que é esse grupo?"></textarea></div><div class="x-field" style="margin-bottom:12px"><label class="x-field__label">Bairro</label><select class="x-field__select" id="grp-bairro">${bairrosH}</select></div><div class="opt-toggle" id="grp-privado"><div class="opt-toggle__info"><strong>🔒 Grupo privado</strong><small>Só entra quem tiver o código de convite</small></div><div class="opt-toggle__switch"></div></div><div class="opt-toggle" id="grp-soadmin"><div class="opt-toggle__info"><strong>📢 Só admins falam</strong><small>Membros comuns só podem ler</small></div><div class="opt-toggle__switch"></div></div><div class="x-field" style="margin-top:16px"><label class="x-field__label">👥 Adicionar membros</label><input class="x-field__input" id="grp-busca" placeholder="Buscar por nome ou bairro…" autocomplete="off" style="margin-bottom:8px"><div class="membros-selecionados" id="grp-selecionados"><span style="color:var(--fg-tertiary);font-size:12px;align-self:center;padding:0 4px">Ninguém selecionado ainda</span></div><div class="membros-picker" id="grp-picker"><div class="x-skeleton x-skeleton--sm"></div></div></div>`; Modal.abrir({ title: '👥 Novo grupo', body, submitLabel: '✅ Criar grupo', onSubmit: async () => { const nome = document.getElementById('grp-nome')?.value.trim(); if (!nome || nome.length < 2) { U.toast('Nome muito curto', 2200, 'erro'); return; } const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true); try { let foto_url = null; if (fotoFile) foto_url = await DBg.uploadFoto(fotoFile); const grupoId = await DBg.criar({ nome, descricao: document.getElementById('grp-desc')?.value.trim() || null, foto_url, bairro: document.getElementById('grp-bairro')?.value || null, privado, membros: Array.from(selecionados) }); U.toast('🎉 Grupo criado!', 2600, 'sucesso'); Modal.fechar(); await carregarLista(); setTimeout(() => abrirChat(grupoId), 300); State.addXP(15, 'criou um grupo'); } catch (err) { logErr('criar grupo:', err); U.toast('Erro: ' + (err.message || ''), 3000, 'erro'); } finally { U.btnLoading(btn, false, '✅ Criar grupo'); } } }); document.getElementById('grp-foto-wrap')?.addEventListener('click', () => document.getElementById('grp-foto-input')?.click()); document.getElementById('grp-foto-input')?.addEventListener('change', (e) => { const f = e.target.files?.[0]; if (!f) return; fotoFile = f; const wrap = document.getElementById('grp-foto-wrap'); if (wrap) wrap.innerHTML = `<img src="${URL.createObjectURL(f)}" alt="">`; }); document.getElementById('grp-privado')?.addEventListener('click', function() { privado = !privado; this.classList.toggle('is-on', privado); }); document.getElementById('grp-soadmin')?.addEventListener('click', function() { soAdmin = !soAdmin; this.classList.toggle('is-on', soAdmin); }); const buscarUsuarios = async (termo = '') => { const picker = document.getElementById('grp-picker'); if (!picker) return; picker.innerHTML = `<div style="padding:12px;color:var(--fg-secondary);font-size:12px;text-align:center">Buscando…</div>`; try { let q = sb.from('profiles').select('id, nome, bairro, avatar_url, is_admin, admin_frame').neq('id', u.id).limit(30); if (termo) q = q.or(`nome.ilike.%${termo}%,bairro.ilike.%${termo}%`); const { data } = await q; if (!data?.length) { picker.innerHTML = `<div style="padding:12px;color:var(--fg-secondary);font-size:12px;text-align:center">Ninguém encontrado</div>`; return; } picker.innerHTML = data.map(p => { const sel = selecionados.has(p.id) ? 'is-selecionado' : ''; const av = p.avatar_url ? `<img src="${U.escapeHtml(U.publicUrl(BUCKETS.AVATARS, p.avatar_url))}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0">` : `<div style="width:36px;height:36px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">${U.initials(p.nome)}</div>`; return `<div class="membro-opt ${sel}" data-uid="${U.escapeHtml(p.id)}" data-unome="${U.escapeHtml(p.nome)}"><div class="membro-opt__check">✓</div>${av}<div class="membro-opt__info"><span class="membro-opt__nome">${p.is_admin ? '👑 ' : ''}${U.escapeHtml(p.nome)}</span><span class="membro-opt__bairro">📍 ${U.escapeHtml(p.bairro || 'Oriximiná')}</span></div></div>`; }).join(''); picker.querySelectorAll('[data-uid]').forEach(el => { el.addEventListener('click', () => { const uid = el.dataset.uid; if (selecionados.has(uid)) { selecionados.delete(uid); el.classList.remove('is-selecionado'); } else { selecionados.add(uid); el.classList.add('is-selecionado'); } atualizarChips(); }); }); } catch (err) { logErr('buscar usuarios:', err); } }; const atualizarChips = () => { const box = document.getElementById('grp-selecionados'); if (!box) return; if (!selecionados.size) { box.innerHTML = `<span style="color:var(--fg-tertiary);font-size:12px;align-self:center;padding:0 4px">Ninguém selecionado ainda</span>`; return; } box.innerHTML = Array.from(selecionados).map(uid => { const el = document.querySelector(`.membro-opt[data-uid="${uid}"]`); const nome = el?.dataset.unome || 'Membro'; return `<span class="membro-chip">${U.escapeHtml(nome.split(' ')[0])}<button type="button" data-remove="${U.escapeHtml(uid)}">×</button></span>`; }).join(''); box.querySelectorAll('[data-remove]').forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); const uid = b.dataset.remove; selecionados.delete(uid); document.querySelector(`.membro-opt[data-uid="${uid}"]`)?.classList.remove('is-selecionado'); atualizarChips(); })); }; let buscaTimer = null; document.getElementById('grp-busca')?.addEventListener('input', (e) => { clearTimeout(buscaTimer); buscaTimer = setTimeout(() => buscarUsuarios(e.target.value.trim()), 300); }); buscarUsuarios(); };
-  const abrirDetalhes = async (grupoId) => { const g = st.gruposMap.get(grupoId) || st.lista.find(x => x.id === grupoId); if (!g) return; const membros = await DBg.getMembros(grupoId); const souDono = g.dono_id === State.get('user')?.id; const souAdmin = g._meuPapel === 'dono' || g._meuPapel === 'admin'; const membrosH = membros.map(m => { const p = m.perfil || {}; const av = p.avatar_url ? `<img src="${U.escapeHtml(U.publicUrl(BUCKETS.AVATARS, p.avatar_url))}" style="width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0">` : `<div style="width:38px;height:38px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0">${U.initials(p.nome)}</div>`; const papel = m.papel === 'dono' ? '<span class="gmembro-row__papel gmembro-row__papel--dono">👑 Dono</span>' : m.papel === 'admin' ? '<span class="gmembro-row__papel gmembro-row__papel--admin">🛡️ Admin</span>' : ''; const removerBtn = (souAdmin && m.papel !== 'dono') ? `<button type="button" data-remover="${U.escapeHtml(m.user_id)}" style="background:transparent;border:0;color:var(--danger);font-size:12px;font-weight:700;cursor:pointer;padding:4px 8px">Remover</button>` : ''; return `<div class="gmembro-row">${av}<div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700;color:var(--fg-primary)">${U.escapeHtml(p.nome || 'Morador')}</div><div style="font-size:11px;color:var(--fg-secondary);margin-top:2px">📍 ${U.escapeHtml(p.bairro || 'Oriximiná')} ${papel}</div></div>${removerBtn}</div>`; }).join(''); const fotoUrl = g.foto_url ? U.publicUrl('grupos', g.foto_url) : null; const fotoCls = souDono ? 'grupo-detalhes__foto' : 'grupo-detalhes__foto grupo-detalhes__foto--readonly'; const fotoH = fotoUrl ? `<img src="${U.escapeHtml(fotoUrl)}" alt="">` : `<span>${U.initials(g.nome)}</span>`; const conviteH = `<div class="admin-card" style="background:var(--accent-soft);border-color:var(--accent-soft);margin-top:12px"><strong style="font-family:var(--font-display);font-size:14px;display:block;margin-bottom:4px">🔗 Convidar para o grupo</strong><small style="color:var(--fg-secondary);font-size:11px;display:block;margin-bottom:10px">Gere um link/código e envie no WhatsApp</small><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="x-btn x-btn--primary x-btn--sm" id="grp-gerar-convite" style="flex:1">🎟️ Gerar convite</button><button type="button" class="x-btn x-btn--ghost x-btn--sm" id="grp-add-membros" style="flex:1">+ Adicionar</button></div></div>`; const body = `<div style="text-align:center;margin-bottom:20px"><div class="${fotoCls}" id="grp-detalhes-foto">${fotoH}<input type="file" id="grp-detalhes-foto-input" accept="image/*" style="display:none"></div><h3 style="font-family:var(--font-display);font-size:20px;font-weight:900;margin:8px 0 4px">${U.escapeHtml(g.nome)}</h3>${g.descricao ? `<p style="font-size:13px;color:var(--fg-secondary);line-height:1.5;max-width:320px;margin:0 auto">${U.escapeHtml(g.descricao)}</p>` : ''}<div style="display:flex;gap:8px;justify-content:center;margin-top:8px;flex-wrap:wrap;font-size:11px;color:var(--fg-secondary);font-weight:600"><span>👥 ${membros.length} membros</span>${g.bairro ? `<span>📍 ${U.escapeHtml(g.bairro)}</span>` : ''}${g.privado ? '<span>🔒 Privado</span>' : '<span>🌐 Público</span>'}${g.so_admin_fala ? '<span>📢 Só admins falam</span>' : ''}</div></div>${conviteH}<h4 class="x-heading x-heading--sm" style="margin-top:20px">👥 Membros (${membros.length})</h4><div>${membrosH}</div><button type="button" class="x-btn x-btn--ghost x-btn--block" id="grp-sair" style="margin-top:20px;color:var(--danger);border-color:rgba(194,80,62,.4)">🚪 Sair do grupo</button>`; Modal.abrir({ title: 'Detalhes do grupo', body }); if (souDono) { document.getElementById('grp-detalhes-foto')?.addEventListener('click', () => document.getElementById('grp-detalhes-foto-input')?.click()); document.getElementById('grp-detalhes-foto-input')?.addEventListener('change', async (e) => { const f = e.target.files?.[0]; if (!f) return; try { const path = await DBg.uploadFoto(f); await sb.from('grupos').update({ foto_url: path }).eq('id', grupoId); U.toast('✅ Foto atualizada', 2200, 'sucesso'); Modal.fechar(); await carregarLista(); setTimeout(() => abrirDetalhes(grupoId), 200); } catch (err) { U.toast('Erro ao atualizar foto', 2200, 'erro'); } }); } document.querySelectorAll('#global-modal [data-remover]').forEach(btn => btn.addEventListener('click', async () => { if (!confirm('Remover este membro?')) return; try { await DBg.removerMembro(grupoId, btn.dataset.remover); U.toast('Membro removido', 2000, 'sucesso'); Modal.fechar(); setTimeout(() => abrirDetalhes(grupoId), 200); } catch (err) { U.toast('Erro', 2200, 'erro'); } })); document.getElementById('grp-gerar-convite')?.addEventListener('click', async () => { try { const c = await DBg.gerarConvite(grupoId); const txt = `👥 Entre no grupo *${g.nome}* no Orixiconnect!\n\nCódigo: *${c.codigo}*\n\n${location.origin}`; await U.copy(c.codigo); if (navigator.share) { try { await navigator.share({ text: txt }); } catch {} } else window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank'); } catch (err) { U.toast('Erro ao gerar convite', 2200, 'erro'); } }); document.getElementById('grp-add-membros')?.addEventListener('click', () => { Modal.fechar(); setTimeout(() => abrirAddMembros(grupoId, membros), 200); }); document.getElementById('grp-sair')?.addEventListener('click', async () => { if (g.dono_id === State.get('user')?.id) { U.toast('Dono não pode sair. Transfira ou delete o grupo.', 3200, 'erro'); return; } if (!confirm('Sair deste grupo?')) return; try { await DBg.sair(grupoId); U.toast('Você saiu do grupo', 2200, 'info'); Modal.fechar(); desligarRealtime(); st.aberto = null; U.hide(E.chatWrap); U.show(E.wrapLista); await carregarLista(); } catch (err) { U.toast('Erro', 2200, 'erro'); } }); };
+  const abrirDetalhes = async (grupoId) => { const g = st.gruposMap.get(grupoId) || st.lista.find(x => x.id === grupoId); if (!g) return; const membros = await DBg.getMembros(grupoId); g._membrosCache = membros; const souDono = g.dono_id === State.get('user')?.id; const souAdmin = g._meuPapel === 'dono' || g._meuPapel === 'admin'; const membrosH = membros.map(m => { const p = m.perfil || {}; const av = p.avatar_url ? `<img src="${U.escapeHtml(U.publicUrl(BUCKETS.AVATARS, p.avatar_url))}" style="width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0">` : `<div style="width:38px;height:38px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0">${U.initials(p.nome)}</div>`; const papel = m.papel === 'dono' ? '<span class="gmembro-row__papel gmembro-row__papel--dono">👑 Dono</span>' : m.papel === 'admin' ? '<span class="gmembro-row__papel gmembro-row__papel--admin">🛡️ Admin</span>' : ''; const removerBtn = (souAdmin && m.papel !== 'dono') ? `<button type="button" data-remover="${U.escapeHtml(m.user_id)}" style="background:transparent;border:0;color:var(--danger);font-size:12px;font-weight:700;cursor:pointer;padding:4px 8px">Remover</button>` : ''; const onlineDot = Presence.isOnline(m.user_id) ? '<span class="presence-dot--sm" style="position:static;display:inline-block;margin-left:4px"></span>' : ''; return `<div class="gmembro-row">${av}<div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700;color:var(--fg-primary)">${U.escapeHtml(p.nome || 'Morador')}${onlineDot}</div><div style="font-size:11px;color:var(--fg-secondary);margin-top:2px">📍 ${U.escapeHtml(p.bairro || 'Oriximiná')} ${papel}</div></div>${removerBtn}</div>`; }).join(''); const fotoUrl = g.foto_url ? U.publicUrl('grupos', g.foto_url) : null; const fotoCls = souDono ? 'grupo-detalhes__foto' : 'grupo-detalhes__foto grupo-detalhes__foto--readonly'; const fotoH = fotoUrl ? `<img src="${U.escapeHtml(fotoUrl)}" alt="">` : `<span>${U.initials(g.nome)}</span>`; const conviteH = `<div class="admin-card" style="background:var(--accent-soft);border-color:var(--accent-soft);margin-top:12px"><strong style="font-family:var(--font-display);font-size:14px;display:block;margin-bottom:4px">🔗 Convidar para o grupo</strong><small style="color:var(--fg-secondary);font-size:11px;display:block;margin-bottom:10px">Gere um link/código e envie no WhatsApp</small><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="x-btn x-btn--primary x-btn--sm" id="grp-gerar-convite" style="flex:1">🎟️ Gerar convite</button><button type="button" class="x-btn x-btn--ghost x-btn--sm" id="grp-add-membros" style="flex:1">+ Adicionar</button></div></div>`; const body = `<div style="text-align:center;margin-bottom:20px"><div class="${fotoCls}" id="grp-detalhes-foto">${fotoH}<input type="file" id="grp-detalhes-foto-input" accept="image/*" style="display:none"></div><h3 style="font-family:var(--font-display);font-size:20px;font-weight:900;margin:8px 0 4px">${U.escapeHtml(g.nome)}</h3>${g.descricao ? `<p style="font-size:13px;color:var(--fg-secondary);line-height:1.5;max-width:320px;margin:0 auto">${U.escapeHtml(g.descricao)}</p>` : ''}<div style="display:flex;gap:8px;justify-content:center;margin-top:8px;flex-wrap:wrap;font-size:11px;color:var(--fg-secondary);font-weight:600"><span>👥 ${membros.length} membros</span>${g.bairro ? `<span>📍 ${U.escapeHtml(g.bairro)}</span>` : ''}${g.privado ? '<span>🔒 Privado</span>' : '<span>🌐 Público</span>'}${g.so_admin_fala ? '<span>📢 Só admins falam</span>' : ''}</div></div>${conviteH}<h4 class="x-heading x-heading--sm" style="margin-top:20px">👥 Membros (${membros.length})</h4><div>${membrosH}</div><button type="button" class="x-btn x-btn--ghost x-btn--block" id="grp-sair" style="margin-top:20px;color:var(--danger);border-color:rgba(194,80,62,.4)">🚪 Sair do grupo</button>`; Modal.abrir({ title: 'Detalhes do grupo', body }); if (souDono) { document.getElementById('grp-detalhes-foto')?.addEventListener('click', () => document.getElementById('grp-detalhes-foto-input')?.click()); document.getElementById('grp-detalhes-foto-input')?.addEventListener('change', async (e) => { const f = e.target.files?.[0]; if (!f) return; try { const path = await DBg.uploadFoto(f); await sb.from('grupos').update({ foto_url: path }).eq('id', grupoId); U.toast('✅ Foto atualizada', 2200, 'sucesso'); Modal.fechar(); await carregarLista(); setTimeout(() => abrirDetalhes(grupoId), 200); } catch (err) { U.toast('Erro ao atualizar foto', 2200, 'erro'); } }); } document.querySelectorAll('#global-modal [data-remover]').forEach(btn => btn.addEventListener('click', async () => { if (!confirm('Remover este membro?')) return; try { await DBg.removerMembro(grupoId, btn.dataset.remover); U.toast('Membro removido', 2000, 'sucesso'); Modal.fechar(); setTimeout(() => abrirDetalhes(grupoId), 200); } catch (err) { U.toast('Erro', 2200, 'erro'); } })); document.getElementById('grp-gerar-convite')?.addEventListener('click', async () => { try { const c = await DBg.gerarConvite(grupoId); const txt = `👥 Entre no grupo *${g.nome}* no Orixiconnect!\n\nCódigo: *${c.codigo}*\n\n${location.origin}`; await U.copy(c.codigo); if (navigator.share) { try { await navigator.share({ text: txt }); } catch {} } else window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank'); } catch (err) { U.toast('Erro ao gerar convite', 2200, 'erro'); } }); document.getElementById('grp-add-membros')?.addEventListener('click', () => { Modal.fechar(); setTimeout(() => abrirAddMembros(grupoId, membros), 200); }); document.getElementById('grp-sair')?.addEventListener('click', async () => { if (g.dono_id === State.get('user')?.id) { U.toast('Dono não pode sair. Transfira ou delete o grupo.', 3200, 'erro'); return; } if (!confirm('Sair deste grupo?')) return; try { await DBg.sair(grupoId); U.toast('Você saiu do grupo', 2200, 'info'); Modal.fechar(); desligarRealtime(); st.aberto = null; U.hide(E.chatWrap); U.show(E.wrapLista); await carregarLista(); } catch (err) { U.toast('Erro', 2200, 'erro'); } }); };
   const abrirAddMembros = async (grupoId, membrosAtuais) => { const u = State.get('user'); const jaMembros = new Set(membrosAtuais.map(m => m.user_id)); const selecionados = new Set(); const body = `<input class="x-field__input" id="add-busca" placeholder="Buscar por nome…" autocomplete="off" style="margin-bottom:12px"><div class="membros-selecionados" id="add-selecionados"><span style="color:var(--fg-tertiary);font-size:12px;align-self:center;padding:0 4px">Ninguém selecionado</span></div><div class="membros-picker" id="add-picker"><div class="x-skeleton x-skeleton--sm"></div></div>`; Modal.abrir({ title: '➕ Adicionar membros', body, submitLabel: '✅ Adicionar', onSubmit: async () => { if (!selecionados.size) { U.toast('Selecione alguém', 2000, 'info'); return; } const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true); try { await DBg.adicionarMembros(grupoId, Array.from(selecionados)); await sb.from('grupo_mensagens').insert({ grupo_id: grupoId, user_id: u.id, texto: 'Novos membros adicionados', tipo: 'sistema' }); U.toast('✅ Membros adicionados!', 2200, 'sucesso'); Modal.fechar(); setTimeout(() => abrirDetalhes(grupoId), 200); } catch (err) { U.toast('Erro', 2400, 'erro'); } finally { U.btnLoading(btn, false, '✅ Adicionar'); } } }); const atualizarChips = () => { const box = document.getElementById('add-selecionados'); if (!selecionados.size) { box.innerHTML = `<span style="color:var(--fg-tertiary);font-size:12px;align-self:center;padding:0 4px">Ninguém selecionado</span>`; return; } box.innerHTML = Array.from(selecionados).map(uid => { const el = document.querySelector(`#add-picker .membro-opt[data-uid="${uid}"]`); const nome = el?.dataset.unome || 'Membro'; return `<span class="membro-chip">${U.escapeHtml(nome.split(' ')[0])}<button type="button" data-remove="${U.escapeHtml(uid)}">×</button></span>`; }).join(''); box.querySelectorAll('[data-remove]').forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); const uid = b.dataset.remove; selecionados.delete(uid); document.querySelector(`#add-picker .membro-opt[data-uid="${uid}"]`)?.classList.remove('is-selecionado'); atualizarChips(); })); }; const buscar = async (termo = '') => { const picker = document.getElementById('add-picker'); picker.innerHTML = `<div style="padding:12px;color:var(--fg-secondary);font-size:12px;text-align:center">Buscando…</div>`; let q = sb.from('profiles').select('id, nome, bairro, avatar_url, is_admin, admin_frame').neq('id', u.id).limit(40); if (termo) q = q.ilike('nome', `%${termo}%`); const { data } = await q; const disponiveis = (data || []).filter(p => !jaMembros.has(p.id)); if (!disponiveis.length) { picker.innerHTML = `<div style="padding:12px;color:var(--fg-secondary);font-size:12px;text-align:center">Ninguém disponível</div>`; return; } picker.innerHTML = disponiveis.map(p => { const av = p.avatar_url ? `<img src="${U.escapeHtml(U.publicUrl(BUCKETS.AVATARS, p.avatar_url))}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0">` : `<div style="width:36px;height:36px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">${U.initials(p.nome)}</div>`; return `<div class="membro-opt" data-uid="${U.escapeHtml(p.id)}" data-unome="${U.escapeHtml(p.nome)}"><div class="membro-opt__check">✓</div>${av}<div class="membro-opt__info"><span class="membro-opt__nome">${p.is_admin ? '👑 ' : ''}${U.escapeHtml(p.nome)}</span><span class="membro-opt__bairro">📍 ${U.escapeHtml(p.bairro || 'Oriximiná')}</span></div></div>`; }).join(''); picker.querySelectorAll('[data-uid]').forEach(el => el.addEventListener('click', () => { const uid = el.dataset.uid; if (selecionados.has(uid)) { selecionados.delete(uid); el.classList.remove('is-selecionado'); } else { selecionados.add(uid); el.classList.add('is-selecionado'); } atualizarChips(); })); }; let t; document.getElementById('add-busca')?.addEventListener('input', (e) => { clearTimeout(t); t = setTimeout(() => buscar(e.target.value.trim()), 300); }); buscar(); };
   const abrirEntrarCodigo = () => { if (!State.isLogged()) { U.toast('Entre para entrar em grupos', 2200, 'info'); return; } const body = `<div class="x-field"><label class="x-field__label">Código de convite</label><input class="x-field__input x-field__input--code" id="grp-codigo" maxlength="8" placeholder="ABCD1234" autocapitalize="characters" autocomplete="off"></div>`; Modal.abrir({ title: '🎟️ Entrar com código', body, submitLabel: 'Entrar', onSubmit: async () => { const codigo = document.getElementById('grp-codigo')?.value.trim().toUpperCase(); if (!codigo) { U.toast('Digite o código', 2000, 'info'); return; } const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true); try { const grupoId = await DBg.entrarPorCodigo(codigo); U.toast('✅ Você entrou no grupo!', 2400, 'sucesso'); Modal.fechar(); await carregarLista(); if (grupoId) setTimeout(() => abrirChat(grupoId), 300); } catch (err) { U.toast(err.message || 'Código inválido', 2600, 'erro'); } finally { U.btnLoading(btn, false, 'Entrar'); } } }); document.getElementById('grp-codigo')?.addEventListener('input', (e) => { e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ''); }); };
   const abrirExplorar = async () => { const body = `<div class="x-field"><input class="x-field__input" id="expl-busca" placeholder="Buscar grupos públicos…" autocomplete="off"></div><div id="expl-lista" style="margin-top:12px"><div class="x-skeleton x-skeleton--sm"></div></div>`; Modal.abrir({ title: '🌐 Descobrir grupos', body }); const carregar = async (termo = '') => { const box = document.getElementById('expl-lista'); if (!box) return; const grupos = await DBg.buscarPublicos(termo); if (!grupos.length) { box.innerHTML = `<div style="padding:20px;text-align:center;color:var(--fg-secondary);font-size:13px">Nenhum grupo público encontrado.</div>`; return; } box.innerHTML = grupos.map(g => { const foto = g.foto_url ? `<img src="${U.escapeHtml(U.publicUrl('grupos', g.foto_url))}" style="width:48px;height:48px;border-radius:50%;object-fit:cover">` : `<div style="width:48px;height:48px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px">${U.initials(g.nome)}</div>`; return `<div class="grupo-item"><div style="flex-shrink:0">${foto}</div><div class="grupo-item__info"><span class="grupo-item__nome">${U.escapeHtml(g.nome)}</span><span class="grupo-item__meta">${g.bairro ? '📍 ' + U.escapeHtml(g.bairro) : '🌐 Público'}</span></div><button type="button" class="x-btn x-btn--primary x-btn--xs" data-entrar="${U.escapeHtml(g.id)}">Entrar</button></div>`; }).join(''); box.querySelectorAll('[data-entrar]').forEach(btn => btn.addEventListener('click', async () => { try { const u = State.get('user'); await DBg.adicionarMembros(btn.dataset.entrar, [u.id]); U.toast('✅ Você entrou!', 2200, 'sucesso'); Modal.fechar(); await carregarLista(); setTimeout(() => abrirChat(btn.dataset.entrar), 300); } catch (err) { U.toast('Erro ao entrar', 2200, 'erro'); } })); }; let t; document.getElementById('expl-busca')?.addEventListener('input', (e) => { clearTimeout(t); t = setTimeout(() => carregar(e.target.value.trim()), 300); }); carregar(); };
-  const init = () => { cache(); if (!E.lista) { log('👥 Grupos: DOM não encontrado, pulando'); return; } E.chatForm?.addEventListener('submit', enviarMensagem); document.getElementById('grupo-chat-back')?.addEventListener('click', voltarLista); document.getElementById('grupo-chat-foto')?.addEventListener('click', () => { if (st.aberto) abrirDetalhes(st.aberto); }); document.getElementById('grupo-chat-info')?.addEventListener('click', () => { if (st.aberto) abrirDetalhes(st.aberto); }); document.getElementById('grupo-chat-menu')?.addEventListener('click', (e) => { e.stopPropagation(); if (!st.aberto) return; const box = document.querySelector('.grupo-chat__head'); if (!box) return; document.querySelector('.grupo-menu')?.remove(); const menu = document.createElement('div'); menu.className = 'grupo-menu'; menu.innerHTML = `<button type="button" data-action="detalhes">ℹ️ Detalhes do grupo</button><button type="button" data-action="add">➕ Adicionar membros</button><button type="button" data-action="convite">🎟️ Convidar por código</button><button type="button" data-action="sair" class="danger">🚪 Sair do grupo</button>`; box.style.position = 'relative'; box.appendChild(menu); menu.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { const a = b.dataset.action; menu.remove(); if (a === 'detalhes') abrirDetalhes(st.aberto); else if (a === 'add') { DBg.getMembros(st.aberto).then(m => abrirAddMembros(st.aberto, m)); } else if (a === 'convite') abrirDetalhes(st.aberto); else if (a === 'sair') { const g = st.gruposMap.get(st.aberto); if (g?.dono_id === State.get('user')?.id) { U.toast('Dono não pode sair', 2600, 'erro'); return; } if (confirm('Sair deste grupo?')) DBg.sair(st.aberto).then(() => { U.toast('Você saiu', 2000, 'info'); voltarLista(); }).catch(() => {}); } })); setTimeout(() => document.addEventListener('click', function h() { menu.remove(); document.removeEventListener('click', h); }, { once: true }), 50); }); E.chatAttach?.addEventListener('click', () => E.chatFile?.click()); E.chatFile?.addEventListener('change', (e) => { const f = e.target.files?.[0]; if (!f) return; enviarImagem(f); e.target.value = ''; }); document.getElementById('grupos-btn-novo')?.addEventListener('click', abrirComposer); document.getElementById('grupos-btn-entrar')?.addEventListener('click', abrirEntrarCodigo); document.getElementById('grupos-btn-explorar')?.addEventListener('click', abrirExplorar); State.on('view:change', (v) => { if (v === 'chat') setTimeout(carregarLista, 150); else desligarRealtime(); }); if (State.isLogged()) setTimeout(carregarLista, 500); log('👥 Grupos prontos'); };
+  const init = () => { cache(); if (!E.lista) { log('👥 Grupos: DOM não encontrado, pulando'); return; } E.chatForm?.addEventListener('submit', enviarMensagem); E.chatInput?.addEventListener('input', onGroupInputChange); document.getElementById('grupo-chat-back')?.addEventListener('click', voltarLista); document.getElementById('grupo-chat-foto')?.addEventListener('click', () => { if (st.aberto) abrirDetalhes(st.aberto); }); document.getElementById('grupo-chat-info')?.addEventListener('click', () => { if (st.aberto) abrirDetalhes(st.aberto); }); document.getElementById('grupo-chat-menu')?.addEventListener('click', (e) => { e.stopPropagation(); if (!st.aberto) return; const box = document.querySelector('.grupo-chat__head'); if (!box) return; document.querySelector('.grupo-menu')?.remove(); const menu = document.createElement('div'); menu.className = 'grupo-menu'; menu.innerHTML = `<button type="button" data-action="detalhes">ℹ️ Detalhes do grupo</button><button type="button" data-action="add">➕ Adicionar membros</button><button type="button" data-action="convite">🎟️ Convidar por código</button><button type="button" data-action="sair" class="danger">🚪 Sair do grupo</button>`; box.style.position = 'relative'; box.appendChild(menu); menu.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { const a = b.dataset.action; menu.remove(); if (a === 'detalhes') abrirDetalhes(st.aberto); else if (a === 'add') { DBg.getMembros(st.aberto).then(m => abrirAddMembros(st.aberto, m)); } else if (a === 'convite') abrirDetalhes(st.aberto); else if (a === 'sair') { const g = st.gruposMap.get(st.aberto); if (g?.dono_id === State.get('user')?.id) { U.toast('Dono não pode sair', 2600, 'erro'); return; } if (confirm('Sair deste grupo?')) DBg.sair(st.aberto).then(() => { U.toast('Você saiu', 2000, 'info'); voltarLista(); }).catch(() => {}); } })); setTimeout(() => document.addEventListener('click', function h() { menu.remove(); document.removeEventListener('click', h); }, { once: true }), 50); }); E.chatAttach?.addEventListener('click', () => E.chatFile?.click()); E.chatFile?.addEventListener('change', (e) => { const f = e.target.files?.[0]; if (!f) return; enviarImagem(f); e.target.value = ''; }); document.getElementById('grupos-btn-novo')?.addEventListener('click', abrirComposer); document.getElementById('grupos-btn-entrar')?.addEventListener('click', abrirEntrarCodigo); document.getElementById('grupos-btn-explorar')?.addEventListener('click', abrirExplorar); State.on('view:change', (v) => { if (v === 'chat') setTimeout(carregarLista, 150); else { desligarRealtime(); pararTypingTicker(); } }); if (State.isLogged()) setTimeout(carregarLista, 500); Presence.on('presence:sync', () => { if (st.aberto) renderTypingGroupHeader(); }); log('👥 Grupos prontos'); };
   return { init, carregarLista, abrirChat, abrirComposer, abrirDetalhes, abrirEntrarCodigo, abrirExplorar, _db: DBg };
 })();
 
@@ -2415,7 +2613,7 @@ const LevelUp = (() => {
   const soltarConfete = (cores = null) => { const layer = criarCamadaConfete(); layer.innerHTML = ''; const palette = cores && cores.length ? cores : ['#F0C674', '#E87C6E', '#D96754', '#DD9453', '#7B8FE8', '#4DB8A8']; for (let i = 0; i < 60; i++) { const piece = document.createElement('span'); const tipo = Math.random(); const classe = tipo < 0.5 ? 'rect' : tipo < 0.85 ? 'circle' : 'star'; piece.className = `levelup-confetti__piece levelup-confetti__piece--${classe}`; const cor = palette[i % palette.length]; if (classe === 'star') piece.style.color = cor; else piece.style.background = cor; piece.style.left = (Math.random() * 100) + '%'; piece.style.top = '-' + (10 + Math.random() * 20) + 'px'; piece.style.animationDuration = (2.2 + Math.random() * 1.6) + 's'; piece.style.animationDelay = (Math.random() * 0.6) + 's'; layer.appendChild(piece); } setTimeout(() => { if (layer) layer.innerHTML = ''; }, 4500); };
   const coresPorNivel = (index) => { const paletas = [['#A3D977','#6EC19A','#4DB8A8'],['#7BD4E0','#5A88B3','#3A5FA0'],['#F0C674','#DBA84A','#B8862C'],['#E87C6E','#D96754','#C2503E'],['#F0C674','#E87C6E','#9462A4'],['#5A88B3','#9462A4','#DBA84A'],['#A855F7','#22D3EE','#FBBF24','#34D399'],['#DBA84A','#F0C674','#FFFFFF','#9462A4']]; return paletas[Math.min(index, paletas.length - 1)]; };
   const abrir = ({ nivelIndex, medal, nome, xpTotal }) => { criarOverlay(); const medalEl = overlayEl.querySelector('[data-medal]'); const levelEl = overlayEl.querySelector('[data-level]'); const nameEl = overlayEl.querySelector('[data-name]'); const xpEl = overlayEl.querySelector('[data-xp]'); medalEl.textContent = medal || '⭐'; levelEl.textContent = `Nível ${Number(nivelIndex) + 1}`; nameEl.textContent = nome || 'Novo nível'; xpEl.textContent = `${U.formatNum(xpTotal || 0)} XP acumulados`; overlayEl.classList.remove('is-visible'); void overlayEl.offsetWidth; overlayEl.classList.add('is-visible'); overlayEl.setAttribute('aria-hidden', 'false'); soltarConfete(coresPorNivel(nivelIndex)); clearTimeout(timerFechar); timerFechar = setTimeout(fechar, 6000); };
-  const fechar = () => { if (!overlayEl) return; clearTimeout(timerFechar); overlayEl.classList.remove('is-visible'); overlayEl.setAttribute('aria-hidden', 'true'); };
+  const fechar = () => { if (!overlayEl) return; clearTimeout(fechar); overlayEl.classList.remove('is-visible'); overlayEl.setAttribute('aria-hidden', 'true'); };
   const detectar = (xpAnterior, xpAtual) => { const lvlAntes = U.getLevel(xpAnterior || 0); const lvlAgora = U.getLevel(xpAtual || 0); if (lvlAgora.index > lvlAntes.index) { abrir({ nivelIndex: lvlAgora.index, medal: lvlAgora.icon, nome: lvlAgora.name, xpTotal: xpAtual }); return true; } return false; };
   const init = () => { const u = State.get('user'); if (u?.pontos != null) ultimoNivel = U.getLevel(u.pontos).index; };
   return { abrir, fechar, detectar, init, _getUltimoNivel: () => ultimoNivel };
@@ -2436,7 +2634,6 @@ const LevelBar = (() => {
     document.getElementById('level-nome').textContent = `Nível ${lvl.medal} · ${lvl.name}`;
     document.getElementById('level-xp').textContent = prog.nextLevel ? `${U.formatNum(prog.current)} / ${U.formatNum(prog.next)} XP` : `${U.formatNum(xp)} XP`;
     document.getElementById('level-fill').style.width = prog.percent + '%';
-    // Só mostra a barra se NÃO estiver vendo o perfil de outra pessoa
     const vendoOutroPerfil = State.get('view') === 'perfil' && State.get('viewingProfileId') && State.get('viewingProfileId') !== u.id;
     if (vendoOutroPerfil) { bar.classList.add('hidden'); } else { bar.classList.remove('hidden'); }
   };
@@ -2476,7 +2673,7 @@ const Pulso = (() => {
    BLOCO 31: Explorar
    ═══════════════════════════════════════════════════════════ */
 const Explorar = (() => {
-  const carregarSemanal = async () => { const box = document.getElementById('rank-semanal'); if (!box) return; try { const r = await DB.profiles.topUsers(5); if (!r.length) { box.innerHTML = `<p style="color:var(--fg-secondary)">Sem dados.</p>`; return; } box.innerHTML = r.map((u, i) => { const ini = U.initials(u.nome || ''); const isAdmin = u.is_admin === true; const frameAttr = isAdmin && u.admin_frame && u.admin_frame !== 'none' ? ` data-frame="${u.admin_frame}"` : ''; const adminClass = isAdmin && u.admin_frame && u.admin_frame !== 'none' ? ' x-avatar--admin' : ''; const av = u.avatar_url ? `<img class="x-avatar x-avatar--sm${adminClass}"${frameAttr} src="${U.escapeHtml(U.publicUrl(BUCKETS.AVATARS, u.avatar_url))}" alt="">` : `<div class="x-avatar x-avatar--sm x-avatar--grad${adminClass}"${frameAttr}>${ini}</div>`; return `<div class="leaderboard__row leaderboard__row--${i + 1}" data-user-id="${U.escapeHtml(u.id)}"><div class="leaderboard__rank">${i + 1}</div>${av}<div class="leaderboard__user"><span class="leaderboard__nome">${isAdmin ? '👑 ' : ''}${U.escapeHtml(u.nome)}</span><span class="leaderboard__bairro">${U.escapeHtml(u.bairro || '')}</span></div><span class="leaderboard__pts">⚡ ${U.formatNum(u.pontos)}</span></div>`; }).join(''); box.querySelectorAll('[data-user-id]').forEach(el => el.addEventListener('click', () => { State.setView('perfil'); setTimeout(() => Perfil.abrir(el.dataset.userId), 250); })); } catch (e) { logErr(e); } };
+  const carregarSemanal = async () => { const box = document.getElementById('rank-semanal'); if (!box) return; try { const r = await DB.profiles.topUsers(5); if (!r.length) { box.innerHTML = `<p style="color:var(--fg-secondary)">Sem dados.</p>`; return; } box.innerHTML = r.map((u, i) => { const ini = U.initials(u.nome || ''); const isAdmin = u.is_admin === true; const frameAttr = isAdmin && u.admin_frame && u.admin_frame !== 'none' ? ` data-frame="${u.admin_frame}"` : ''; const adminClass = isAdmin && u.admin_frame && u.admin_frame !== 'none' ? ' x-avatar--admin' : ''; const av = u.avatar_url ? `<img class="x-avatar x-avatar--sm${adminClass}"${frameAttr} src="${U.escapeHtml(U.publicUrl(BUCKETS.AVATARS, u.avatar_url))}" alt="">` : `<div class="x-avatar x-avatar--sm x-avatar--grad${adminClass}"${frameAttr}>${ini}</div>`; const online = Presence.isOnline(u.id) ? '<span class="presence-dot--sm" style="position:static;display:inline-block;margin-left:4px"></span>' : ''; return `<div class="leaderboard__row leaderboard__row--${i + 1}" data-user-id="${U.escapeHtml(u.id)}"><div class="leaderboard__rank">${i + 1}</div>${av}<div class="leaderboard__user"><span class="leaderboard__nome">${isAdmin ? '👑 ' : ''}${U.escapeHtml(u.nome)}${online}</span><span class="leaderboard__bairro">${U.escapeHtml(u.bairro || '')}</span></div><span class="leaderboard__pts">⚡ ${U.formatNum(u.pontos)}</span></div>`; }).join(''); box.querySelectorAll('[data-user-id]').forEach(el => el.addEventListener('click', () => { State.setView('perfil'); setTimeout(() => Perfil.abrir(el.dataset.userId), 250); })); } catch (e) { logErr(e); } };
   const carregarMarket = async () => { const box = document.getElementById('market-grid'); if (!box) return; box.innerHTML = `<div class="x-skeleton x-skeleton--sm"></div>`; try { const { data, error } = await sb.from('produtos').select('id,titulo,preco,imagem_url,bairro,whatsapp,descricao').eq('deletado', false).eq('vendido', false).order('criado_em', { ascending: false }).limit(30); if (error) throw error; if (!data?.length) { box.innerHTML = `<p style="text-align:center;padding:20px;color:var(--fg-secondary);font-size:14px">Mercado vazio. Anuncie algo que não usa mais.</p><button type="button" class="x-btn x-btn--primary x-btn--sm" id="market-empty-cta" style="display:block;margin:12px auto 0">+ Anunciar produto</button>`; document.getElementById('market-empty-cta')?.addEventListener('click', abrirNovoProduto); return; } box.innerHTML = `<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">${data.map(p => `<div class="x-card" style="padding:0;overflow:hidden;display:flex;flex-direction:column">${p.imagem_url ? `<img src="${U.escapeHtml(U.publicUrl(BUCKETS.POSTS, p.imagem_url))}" style="width:100%;aspect-ratio:1;object-fit:cover;background:var(--bg-sunken)" loading="lazy" alt="" onerror="this.style.display='none'">` : `<div style="width:100%;aspect-ratio:1;background:var(--gradient-primary-soft);display:flex;align-items:center;justify-content:center;font-size:48px">🛒</div>`}<div style="padding:var(--space-md);display:flex;flex-direction:column;gap:6px;flex:1"><strong style="font-size:13px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${U.escapeHtml(p.titulo)}</strong><span style="font-family:var(--font-display);font-weight:900;color:var(--accent);font-size:var(--text-title-sm)">${p.preco ? Number(p.preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : 'A combinar'}</span>${p.bairro ? `<span style="font-size:11px;color:var(--fg-secondary)">📍 ${U.escapeHtml(p.bairro)}</span>` : ''}${p.whatsapp ? `<button type="button" class="x-btn x-btn--primary x-btn--xs" data-wa="${U.escapeHtml(p.whatsapp)}" data-titulo="${U.escapeHtml(p.titulo)}" style="width:100%;margin-top:auto">💬 WhatsApp</button>` : ''}</div></div>`).join('')}</div>`; box.querySelectorAll('[data-wa]').forEach(btn => btn.addEventListener('click', () => { const limpo = String(btn.dataset.wa).replace(/\D/g, ''); const full = limpo.length <= 11 ? '55' + limpo : limpo; window.open(`https://wa.me/${full}?text=${encodeURIComponent('Olá! Vi seu anúncio "' + btn.dataset.titulo + '" no Orixiconnect.')}`, '_blank'); })); } catch (e) { logErr('market:', e); box.innerHTML = `<p style="text-align:center;padding:20px;color:var(--fg-secondary);font-size:13px">Erro ao carregar mercado.</p>`; } };
   const abrirNovoProduto = () => { if (!State.isLogged()) { U.toast('Entre para vender', 2400, 'info'); return; } const u = State.get('user'); let imgSel = null; const bairros = BAIRROS.map(b => `<option value="${U.escapeHtml(b)}" ${b === u?.bairro ? 'selected' : ''}>${U.escapeHtml(b)}</option>`).join(''); const body = `<div class="x-field"><label class="x-field__label">Título</label><input class="x-field__input" id="prod-titulo" placeholder="Ex: Bicicleta aro 29" maxlength="80"></div><div class="x-field"><label class="x-field__label">Descrição</label><textarea class="x-field__textarea" id="prod-desc" rows="3" maxlength="400" placeholder="Detalhes, estado de conservação…"></textarea></div><div class="x-field"><label class="x-field__label">Preço (R$)</label><input class="x-field__input" id="prod-preco" type="number" step="0.01" min="0" placeholder="Deixe vazio para 'A combinar'"></div><div class="x-field"><label class="x-field__label">WhatsApp (com DDD)</label><input class="x-field__input" id="prod-wpp" placeholder="Ex: 93999998888" inputmode="numeric" maxlength="15"></div><div class="x-field"><label class="x-field__label">Bairro</label><select class="x-field__select" id="prod-bairro">${bairros}</select></div><div class="x-field"><label class="x-field__label">📷 Foto do produto</label><div class="zel-foto-upload" id="prod-foto-wrap"><span style="font-size:32px">📷</span><span>Adicionar foto</span><input type="file" id="prod-foto" accept="image/*"></div></div>`; Modal.abrir({ title: '🛒 Anunciar produto', body, submitLabel: 'Publicar anúncio', onSubmit: async () => { const titulo = document.getElementById('prod-titulo')?.value.trim(); if (!titulo || titulo.length < 3) { U.toast('Digite um título', 2600, 'erro'); return; } const btn = document.querySelector('#global-modal [data-submit]'); U.btnLoading(btn, true); try { let imagem_url = null; if (imgSel) imagem_url = await DB.upload.image(BUCKETS.POSTS, imgSel, 'produto'); await sb.from('produtos').insert({ user_id: u.id, titulo, descricao: document.getElementById('prod-desc')?.value.trim() || null, preco: parseFloat(document.getElementById('prod-preco')?.value) || null, whatsapp: document.getElementById('prod-wpp')?.value.trim() || null, bairro: document.getElementById('prod-bairro')?.value || null, imagem_url }); U.toast('🛒 Anúncio publicado!', 2600, 'sucesso'); Modal.fechar(); carregarMarket(); State.addXP(5, 'venda'); } catch (e) { logErr('novo-produto:', e); U.toast('Erro ao publicar', 3000, 'erro'); } finally { U.btnLoading(btn, false, 'Publicar anúncio'); } } }); document.getElementById('prod-foto')?.addEventListener('change', (e) => { const f = e.target.files?.[0]; if (!f) return; imgSel = f; const wrap = document.getElementById('prod-foto-wrap'); if (wrap) { const url = URL.createObjectURL(f); wrap.innerHTML = `<img src="${url}" alt=""><input type="file" id="prod-foto" accept="image/*">`; } }); };
   const carregarTags = async () => { const box = document.getElementById('trending-tags'); if (!box) return; try { const { data } = await sb.from('posts').select('texto').eq('deletado', false).gte('criado_em', new Date(Date.now() - 7 * 86400000).toISOString()).limit(200); const tagCount = new Map(); (data || []).forEach(p => { if (!p.texto) return; const tags = p.texto.match(/#([a-zA-Z0-9_\u00C0-\u017F]{2,30})/g) || []; tags.forEach(t => { const k = t.toLowerCase(); tagCount.set(k, (tagCount.get(k) || 0) + 1); }); }); const top = Array.from(tagCount.entries()).sort((a, b) => b[1] - a[1]).slice(0, 12); if (!top.length) { box.innerHTML = `<p style="color:var(--fg-secondary);font-size:13px">Nenhuma hashtag nos últimos 7 dias.</p>`; return; } box.innerHTML = top.map(([tag, count]) => `<button type="button" class="x-chip" data-tag="${U.escapeHtml(tag)}">${U.escapeHtml(tag)} <span class="x-chip__count">${count}</span></button>`).join(''); box.querySelectorAll('[data-tag]').forEach(btn => btn.addEventListener('click', () => { const tag = btn.dataset.tag; State.setView('feed'); setTimeout(() => { const inp = document.getElementById('busca-global'); const bar = document.getElementById('search-bar'); if (inp && bar) { bar.classList.remove('hidden'); inp.value = tag; inp.dispatchEvent(new Event('input')); Search.buscar(tag); } }, 200); })); } catch (e) { logErr('tags:', e); box.innerHTML = `<p style="color:var(--fg-secondary);font-size:13px">Não foi possível carregar.</p>`; } };
@@ -2488,7 +2685,7 @@ const Explorar = (() => {
    BLOCO 32: Diagnostico
    ═══════════════════════════════════════════════════════════ */
 const Diagnostico = (() => {
-  const modulos = [{ nome: 'Supabase Client', icone: '🔌', teste: async () => { if (!window.sb) throw new Error('Cliente Supabase não inicializado'); const { error } = await sb.auth.getSession(); if (error) throw error; return 'Conectado'; } },{ nome: 'Auth — Sessão', icone: '👤', teste: async () => { const { data } = await sb.auth.getSession(); if (!data?.session) return 'Sem sessão (visitante)'; return `Logado como ${data.session.user.email}`; } },{ nome: 'Tabela: profiles', icone: '📋', teste: async () => { const { count, error } = await sb.from('profiles').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Tabela: posts', icone: '📝', teste: async () => { const { count, error } = await sb.from('posts').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Bucket: avatars (v24)', icone: '🖼️', teste: async () => { const { error } = await sb.storage.from('avatars').list('', { limit: 1 }); if (error) throw error; return 'OK'; } },{ nome: 'Módulo: Perfil v24', icone: '👤', teste: async () => { if (typeof Perfil === 'undefined') throw new Error('Perfil não existe'); if (typeof Perfil.renderAparencia !== 'function') throw new Error('renderAparencia ausente'); return 'OK'; } },{ nome: 'Módulo: DeletePost', icone: '🗑️', teste: async () => { if (typeof DeletePost === 'undefined') throw new Error('DeletePost não existe'); return 'OK'; } },{ nome: 'Módulo: Guia', icone: '🎨', teste: async () => { if (typeof Guia === 'undefined') throw new Error('Guia não existe'); return 'OK'; } },{ nome: 'Módulo: StoriesExt', icone: '📸', teste: async () => { if (typeof StoriesExt === 'undefined') throw new Error('StoriesExt não existe'); return 'OK'; } },{ nome: 'Módulo: Trending', icone: '📊', teste: async () => { if (typeof Trending === 'undefined') throw new Error('Trending não existe'); return 'OK'; } },{ nome: 'Módulo: Grupos', icone: '👥', teste: async () => { if (typeof Grupos === 'undefined') throw new Error('Grupos não existe'); return 'OK'; } }];
+  const modulos = [{ nome: 'Supabase Client', icone: '🔌', teste: async () => { if (!window.sb) throw new Error('Cliente Supabase não inicializado'); const { error } = await sb.auth.getSession(); if (error) throw error; return 'Conectado'; } },{ nome: 'Auth — Sessão', icone: '👤', teste: async () => { const { data } = await sb.auth.getSession(); if (!data?.session) return 'Sem sessão (visitante)'; return `Logado como ${data.session.user.email}`; } },{ nome: 'Tabela: profiles', icone: '📋', teste: async () => { const { count, error } = await sb.from('profiles').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Tabela: posts', icone: '📝', teste: async () => { const { count, error } = await sb.from('posts').select('id', { count: 'exact', head: true }); if (error) throw error; return `${count} registros`; } },{ nome: 'Bucket: avatars', icone: '🖼️', teste: async () => { const { error } = await sb.storage.from('avatars').list('', { limit: 1 }); if (error) throw error; return 'OK'; } },{ nome: 'Presence (Realtime)', icone: '🟢', teste: async () => { if (typeof Presence === 'undefined') throw new Error('Presence não existe'); return 'OK'; } },{ nome: 'Módulo: Perfil', icone: '👤', teste: async () => { if (typeof Perfil === 'undefined') throw new Error('Perfil não existe'); if (typeof Perfil.renderAparencia !== 'function') throw new Error('renderAparencia ausente'); return 'OK'; } },{ nome: 'Módulo: DeletePost', icone: '🗑️', teste: async () => { if (typeof DeletePost === 'undefined') throw new Error('DeletePost não existe'); return 'OK'; } },{ nome: 'Módulo: Guia', icone: '🎨', teste: async () => { if (typeof Guia === 'undefined') throw new Error('Guia não existe'); return 'OK'; } },{ nome: 'Módulo: StoriesExt', icone: '📸', teste: async () => { if (typeof StoriesExt === 'undefined') throw new Error('StoriesExt não existe'); return 'OK'; } },{ nome: 'Módulo: Trending', icone: '📊', teste: async () => { if (typeof Trending === 'undefined') throw new Error('Trending não existe'); return 'OK'; } },{ nome: 'Módulo: Grupos', icone: '👥', teste: async () => { if (typeof Grupos === 'undefined') throw new Error('Grupos não existe'); return 'OK'; } }];
   const rodar = async () => { const box = document.getElementById('diag-resultados'); if (!box) return; box.innerHTML = ''; for (const m of modulos) { const linha = document.createElement('div'); linha.style.cssText = 'display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:10px;margin-bottom:6px;font-size:13px'; linha.innerHTML = `<span style="font-size:18px">${m.icone}</span><strong style="flex:1;color:var(--fg-primary)">${m.nome}</strong><span data-status style="font-size:12px;color:var(--fg-secondary)">⏳ testando…</span>`; box.appendChild(linha); const statusEl = linha.querySelector('[data-status]'); try { const r = await m.teste(); const txt = typeof r === 'string' ? r : 'OK'; statusEl.innerHTML = `<span style="color:#2D8659;font-weight:700">✅ ${U.escapeHtml(txt)}</span>`; linha.style.borderColor = 'rgba(45,134,89,.35)'; } catch (err) { const msg = err?.message || String(err); statusEl.innerHTML = `<span style="color:#C2503E;font-weight:700">❌ ${U.escapeHtml(msg)}</span>`; linha.style.borderColor = 'rgba(194,80,62,.45)'; } } };
   const render = () => { const box = document.getElementById('perfil-tab-admin'); if (!box) return; box.innerHTML = `<div class="admin-card" style="background:linear-gradient(135deg,rgba(45,134,89,.10),rgba(240,198,116,.06));border-color:rgba(45,134,89,.35)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="font-size:1.5rem">🔬</span><strong style="font-family:var(--font-display);font-size:var(--text-title);font-weight:900">Diagnóstico do Sistema</strong></div><p style="font-size:var(--text-caption);color:var(--fg-secondary);line-height:1.5;margin-bottom:12px">Testa módulos e tabelas em tempo real.</p><button type="button" class="x-btn x-btn--primary x-btn--block" id="diag-rodar" style="margin-bottom:14px">🧪 Rodar Diagnóstico</button></div><h3 class="x-heading x-heading--sm">📊 Resultados</h3><div id="diag-resultados"></div>`; document.getElementById('diag-rodar')?.addEventListener('click', async (e) => { const btn = e.currentTarget; btn.disabled = true; btn.textContent = '🧪 Testando…'; await rodar(); btn.disabled = false; btn.textContent = '🔁 Rodar de novo'; }); };
   return { render, rodar };
@@ -2571,7 +2768,7 @@ const App = (() => {
   const bindNewPostButtons = () => { const handleNewPost = (e) => { e.preventDefault(); e.stopPropagation(); try { Composer.abrir(); } catch (err) { logErr('new-post:', err); } }; document.getElementById('fab-novo-post')?.addEventListener('click', handleNewPost); document.querySelectorAll('[data-action="new-post"]').forEach(btn => btn.addEventListener('click', handleNewPost)); document.addEventListener('click', (e) => { const alvo = e.target.closest('[data-action="new-post"]'); if (alvo && !alvo.dataset._bound) { alvo.dataset._bound = '1'; alvo.addEventListener('click', handleNewPost); } }); };
   const bindChatSubtabs = () => { const btnConversas = document.getElementById('chat-sub-conversas'); const btnGrupos = document.getElementById('chat-sub-grupos'); const abaConversas = document.getElementById('chat-aba-conversas'); const abaGrupos = document.getElementById('chat-aba-grupos'); btnConversas?.addEventListener('click', () => { btnConversas.classList.add('is-active'); btnGrupos?.classList.remove('is-active'); abaConversas?.classList.remove('hidden'); abaGrupos?.classList.add('hidden'); }); btnGrupos?.addEventListener('click', () => { btnGrupos.classList.add('is-active'); btnConversas?.classList.remove('is-active'); abaGrupos?.classList.remove('hidden'); abaConversas?.classList.add('hidden'); try { Grupos.carregarLista(); } catch (e) { logErr('grupos carregar:', e); } }); };
   const init = async () => {
-    log('🚀 Inicializando Orixi v24.1 — Correções Android-safe…');
+    log('🚀 Inicializando Orixi v25.0 — Online + Digitando…');
     SkinSwitcher.init();
     await State.init();
     try { Auth.init(); } catch (e) { logErr('Auth:', e); }
@@ -2596,6 +2793,7 @@ const App = (() => {
     try { StoriesExt.init(); } catch (e) { logErr('StoriesExt:', e); }
     try { Trending.init(); } catch (e) { logErr('Trending:', e); }
     try { DeletePost.init(); } catch (e) { logErr('DeletePost:', e); }
+    try { Presence.init(); } catch (e) { logErr('Presence:', e); }
     bindTabbar();
     bindNewPostButtons();
     bindChatSubtabs();
@@ -2603,10 +2801,10 @@ const App = (() => {
     window.addEventListener('hashchange', () => { if (State.isLogged()) irPara((location.hash || '').replace('#', '') || 'feed'); });
     window.addEventListener('orixi:logged', () => { mostrarApp(); irPara('feed'); });
     document.addEventListener('pointerdown', (e) => U.ripple(e));
-    window.Orixi = { ir: irPara, state: State, db: DB, zdb: ZDB, comercio: ComercioDB, xp: State.addXP, stories: StoriesExt, trending: Trending, grupos: Grupos, deletePost: DeletePost, perfil: Perfil, _app: App };
+    window.Orixi = { ir: irPara, state: State, db: DB, zdb: ZDB, comercio: ComercioDB, xp: State.addXP, stories: StoriesExt, trending: Trending, grupos: Grupos, deletePost: DeletePost, perfil: Perfil, presence: Presence, _app: App };
     window.addEventListener('resize', () => { document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px'); });
     window.dispatchEvent(new Event('resize'));
-    log('✅ Pronto — Bem-vindo a Oriximiná v24.1 (Android-safe)');
+    log('✅ Pronto — Bem-vindo a Oriximiná v25.0 (Online + Digitando)');
   };
   return { irPara, init };
 })();
